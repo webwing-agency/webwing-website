@@ -8,26 +8,29 @@
 
 :root {
     --primary-color: #2200b8;
-    --secondary-color: #6f00c3;
-    --accent-color: #FF00C8;
+    --secondary-color: #5d00ff;
+    --accent-color: #e100ff;
+    --accent-color-light: #ec5eff;
+    --accent-color-dark: #a900c0;
 
     --card-bg: rgba(255, 255, 255, 0.05);
+
+    --text-color: rgba(255, 255, 255, 0.8);
+    --text-font-size: 1rem;
+    --text-line-height: 1.6;
+
+    --small-text-font-size: 1rem;
 
     --hero-title-font-size: 5.5rem;
     --section-title-font-size: 2.5rem;
 
-    --text-color: rgba(255, 255, 255, 0.8);
-    --text-font-size: 1rem;
-
-    --small-text-font-size: 1rem;
+    --heading-line-height: 1.1;
+    --heading-letter-spacing: -0.03em;
 
     --card-title-font-size: 1.5rem;
     --card-text-font-size: 4rem;
 
-    --text-line-height: 1.6;
-    --heading-line-height: 1.1;
-
-    --heading-letter-spacing: -0.02em;
+    
 
 
 
@@ -97,18 +100,24 @@ p, a, button {
 }
 
 .cta {
-    padding: 3px 20px;
+    padding: 5px 25px;
     background-color: #fff;
     color: #000;
     text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 15px;
     font-weight: 500;
-    transition: background-color 0.3s, color 0.3s;
+    transition: 0.3s;
+    position: relative;
+    z-index: 1;
+    transition: 0.3s;
 }
 
 .cta:hover {
-    background-color: var(--primary-color);
-    color: #fff;
+    transition: 0.3s;
+    color: white;
+    background: linear-gradient(var(--accent-color-light) 10%, var(--accent-color) 60%, var(--accent-color-dark) 100%);
+    transform: translateY(-2px);
 }
 
 .grid {
@@ -131,8 +140,8 @@ p, a, button {
 
 .icon {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 23px;
+    height: 23px;
 }
 
 .reference-link {
@@ -210,7 +219,20 @@ header {
     .hero-title {
         font-size: var(--hero-title-font-size);
         text-align: center;
+        margin: 0px;
     }
+
+        .gradient-text-purple {
+            background: linear-gradient(#c988fe 20%, #5d00ff 70%, #1900ff 85%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-text-pink {
+            background: linear-gradient(#ffc5f2 10%, #e100ff 60%, #b211a2 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
     .hero-subtitle {
         font-size: var(--text-font-size);
@@ -243,6 +265,26 @@ header {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    position: relative;
+    overflow: hidden; /* Ensures the pseudo-element doesn't overflow */
+}
+
+.icon-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/icons/frame.svg');
+    background-size: cover; 
+    background-position: center; 
+    z-index: 0; 
+}
+
+.icon-container > .icon {
+    position: relative;
+    z-index: 1; 
 }
 
     .design-icon-container {
