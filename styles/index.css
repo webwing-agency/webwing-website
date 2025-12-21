@@ -329,6 +329,26 @@ header {
     margin-top: 15px;
 }
 
+.projects-section .grid-card {
+    padding-bottom: 80px;
+}
+
+.tag-container {
+    position: absolute;
+    bottom: 25px;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
 /* Reviews Section */
 .reviews-section .grid-card {
     padding-bottom: 65px;
@@ -343,10 +363,14 @@ header {
     border-radius: 5px;
 }
 
+.reviews-section .card-title {
+    margin-bottom: 3px;
+}
+
 .corporation-name {
     font-size: 1rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.75)
+    color: rgba(255, 255, 255, 0.5)
 }
 
 .testimonial-text {
