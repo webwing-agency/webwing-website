@@ -1,209 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --primary-color: #2200b8;
-    --secondary-color: #5d00ff;
-    --accent-color: #e100ff;
-    --accent-color-light: #ec5eff;
-    --accent-color-dark: #a900c0;
-
-    --card-bg: rgba(255, 255, 255, 0.05);
-
-    --text-color: rgba(255, 255, 255, 0.8);
-    --text-font-size: 1rem;
-    --text-line-height: 1.6;
-
-    --small-text-font-size: 1rem;
-
-    --hero-title-font-size: 5.5rem;
-    --section-title-font-size: 2.5rem;
-
-    --heading-line-height: 1.1;
-    --heading-letter-spacing: -0.03em;
-
-    --card-title-font-size: 1.5rem;
-    --card-text-font-size: 4rem;
-
-    
-
-
-
-    --icon-design-bg-color: rgba(255, 166, 0, 0.5);
-    --icon-conversion-bg-color: rgba(0, 128, 0, 0.5);
-    --icon-seo-bg-color: rgba(255, 255, 0, 0.5);
-    --icon-code-bg-color: rgba(0, 0, 255, 0.5);
-    --icon-performance-bg-color: rgba(255, 0, 0, 0.5);
-    --icon-ai-bg-color: rgba(255, 83, 232, 0.5);
-
-    --icon-design-color: rgb(255, 166, 0);
-    --icon-conversion-color: rgb(0, 128, 0);
-    --icon-seo-color: rgb(255, 255, 0);
-    --icon-code-color: rgb(0, 0, 255);
-    --icon-performance-color: rgb(255, 0, 0);
-    --icon-ai-color: rgb(255, 192, 247);
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #000;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100vw;
-    overflow-x: hidden;
-}
-
-section {
-    width: 100vw;
-    padding: 5rem 10vw;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 20vh 0px;
-}
-
-h1, h2 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 600;
-    line-height: var(--heading-line-height);
-    letter-spacing: var(--heading-letter-spacing);
-}
-
-h3 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    line-height: var(--heading-line-height);
-    letter-spacing: var(--heading-letter-spacing);
-}
-
-.section-title {
-    font-size: var(--section-title-font-size);
-    margin-bottom: 2rem;
-    width: 100%;
-}
-
-p, a, button {
-    font-size: var(--text-font-size);
-    line-height: var(--text-line-height);
-    color: var(--text-color);
-}
-
-.cta {
-    padding: 5px 25px;
-    background-color: #fff;
-    color: #000;
-    text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 15px;
-    font-weight: 500;
-    transition: 0.3s;
-    position: relative;
-    z-index: 1;
-    transition: 0.3s;
-}
-
-.cta:hover {
-    transition: 0.3s;
-    color: white;
-    background: linear-gradient(var(--accent-color-light) 10%, var(--accent-color) 60%, var(--accent-color-dark) 100%);
-    transform: translateY(-2px);
-}
-
-.grid {
-    display: grid;
-    gap: 2rem;
-    width: 100%;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-
-}
-
-.grid-card {
-    padding: 2rem;
-    background: var(--card-bg);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(2px);
-    border-radius: 10px;
-    position: relative;
-}
-
-.icon {
-    display: block;
-    width: 23px;
-    height: 23px;
-}
-
-.reference-link {
-    font-weight: 500;
-    text-decoration: underline;
-    color: rgba(255, 255, 255, 0.75);
-    transition: color 0.3s;
-    font-size: var(--text-font-size);
-}
-
-.reference-link:hover {
-    color: white;
-    transition: color 0.3s;
-}
-
-/* Header */
-
-header {
-    width: 100vw;
-    padding: 2rem 3rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    background-image: linear-gradient(rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
-}
-
-    .nav-logo {
-        position: absolute;
-        left: 3rem;
-        width: 80px;
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 2rem;
-    }
-
-        .nav-links a {
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-    .hamburger-menu {
-        position: absolute;
-        right: 3rem;
-        height: 15px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        cursor: pointer;
-    }
-
-        .hamburger-menu .bar {
-            width: 25px;
-            height: 1.5px;
-            background-color: #fff;
-        }
 
 /* Hero Section */
 
@@ -233,22 +28,24 @@ header {
 
         .underline-scribble {
             position: relative;
+            display: inline-block;
+            padding-bottom: 0.2em;
         }
-
-        .underline-scribble::after {
-            content: '';
-            position: absolute;
-            bottom: -25px;
-            left: 10px;
-            width: 100%;
-            height: 50px;
-            rotate: -3deg;
-            background-image: url('../assets/underline-scribble.svg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            z-index: -1;
-        }
+              
+              .scribble-svg {
+                position: absolute;
+                left: 0;
+                bottom: -0.4em;
+                width: 100%;
+                height: 1em;
+                pointer-events: none;
+              }
+              
+              .scribble-svg path {
+                stroke: currentColor;
+                will-change: stroke-dashoffset;
+              }
+              
 
     .hero-subtitle {
         font-size: var(--text-font-size);
@@ -262,19 +59,16 @@ header {
         height: auto;
         right: 0;
         top: 20rem;
-        z-index: -1;
+        z-index: -9;
         -webkit-mask-image: linear-gradient(black, transparent);
         mask-image: linear-gradient(black 25%, transparent);
+        will-change: transform;
+        inset: 0;
     }
 
+  
 
 /* Expertise Section */
-.expertise-section .reference-link {
-    position: absolute;
-    top: 6rem;
-    right: 10vw;
-    margin-right: 10px;
-}
 
 .expertise-title {
     text-align: left;
@@ -284,35 +78,6 @@ header {
     font-size: 2rem;
     margin-top: 20px;
     margin-bottom: 10px;
-}
-
-.icon-container {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden; /* Ensures the pseudo-element doesn't overflow */
-}
-
-.icon-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../assets/icons/frame.svg');
-    background-size: cover; 
-    background-position: center; 
-    z-index: 0; 
-}
-
-.icon-container > .icon {
-    position: relative;
-    z-index: 1; 
 }
 
     .design-icon-container {
@@ -344,12 +109,8 @@ header {
     text-align: right;
 }
 
-.projects-section .reference-link {
-    position: absolute;
-    top: 4rem;
-    left: 10vw;
-    margin-top: 2rem;
-    margin-left: 10px;
+.projects-section .section-title-container {
+    flex-direction: row-reverse;
 }
 
 .project-img {
@@ -689,64 +450,4 @@ header {
                                 color: white;
                                 transition: 0.5s;
                             }
-    
-footer {
-    position: absolute;
-    box-sizing: border-box;
-    bottom: 0;
-    width: 100vw;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 3rem 5rem;
-}
-
-    .footer-content {
-        position: relative;
-        height: 8rem;
-    }
-
-    footer .logo-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-        footer .logo {
-            width: 120px;
-        }
-
-        footer .slogan {
-            color: rgba(255, 255, 255, 0.75);
-            font-weight: 600;
-            font-style: italic;
-        }
-
-
-        .footer-nav {
-            width: 35%;
-            display: flex;
-            justify-content: space-between;
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
-
-            .footer-nav a {
-                color: white;
-                text-decoration: none;
-                font-weight: 600;
-            }
-
-        .legal-links {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            align-items: flex-end;
-        }
-
-            .legal-links a {
-                color: rgba(255, 255, 255, 0.35);
-                font-weight: 600;
-                text-decoration: none;
-            }
+  
