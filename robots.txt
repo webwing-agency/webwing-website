@@ -1,0 +1,11 @@
+
+User-agent: *
+
+Disallow: /assets/images/
+Allow: /assets/images/projects/
+
+Disallow: /datenschutzerklärung.html
+Disallow: /datenschutzerkl%C3%A4rung.html
+Disallow: /impressum.html
+
+# Sitemap: https://www.webwing.agency/sitemap.xml
