@@ -18,9 +18,9 @@
 
         <nav class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
-            <a href="projekte.html" class="nav-link">Projekte</a>
+            <a href="referenzen.html" class="nav-link">Projekte</a>
             <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
-            <a href="kostenloses-erstgespräch.html" class="nav-link cta-link">Kontakt</a>
+            <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
         </nav>
 
         <div class="hamburger-menu">
@@ -191,7 +191,7 @@
         <section class="projects-section">
     
             <div class="section-title-container flex">
-                
+
                 <h2 class="projects-title section-title ">Zurückliegende Projekte</h2>
                 <a href="dienstleistungen.html" class="reference-link">Alle Projekte →</a>
 
@@ -429,11 +429,10 @@
             </div>
 
             <nav class="footer-nav">
-                <a href="#hero-section">Home</a>
-                <a href="#expertise-section">Projekte</a>
-                <a href="#projects-section">Case Studies</a>
-                <a href="#reviews-section">Dienstleistungen</a>
-                <a href="#book-call-section">Kontakt</a>
+                <a href="index.html">Home</a>
+                <a href="referenzen.html">Projekte</a>
+                <a href="dienstleistungen.html">Dienstleistungen</a>
+                <a href="kontakt.html">Kontakt</a>
             </nav>
             <div class="legal-links">
                 <a href="impressum.html">Impressum</a>
@@ -443,14 +442,7 @@
     </footer>    
 
     <script>
-        /*
-          Consolidated frontend script:
-          - renders calendar
-          - loads disabled dates via /api/availability
-          - renders timeslots
-          - handles booking form submit (POST /api/book)
-          Replace your old frontend script with this one.
-        */
+
         document.addEventListener('DOMContentLoaded', () => {
           const API_BASE = 'http://localhost:3000'; // change if needed
         
