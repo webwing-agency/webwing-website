@@ -547,10 +547,54 @@ header {
                                     color: rgba(255, 255, 255, 0.75);
                                     font-weight: 600;
                                 }
+
+                                .calendar-month-header {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    margin-bottom: 10px;
+                                    background-color: rgba(255, 255, 255, 0.05);
+                                    border-radius: 27px;
+                                    height: 27px;
+                                }
+
+                                    .calendar-prev, .calendar-next {
+                                        cursor: pointer;
+                                        font-size: var(--text-font-size);
+                                        color: var(--text-color);
+                                        background-color: rgba(255, 255, 255, 0.05);
+                                        border: 1px solid rgba(255, 255, 255, 0.25);
+                                        border-radius: 50%;
+                                        width: 17px;
+                                        height: 17px;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        margin: 0px 3px;
+                                    }
+                                
+                                    .calendar-month-year {
+                                        font-size: var(--text-font-size);
+                                        font-weight: 600;
+                                    }
+                                    
+                                    .calendar-nav-button {
+                                        background: transparent;
+                                        border: none;
+                                        color: var(--text-color);
+                                        cursor: pointer;
+                                        font-size: var(--text-font-size);
+                                        font-weight: 600;
+                                        transition: color var(--transition);
+                                    }
+                                    
+                                    .calendar-nav-button:hover {
+                                        color: var(--accent-color);
+                                    }
                             
                                 .calendar-grid {
-                                    display: grid;
-                                    grid-template-columns: repeat(7, 1fr);
+                                    display: flex;
+                                    flex-direction: column;
                                     gap: 10px;
                                 }
                             
