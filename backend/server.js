@@ -244,5 +244,125 @@ app.post('/api/book', async (req, res) => {
   }
 });
 
+
+/* --- CONTACT FORM EMAIL SENDING --- */
+
+// server.js — add near other routes
+import querystring from 'querystring';
+
+// Simple in-memory rate limiter per IP (basic)
+const contactRateMap = new Map(); // ip -> { count, expiresAt }
+const CONTACT_RATE_LIMIT = 6; // max requests
+const CONTACT_RATE_WINDOW_MS = 60 * 1000; // per minute
+
+async function verifyTurnstileToken(token, remoteip) {
+  if (!process.env.TURNSTILE_SECRET) return false;
+  try {
+    const body = new URLSearchParams();
+    body.append('secret', process.env.TURNSTILE_SECRET);
+    body.append('response', token);
+    if (remoteip) body.append('remoteip', remoteip);
+
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body.toString()
+    });
+    const json = await res.json();
+    // json.success true/false. You can also inspect json.score, json.action if needed.
+    return !!json.success;
+  } catch (err) {
+    console.error('[contact] Turnstile verify error', err);
+    return false;
+  }
+}
+
+function checkContactRate(ip) {
+  const now = Date.now();
+  const rec = contactRateMap.get(ip);
+  if (!rec || rec.expiresAt < now) {
+    contactRateMap.set(ip, { count: 1, expiresAt: now + CONTACT_RATE_WINDOW_MS });
+    return true;
+  }
+  if (rec.count >= CONTACT_RATE_LIMIT) return false;
+  rec.count++;
+  contactRateMap.set(ip, rec);
+  return true;
+}
+
+app.post('/api/contact', async (req, res) => {
+  try {
+    const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.socket.remoteAddress;
+    if (!checkContactRate(ip)) {
+      return res.status(429).json({ message: 'Zu viele Anfragen — bitte später versuchen.' });
+    }
+
+    const { name, email, phone, message, token } = req.body || {};
+    // basic validation
+    if (!name || !email || !message) {
+      return res.status(400).json({ message: 'Bitte Name, E-Mail und Nachricht angeben.' });
+    }
+    // simple email sanity check
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return res.status(400).json({ message: 'Ungültige E-Mail-Adresse.' });
+    }
+
+    // captcha check (unless explicitly allowed in env for dev)
+    if (process.env.ALLOW_CONTACT_NO_CAPTCHA !== 'true') {
+      if (!token) return res.status(400).json({ message: 'Captcha-Token fehlt.' });
+      const ok = await verifyTurnstileToken(token, ip);
+      if (!ok) return res.status(400).json({ message: 'Captcha-Validierung fehlgeschlagen.' });
+    } else {
+      console.log('[contact] ALLOW_CONTACT_NO_CAPTCHA is true — skipping captcha verification (dev mode)');
+    }
+
+    // compose internal notification email
+    const ownerEmail = process.env.CONTACT_NOTIFICATION_EMAIL || process.env.FROM_EMAIL;
+    const subjectOwner = `Neue Kontaktanfrage von ${name}`;
+    const textOwner = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Phone: ${phone || '(keine)'}`,
+      `Message:`,
+      `${message}`,
+      '',
+      `IP: ${ip}`,
+      `Received: ${new Date().toISOString()}`
+    ].join('\n');
+
+    // send owner notification
+    const ownerMail = {
+      from: process.env.FROM_EMAIL,
+      to: ownerEmail,
+      subject: subjectOwner,
+      text: textOwner
+    };
+
+    // optional autoreply to user
+    const userMail = {
+      from: process.env.FROM_EMAIL,
+      to: email,
+      subject: 'Danke für Ihre Nachricht – Webwing',
+      text: `Hallo ${name},\n\nvielen Dank für Ihre Nachricht! Wir haben Ihre Anfrage erhalten und melden uns so schnell wie möglich.\n\nBeste Grüße,\nWebwing`
+    };
+
+    // send both (owner first)
+    if (!transporter) {
+      console.warn('[contact] No transporter configured — skipping email send');
+    } else {
+      // send owner email
+      await transporter.sendMail(ownerMail);
+      // send user autoreply (best-effort)
+      try { await transporter.sendMail(userMail); } catch (err) { console.warn('[contact] Autoreply failed', err); }
+    }
+
+    return res.json({ message: 'Nachricht gesendet' });
+  } catch (err) {
+    console.error('[contact] error', err);
+    return res.status(500).json({ message: 'Serverfehler' });
+  }
+});
+
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Booking server running on ${port}`));

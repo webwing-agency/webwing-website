@@ -135,6 +135,10 @@
             gap: 15px;
         }
 
+            .time-container {
+                margin: 0;
+            }
+
     .hero-bg {
         top: 5rem;
         width: 100vw;

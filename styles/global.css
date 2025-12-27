@@ -16,24 +16,24 @@
     --card-bg: rgba(255, 255, 255, 0.05);
 
     --text-color: rgba(255, 255, 255, 0.8);
-    --text-font-size: 1rem;
+    --text-font-size: 0.75rem;
     --text-line-height: 1.6;
 
-    --small-text-font-size: 1rem;
+    --small-text-font-size: 0.5rem;
 
     --page-title-font-size-large: 3rem;
     --page-title-font-size-small: 2.5rem;
 
     --hero-title-font-size: 2.5rem;
-    --section-title-font-size: 2.5rem;
+    --section-title-font-size: 2rem;
 
     --heading-line-height: 1.1;
     --heading-letter-spacing: -0.03em;
 
-    --card-title-font-size: 1.5rem;
-    --card-text-font-size: 1rem;
+    --card-title-font-size: 1.25rem;
+    --card-text-font-size: 0.75rem;
 
-    --popup-link-font-size: 2.5rem;
+    --popup-link-font-size: 2rem;
 
 
 

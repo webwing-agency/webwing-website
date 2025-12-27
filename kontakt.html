@@ -84,33 +84,41 @@
 
                 <div class="right-side">
 
-                    <form class="booking-form">
-
+                    <form class="contact-form">
                         <div class="form-group">
-                            <label class="form-label" for="bookingName">Name</label>
-                            <input type="text" id="bookingName" class="form-input" placeholder="Ihr Name">
+                          <label class="form-label" for="contactName">Name</label>
+                          <input type="text" id="contactName" class="form-input" name="name" placeholder="Ihr Name" required>
                         </div>
-
+                      
                         <div class="form-group">
-                            <label class="form-label" for="bookingEmail">E-Mail</label>
-                            <input type="email" id="bookingEmail" class="form-input" placeholder="Ihre E-Mail-Adresse">
+                          <label class="form-label" for="contactEmail">E-Mail</label>
+                          <input type="email" id="contactEmail" class="form-input" name="email" placeholder="Ihre E-Mail-Adresse" required>
                         </div>
-
+                      
                         <div class="form-group">
-                            <label class="form-label" for="bookingPhone">Telefonnummer</label>
-                            <input type="tel" id="bookingPhone" class="form-input" placeholder="Ihre Telefonnummer">
+                          <label class="form-label" for="contactPhone">Telefonnummer</label>
+                          <input type="tel" id="contactPhone" class="form-input" name="phone" placeholder="Ihre Telefonnummer">
                         </div>
-
+                      
                         <div class="form-group">
-                            <label class="form-label" for="bookingPhone">Nachricht</label>
-                            <textarea id="messageText" class="form-input form-input-text" placeholder="Ihre Nachricht"></textarea>
+                          <label class="form-label" for="messageText">Nachricht</label>
+                          <textarea id="messageText" class="form-input form-input-text" name="message" placeholder="Ihre Nachricht" required></textarea>
                         </div>
-
+                      
+                        <!-- Cloudflare Turnstile widget: set data-sitekey from .env value -->
+                        <div style="margin: 12px 0;">
+                          <!-- Replace YOUR_SITEKEY with your TURNSTILE_SITEKEY, or set via templating -->
+                          <div class="cf-turnstile" data-sitekey="0x4AAAAAACJXIwtr74ztz1br"></div>
+                        </div>
+                      
                         <div class="submit-container">
-                            <button type="submit" class="submit-button">Senden</button>
+                          <button type="submit" class="submit-button">Senden</button>
                         </div>
-
-                    </form>
+                      </form>
+                      
+                      <!-- Turnstile script (place once on page, near end of body) -->
+                      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+                      
                 </div>
             </div>
 
@@ -118,7 +126,7 @@
 
         <div class="sticky-cta-container">
             <span class="cta-label">Sie wollen ein Projekt mit uns umzusetzen?</span>
-            <a href="" class="cta">kostenloses Erstgespräch buchen</a>
+            <a href="kostenloses-erstgespräch.html" class="cta">kostenloses Erstgespräch buchen</a>
         </div>
 
     </main>
@@ -208,7 +216,7 @@
             padding: 4rem;
         }
 
-            .booking-form {
+            .contact-form {
                 display: flex;
                 flex-direction: column;
                 gap: 17px;
@@ -276,6 +284,66 @@
                                 transition: 0.5s;
                             }
     </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const API_BASE = window.API_BASE || 'http://localhost:3000';
+      const form = document.querySelector('.contact-form');
+      if (!form) return;
+    
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('contactName').value.trim();
+        const email = document.getElementById('contactEmail').value.trim();
+        const phone = document.getElementById('contactPhone').value.trim();
+        const message = document.getElementById('messageText').value.trim();
+    
+        if (!name || !email || !message) {
+          alert('Bitte Name, E-Mail und Nachricht ausfüllen.');
+          return;
+        }
+    
+        // Turnstile token - widget injects an input named "cf-turnstile-response" after challenge
+        const tokenEl = document.querySelector('input[name="cf-turnstile-response"]');
+        const token = tokenEl ? tokenEl.value : null;
+    
+        // If you temporarily enabled ALLOW_CONTACT_NO_CAPTCHA on backend, token may be omitted.
+        const payload = { name, email, phone, message, token };
+    
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.dataset.orig = submitBtn.textContent;
+        submitBtn.textContent = 'Senden…';
+    
+        try {
+          const res = await fetch(`${API_BASE}/api/contact`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+          if (res.ok) {
+            alert('Danke — Ihre Nachricht wurde gesendet.');
+            form.reset();
+            // reset Turnstile if included
+            if (typeof turnstile !== 'undefined' && typeof turnstile.reset === 'function') {
+              // there may be multiple widgets; this resets all
+              try { turnstile.reset(); } catch(e){ /* ignore */ }
+            }
+          } else {
+            alert('Fehler: ' + (data?.message || 'Serverfehler'));
+          }
+        } catch (err) {
+          console.error('Contact submit error', err);
+          alert('Netzwerkfehler. Bitte später versuchen.');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = submitBtn.dataset.orig || 'Senden';
+        }
+      });
+    });
+    </script>
+    
     
 </body>
 </html>
