@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontaktieren sie uns - Webwing Design Agency UG - Your Brand's Wingman Online</title>
     <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/responsive/desktop.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="js/nav.js" defer></script>
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/gsap/gsap-global.js"></script>
 </head>
 <body>
 
@@ -17,7 +21,7 @@
 
         <nav class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
-            <a href="referenzen.html" class="nav-link">Projekte</a>
+            <a href="referenzen.html" class="nav-link">Referenzen</a>
             <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
             <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
         </nav>
@@ -31,7 +35,7 @@
         <div class="popup-menu">
             <div class="popup-menu-link-container">
                 <a href="index.html" class="popup-link">Home</a>
-                <a href="projekte.html" class="popup-link">Referenzen</a>
+                <a href="referenzen.html" class="popup-link">Referenzen</a>
                 <a href="dienstleistungen.html" class="popup-link">Dienstleistungen</a>
                 <a href="kontakt.html" class="popup-link">Kontakt</a>
                 <a href="kostenloses-erstgespräch.html" class="popup-link">Erstgespräch buchen</a>
@@ -55,7 +59,7 @@
             <div class="contact-card">
     
                 <div class="left-side">
-                    <h2 class="page-title-small contact-page-title">Kontaktieren Sie uns!</h2>
+                    <h2 class="page-title-small contact-page-title page-title">Kontaktieren Sie uns!</h2>
                     <p class="contact-page-subtitle">Wir freuen uns darauf, von Ihnen zu hören! Egal, ob Sie Fragen haben, ein Projekt besprechen möchten oder einfach nur Hallo sagen wollen – wir sind hier, um zu helfen.</p>
 
                     <div class="contact-details-container container">
@@ -132,7 +136,7 @@
 
             <nav class="footer-nav">
                 <a href="index.html">Home</a>
-                <a href="referenzen.html">Projekte</a>
+                <a href="referenzen.html">Referenzen</a>
                 <a href="dienstleistungen.html">Dienstleistungen</a>
                 <a href="kontakt.html">Kontakt</a>
             </nav>
@@ -151,6 +155,8 @@
 
         .contact-page-fold {
             padding-bottom: 20rem;
+            min-height: 100vh;
+            margin-top: 0;
         }
 
         .contact-card {

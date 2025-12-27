@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unser Angebot an Dienstleistungnen - Webwing Design Agency</title>
     <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/responsive/desktop.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="js/nav.js" defer></script>
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/gsap/gsap-global.js"></script>
 </head>
 <body>
 
@@ -17,7 +21,7 @@
 
         <nav class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
-            <a href="referenzen.html" class="nav-link">Projekte</a>
+            <a href="referenzen.html" class="nav-link">Referenzen</a>
             <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
             <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
         </nav>
@@ -31,7 +35,7 @@
         <div class="popup-menu">
             <div class="popup-menu-link-container">
                 <a href="index.html" class="popup-link">Home</a>
-                <a href="projekte.html" class="popup-link">Referenzen</a>
+                <a href="referenzen.html" class="popup-link">Referenzen</a>
                 <a href="dienstleistungen.html" class="popup-link">Dienstleistungen</a>
                 <a href="kontakt.html" class="popup-link">Kontakt</a>
                 <a href="kostenloses-erstgespräch.html" class="popup-link">Erstgespräch buchen</a>
@@ -53,14 +57,23 @@
 
         <section class="services-page-fold">
 
-            <h1 class="page-title-large services-page-title">Dienstleistungen</h1>
+            <h1 class="page-title-large services-page-title page-title">Dienstleistungen</h1>
             <div class="selection-flex">
                 <div class="filter-select">Webdesign</div>
                 <div class="filter-select">Webentwicklung</div>
                 <div class="filter-select">Grafikdesign</div>
                 <div class="filter-select">App</div>
                 <div class="filter-select">SEO</div>
-                <input type="text" class="search-bar" placeholder="Suche nach Dienstleistungen...">
+                <div class="search-wrapper">
+                    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"></circle>
+                      <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"></line>
+                    </svg>
+                  
+                    <input type="text" class="search-bar" placeholder="Suche nach Dienstleistungen...">
+
+                  </div>
+                  
             </div>
 
             <div class="services-grid">
@@ -99,61 +112,60 @@
                         <img src="assets/images/services/service-1.png" alt="" class="service-image">
                         <img src="assets/images/services/service-2.png" alt="" class="service-image">
                         <img src="assets/images/services/service-3.png" alt="" class="service-image">
+                        <img src="assets/images/services/service-4.png" alt="" class="service-image">
                     </div>
-                    <h3 class="service-title">Webentwicklung</h3>
+                    <h3 class="service-title">Webdesign</h3>
                     <div class="service-card-text-container flex">
-                            <p class="service-description">Kurze Beschreibung des Projekts und der erreichten Ergebnisse. Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus magnam iure deserunt, temporibus dolorum quos accusamus suscipit iusto incidunt quaerat rerum ipsam nesciunt ea? Quos consectetur accusamus omnis eligendi corporis.
-                                Beatae nisi ipsam eum ullam reiciendis. Modi a illum doloremque animi, cupiditate veniam nisi expedita minus esse eveniet, dolor harum quibusdam itaque obcaecati? Eaque quisquam iste et id deleniti quidem.
-                                Repellat veritatis quidem cumque suscipit fuga voluptatem, beatae nulla quod magnam harum iure necessitatibus magni eum ea quo cupiditate nemo pariatur architecto placeat. Autem sunt est enim iusto. Voluptatibus, dignissimos!
-                                Officiis voluptatum magni vel. Quaerat temporibus reiciendis laborum voluptates vero recusandae, eos libero ut soluta molestiae consequatur fuga ipsa sequi! Ad repellendus ipsam totam unde dolorem molestiae expedita libero quasi.
-                                Omnis nostrum velit adipisci dolor necessitatibus eius quibusdam unde incidunt officia nobis numquam, provident doloremque voluptatum sed rem dignissimos sit sequi, asperiores voluptatibus quia nemo dolorum placeat. Culpa, reiciendis nisi!</p>
-                            
+                            <p class="service-description">
+                                Kurze Beschreibung des Projekts und der erreichten Ergebnisse Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nulla vitae velit! Pariatur minima nulla autem alias ipsam, porro repudiandae atque deserunt enim, fugit quod, repellat reiciendis molestias iure cum.
+                                Suscipit perferendis, iure corporis similique at voluptates eos eaque architecto quia repudiandae porro accusantium officia aperiam ea, dolores optio quos itaque ducimus molestiae soluta tempore? Possimus optio voluptate assumenda id.
+                                Tempora laboriosam nihil quod et eligendi inventore adipisci iure? Repellat excepturi quam, enim sit libero facilis nostrum tempora aliquam esse! Consequatur, animi ab odit dignissimos et eligendi assumenda voluptatum explicabo.
+                                Voluptatibus pariatur recusandae ex praesentium sed, corporis accusantium magni. Quod tempora distinctio veniam, cupiditate id molestias possimus minus debitis! Error sint fugit vel impedit expedita nemo. Praesentium enim iste nam.
+                                Saepe nobis obcaecati consequatur, odio dolore nisi similique suscipit tempora tempore modi amet veniam autem asperiores quo quod molestiae sed cupiditate deleniti dolores deserunt, nemo natus. Reiciendis quas eaque repudiandae?
+                            </p>
                             <ul class="service-specs">
+                                <li>Diese Leistung umfasst:</li>
                                 <li>Spezifikation 1</li>
                                 <li>Spezifikation 2</li>
                                 <li>Spezifikation 3</li>
                                 <li>Spezifikation 4</li>
                                 <li>Spezifikation 5</li>
                             </ul>
-
-                            </div>
+                        </div>
                         <div class="card-cta-container flex">  
                             <a href="" class="card-cta">Mehr erfahren</a>
                             <a href="" class="card-cta">in Kontakt treten</a>
-                        </div>
-                        
+                        </div>                        
                 </div>
                 <div class="service-card grid-card">
                     <div class="service-images-grid">
                         <img src="assets/images/services/service-1.png" alt="" class="service-image">
                         <img src="assets/images/services/service-2.png" alt="" class="service-image">
                         <img src="assets/images/services/service-3.png" alt="" class="service-image">
+                        <img src="assets/images/services/service-4.png" alt="" class="service-image">
                     </div>
-                    <h3 class="service-title">Projekntname ABC 3</h3>
+                    <h3 class="service-title">Webdesign</h3>
                     <div class="service-card-text-container flex">
-                    
-                            <p class="service-description">Kurze Beschreibung des Projekts und der erreichten Ergebnisse. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora minus corporis alias dolores atque? Hic, aperiam. Maxime blanditiis neque ullam quis animi laboriosam magni maiores voluptate! Quaerat officia fugiat voluptatum.
-                            Dolorum odit recusandae veniam voluptatum, error, quae maiores esse earum animi debitis molestiae voluptatibus veritatis! Placeat repellendus ipsam ex nulla mollitia, illo ipsa soluta ducimus. Mollitia, odit! Sint, consequatur expedita?
-                            Atque porro quod cumque nobis reprehenderit, reiciendis aliquam veniam unde velit officiis totam hic quo mollitia eos fugit voluptatum. Sed cumque excepturi mollitia? Reiciendis hic harum, voluptatibus aperiam unde asperiores?
-                            Adipisci, modi, amet deserunt alias at porro mollitia odio sapiente inventore nostrum excepturi hic dolorem libero accusantium autem. Reprehenderit laborum rem, inventore nisi delectus maiores sequi accusamus perferendis? Nihil, quidem!
-                            Eveniet soluta dolorum dolores quae eaque laborum perferendis, iure possimus vel ab cupiditate itaque, ipsam quibusdam, doloribus ratione libero omnis! Dignissimos doloribus atque natus inventore libero impedit alias nisi ullam.
+                            <p class="service-description">
+                                Kurze Beschreibung des Projekts und der erreichten Ergebnisse Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nulla vitae velit! Pariatur minima nulla autem alias ipsam, porro repudiandae atque deserunt enim, fugit quod, repellat reiciendis molestias iure cum.
+                                Suscipit perferendis, iure corporis similique at voluptates eos eaque architecto quia repudiandae porro accusantium officia aperiam ea, dolores optio quos itaque ducimus molestiae soluta tempore? Possimus optio voluptate assumenda id.
+                                Tempora laboriosam nihil quod et eligendi inventore adipisci iure? Repellat excepturi quam, enim sit libero facilis nostrum tempora aliquam esse! Consequatur, animi ab odit dignissimos et eligendi assumenda voluptatum explicabo.
+                                Voluptatibus pariatur recusandae ex praesentium sed, corporis accusantium magni. Quod tempora distinctio veniam, cupiditate id molestias possimus minus debitis! Error sint fugit vel impedit expedita nemo. Praesentium enim iste nam.
+                                Saepe nobis obcaecati consequatur, odio dolore nisi similique suscipit tempora tempore modi amet veniam autem asperiores quo quod molestiae sed cupiditate deleniti dolores deserunt, nemo natus. Reiciendis quas eaque repudiandae?
                             </p>
-
                             <ul class="service-specs">
+                                <li>Diese Leistung umfasst:</li>
                                 <li>Spezifikation 1</li>
                                 <li>Spezifikation 2</li>
                                 <li>Spezifikation 3</li>
                                 <li>Spezifikation 4</li>
                                 <li>Spezifikation 5</li>
                             </ul>
-                    </div>
-
-                    <div class="card-cta-container flex">  
-                        <a href="" class="card-cta">Mehr erfahren</a>
-                        <a href="" class="card-cta">in Kontakt treten</a>
-                    </div>      
-                    
-                   
+                        </div>
+                        <div class="card-cta-container flex">  
+                            <a href="" class="card-cta">Mehr erfahren</a>
+                            <a href="" class="card-cta">in Kontakt treten</a>
+                        </div>                        
                 </div>
 
             </div>
@@ -201,6 +213,7 @@
             display: flex;
             gap: 1rem;
             margin-bottom: 5rem;
+            flex-wrap: wrap-reverse;
         }
 
         .filter-select, .search-bar {
@@ -219,16 +232,41 @@
         .filter-select {
             flex: 1;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .search-bar {
+        .search-wrapper {
+            position: relative;
+            min-width: 20rem;
             flex: 2;
         }
+
+            .search-icon {
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 18px;
+                height: 18px;
+                color: #fff;
+                pointer-events: none;
+            }
+
+            .search-bar {
+                width: 100%;
+                padding: 10px 12px 10px 40px; 
+                font-size: 16px;
+                box-sizing: border-box;
+                color: #fff;
+            }
 
         .services-grid {
             display: flex;
             flex-direction: column;
             gap: 3rem;
+            width: 100%;
         }
 
         .service-images-grid {
@@ -237,6 +275,7 @@
             gap: 1rem;
             margin-bottom: 1.5rem;
             height: 20rem;
+            width: 100%;
             overflow-x: scroll;
         }
 
@@ -249,6 +288,7 @@
         .service-title {
             font-size: 2.5rem;
             font-weight: 600;
+            margin-top: 0.5rem;
             margin-bottom: 1rem;
         }
 
@@ -264,7 +304,8 @@
 
         .service-card-text-container {
             justify-content: space-between;
-            gap: 1rem;
+            gap: 2rem;
+            flex-direction: column;
         }   
 
             .service-specs {
@@ -278,7 +319,7 @@
             }
 
         .card-cta-container {
-            margin-top: 1rem;
+            margin-top: 3rem;
         }
 
     </style>

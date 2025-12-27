@@ -1,0 +1,167 @@
+@media (min-width: 768px) {
+
+    :root {
+
+        --text-font-size: 1rem;
+    
+        --small-text-font-size: 1rem;
+    
+        --page-title-font-size-large: 6rem;
+        --page-title-font-size-small: 2.5rem;
+    
+        --hero-title-font-size: calc(5.5rem + 1.5vw);
+        --section-title-font-size: 2.5rem;
+
+        --card-title-font-size: 1.7rem;
+        --card-text-font-size: 1rem;
+
+        --popup-link-font-size: 3.5rem;
+
+    }
+
+    .popup-menu {
+        padding: 2rem 3rem;
+    }
+
+    .popup-menu-decorations  {
+        display: flex;
+    }
+
+    .nav-links {
+        display: flex;
+    }
+    
+
+    footer {
+        position: absolute;
+        box-sizing: border-box;
+        bottom: 0;
+        width: 100vw;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    
+        .footer-content {
+            position: relative;
+            height: 25rem;
+        }
+    
+        footer .logo-container {
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+        }
+    
+            footer .logo {
+                width: 20rem;
+                margin-bottom: 0.5rem;
+                transform: translateX(-2.5rem);
+            }
+    
+            footer .slogan {
+                color: rgba(255, 255, 255, 0.75);
+                font-weight: 600;
+                font-style: italic;
+            }
+    
+    
+            .footer-nav {
+                width: 30%;
+                max-width: 50rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 0;
+                margin-top: 2rem;
+            }
+    
+                .footer-nav a {
+                    color: white;
+                    text-decoration: none;
+                    font-weight: 600;
+                }
+    
+            .legal-links {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                align-items: flex-end;
+            }
+    
+                .legal-links a {
+                    color: rgba(255, 255, 255, 0.35);
+                    font-weight: 600;
+                    text-decoration: none;
+                }
+
+    /* Index */
+
+    .hero-section {
+        position: unset; /*for absolute placement of .hero-bg */
+    }
+
+    .grid {
+        display: grid;
+        gap: 2rem;
+        width: 100%;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    
+    }
+
+    .book-call-card {
+        flex-direction: row;
+    }
+
+        .book-call-card .left-side {
+            width: 40%;
+            padding: 4rem;
+            padding-bottom: 4rem;
+            border-radius: 25px 0px 0px 25px;
+        }
+
+        .book-call-card .right-side {
+            width: 60%;
+            padding: 4rem;
+        }
+
+        .datetime-container {
+            display: grid;
+            grid-template-columns: 5fr 4fr;
+            gap: 15px;
+        }
+
+    .hero-bg {
+        top: 5rem;
+        width: 100vw;
+        left: 0;
+    }
+
+    .book-call-section {
+        width: 100vw;
+        padding: 4rem 10vw;
+        margin-bottom: 40vh;
+    }
+
+
+    /* Referenzen & Dienstleistungen */
+
+    .page-title-large {
+        text-align: left;
+    }
+
+    .selection-flex {
+        flex-wrap: nowrap;
+    }
+
+    .project-card-text-container {
+        flex-direction: row;
+    }
+
+
+  }
+

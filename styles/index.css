@@ -57,13 +57,12 @@
         position: absolute;
         width: 100vw;
         height: auto;
-        right: 0;
-        top: 20rem;
+        left: 0;
+        top: 50rem;
         z-index: -9;
         -webkit-mask-image: linear-gradient(black, transparent);
         mask-image: linear-gradient(black 25%, transparent);
         will-change: transform;
-        inset: 0;
     }
 
   
@@ -75,9 +74,13 @@
 }
 
 .card-title {
-    font-size: 2rem;
+    font-size: var(--card-title-font-size);
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: var(--card-text-font-size);
 }
 
     .design-icon-container {
@@ -187,7 +190,7 @@
 .book-call-section {
     width: 100vw;
     padding: 4rem 10vw;
-    margin-bottom: 40vh;
+    margin-bottom: 50vh;
 }
 
     .book-call-card {
@@ -195,13 +198,19 @@
         border-radius: 30px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         display: flex;
+        flex-direction: column;
+        max-width: calc(100vw - 6rem);
     }
 
+        .book-call-card .left-side, .book-call-card  .right-side {
+            width: 100%;
+            padding: 2rem;
+        }
+
         .left-side {
-            width: 40%;
-            padding: 4rem;
+            padding-bottom: 4rem !important;
             background: radial-gradient(120% 90% at 17% 12%, rgba(230, 0, 255, 0.25) 0%, rgba(55, 0, 255, 0.25) 100%);
-            border-radius: 25px 0px 0px 25px;
+            border-radius: 25px 25px 0px 0px;
         }
 
             .book-call-title {
@@ -235,7 +244,6 @@
                     }
 
         .right-side {
-            width: 60%;
             padding: 4rem;
         }
 
@@ -278,8 +286,8 @@
                     }
                     
                     .datetime-container {
-                        display: grid;
-                        grid-template-columns: 5fr 4fr;
+                        display: flex;
+                        flex-direction: column;
                         gap: 15px;
                     }
 
@@ -451,3 +459,15 @@
                                 transition: 0.5s;
                             }
   
+/* GSAP styles */
+
+.section-title { opacity: 0; transform: translateY(18px); will-change: transform, opacity; }
+.grid-card { opacity: 0; transform: translateY(24px); will-change: transform, opacity; }
+
+.section-title,
+.grid-card,
+.book-call-card {
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: transform, opacity;
+}
