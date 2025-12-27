@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Buchen sie ein kostenloses Erstgespräch - Website Projekt umsetzej | Webwing Design Agency UG</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <style>
+    .book-call-section {
+    width: 100vw;
+    padding: 4rem 10vw;
+    margin-bottom: 50vh;
+}
+
+    .book-call-card {
+        background-color: var(--card-bg);
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        max-width: calc(100vw - 6rem);
+    }
+
+        .book-call-card .left-side, .book-call-card  .right-side {
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .left-side {
+            padding-bottom: 4rem !important;
+            background: radial-gradient(120% 90% at 17% 12%, rgba(230, 0, 255, 0.25) 0%, rgba(55, 0, 255, 0.25) 100%);
+            border-radius: 25px 25px 0px 0px;
+        }
+
+            .book-call-title {
+                max-width: 90%;
+            }
+
+            .book-call-paragraph {
+                width: 85%;
+            }
+
+            .contact-details-container {
+                margin-top: 2rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+                .contact-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                }
+
+                    .contact-icon-container {
+                        background-color: rgba(230, 0, 255, 0.25);
+                    }
+
+                    .contact-link {
+                        text-decoration: none;
+                        color: #fff;
+                    }
+
+        .right-side {
+            padding: 4rem;
+        }
+
+            .booking-form {
+                display: flex;
+                flex-direction: column;
+                gap: 17px;
+            }
+                
+                .form-group {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3px;
+                }
+                
+                    .form-label {
+                        color: var(--text-muted);
+                        font-size: 14px;
+                        margin-left: 20px;
+                    }
+                    
+                    .form-input {
+                        background: var(--bg-soft);
+                        border: 1px solid #2f2f33;
+                        color: var(--text-main);
+                        padding: 14px 18px;
+                        border-radius: var(--radius-md);
+                        font-size: var(--text-font-size);
+                        outline: none;
+                        transition: border var(--transition);
+                        border-radius: 30px;
+                    }
+                    
+                    .form-input::placeholder {
+                        color: #6f6f75;
+                    }
+                    
+                    .form-input:focus {
+                        border-color: var(--accent);
+                    }
+                    
+                    .datetime-container {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+                    }
+
+                        .date-container {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 5px;
+                        }
+                        
+                            .calendar {
+                                background: var(--bg-card);
+                                padding: 15px;
+                                border: 1px solid rgba(255, 255, 255, 0.25);
+                                border-radius: 30px;
+                            }
+                            
+                                .calendar-header {
+                                    height: 17px;
+                                    margin-top: 10px;
+                                    margin-bottom: 10px;
+                                    gap: 10px;
+                                    display: grid;
+                                    grid-template-columns: repeat(7, 1fr);
+                                    text-align: center;
+                                    font-size: var(--small-text-font-size);
+                                    color: rgba(255, 255, 255, 0.75);
+                                    font-weight: 600;
+                                }
+
+                                .calendar-month-header {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    margin-bottom: 10px;
+                                    background-color: rgba(255, 255, 255, 0.05);
+                                    border-radius: 27px;
+                                    height: 27px;
+                                }
+
+                                    .calendar-prev, .calendar-next {
+                                        cursor: pointer;
+                                        font-size: var(--text-font-size);
+                                        color: var(--text-color);
+                                        background-color: rgba(255, 255, 255, 0.05);
+                                        border: 1px solid rgba(255, 255, 255, 0.25);
+                                        border-radius: 50%;
+                                        width: 17px;
+                                        height: 17px;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        margin: 0px 3px;
+                                    }
+                                
+                                    .calendar-month-year {
+                                        font-size: var(--text-font-size);
+                                        font-weight: 600;
+                                    }
+                                    
+                                    .calendar-nav-button {
+                                        background: transparent;
+                                        border: none;
+                                        color: var(--text-color);
+                                        cursor: pointer;
+                                        font-size: var(--text-font-size);
+                                        font-weight: 600;
+                                        transition: color var(--transition);
+                                    }
+                                    
+                                    .calendar-nav-button:hover {
+                                        color: var(--accent-color);
+                                    }
+                            
+                                .calendar-grid {
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 10px;
+                                }
+                            
+                                    .calendar-day {
+                                        width: 27px;
+                                        height: 27px;
+                                        border-radius: 50%;
+                                        background: rgba(255, 255, 255, 0.1);
+                                        color: var(--text-color);
+                                        border: none;
+                                        cursor: pointer;
+                                        transition: background var(--transition), transform var(--transition);
+                                    }
+                                    
+                                    .calendar-day:hover {
+                                        background: #2e2e33;
+                                        transform: translateY(-1px);
+                                    }
+                                    
+                                    .calendar-day.is-active {
+                                        background: var(--accent-color);
+                                        color: #fff;
+                                    }
+                                    
+                                    .calendar-day.is-disabled {
+                                        color: var(--danger);
+                                        background: transparent;
+                                        cursor: not-allowed;
+                                        pointer-events: none;
+                                    }
+
+                        .time-container {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 5px;
+                        }
+                        
+                            .timeslots {
+                                height: 100%;
+                                padding: 13px;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 10px;
+                                border: 1px solid rgba(255, 255, 255, 0.25);
+                                border-radius: 30px;
+                            }
+                            
+                                .timeslot {
+                                    height: 27px;
+                                    background: rgba(255, 255, 255, 0.1);
+                                    color: #fff;
+                                    border-radius: 999px;
+                                    border: none;
+                                    cursor: pointer;
+                                    font-size: var(--small-text-font-size);
+                                }
+                                
+                                .timeslot:hover {
+                                    background: #2e2e33;
+                                    transform: translateY(-1px);
+                                }
+                                
+                                .timeslot.is-active {
+                                    background: var(--accent-color);
+                                    color: #fff;
+                                }
+
+                                .timeslot.is-today {
+                                    color: red;
+                                    font-weight: 500;
+                                    color: #fff;
+                                }
+                    
+                        .submit-container {
+                            margin-top: 12px;
+                        }
+                        
+                            .submit-button {
+                                width: 100%;
+                                padding: 10px 0;
+                                border-radius: 999px;
+                                border: 1px solid rgba(255, 255, 255, 0.25);
+                                cursor: pointer;
+                                font-weight: 600;
+                                color: black;
+                                background: white;
+                                transition: 0.5s;
+                            }
+                            
+                            .submit-button:hover {
+                                background: var(--accent-color);
+                                color: white;
+                                transition: 0.5s;
+                            }
+  </style>
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/responsive/desktop.css">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <meta name="robots" content="noindex, nofollow">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/gsap/gsap-global.js"></script>
+  <script src="js/nav.js" defer></script>
+
+
+
+</head>
+<body>
+    <header>
+
+        <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="nav-logo"></object>
+
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="referenzen.html" class="nav-link">Referenzen</a>
+            <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
+            <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
+        </nav>
+
+        <div class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <div class="popup-menu">
+            <div class="popup-menu-link-container">
+                <a href="index.html" class="popup-link">Home</a>
+                <a href="referenzen.html" class="popup-link">Referenzen</a>
+                <a href="dienstleistungen.html" class="popup-link">Dienstleistungen</a>
+                <a href="kontakt.html" class="popup-link">Kontakt</a>
+                <a href="kostenloses-erstgespräch.html" class="popup-link">Erstgespräch buchen</a>
+            </div>
+
+            <div class="popup-menu-decorations">
+                <span>Webwing Design Agency UG</span><span>+</span>
+                <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
+                <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
+                <span>Available for Work</span>
+            </div>
+            
+        </div>
+
+    </header>
+
+
+  <main>
+
+      
+    <section class="book-call-section">
+
+        <div class="book-call-card">
+
+            <div class="left-side">
+                <h2 class="book-call-title section-title">Bereit, Ihr Projekt zu kickstarten?</h2>
+
+                <p class="book-call-paragraph paragraph">
+                    Vereinbaren sie jetzt ein <b>unverbindliches und kostenloses 20-minütiges Erstgespräch</b>, 
+                    in welchem wir ihre Bedürfnisse und Wünsche erörtern und jede ihrer Fragen 
+                    bezüglich ... , ... sowie ... beantworten werden.</p>
+
+                <div class="contact-details-container container">
+
+                    <div class="contact-container">
+                        <div class="contact-icon-container icon-container ">
+                            <object data="/assets/icons/mail.svg" type="image/svg+xml" width="40" height="40" class="icon"></object>
+                        </div>
+                        <a href="mailto:contact@webwing.agency" class="contact-link">contact@webwing.agency</a>
+                    </div>
+                    <div class="contact-container">
+                        <div class="contact-icon-container icon-container">
+                            <object data="/assets/icons/phone.svg" type="image/svg+xml" width="40" height="40" class="icon"></object>
+                        </div>
+                        <a href="tel:06221 123456" class="contact-link">06221 123456</a>
+                    </div>
+
+                </div>
+            
+                </div>
+
+
+            <div class="right-side">
+
+                <form class="booking-form">
+
+                    <div class="form-group">
+                        <label class="form-label" for="bookingName">Name</label>
+                        <input type="text" id="bookingName" class="form-input" placeholder="Ihr Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="bookingEmail">E-Mail</label>
+                        <input type="email" id="bookingEmail" class="form-input" placeholder="Ihre E-Mail-Adresse">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="bookingPhone">Telefonnummer</label>
+                        <input type="tel" id="bookingPhone" class="form-input" placeholder="Ihre Telefonnummer">
+                    </div>
+
+                    <div class="datetime-container">
+
+                        <div class="date-container">
+                            <h3 class="form-label">Tag</h3>
+                            <div class="calendar">
+                                <div class="calendar-header">
+                                    <span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
+                                </div>
+                                <div class="calendar-grid">
+                                    <button class="calendar-day">1</button><button class="calendar-day">2</button><button class="calendar-day">3</button><button class="calendar-day">4</button><button class="calendar-day">5</button><button class="calendar-day">6</button><button class="calendar-day">7</button>
+                                    <button class="calendar-day">8</button><button class="calendar-day">9</button><button class="calendar-day">10</button><button class="calendar-day">11</button><button class="calendar-day">12</button><button class="calendar-day">13</button><button class="calendar-day">14</button>
+                                    <button class="calendar-day">15</button><button class="calendar-day">16</button><button class="calendar-day">17</button><button class="calendar-day">18</button><button class="calendar-day">19</button><button class="calendar-day">20</button><button class="calendar-day">21</button>
+                                    <button class="calendar-day">22</button><button class="calendar-day">23</button><button class="calendar-day">24</button><button class="calendar-day">25</button><button class="calendar-day">26</button><button class="calendar-day">27</button><button class="calendar-day">28</button>
+                                    <button class="calendar-day">29</button><button class="calendar-day">30</button><button class="calendar-day">31</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="time-container">
+                            <h3 class="form-label">Uhrzeit</h3>
+                            <div class="timeslots">
+                                <button class="timeslot">14:00</button><button class="timeslot">15:00</button><button class="timeslot">16:00</button><button class="timeslot">17:00</button><button class="timeslot">18:00</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="submit-container">
+                        <button type="submit" class="submit-button">jetzt kostenloses Erstgespräch buchen</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+
+
+</main>
+
+<footer>
+    <div class="footer-content">
+        
+        <div class="logo-container">
+
+            <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="logo"></object>
+
+            <span class="slogan">Your Brand’s Wingman Online.</span>
+
+        </div>
+
+        <nav class="footer-nav">
+            <a href="index.html">Home</a>
+            <a href="referenzen.html">Projekte</a>
+            <a href="dienstleistungen.html">Dienstleistungen</a>
+            <a href="kontakt.html">Kontakt</a>
+        </nav>
+        <div class="legal-links">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutzerklärung.html">Datenschutzerklärung</a>
+        </div>
+    </div>
+</footer>    
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const API_BASE = 'http://localhost:3000'; // change if needed
+    
+      // DOM nodes (your markup)
+      const calendarRootOrig = document.querySelector('.calendar');
+      const calendarRoot = calendarRootOrig || (function(){ const el = document.createElement('div'); el.className='calendar'; document.body.insertBefore(el, document.body.firstChild); return el; })();
+    
+      if (!calendarRoot.querySelector('.calendar-header')) {
+        const header = document.createElement('div'); header.className='calendar-header';
+        ['Mo','Di','Mi','Do','Fr','Sa','So'].forEach(w => { const s = document.createElement('span'); s.textContent = w; header.appendChild(s); });
+        calendarRoot.appendChild(header);
+      }
+    
+      let gridEl = calendarRoot.querySelector('.calendar-grid');
+      if (!gridEl) { gridEl = document.createElement('div'); gridEl.className = 'calendar-grid'; calendarRoot.appendChild(gridEl); }
+    
+      if (!calendarRoot.querySelector('.calendar-month-header')) {
+        const headerRow = document.createElement('div'); headerRow.className='calendar-month-header';
+        headerRow.style.display='flex'; headerRow.style.justifyContent='space-between'; headerRow.style.alignItems='center'; headerRow.style.marginBottom='8px';
+        const prevBtn = document.createElement('button'); prevBtn.className='calendar-prev'; prevBtn.type='button'; prevBtn.textContent='‹';
+        const monthLabel = document.createElement('div'); monthLabel.className='calendar-month-label'; monthLabel.style.fontWeight='600';
+        const nextBtn = document.createElement('button'); nextBtn.className='calendar-next'; nextBtn.type='button'; nextBtn.textContent='›';
+        headerRow.appendChild(prevBtn); headerRow.appendChild(monthLabel); headerRow.appendChild(nextBtn);
+        calendarRoot.insertBefore(headerRow, calendarRoot.firstChild);
+      }
+    
+      let timeslotsContainer = document.querySelector('.timeslots');
+      if (!timeslotsContainer) { timeslotsContainer = document.createElement('div'); timeslotsContainer.className = 'timeslots'; calendarRoot.insertAdjacentElement('afterend', timeslotsContainer); }
+    
+      const bookingForm = document.querySelector('.booking-form');
+      if (!bookingForm) {
+        console.error('[booking] booking form not found in DOM; aborting script.');
+        return;
+      }
+    
+      // ensure hidden startLocal input exists
+      let startLocalInput = bookingForm.querySelector('input[name="startLocal"]');
+      if (!startLocalInput) {
+        startLocalInput = document.createElement('input');
+        startLocalInput.type = 'hidden';
+        startLocalInput.name = 'startLocal';
+        bookingForm.appendChild(startLocalInput);
+      }
+    
+      const prevBtn = calendarRoot.querySelector('.calendar-prev');
+      const nextBtn = calendarRoot.querySelector('.calendar-next');
+      const monthLabel = calendarRoot.querySelector('.calendar-month-label');
+    
+      // state
+      let viewDate = new Date(); viewDate.setDate(1);
+      let selectedDate = null;   // 'YYYY-MM-DD'
+      let selectedSlot = null;   // 'HH:mm'
+    
+      // helpers
+      const pad = n => String(n).padStart(2,'0');
+      const isoFromYMD = (y,m,d) => `${y}-${pad(m)}-${pad(d)}`;
+      const toIsoDateString = date => (date instanceof Date) ? isoFromYMD(date.getFullYear(), date.getMonth()+1, date.getDate()) : (typeof date==='string' ? date.slice(0,10) : null);
+      const monthLabelText = date => date.toLocaleDateString('de-DE', { month:'long', year:'numeric' });
+    
+      // fetch availability - returns { disabled: bool, slots: [ {time, isDisabled}, ... ] }
+      async function fetchAvailabilityRaw(isoDate) {
+        try {
+          const url = `${API_BASE}/api/availability?date=${encodeURIComponent(isoDate)}`;
+          console.log('[booking] GET', url);
+          const res = await fetch(url);
+          if (!res.ok) {
+            console.error('[booking] availability fetch failed', res.status);
+            return { disabled: true, slots: [] };
+          }
+          return await res.json();
+        } catch (e) {
+          console.error('[booking] fetchAvailability error', e);
+          return { disabled: true, slots: [] };
+        }
+      }
+    
+      async function isDateDisabled(dateObj) {
+        const iso = toIsoDateString(dateObj);
+        if (!iso) return true;
+        const data = await fetchAvailabilityRaw(iso);
+        return !!data.disabled;
+      }
+    
+      // render the month calendar asynchronously (we await per-day disabled check)
+      async function renderCalendar() {
+        gridEl.innerHTML = '';
+        monthLabel.textContent = monthLabelText(viewDate);
+    
+        const year = viewDate.getFullYear();
+        const month = viewDate.getMonth(); // 0..11
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const lastDate = lastDay.getDate();
+        const jsFirstWeekday = firstDay.getDay();
+        const blanksBefore = (jsFirstWeekday + 6) % 7; // monday-first
+        const totalCells = blanksBefore + lastDate;
+        const rows = Math.ceil(totalCells / 7);
+        const today = new Date(); today.setHours(0,0,0,0);
+    
+        let dayCounter = 1;
+        for (let r = 0; r < rows; r++) {
+          const row = document.createElement('div'); row.className='calendar-row'; row.style.display='flex';
+          for (let c = 0; c < 7; c++) {
+            const cellIndex = r*7 + c;
+            const cell = document.createElement('div'); cell.className='calendar-cell'; cell.style.flex='1'; cell.style.padding='4px';
+            if (cellIndex < blanksBefore || dayCounter > lastDate) {
+              const emptyBtn = document.createElement('button'); emptyBtn.type='button'; emptyBtn.className='calendar-day empty'; emptyBtn.disabled=true; emptyBtn.style.visibility='hidden';
+              cell.appendChild(emptyBtn);
+            } else {
+              const iso = isoFromYMD(year, month+1, dayCounter);
+              const btn = document.createElement('button'); btn.type='button'; btn.className='calendar-day'; btn.textContent = String(dayCounter); btn.dataset.date = iso;
+              const cellDate = new Date(year, month, dayCounter); cellDate.setHours(0,0,0,0);
+              // check disabled (server may return disabled boolean)
+              let disabled = false;
+              try { disabled = await isDateDisabled(cellDate); } catch (e) { console.warn('[booking] isDateDisabled error', e); disabled = true; }
+              if (cellDate < today || disabled) { btn.classList.add('is-disabled'); btn.disabled = true; }
+              cell.appendChild(btn);
+              dayCounter++;
+            }
+            row.appendChild(cell);
+          }
+          gridEl.appendChild(row);
+        }
+    
+        bindCalendarDays();
+      }
+    
+      // fetch available times (public function used on click)
+      async function fetchAvailableTimes(isoDate) {
+        const data = await fetchAvailabilityRaw(isoDate);
+        // data.slots is array of {time, isDisabled}
+        if (!Array.isArray(data.slots)) return [];
+        return data.slots.filter(s => !s.isDisabled).map(s => s.time);
+      }
+    
+      // render time slots UI
+      function renderTimeSlots(slots) {
+        timeslotsContainer.innerHTML = '';
+        if (!Array.isArray(slots) || slots.length === 0) {
+          timeslotsContainer.textContent = 'Keine verfügbaren Zeiten';
+          return;
+        }
+        slots.forEach(slot => {
+          const b = document.createElement('button'); b.type='button'; b.className='timeslot'; b.textContent=slot;
+          b.addEventListener('click', () => {
+            timeslotsContainer.querySelectorAll('.timeslot').forEach(x => x.classList.remove('is-active'));
+            b.classList.add('is-active');
+            selectedSlot = slot;
+            if (selectedDate) startLocalInput.value = `${selectedDate}T${selectedSlot}:00`;
+          });
+          timeslotsContainer.appendChild(b);
+        });
+      }
+    
+      // bind clicks for calendar days
+      function bindCalendarDays() {
+        // remove previous handlers safely by cloning
+        document.querySelectorAll('.calendar-day').forEach(btn => {
+          const clone = btn.cloneNode(true);
+          btn.replaceWith(clone);
+        });
+    
+        document.querySelectorAll('.calendar-day').forEach(btn => {
+          if (btn.classList.contains('empty') || btn.classList.contains('is-disabled')) return;
+          btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            selectedDate = btn.dataset.date;
+            document.querySelectorAll('.calendar-day').forEach(x => x.classList.remove('is-active'));
+            btn.classList.add('is-active');
+            // fetch available times for this date
+            const slots = await fetchAvailableTimes(selectedDate);
+            renderTimeSlots(slots);
+          });
+        });
+      }
+    
+      // prev / next handlers
+      prevBtn.addEventListener('click', () => { viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth()-1, 1); renderCalendar(); });
+      nextBtn.addEventListener('click', () => { viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth()+1, 1); renderCalendar(); });
+    
+      // ---------- FORM SUBMISSION HANDLER (NEW) ----------
+      bookingForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+    
+        // simple form values
+        const name = document.getElementById('bookingName')?.value?.trim() || '';
+        const email = document.getElementById('bookingEmail')?.value?.trim() || '';
+        const phone = document.getElementById('bookingPhone')?.value?.trim() || '';
+        const timezone = 'Europe/Berlin';
+    
+        // basic validation
+        if (!name) { alert('Bitte geben Sie Ihren Namen ein.'); return; }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Bitte geben Sie eine gültige E-Mail-Adresse ein.'); return; }
+        if (!selectedDate || !selectedSlot) { alert('Bitte wählen Sie ein Datum und eine Uhrzeit aus.'); return; }
+    
+        // idempotency key
+        const idempotencyKey = (typeof crypto?.randomUUID === 'function') ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2,9)}`;
+    
+        const payload = { name, email, phone, startLocal: startLocalInput.value, timezone, idempotencyKey, source: 'website' };
+        console.log('[booking] sending payload', payload);
+    
+        // disable submit button while processing
+        const submitBtn = bookingForm.querySelector('button[type="submit"]');
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.dataset.origText = submitBtn.textContent; submitBtn.textContent = 'Wird gebucht…'; }
+    
+        try {
+          const res = await fetch(`${API_BASE}/api/book`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+    
+          const text = await res.text();
+          console.log('[booking] booking raw response:', text);
+          let data;
+          try { data = JSON.parse(text); } catch (err) { data = { message: text }; }
+    
+          if (res.ok) {
+            alert('Termin gebucht! Eine Bestätigung wird an Ihre E-Mail gesendet.');
+            // reset UI
+            bookingForm.reset();
+            timeslotsContainer.innerHTML = '';
+            document.querySelectorAll('.calendar-day').forEach(x => x.classList.remove('is-active'));
+            selectedDate = null; selectedSlot = null;
+          } else {
+            console.error('[booking] booking failed', data);
+            alert('Fehler beim Buchen: ' + (data?.message || 'Serverantwort unklar'));
+          }
+        } catch (err) {
+          console.error('[booking] network error', err);
+          alert('Netzwerkfehler. Bitte versuchen Sie es später erneut.');
+        } finally {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitBtn.dataset.origText || 'jetzt kostenloses Erstgespräch buchen'; }
+        }
+      });
+    
+      // initial render
+      (async ()=>{ await renderCalendar(); console.log('[booking] calendar ready - API_BASE=', API_BASE); })();
+    });
+    </script>
+  </main>
+  
+
+
+</body>
+</html>
