@@ -1,8 +1,9 @@
 // js/booking/main.js
-import { fetchAvailabilityRaw } from '../js/fetch/availability.js';
-import { bookAppointment } from '../js/fetch/book.js';
+import { fetchAvailabilityRaw } from '../fetch/availability.js';
+import { bookAppointment } from '../fetch/book.js';
 
-// DOM roots
+console.debug('[booking] main loaded');
+
 const calendarRoot = document.getElementById('calendar-root') || (function(){
   const el = document.createElement('div'); el.className='calendar'; document.body.insertBefore(el, document.body.firstChild); return el;
 })();
@@ -56,7 +57,7 @@ if (!bookingForm) {
   async function isDateDisabled(dateObj) {
     const iso = isoFromYMD(dateObj.getFullYear(), dateObj.getMonth()+1, dateObj.getDate());
     const data = await fetchAvailabilityRaw(iso);
-    return !!data.disabled;
+    return !!(data && data.disabled);
   }
 
   async function renderCalendar() {
@@ -104,7 +105,7 @@ if (!bookingForm) {
 
   async function fetchAvailableTimes(isoDate) {
     const data = await fetchAvailabilityRaw(isoDate);
-    if (!Array.isArray(data.slots)) return [];
+    if (!data || !Array.isArray(data.slots)) return [];
     return data.slots.filter(s => !s.isDisabled).map(s => s.time);
   }
 
@@ -151,9 +152,9 @@ if (!bookingForm) {
   bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById('bookingName')?.value?.trim() || '';
-    const email = document.getElementById('bookingEmail')?.value?.trim() || '';
-    const phone = document.getElementById('bookingPhone')?.value?.trim() || '';
+    const name = (document.getElementById('bookingName')?.value || '').trim();
+    const email = (document.getElementById('bookingEmail')?.value || '').trim();
+    const phone = (document.getElementById('bookingPhone')?.value || '').trim();
     const timezone = 'Europe/Berlin';
 
     if (!name) { alert('Bitte geben Sie Ihren Namen ein.'); return; }

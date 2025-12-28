@@ -1,40 +1,78 @@
 // js/render/home.js
 async function fetchHome() {
-    const res = await fetch('/data/index.json', {cache: 'no-store'});
-    if (!res.ok) throw new Error('Failed to fetch index.json');
+    const res = await fetch('/data/home.json', {cache: 'no-store'});
+    if (!res.ok) throw new Error('Failed to fetch home.json: ' + res.status);
     return res.json();
   }
   
+  function safeString(v) {
+    if (v === null || v === undefined) return '';
+    if (typeof v === 'string') return v;
+    return String(v);
+  }
+  
   function setMeta(data) {
-    if (data.meta_title) document.getElementById('meta-title').textContent = data.meta_title;
-    if (data.meta_description) document.getElementById('meta-description').setAttribute('content', data.meta_description);
+    if (data && 'meta_title' in data) {
+      const titleVal = safeString(data.meta_title);
+      if (titleVal) document.getElementById('meta-title').textContent = titleVal;
+    }
+    if (data && 'meta_description' in data) {
+      const descVal = safeString(data.meta_description);
+      if (descVal) document.getElementById('meta-description').setAttribute('content', descVal);
+    }
   }
   
   function renderHero(hero) {
     const titleEl = document.getElementById('hero-title');
-    if (titleEl && hero.title_html) titleEl.innerHTML = hero.title_html;
-    const subEl = document.getElementById('hero-subtitle');
-    if (subEl) subEl.textContent = hero.subtitle || '';
-    const cta = document.getElementById('hero-cta');
-    if (cta) {
-      cta.textContent = hero.cta_text || 'Kontakt';
-      cta.href = hero.cta_link || '#';
-    }
+    const subtitleEl = document.getElementById('hero-subtitle');
+    const ctaEl = document.getElementById('hero-cta');
     const img = document.getElementById('hero-image');
-    if (img && hero.hero_image) img.src = hero.hero_image;
+  
+    if (!hero) {
+      console.debug('[render] hero object missing');
+      if (titleEl) titleEl.textContent = '';
+      if (subtitleEl) subtitleEl.textContent = '';
+      if (ctaEl) { ctaEl.textContent = 'Kontakt'; ctaEl.href = '#'; }
+      if (img) img.src = '';
+      return;
+    }
+  
+    // title_html may contain HTML; ensure it's a string
+    const titleHtml = safeString(hero.title_html);
+    if (titleEl) titleEl.innerHTML = titleHtml || '';
+  
+    if (subtitleEl) subtitleEl.textContent = safeString(hero.subtitle || '');
+  
+    if (ctaEl) {
+      ctaEl.textContent = safeString(hero.cta_text || 'Kontakt');
+      ctaEl.href = safeString(hero.cta_link || '#');
+    }
+  
+    if (img) {
+      const src = safeString(hero.hero_image || '');
+      if (src) img.src = src;
+      else img.removeAttribute('src');
+    }
   }
   
   function renderExpertise(list) {
     const grid = document.getElementById('expertise-grid');
     if (!grid) return;
     grid.innerHTML = '';
+    if (!Array.isArray(list)) return;
     list.forEach(item => {
+      const icon = safeString(item?.icon || '');
+      const title = safeString(item?.title || '');
+      const text = safeString(item?.text || '');
+  
       const card = document.createElement('div'); card.className = 'grid-card';
       const iconWrap = document.createElement('div'); iconWrap.className = 'icon-container';
-      const obj = document.createElement('object'); obj.type='image/svg+xml'; obj.data = item.icon; obj.width=40; obj.height=40; obj.className='icon';
-      iconWrap.appendChild(obj);
-      const h3 = document.createElement('h3'); h3.className='card-title'; h3.textContent = item.title;
-      const p = document.createElement('p'); p.className='card-text'; p.textContent = item.text;
+      if (icon) {
+        const obj = document.createElement('object'); obj.type='image/svg+xml'; obj.data = icon; obj.width=40; obj.height=40; obj.className='icon';
+        iconWrap.appendChild(obj);
+      }
+      const h3 = document.createElement('h3'); h3.className='card-title'; h3.textContent = title;
+      const p = document.createElement('p'); p.className='card-text'; p.textContent = text;
       card.appendChild(iconWrap); card.appendChild(h3); card.appendChild(p);
       grid.appendChild(card);
     });
@@ -44,13 +82,21 @@ async function fetchHome() {
     const grid = document.getElementById('projects-grid');
     if (!grid) return;
     grid.innerHTML = '';
+    if (!Array.isArray(list)) return;
     list.forEach(item => {
+      const image = safeString(item?.image || '');
+      const title = safeString(item?.title || '');
+      const text = safeString(item?.text || '');
+      const tags = Array.isArray(item?.tags) ? item.tags : [];
+  
       const card = document.createElement('div'); card.className = 'grid-card';
-      const img = document.createElement('img'); img.className='card-img project-img'; img.src = item.image; img.alt = item.title;
-      const h3 = document.createElement('h3'); h3.className='card-title'; h3.textContent = item.title;
-      const p = document.createElement('p'); p.className='card-text'; p.textContent = item.text;
+      const img = document.createElement('img'); img.className='card-img project-img';
+      if (image) { img.src = image; } else { img.removeAttribute('src'); }
+      img.alt = title;
+      const h3 = document.createElement('h3'); h3.className='card-title'; h3.textContent = title;
+      const p = document.createElement('p'); p.className='card-text'; p.textContent = text;
       const tagsWrap = document.createElement('div'); tagsWrap.className='tag-container';
-      (item.tags || []).forEach(t => { const s = document.createElement('span'); s.className='tag'; s.textContent = t; tagsWrap.appendChild(s); });
+      tags.forEach(t => { const s = document.createElement('span'); s.className='tag'; s.textContent = safeString(t); tagsWrap.appendChild(s); });
       card.appendChild(img); card.appendChild(h3); card.appendChild(p); card.appendChild(tagsWrap);
       grid.appendChild(card);
     });
@@ -60,33 +106,42 @@ async function fetchHome() {
     const grid = document.getElementById('reviews-grid');
     if (!grid) return;
     grid.innerHTML = '';
+    if (!Array.isArray(list)) return;
     list.forEach(item => {
+      const client_img = safeString(item?.client_img || '');
+      const client_name = safeString(item?.client_name || '');
+      const corporation_name = safeString(item?.corporation_name || '');
+      const text = safeString(item?.text || '');
+  
       const card = document.createElement('div'); card.className = 'grid-card';
-      const img = document.createElement('img'); img.className='client-img'; img.src = item.client_img; img.alt = item.client_name;
-      const h3 = document.createElement('h3'); h3.className='card-title client-name'; h3.textContent = item.client_name;
-      const corp = document.createElement('span'); corp.className='corporation-name'; corp.textContent = item.corporation_name;
-      const p = document.createElement('p'); p.className='card-text testimonial-text'; p.textContent = item.text;
+      const img = document.createElement('img'); img.className='client-img'; if (client_img) img.src = client_img; img.alt = client_name;
+      const h3 = document.createElement('h3'); h3.className='card-title client-name'; h3.textContent = client_name;
+      const corp = document.createElement('span'); corp.className='corporation-name'; corp.textContent = corporation_name;
+      const p = document.createElement('p'); p.className='card-text testimonial-text'; p.textContent = text;
       card.appendChild(img); card.appendChild(h3); card.appendChild(corp); card.appendChild(p);
       grid.appendChild(card);
     });
   }
   
   function renderContact(contact) {
-    if (!contact) return;
-    const email = document.getElementById('contact-email'); if (email) { email.href = `mailto:${contact.email}`; email.textContent = contact.email; }
-    const phone = document.getElementById('contact-phone'); if (phone) { phone.href = `tel:${contact.phone}`; phone.textContent = contact.phone; }
-    if (contact.booking_api_base) window.__BOOKING_API_BASE__ = contact.booking_api_base;
+    if (!contact) {
+      console.debug('[render] contact missing');
+      return;
+    }
+    const email = document.getElementById('contact-email'); if (email) { email.href = `mailto:${safeString(contact.email || '')}`; email.textContent = safeString(contact.email || ''); }
+    const phone = document.getElementById('contact-phone'); if (phone) { phone.href = `tel:${safeString(contact.phone || '')}`; phone.textContent = safeString(contact.phone || ''); }
+    if (contact.booking_api_base) window.__BOOKING_API_BASE__ = safeString(contact.booking_api_base);
   }
   
   (async function init(){
     try {
       const data = await fetchHome();
-      setMeta(data);
-      if (data.hero) renderHero(data.hero);
-      if (Array.isArray(data.expertise)) renderExpertise(data.expertise);
-      if (Array.isArray(data.projects)) renderProjects(data.projects);
-      if (Array.isArray(data.reviews)) renderReviews(data.reviews);
-      renderContact(data.contact);
+      setMeta(data || {});
+      renderHero(data?.hero || {});
+      renderExpertise(data?.expertise || []);
+      renderProjects(data?.projects || []);
+      renderReviews(data?.reviews || []);
+      renderContact(data?.contact || {});
     } catch (err) {
       console.error('Failed to load content JSON', err);
     }
