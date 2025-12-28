@@ -89,7 +89,7 @@
                             <p class="service-description">
                                 Kurze Beschreibung des Projekts und der erreichten Ergebnisse Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nulla vitae velit! Pariatur minima nulla autem alias ipsam, porro repudiandae atque deserunt enim, fugit quod, repellat reiciendis molestias iure cum.
                                 Suscipit perferendis, iure corporis similique at voluptates eos eaque architecto quia repudiandae porro accusantium officia aperiam ea, dolores optio quos itaque ducimus molestiae soluta tempore? Possimus optio voluptate assumenda id.
-                                Tempora laboriosam nihil quod et eligendi inventore adipisci iure? Repellat excepturi quam, enim sit libero facilis nostrum tempora aliquam esse! Consequatur, animi ab odit dignissimos et eligendi assumenda voluptatum explicabo.
+                                Tempora laboriosam nihil quod et eligendi wurst inventore adipisci iure? Repellat excepturi quam, enim sit libero facilis nostrum tempora aliquam esse! Consequatur, animi ab odit dignissimos et eligendi assumenda voluptatum explicabo.
                                 Voluptatibus pariatur recusandae ex praesentium sed, corporis accusantium magni. Quod tempora distinctio veniam, cupiditate id molestias possimus minus debitis! Error sint fugit vel impedit expedita nemo. Praesentium enim iste nam.
                                 Saepe nobis obcaecati consequatur, odio dolore nisi similique suscipit tempora tempore modi amet veniam autem asperiores quo quod molestiae sed cupiditate deleniti dolores deserunt, nemo natus. Reiciendis quas eaque repudiandae?
                             </p>
@@ -120,7 +120,7 @@
                                 Kurze Beschreibung des Projekts und der erreichten Ergebnisse Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nulla vitae velit! Pariatur minima nulla autem alias ipsam, porro repudiandae atque deserunt enim, fugit quod, repellat reiciendis molestias iure cum.
                                 Suscipit perferendis, iure corporis similique at voluptates eos eaque architecto quia repudiandae porro accusantium officia aperiam ea, dolores optio quos itaque ducimus molestiae soluta tempore? Possimus optio voluptate assumenda id.
                                 Tempora laboriosam nihil quod et eligendi inventore adipisci iure? Repellat excepturi quam, enim sit libero facilis nostrum tempora aliquam esse! Consequatur, animi ab odit dignissimos et eligendi assumenda voluptatum explicabo.
-                                Voluptatibus pariatur recusandae ex praesentium sed, corporis accusantium magni. Quod tempora distinctio veniam, cupiditate id molestias possimus minus debitis! Error sint fugit vel impedit expedita nemo. Praesentium enim iste nam.
+                                Voluptatibus pariatur recusandae ex praesentium sed, max verstappen corporis accusantium magni. Quod tempora distinctio veniam, cupiditate id molestias possimus minus debitis! Error sint fugit vel impedit expedita nemo. Praesentium enim iste nam.
                                 Saepe nobis obcaecati consequatur, odio dolore nisi similique suscipit tempora tempore modi amet veniam autem asperiores quo quod molestiae sed cupiditate deleniti dolores deserunt, nemo natus. Reiciendis quas eaque repudiandae?
                             </p>
                             <ul class="service-specs">
@@ -148,7 +148,7 @@
                     <div class="service-card-text-container flex">
                             <p class="service-description">
                                 Kurze Beschreibung des Projekts und der erreichten Ergebnisse Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nulla vitae velit! Pariatur minima nulla autem alias ipsam, porro repudiandae atque deserunt enim, fugit quod, repellat reiciendis molestias iure cum.
-                                Suscipit perferendis, iure corporis similique at voluptates eos eaque architecto quia repudiandae porro accusantium officia aperiam ea, dolores optio quos itaque ducimus molestiae soluta tempore? Possimus optio voluptate assumenda id.
+                                Suscipit perferendis, lando norris iure corporis similique at voluptates eos eaque architecto quia repudiandae porro accusantium officia aperiam ea, dolores optio quos itaque ducimus molestiae soluta tempore? Possimus optio voluptate assumenda id.
                                 Tempora laboriosam nihil quod et eligendi inventore adipisci iure? Repellat excepturi quam, enim sit libero facilis nostrum tempora aliquam esse! Consequatur, animi ab odit dignissimos et eligendi assumenda voluptatum explicabo.
                                 Voluptatibus pariatur recusandae ex praesentium sed, corporis accusantium magni. Quod tempora distinctio veniam, cupiditate id molestias possimus minus debitis! Error sint fugit vel impedit expedita nemo. Praesentium enim iste nam.
                                 Saepe nobis obcaecati consequatur, odio dolore nisi similique suscipit tempora tempore modi amet veniam autem asperiores quo quod molestiae sed cupiditate deleniti dolores deserunt, nemo natus. Reiciendis quas eaque repudiandae?
@@ -322,7 +322,229 @@
             margin-top: 3rem;
         }
 
+        .search-wrapper {
+            position: relative;
+            --search-count: "";
+        }
+
+        .search-wrapper::after {
+            content: var(--search-count);
+            position: absolute;
+            right: 1rem;
+            top: 1.5rem;
+            display: block;
+            margin-top: 0.25rem;
+            font-size: var(--text-font-size);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .search-highlight {
+            background-color: rgba(255, 255, 0, 0.5);
+            padding: 0 0.1em;
+            border-radius: 2px;
+        }
+
+
+
     </style>
+
+<script>
+    /*
+      Universal live search + safe highlight + ::after counter
+      - auto-applies for services or projects pages
+      - safe: only touches text nodes of allowed fields (title, desc, specs)
+      - only shows counter when input non-empty (data-count on .search-wrapper)
+    */
+    
+    (function () {
+      const configs = [
+        // Dienstleistungen
+        {
+          cardSelector: '.service-card',
+          titleSel: '.service-title',
+          descSel: '.service-description',
+          specsSel: '.service-specs',
+          wrapperSel: '.search-wrapper'
+        },
+        // Referenzen / Projekte
+        {
+          cardSelector: '.project-card',
+          titleSel: '.project-title',
+          descSel: '.project-description',
+          specsSel: '.project-specs',
+          wrapperSel: '.search-wrapper'
+        }
+      ];
+    
+      // Utilities
+      const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    
+      const normalize = (s) =>
+        (s || '').toString().toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '').trim();
+    
+      const debounce = (fn, wait = 120) => {
+        let t;
+        return (...args) => {
+          clearTimeout(t);
+          t = setTimeout(() => fn(...args), wait);
+        };
+      };
+    
+      // Walk all configs and initialize where cards exist
+      configs.forEach(initForConfig);
+    
+      function initForConfig(cfg) {
+        const sampleCard = document.querySelector(cfg.cardSelector);
+        if (!sampleCard) return; // this config not needed on the page
+    
+        const wrapper = document.querySelector(cfg.wrapperSel);
+        const input = wrapper ? wrapper.querySelector('.search-bar') : document.querySelector('.search-bar');
+        if (!input) return;
+    
+        // give wrapper aria-live for screen readers
+        if (wrapper) wrapper.setAttribute('aria-live', 'polite');
+    
+        const cards = Array.from(document.querySelectorAll(cfg.cardSelector));
+        // Index and store originals
+        const index = cards.map(card => {
+          const titleEl = card.querySelector(cfg.titleSel);
+          const descEl = card.querySelector(cfg.descSel);
+          const specsEl = card.querySelector(cfg.specsSel);
+    
+          // Save original HTML to restore highlights safely later
+          const titleHTML = titleEl ? titleEl.innerHTML : '';
+          const descHTML = descEl ? descEl.innerHTML : '';
+          const specsHTML = specsEl ? specsEl.innerHTML : '';
+    
+          // concat text for searching (normalize diacritics for robust search)
+          const combinedText = `${titleEl ? titleEl.textContent : ''} ${descEl ? descEl.textContent : ''} ${specsEl ? specsEl.textContent : ''}`;
+          return {
+            card,
+            titleEl,
+            descEl,
+            specsEl,
+            originalDisplay: card.style.display || '',
+            titleHTML,
+            descHTML,
+            specsHTML,
+            textSearch: normalize(combinedText)
+          };
+        });
+    
+        // Restore originals (remove highlights)
+        function restoreOriginals(item) {
+          if (item.titleEl) item.titleEl.innerHTML = item.titleHTML;
+          if (item.descEl) item.descEl.innerHTML = item.descHTML;
+          if (item.specsEl) item.specsEl.innerHTML = item.specsHTML;
+        }
+    
+        // Highlight matches only in text nodes of a given element
+        function highlightElement(el, query) {
+          if (!el || !query) return;
+          // Restore original first to prevent nested marks
+          // (we assume caller restored from stored originals earlier, but be safe)
+          // We'll not restore here globally; caller ensures original is used first.
+    
+          const rx = new RegExp(escapeRegExp(query), 'gi');
+    
+          // Recursive walker for text nodes
+          const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+            acceptNode(node) {
+              // ignore empty/whitespace-only nodes
+              if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+              // ignore text nodes that are inside <mark> (avoid re-highlighting)
+              if (node.parentNode && node.parentNode.closest && node.parentNode.closest('mark.search-highlight')) return NodeFilter.FILTER_REJECT;
+              return NodeFilter.FILTER_ACCEPT;
+            }
+          });
+    
+          const textNodes = [];
+          while (walker.nextNode()) textNodes.push(walker.currentNode);
+    
+          textNodes.forEach(textNode => {
+            const txt = textNode.nodeValue;
+            // test quickly
+            if (!rx.test(txt)) {
+              rx.lastIndex = 0;
+              return;
+            }
+            rx.lastIndex = 0;
+    
+            const frag = document.createDocumentFragment();
+            let lastIndex = 0;
+            let match;
+            while ((match = rx.exec(txt)) !== null) {
+              const idx = match.index;
+              if (idx > lastIndex) {
+                frag.appendChild(document.createTextNode(txt.slice(lastIndex, idx)));
+              }
+              const mark = document.createElement('mark');
+              mark.className = 'search-highlight';
+              mark.textContent = txt.slice(idx, idx + match[0].length);
+              frag.appendChild(mark);
+              lastIndex = idx + match[0].length;
+            }
+            if (lastIndex < txt.length) {
+              frag.appendChild(document.createTextNode(txt.slice(lastIndex)));
+            }
+            textNode.parentNode.replaceChild(frag, textNode);
+            rx.lastIndex = 0;
+          });
+        }
+    
+        // Run filter & highlight
+        function runFilter(rawQuery) {
+          const q = rawQuery.trim();
+          const qNorm = normalize(q);
+    
+          if (!q) {
+            // empty: show all, remove data-count attribute, restore originals
+            index.forEach(item => {
+              item.card.style.display = item.originalDisplay;
+              restoreOriginals(item);
+            });
+            if (wrapper) wrapper.removeAttribute('data-count');
+            return;
+          }
+    
+          let visible = 0;
+          index.forEach(item => {
+            if (item.textSearch.indexOf(qNorm) !== -1) {
+              // show
+              item.card.style.display = item.originalDisplay;
+              // restore originals (so highlights are applied cleanly)
+              restoreOriginals(item);
+              // safe highlight only inside allowed elements
+              highlightElement(item.titleEl, q);
+              highlightElement(item.descEl, q);
+              highlightElement(item.specsEl, q);
+              visible++;
+            } else {
+              // hide and restore originals (so hidden cards don't keep wrapped markup)
+              item.card.style.display = 'none';
+              restoreOriginals(item);
+            }
+          });
+    
+          // set data-count attr only when query present (so ::after only shows then)
+          if (wrapper) {
+            wrapper.setAttribute('data-count', `${visible} von ${index.length} Ergebnissen`);
+          }
+        }
+    
+        const handler = debounce((e) => runFilter(e.target.value), 80);
+        input.addEventListener('input', handler);
+    
+        // run initial if input already filled
+        if (input.value && input.value.trim() !== '') runFilter(input.value);
+      }
+    })();
+    </script>
+    
+    
+    
+    
+    
 
 </body>
 </html>

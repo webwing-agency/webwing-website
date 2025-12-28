@@ -66,6 +66,10 @@ body {
     padding-bottom: 25rem;
 }
 
+main {
+    min-height: 100vh;
+}
+
 section {
     width: 100vw;
     max-width: 170rem;
