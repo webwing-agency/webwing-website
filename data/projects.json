@@ -2,6 +2,7 @@
     "meta_title": "Referenzen - Webwing Design Agency",
     "meta_description": "Unsere vergangenen Projekte – Cases und Ergebnisse.",
     "page_title": "Referenzen",
+    "filters": ["Webdesign", "Webentwicklung", "Grafikdesign", "App", "SEO"],
     "projects": [
       {
         "title": "Ofenkäse-Versandhandel Rainer Winkler GmbH",

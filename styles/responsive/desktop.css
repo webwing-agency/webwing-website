@@ -166,6 +166,23 @@
         flex-direction: row;
     }
 
+    /* Kontakt */
+
+    .contact-card {
+        flex-direction: row !important;
+    }
+
+        .contact-card .left-side {
+            width: 40%;
+            padding: 4rem;
+            padding-bottom: 4rem;
+            border-radius: 25px 0px 0px 25px;
+        }
+
+        .contact-card .right-side {
+            width: 60%;
+            padding: 4rem;
+        }
 
   }
 

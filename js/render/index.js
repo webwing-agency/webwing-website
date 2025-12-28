@@ -1,7 +1,7 @@
 // js/render/home.js
 async function fetchHome() {
-    const res = await fetch('/data/home.json', {cache: 'no-store'});
-    if (!res.ok) throw new Error('Failed to fetch home.json: ' + res.status);
+    const res = await fetch('/data/index.json', {cache: 'no-store'});
+    if (!res.ok) throw new Error('Failed to fetch index.json: ' + res.status);
     return res.json();
   }
   
@@ -142,8 +142,16 @@ async function fetchHome() {
       renderProjects(data?.projects || []);
       renderReviews(data?.reviews || []);
       renderContact(data?.contact || {});
+  
+      // 👇 THIS IS THE KEY
+      requestAnimationFrame(() => {
+        initScrollAnimations();
+        ScrollTrigger.refresh();
+      });
+  
     } catch (err) {
       console.error('Failed to load content JSON', err);
     }
   })();
+  
   
