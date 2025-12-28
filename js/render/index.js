@@ -1,7 +1,7 @@
 // js/render/home.js
 async function fetchHome() {
-    const res = await fetch('/data/home.json', {cache: 'no-store'});
-    if (!res.ok) throw new Error('Failed to fetch home.json');
+    const res = await fetch('/data/index.json', {cache: 'no-store'});
+    if (!res.ok) throw new Error('Failed to fetch index.json');
     return res.json();
   }
   
