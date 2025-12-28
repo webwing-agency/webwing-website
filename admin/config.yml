@@ -1,0 +1,160 @@
+# admin/config.yml
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "home"
+    label: "Homepage Content"
+    label_singular: "Home"
+    editor:
+      preview: false
+    files:
+      - label: "Homepage JSON"
+        name: "home_json"
+        file: "data/home.json"
+        format: json
+        fields:
+          - { name: "meta_title", label: "HTML <title>", widget: "string" }
+          - { name: "meta_description", label: "Meta description", widget: "text" }
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { name: "title_html", label: "Hero title (HTML)", widget: "text" }
+              - { name: "subtitle", label: "Hero subtitle", widget: "text" }
+              - { name: "cta_text", label: "Hero CTA text", widget: "string" }
+              - { name: "cta_link", label: "Hero CTA link", widget: "string" }
+              - { name: "hero_image", label: "Hero background image path", widget: "string" }
+          - { name: "expertise", label: "Expertise cards", widget: "list", fields: [
+                { name: "icon", widget: "string" },
+                { name: "title", widget: "string" },
+                { name: "text", widget: "text" }
+            ] }
+          - { name: "projects", label: "Projects (homepage)", widget: "list", fields: [
+                { name: "image", widget: "string" },
+                { name: "title", widget: "string" },
+                { name: "text", widget: "text" },
+                { name: "tags", widget: "list", field: { name: "tag", widget: "string" } }
+            ] }
+          - { name: "reviews", label: "Reviews", widget: "list", fields: [
+                { name: "client_img", widget: "string" },
+                { name: "client_name", widget: "string" },
+                { name: "corporation_name", widget: "string" },
+                { name: "text", widget: "text" },
+                { name: "star_count", widget: "number", default: 5 }
+            ] }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { name: "email", widget: "string" }
+              - { name: "phone", widget: "string" }
+              - { name: "booking_api_base", label: "Booking API base", widget: "string" }
+
+  - name: "pages"
+    label: "Pages"
+    label_singular: "Page"
+    files:
+      - label: "Dienstleistungen (Services)"
+        name: "services"
+        file: "data/services.json"
+        format: json
+        fields:
+          - { name: "meta_title", widget: "string" }
+          - { name: "meta_description", widget: "text" }
+          - { name: "page_title", widget: "string" }
+          - label: "Filters"
+            name: "filters"
+            widget: "list"
+            field:
+              { name: "filter", widget: "string" }
+          - label: "Service cards"
+            name: "services"
+            widget: "list"
+            fields:
+              - { name: "images", label: "Image paths (comma separated)", widget: "string", hint: "Comma-separated list of image paths" }
+              - { name: "title", widget: "string" }
+              - { name: "description", widget: "text" }
+              - { name: "specs", widget: "list", field: { name: "spec", widget: "string" } }
+              - { name: "learn_more_link", widget: "string" }
+              - { name: "contact_link", widget: "string" }
+
+      - label: "Referenzen (Projects)"
+        name: "projects"
+        file: "data/projects.json"
+        format: json
+        fields:
+          - { name: "meta_title", widget: "string" }
+          - { name: "meta_description", widget: "text" }
+          - { name: "page_title", widget: "string" }
+          - label: "Project items"
+            name: "projects"
+            widget: "list"
+            fields:
+              - { name: "images", label: "Image paths (comma separated)", widget: "string" }
+              - { name: "title", widget: "string" }
+              - { name: "description", widget: "text" }
+              - { name: "specs", widget: "list", field: { name: "spec", widget: "string" } }
+              - { name: "learn_more_link", widget: "string" }
+              - { name: "contact_link", widget: "string" }
+
+      - label: "Kontakt"
+        name: "kontakt"
+        file: "data/contact.json"
+        format: json
+        fields:
+          - { name: "meta_title", widget: "string" }
+          - { name: "meta_description", widget: "text" }
+          - { name: "page_title", widget: "string" }
+          - { name: "subtitle", widget: "text" }
+          - { name: "email", widget: "string" }
+          - { name: "phone", widget: "string" }
+          - { name: "turnstile_sitekey", label: "Cloudflare Turnstile sitekey", widget: "string" }
+
+      - label: "Kostenloses Erstgespräch"
+        name: "book_call"
+        file: "data/book.json"
+        format: json
+        fields:
+          - { name: "meta_title", widget: "string" }
+          - { name: "meta_description", widget: "text" }
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { name: "title_html", widget: "text" }
+              - { name: "subtitle", widget: "text" }
+              - { name: "cta_text", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { name: "email", widget: "string" }
+              - { name: "phone", widget: "string" }
+          - { name: "booking_api_base", widget: "string" }
+
+      - label: "Impressum"
+        name: "impressum"
+        file: "data/impressum.json"
+        format: json
+        fields:
+          - { name: "meta_title", widget: "string" }
+          - { name: "meta_description", widget: "text" }
+          - { name: "page_title", widget: "string" }
+          - { name: "content_html", label: "Impressum HTML", widget: "markdown" }
+
+      - label: "Datenschutzerklärung"
+        name: "privacy"
+        file: "data/privacy.json"
+        format: json
+        fields:
+          - { name: "meta_title", widget: "string" }
+          - { name: "meta_description", widget: "text" }
+          - { name: "page_title", widget: "string" }
+          - { name: "content_html", label: "Privacy HTML / Markdown", widget: "markdown" }

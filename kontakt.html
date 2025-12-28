@@ -12,6 +12,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="js/gsap/gsap-global.js"></script>
+
+    <script type="module" src="js/render/contact.js" defer></script>
+
 </head>
 <body>
 
@@ -55,81 +58,77 @@
     <main>
 
         <section class="contact-page-fold">
-
-            <div class="contact-card">
-    
-                <div class="left-side">
-                    <h2 class="page-title-small contact-page-title page-title">Kontaktieren Sie uns!</h2>
-                    <p class="contact-page-subtitle">Wir freuen uns darauf, von Ihnen zu hören! Egal, ob Sie Fragen haben, ein Projekt besprechen möchten oder einfach nur Hallo sagen wollen – wir sind hier, um zu helfen.</p>
-
-                    <div class="contact-details-container container">
-
-                        <div class="contact-container">
-                            <div class="contact-icon-container icon-container ">
-                                <object data="/assets/icons/mail.svg" type="image/svg+xml" width="40" height="40" class="icon"></object>
-                            </div>
-                            <a href="mailto:contact@webwing.agency" class="contact-link">contact@webwing.agency</a>
-                        </div>
-                        <div class="contact-container">
-                            <div class="contact-icon-container icon-container">
-                                <object data="/assets/icons/phone.svg" type="image/svg+xml" width="40" height="40" class="icon"></object>
-                            </div>
-                            <a href="tel:06221 123456" class="contact-link">06221 123456</a>
-                        </div>
-
-                    </div>
-                
-                    </div>
-
-
-                <div class="right-side">
-
-                    <form class="contact-form">
-                        <div class="form-group">
-                          <label class="form-label" for="contactName">Name</label>
-                          <input type="text" id="contactName" class="form-input" name="name" placeholder="Ihr Name" required>
-                        </div>
-                      
-                        <div class="form-group">
-                          <label class="form-label" for="contactEmail">E-Mail</label>
-                          <input type="email" id="contactEmail" class="form-input" name="email" placeholder="Ihre E-Mail-Adresse" required>
-                        </div>
-                      
-                        <div class="form-group">
-                          <label class="form-label" for="contactPhone">Telefonnummer</label>
-                          <input type="tel" id="contactPhone" class="form-input" name="phone" placeholder="Ihre Telefonnummer">
-                        </div>
-                      
-                        <div class="form-group">
-                          <label class="form-label" for="messageText">Nachricht</label>
-                          <textarea id="messageText" class="form-input form-input-text" name="message" placeholder="Ihre Nachricht" required></textarea>
-                        </div>
-                      
-                        <!-- Cloudflare Turnstile widget: set data-sitekey from .env value -->
-                        <div style="margin: 12px 0;">
-                          <!-- Replace YOUR_SITEKEY with your TURNSTILE_SITEKEY, or set via templating -->
-                          <div class="cf-turnstile" data-sitekey="0x4AAAAAACJXIwtr74ztz1br"></div>
-                        </div>
-                      
-                        <div class="submit-container">
-                          <button type="submit" class="submit-button">Senden</button>
-                        </div>
-                      </form>
-                      
-                      <!-- Turnstile script (place once on page, near end of body) -->
-                      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-                      
+      
+          <div class="contact-card">
+      
+            <div class="left-side">
+      
+              <h2 class="page-title-small contact-page-title page-title">
+                <!-- CMS: title -->
+              </h2>
+      
+              <p class="contact-page-subtitle">
+                <!-- CMS: subtitle -->
+              </p>
+      
+              <div class="contact-details-container">
+      
+                <!-- CMS: contact items -->
+                <div class="contact-container">
+                  <div class="contact-icon-container icon-container">
+                    <object data="" type="image/svg+xml"></object>
+                  </div>
+                  <a href="" class="contact-link"></a>
                 </div>
+      
+              </div>
+      
             </div>
-
+      
+            <div class="right-side">
+      
+              <form class="contact-form">
+                <!-- form stays static (not CMS-driven) -->
+      
+                <div class="form-group">
+                  <label class="form-label" for="contactName"></label>
+                  <input type="text" id="contactName" class="form-input" name="name">
+                </div>
+      
+                <div class="form-group">
+                  <label class="form-label" for="contactEmail"></label>
+                  <input type="email" id="contactEmail" class="form-input" name="email">
+                </div>
+      
+                <div class="form-group">
+                  <label class="form-label" for="contactPhone"></label>
+                  <input type="tel" id="contactPhone" class="form-input" name="phone">
+                </div>
+      
+                <div class="form-group">
+                  <label class="form-label" for="messageText"></label>
+                  <textarea id="messageText" class="form-input form-input-text" name="message"></textarea>
+                </div>
+      
+                <div class="submit-container">
+                  <button type="submit" class="submit-button"></button>
+                </div>
+      
+              </form>
+      
+            </div>
+      
+          </div>
+      
         </section>
-
+      
         <div class="sticky-cta-container">
-            <span class="cta-label">Sie wollen ein Projekt mit uns umzusetzen?</span>
-            <a href="kostenloses-erstgespräch.html" class="cta">kostenloses Erstgespräch buchen</a>
+          <span class="cta-label"><!-- CMS --></span>
+          <a href="" class="cta"><!-- CMS --></a>
         </div>
-
-    </main>
+      
+      </main>
+      
 
     <footer>
         <div class="footer-content">
@@ -343,7 +342,7 @@
       });
     });
     </script>
-    
+
     
 </body>
 </html>

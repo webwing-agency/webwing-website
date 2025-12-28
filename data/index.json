@@ -1,0 +1,92 @@
+{
+    "meta_title": "Webwing Design Agency UG - Your Brand's Wingman Online",
+    "meta_description": "Webwing: Design, Conversion Optimization, SEO, Performance & Development for your brand.",
+    "hero": {
+      "title_html": "Engineered to <span class=\"gradient-text-purple\">Convert</span><br><span class=\"gradient-text-pink\">Designed</span> to <span class=\"underline-scribble\">Lead</span>",
+      "subtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+      "cta_text": "kostenloses Erstgespräch",
+      "cta_link": "kostenloses-erstgespräch.html",
+      "hero_image": "/assets/hero-bg.png"
+    },
+    "expertise": [
+      {
+        "icon": "/assets/icons/design.svg",
+        "title": "Design",
+        "text": "Webdesign. Mit unserer Expertise im Bereich UI/UX schaffen wir Designs, die nicht nur ästhetisch überzeugen, sondern auch funktional begeistern. Auch mit Grafikdesign können wir ihnen assistieren."
+      },
+      {
+        "icon": "/assets/icons/shopping.svg",
+        "title": "Conversion-Optimierung",
+        "text": "Wir optimieren Ihre Website gezielt, um Besucher in Kunden zu verwandeln und Ihre Conversion-Rate zu steigern."
+      },
+      {
+        "icon": "/assets/icons/search.svg",
+        "title": "SEO",
+        "text": "Mit effektiven SEO-Strategien sorgen wir dafür, dass Ihre Website in den Suchmaschinen besser gefunden wird."
+      },
+      {
+        "icon": "/assets/icons/code.svg",
+        "title": "Entwicklung",
+        "text": "Wir entwickeln maßgeschneiderte Websites, die sowohl technisch als auch visuell überzeugen."
+      },
+      {
+        "icon": "/assets/icons/speedometer.svg",
+        "title": "Performance-Optimierung",
+        "text": "Durch Optimierung der Ladezeiten sorgen wir für eine schnelle und reibungslose Nutzererfahrung."
+      },
+      {
+        "icon": "/assets/icons/robot.svg",
+        "title": "AI Integration",
+        "text": "Wir integrieren KI-Lösungen, um Ihre Website intelligenter und benutzerfreundlicher zu gestalten."
+      }
+    ],
+    "projects": [
+      {
+        "image": "/assets/images/projects/project-1.png",
+        "title": "Ofenkäse-Versandhandel Rainer Winkler GmbH",
+        "text": "Ein erfolgreiches E-Commerce-Projekt, bei dem wir eine benutzerfreundliche Plattform entwickelt haben, die sowohl Design als auch Funktionalität vereint.",
+        "tags": ["React", "E-Commerce"]
+      },
+      {
+        "image": "/assets/images/projects/project-2.png",
+        "title": "GreenTech Solutions AG",
+        "text": "Entwicklung einer nachhaltigen Unternehmenswebsite mit Fokus auf SEO und Performance, um die Sichtbarkeit in Suchmaschinen zu maximieren.",
+        "tags": ["WordPress", "SEO", "Performance"]
+      },
+      {
+        "image": "/assets/images/projects/project-3.png",
+        "title": "UrbanFit App",
+        "text": "Eine mobile Fitness-App, die wir mit einem modernen Design und einer intuitiven Benutzeroberfläche ausgestattet haben, um die Nutzerbindung zu fördern.",
+        "tags": ["Flutter", "Mobile App", "UI/UX"]
+      }
+    ],
+    "reviews": [
+      {
+        "client_img": "/assets/images/clients/client-1.png",
+        "client_name": "Rainer Winkler",
+        "corporation_name": "Ofenkäse-Versandhandel Winkler GmbH",
+        "text": "Webwing hat unsere Erwartungen übertroffen! Die neue Website ist nicht nur optisch ansprechend, sondern auch extrem benutzerfreundlich. Unsere Kunden lieben das Design, und wir sehen bereits eine deutliche Steigerung der Conversion-Rate.",
+        "star_count": 5
+      },
+      {
+        "client_img": "/assets/images/clients/client-2.png",
+        "client_name": "Joseph Stalin",
+        "corporation_name": "Communist Innovations GmbH",
+        "text": "Dank Webwing haben wir eine Website, die perfekt zu unserer Marke passt. Die Zusammenarbeit war professionell und effizient. Wir sind begeistert von den Ergebnissen!",
+        "star_count": 5
+      },
+      {
+        "client_img": "/assets/images/clients/client-3.png",
+        "client_name": "Arnold Schwarzenegger",
+        "corporation_name": "Onion Ring Digital Solutions LLC",
+        "text": "Die neue Benutzeroberfläche unserer App ist ein echter Gamechanger. Webwing hat großartige Arbeit geleistet und unsere Vision perfekt umgesetzt.",
+        "star_count": 5
+      }
+    ],
+    "contact": {
+      "email": "contact@webwing.agency",
+      "phone": "06221 123456",
+      "booking_api_base": "http://localhost:3000"
+    }
+  }
+  
