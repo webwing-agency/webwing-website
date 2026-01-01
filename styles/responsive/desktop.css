@@ -122,6 +122,10 @@
     
     }
 
+    .projects-section .section-title-container {
+        margin-bottom: 0;
+    }
+
     .book-call-card {
         flex-direction: row;
     }
