@@ -43,6 +43,14 @@
         padding: 2rem 3rem;
     }
 
+        .nav-logo {
+            left: 3rem;
+        }
+
+        .hamburger-menu {
+            right: 3rem;
+        }
+
     footer {
         position: absolute;
         box-sizing: border-box;

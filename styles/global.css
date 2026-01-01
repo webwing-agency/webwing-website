@@ -227,7 +227,7 @@ header {
 
     .nav-logo {
         position: absolute;
-        left: 3rem;
+        left: 2rem;
         width: 80px;
         z-index: 1001;
     }
@@ -246,7 +246,7 @@ header {
 
     .hamburger-menu {
         position: absolute;
-        right: 3rem;
+        right: 2rem;
         height: 15px;
         display: flex;
         flex-direction: column;
