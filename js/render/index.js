@@ -1,4 +1,4 @@
-// js/render/home.js
+// js/render/index.js
 async function fetchHome() {
     const res = await fetch('/data/index.json', {cache: 'no-store'});
     if (!res.ok) throw new Error('Failed to fetch index.json: ' + res.status);
@@ -57,23 +57,42 @@ async function fetchHome() {
   
   function renderExpertise(list) {
     const grid = document.getElementById('expertise-grid');
-    if (!grid) return;
+    if (!grid || !Array.isArray(list)) return;
+  
     grid.innerHTML = '';
-    if (!Array.isArray(list)) return;
+  
     list.forEach(item => {
       const icon = safeString(item?.icon || '');
       const title = safeString(item?.title || '');
       const text = safeString(item?.text || '');
+      const key = safeString(item?.key || 'design'); 
   
-      const card = document.createElement('div'); card.className = 'grid-card';
-      const iconWrap = document.createElement('div'); iconWrap.className = 'icon-container';
+      const card = document.createElement('div');
+      card.className = 'grid-card';
+  
+      const iconWrap = document.createElement('div');
+      iconWrap.className = 'icon-container';
+      iconWrap.dataset.icon = key;
+  
       if (icon) {
-        const obj = document.createElement('object'); obj.type='image/svg+xml'; obj.data = icon; obj.width=40; obj.height=40; obj.className='icon';
+        const obj = document.createElement('object');
+        obj.type = 'image/svg+xml';
+        obj.data = icon;
+        obj.width = 40;
+        obj.height = 40;
+        obj.className = 'icon';
         iconWrap.appendChild(obj);
       }
-      const h3 = document.createElement('h3'); h3.className='card-title'; h3.textContent = title;
-      const p = document.createElement('p'); p.className='card-text'; p.textContent = text;
-      card.appendChild(iconWrap); card.appendChild(h3); card.appendChild(p);
+  
+      const h3 = document.createElement('h3');
+      h3.className = 'card-title';
+      h3.textContent = title;
+  
+      const p = document.createElement('p');
+      p.className = 'card-text';
+      p.textContent = text;
+  
+      card.append(iconWrap, h3, p);
       grid.appendChild(card);
     });
   }

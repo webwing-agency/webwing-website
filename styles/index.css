@@ -83,38 +83,61 @@
     font-size: var(--card-text-font-size);
 }
 
-    .design-icon-container {
-        background-color: var(--icon-design-bg-color);
+.icon-container {
+    width: 64px;
+    height: 64px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+  }
+  
+    .icon-container[data-icon="design"] {
+        background: var(--icon-design-bg-color);
+        color: var(--icon-design-color);
     }
-
-    .conversion-icon-container {
-        background-color: var(--icon-conversion-bg-color);
+    
+    .icon-container[data-icon="conversion"] {
+        background: var(--icon-conversion-bg-color);
+        color: var(--icon-conversion-color);
     }
-
-    .seo-icon-container {
-        background-color: var(--icon-seo-bg-color);
+    
+    .icon-container[data-icon="seo"] {
+        background: var(--icon-seo-bg-color);
+        color: var(--icon-seo-color);
     }
-
-    .code-icon-container {
-        background-color: var(--icon-code-bg-color);
+    
+    .icon-container[data-icon="code"] {
+        background: var(--icon-code-bg-color);
+        color: var(--icon-code-color);
     }
-
-    .performance-icon-container {
-        background-color: var(--icon-performance-bg-color);
+    
+    .icon-container[data-icon="performance"] {
+        background: var(--icon-performance-bg-color);
+        color: var(--icon-performance-color);
     }
-
-    .ai-icon-container {
-        background-color: var(--icon-ai-bg-color);
+    
+    .icon-container[data-icon="ai"] {
+        background: var(--icon-ai-bg-color);
+        color: var(--icon-ai-color);
     }
+  
 
 /* Projects Section */
-.projects-title {
-    text-align: right;
-}
 
 .projects-section .section-title-container {
-    flex-direction: row-reverse;
+    flex-direction: column;
+    align-items: flex-end;
 }
+
+.projects-title {
+    text-align: right;
+    gap: 1rem;
+    margin: 0;
+}
+
+
 
 .project-img {
     width: 100%;
@@ -216,6 +239,7 @@
 
             .book-call-title {
                 max-width: 90%;
+                margin-top: 1rem;
             }
 
             .book-call-paragraph {

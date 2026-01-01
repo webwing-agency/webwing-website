@@ -10,36 +10,43 @@
     },
     "expertise": [
       {
+        "key": "design",
         "icon": "/assets/icons/design.svg",
         "title": "Design",
-        "text": "Webdesign. Mit unserer Expertise im Bereich UI/UX schaffen wir Designs, die nicht nur ästhetisch überzeugen, sondern auch funktional begeistern. Auch mit Grafikdesign können wir ihnen assistieren."
+        "text": "Webdesign. Mit unserer Expertise im Bereich UI/UX schaffen wir Designs..."
       },
       {
+        "key": "conversion",
         "icon": "/assets/icons/shopping.svg",
         "title": "Conversion-Optimierung",
-        "text": "Wir optimieren Ihre Website gezielt, um Besucher in Kunden zu verwandeln und Ihre Conversion-Rate zu steigern."
+        "text": "Wir optimieren Ihre Website gezielt..."
       },
       {
+        "key": "seo",
         "icon": "/assets/icons/search.svg",
         "title": "SEO",
-        "text": "Mit effektiven SEO-Strategien sorgen wir dafür, dass Ihre Website in den Suchmaschinen besser gefunden wird."
+        "text": "Mit effektiven SEO-Strategien sorgen wir dafür..."
       },
       {
+        "key": "code",
         "icon": "/assets/icons/code.svg",
         "title": "Entwicklung",
-        "text": "Wir entwickeln maßgeschneiderte Websites, die sowohl technisch als auch visuell überzeugen."
+        "text": "Wir entwickeln maßgeschneiderte Websites..."
       },
       {
+        "key": "performance",
         "icon": "/assets/icons/speedometer.svg",
         "title": "Performance-Optimierung",
-        "text": "Durch Optimierung der Ladezeiten sorgen wir für eine schnelle und reibungslose Nutzererfahrung."
+        "text": "Durch Optimierung der Ladezeiten..."
       },
       {
+        "key": "ai",
         "icon": "/assets/icons/robot.svg",
         "title": "AI Integration",
-        "text": "Wir integrieren KI-Lösungen, um Ihre Website intelligenter und benutzerfreundlicher zu gestalten."
+        "text": "Wir integrieren KI-Lösungen..."
       }
     ],
+
     "projects": [
       {
         "image": "/assets/images/projects/project-1.png",
