@@ -40,6 +40,8 @@
         "specs": ["Logo Design", "Illustration", "Print Assets", "Marketing Assets"],
         "ctas": { "more_link": "", "contact_link": "kostenloses-erstgespräch.html" }
       }
-    ]
+    ],
+    "cta_text": "kostenloses Erstgespräch buchen",
+    "cta_label": "Sie haben Fragen zu unserem Angebot?"
   }
   

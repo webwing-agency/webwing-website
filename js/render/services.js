@@ -105,10 +105,16 @@ async function fetchServices() {
           selectionFlex.insertBefore(el, searchWrapper);
         });
       }
+
+      const cta = document.querySelector(".cta")
+      const ctaLabel = document.querySelector(".cta-label")
+      if (cta) cta.textContent = data.cta_text ?? ""
+      if (ctaLabel) ctaLabel.textContent = data.cta_label ?? ""
+
     } catch (err) {
       console.error('services render error', err);
     }
+
   }
   
   render();
-  

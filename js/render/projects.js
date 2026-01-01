@@ -90,6 +90,15 @@ async function renderProjects() {
       card.append(imagesGrid, title, textWrap, ctas);
       grid.appendChild(card);
     });
+
+    /* ---------- CTA ---------- */
+
+    const cta = document.querySelector(".cta")
+    const ctaLabel = document.querySelector(".cta-label")
+
+    if (cta) cta.textContent = data.cta_text ?? ""
+    if (ctaLabel) ctaLabel.textContent = data.cta_label ?? ""
+
   }
   
   renderProjects().catch(console.error);
