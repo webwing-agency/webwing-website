@@ -39,6 +39,9 @@
         padding: 2rem;
     }
     
+    header {
+        padding: 2rem 3rem;
+    }
 
     footer {
         position: absolute;
