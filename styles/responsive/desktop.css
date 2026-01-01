@@ -34,6 +34,10 @@
     section {
         padding: 2rem 3rem;
     }
+
+    .grid-card {
+        padding: 2rem;
+    }
     
 
     footer {
