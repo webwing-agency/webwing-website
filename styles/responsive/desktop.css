@@ -30,6 +30,10 @@
     .nav-links {
         display: flex;
     }
+
+    section {
+        padding: 2rem 3rem;
+    }
     
 
     footer {
@@ -39,6 +43,7 @@
         width: 100vw;
         background-color: rgba(255, 255, 255, 0.05);
         border-top: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 3rem;
     }
     
         .footer-content {
@@ -149,6 +154,11 @@
         width: 100vw;
         padding: 4rem 10vw;
         margin-bottom: 40vh;
+    }
+
+    .projects-section .section-title-container {
+        flex-direction: row-reverse;
+        align-items: flex-end;
     }
 
 
