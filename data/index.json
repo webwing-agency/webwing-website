@@ -2,7 +2,7 @@
   "meta_title": "Webwing Design Agency UG - Your Brand's Wingman Online",
   "meta_description": "Webwing: Design, Conversion Optimization, SEO, Performance & Development for your brand.",
   "hero": {
-    "title_html": "<div class=\"hero-line\">Designed for<span class=\"gradient-text-purple\">Performance</span></div><div class=\"hero-line\">Built to <span class=\"underline-scribble\"><span class=\"gradient-text-pink\">Dominate </span></span>Markets</div>",
+    "title_html": "<div class=\"hero-line\">Designed for<span class=\"gradient-text-purple\">Performance</span></div><div class=\"hero-line bold\">Built to <span class=\"underline-scribble\"><span class=\"gradient-text-pink\">Dominate </span></span>Markets</div>",
     "subtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
     "cta_text": "kostenloses Erstgespräch",
     "cta_link": "kostenloses-erstgespräch.html",
