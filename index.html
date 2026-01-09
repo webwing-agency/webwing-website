@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="no-js">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -62,11 +62,36 @@
     })();
     </script>
 
-
   <script src="js/nav.js" defer></script>
   <script type="module" src="js/render/index.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* hide animated parts until JS takes over */
+    .hero-line,
+    #hero-title,
+    .hero-subtitle,
+    .cta,
+    .hero-bg {
+      opacity: 0.7;
+      transform: translateY(10px);
+    }
+  
+    /* If JS is not available, preserve visibility for accessibility / no-JS fallback */
+    .no-js .hero-line,
+    .no-js #hero-title,
+    .no-js .hero-subtitle,
+    .no-js .cta,
+    .no-js .hero-bg,
+    .no-js .scribble-svg path {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+
+  <script>document.documentElement.classList.remove('no-js');</script>
+
 </head>
 <body>
   <header>
@@ -82,11 +107,13 @@
 
     <div class="popup-menu">
       <div class="popup-menu-link-container">
-        <a href="index.html" class="popup-link">Home</a>
-        <a href="referenzen.html" class="popup-link">Referenzen</a>
-        <a href="dienstleistungen.html" class="popup-link">Dienstleistungen</a>
-        <a href="kontakt.html" class="popup-link">Kontakt</a>
-        <a href="kostenloses-erstgespräch.html" class="popup-link">Erstgespräch buchen</a>
+
+          <div class="popup-link"><a href="index.html">Home</a></div>
+          <div class="popup-link"><a href="referenzen.html">Referenzen</a></div>
+          <div class="popup-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+          <div class="popup-link"><a href="kontakt.html">Kontakt</a></div>
+          <div class="popup-link"><a href="kostenloses-erstgespräch.html">Erstgespräch buchen</a></div>
+
       </div>
       <div class="popup-menu-decorations">
         <span>Webwing Design Agency UG</span><span>+</span>
@@ -198,10 +225,10 @@
         </div>
 
         <nav class="footer-nav">
-            <a href="index.html">Home</a>
-            <a href="referenzen.html">Referenzen</a>
-            <a href="dienstleistungen.html">Dienstleistungen</a>
-            <a href="kontakt.html">Kontakt</a>
+            <div class="footer-nav-link"><a href="index.html">Home</a></div>
+            <div class="footer-nav-link"><a href="referenzen.html">Referenzen</a></div>
+            <div class="footer-nav-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+            <div class="footer-nav-link"><a href="kontakt.html">Kontakt</a></div>
         </nav>
         <div class="legal-links">
             <a href="impressum.html">Impressum</a>
@@ -213,5 +240,87 @@
   <script type="module" src="js/booking/main.js" defer></script>
   <script src="js/gsap/gsap-index.js" defer></script>
   <script src="js/gsap/gsap-global.js" defer></script>
+
+  <script>
+
+ /* --- Underline Scribble --- */
+    document.addEventListener('DOMContentLoaded', () => {
+      const SCRIBBLE_URL = '/assets/underline-scribble.svg';
+
+      async function fetchSvgText(url) {
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
+        return res.text();
+      }
+
+      function prepareSvgElement(svgEl) {
+        // Make all stroke-bearing elements use currentColor and remove fills
+        svgEl.querySelectorAll('path, line, polyline, polygon, circle, rect').forEach(el => {
+          if (!el.getAttribute('stroke')) el.setAttribute('stroke', 'currentColor');
+          // scribble is a stroke, not a fill — ensure no fill is applied
+          if (!el.getAttribute('fill') || el.getAttribute('fill') !== 'none') el.setAttribute('fill', 'none');
+
+          // helpful for animation performance
+          el.style.willChange = 'stroke-dashoffset';
+        });
+
+        // Accessibility + sizing defaults
+        svgEl.setAttribute('aria-hidden', 'true');
+        svgEl.setAttribute('focusable', 'false');
+        svgEl.classList.add('scribble-svg');
+
+        // Ensure it scales horizontally inside the parent
+        svgEl.setAttribute('preserveAspectRatio', svgEl.getAttribute('preserveAspectRatio') || 'none');
+        svgEl.style.width = svgEl.style.width || '100%';
+        svgEl.style.height = svgEl.style.height || '1em';
+
+        return svgEl;
+      }
+
+      async function inlineScribbles() {
+        let svgText;
+        try {
+          svgText = await fetchSvgText(SCRIBBLE_URL);
+        } catch (err) {
+          console.error('Could not fetch scribble SVG:', err);
+          return;
+        }
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(svgText, 'image/svg+xml');
+        const srcSvg = doc.querySelector('svg');
+        if (!srcSvg) {
+          console.error('Fetched file does not contain an <svg> root.');
+          return;
+        }
+
+        prepareSvgElement(srcSvg);
+
+        // Insert a cloned SVG into each .underline-scribble
+        const targets = document.querySelectorAll('.underline-scribble');
+        targets.forEach(target => {
+          // If there's already a scribble inserted, skip (idempotent)
+          if (target.querySelector('.scribble-svg')) return;
+
+          // Clone the prepared svg and append inside the target (so absolute positioning works)
+          const clone = srcSvg.cloneNode(true);
+          // make sure scribble is white (explicit): you can override by CSS if needed
+          clone.style.color = '#ffffff';
+
+          // Append as last child so it sits visually below the text (and absolute bottom positions it)
+          target.appendChild(clone);
+        });
+
+        // after insertion animate them
+        drawScribbles();
+      }
+
+      
+      // run insertion + animation
+      inlineScribbles().catch(err => console.error(err));
+    });
+    
+    </script>
+
 </body>
 </html>

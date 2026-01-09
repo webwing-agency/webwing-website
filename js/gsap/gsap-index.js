@@ -6,7 +6,7 @@
 
 (function () {
   const START_OFFSET = 'top 85%';
-  const TITLE_Y = 18;
+  const TITLE_Y = 10;
   const CARD_Y = 24;
   const BOOK_Y = 20;
 
@@ -65,10 +65,10 @@
     }
 
     // initial states (only if targets exist)
-    if (titleTargets.length) gs.set(titleTargets, { y: 20, autoAlpha: 0, willChange: 'transform,opacity' });
-    if (subtitle) gs.set(subtitle, { y: 12, autoAlpha: 0, willChange: 'transform,opacity' });
-    if (cta) gs.set(cta, { y: 10, autoAlpha: 0, willChange: 'transform,opacity' });
-    if (bg) gs.set(bg, { scale: 1.04, y: 8, autoAlpha: 0, willChange: 'transform,opacity' });
+    if (titleTargets.length) gs.set(titleTargets, { y: 10, autoAlpha: 1, willChange: 'transform,opacity' });
+    if (subtitle) gs.set(subtitle, { y: 12, autoAlpha: 1, willChange: 'transform,opacity' });
+    if (cta) gs.set(cta, { y: 10, autoAlpha: 1, willChange: 'transform,opacity' });
+    if (bg) gs.set(bg, { scale: 1.04, y: 8, autoAlpha: 1, willChange: 'transform,opacity' });
 
     if (scribblePath) {
       const pathLength = scribblePath.getTotalLength?.() || 0;
@@ -91,7 +91,7 @@
       if (titleTargets.length) {
         tl.fromTo(
           titleTargets,
-          { y: 20, autoAlpha: 0 },
+          { y: 10, autoAlpha: 1 },
           {
             y: 0,
             autoAlpha: 1,
@@ -166,6 +166,8 @@
     // expose for debugging
     hero._heroTimeline = tl;
   } // initHeroAnimations
+
+
 
   // -------------------------
   // SCROLL / BATCH ANIMATIONS

@@ -12,6 +12,7 @@
         font-size: var(--hero-title-font-size);
         text-align: center;
         margin: 0px;
+        opacity: 0.7;
     }
 
         .gradient-text-purple {
@@ -44,6 +45,7 @@
               .scribble-svg path {
                 stroke: currentColor;
                 will-change: stroke-dashoffset;
+                stroke-width: 3px !important;
               }
               
 

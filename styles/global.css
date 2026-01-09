@@ -37,19 +37,36 @@
 
 
 
-    --icon-design-bg-color: rgba(255, 166, 0, 0.5);
-    --icon-conversion-bg-color: rgba(0, 128, 0, 0.5);
-    --icon-seo-bg-color: rgba(255, 255, 0, 0.5);
-    --icon-code-bg-color: rgba(0, 0, 255, 0.5);
-    --icon-performance-bg-color: rgba(255, 0, 0, 0.5);
-    --icon-ai-bg-color: rgba(255, 83, 232, 0.5);
+    /* Design (warm amber) */
+    --icon-design-color: #FF9A3A;            /* rgb(255,154,58) */
+    --icon-design-bg-color: rgba(255,154,58,0.18);
 
-    --icon-design-color: rgb(255, 166, 0);
-    --icon-conversion-color: rgb(0, 128, 0);
-    --icon-seo-color: rgb(255, 255, 0);
-    --icon-code-color: rgb(0, 0, 255);
-    --icon-performance-color: rgb(255, 0, 0);
-    --icon-ai-color: rgb(255, 192, 247);
+    /* Conversion (teal-green) */
+    --icon-conversion-color: #0FB67A;        /* rgb(15,182,122) */
+    --icon-conversion-bg-color: rgba(15,182,122,0.18);
+
+    /* SEO (gold/mustard instead of pure yellow) */
+    --icon-seo-color: #E6C400;               /* rgb(230,196,0) */
+    --icon-seo-bg-color: rgba(230,196,0,0.18);
+
+    /* Code (vivid but balanced blue) */
+    --icon-code-color: #2563EB;              /* rgb(37,99,235) */
+    --icon-code-bg-color: rgba(37,99,235,0.18);
+
+    /* Performance (muted vivid red) */
+    --icon-performance-color: #E53935;       /* rgb(229,57,53) */
+    --icon-performance-bg-color: rgba(229,57,53,0.18);
+
+    /* AI (magenta/violet) */
+    --icon-ai-color: #D04BD6;                /* rgb(208,75,214) */
+    --icon-ai-bg-color: rgba(208,75,214,0.18);
+
+    /* Allgemein: Icon auf farbigem Kreis sollte Weiß sein */
+    --icon-on-plate-color: #FFFFFF;
+
+    /* Hover (leicht stärkeres Plate) */
+    --icon-plate-hover-alpha: 0.28;
+
 }
 
 body {
@@ -97,6 +114,10 @@ h3 {
     letter-spacing: var(--heading-letter-spacing);
 }
 
+.bold {
+    font-weight: 800;
+}
+
 .flex {
     display: flex;
     gap: 1rem;
@@ -120,25 +141,50 @@ p, a, button {
 }
 
 .cta {
-    padding: 5px 25px;
-    background-color: #fff;
-    color: #000;
+    padding: 6px 26px;
+    background-color: #ffffff;
+    color: #000000;
     text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 15px;
+  
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  
     font-weight: 500;
-    transition: 0.3s;
+    font-size: 14px;
+    line-height: 1;
+  
     position: relative;
     z-index: 1;
-    transition: 0.3s;
-}
-
-.cta:hover {
-    transition: 0.3s;
-    color: white;
-    background: linear-gradient(var(--accent-color-light) 10%, var(--accent-color) 60%, var(--accent-color-dark) 100%);
-    transform: translateY(-2px);
-}
+  
+    /* hardware-like surface */
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.08),
+      0 6px 30px rgba(140, 70, 255, 0.28);
+  
+    transition:
+      transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .cta:hover {
+    /* no color change – only light */
+    transform: scale(1.02);
+  
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255,),
+      inset 0 -1px 0 rgba(0, 0, 0,),
+      0 10px 45px rgba(140, 70, 255, 0.55);
+  }
+  
+  .cta:active {
+    transform: scale(0.99);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 2px 6px rgba(0, 0, 0, 0.15),
+      0 6px 20px rgba(140, 70, 255, 0.25);
+  }
+  
 
 .grid {
     display: flex;
@@ -208,6 +254,10 @@ p, a, button {
     gap: 1rem;
 }
 
+.sticky-cta-container .cta-label {
+    font-size: var(--text-font-size);
+}
+
 
 
 /* Header */
@@ -232,16 +282,50 @@ header {
         z-index: 1001;
     }
 
+        body.menu-open .nav-logo {
+            fill: #fff !important;
+            stroke: #fff !important;
+        }
+
     .nav-links {
         display: none;
         gap: 2rem;
         z-index: 1001;
+        transition: opacity 220ms;
+    }
+
+    body.menu-open .nav-links {
+        opacity: 0;
+        transition: opacity 220ms;
     }
 
         .nav-links a {
+            position: relative;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            opacity: 0.8;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.01em;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-color-dark));
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: #fff;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            transition: all 0.3s;
         }
 
     .hamburger-menu {
@@ -330,7 +414,7 @@ header {
 }
         
         /* Fix A: let GSAP handle transforms; only transition color in CSS */
-        .popup-link {
+        .popup-link a {
             font-family: 'Plus Jakarta Sans', sans-serif;
             letter-spacing: -0.03rem;
             font-size: var(--popup-link-font-size);
@@ -339,13 +423,18 @@ header {
             font-weight: 600;
         
             /* DON'T transition transform here — GSAP will animate transform smoothly */
-            transition: color 220ms ease;
+            transition: margin 220ms ease;
             will-change: transform, opacity;
         }
+
+        .popup-link {
+            transition: margin 220ms ease;
+        }
         
-        .popup-link:hover,
-        .popup-link:focus {
-            transform: translateY(-6px);
+        .popup-link:hover a,
+        .popup-link:focus a {
+            margin-left: 5px;
+            transition: margin 220ms ease;
         }
   
         
@@ -429,18 +518,29 @@ header {
                 flex-direction: column;
                 justify-content: space-between;
             }
-    
-                .footer-nav a {
+
+                .footer-nav-link {
                     width: 100%;
-                    text-align: right;
-                    color: white;
-                    text-decoration: none;
-                    font-weight: 600;
                     padding-bottom: 10px;
                     border-bottom: 1px solid rgba(255, 255, 255, 0.25);
                 }
+    
+                .footer-nav-link a {    
+                    display: block;   
+                    width: 100%;      
+                    text-align: right;
+                    color: white;
+                    text-decoration: none;
+                    font-weight: 600;  
+                    transition: transform 0.2s ease;
+                }
 
-                .footer-nav a:nth-last-child(1) {
+                .footer-nav-link:hover a {
+                    transform: translateX(-5px);
+                    transition: transform 0.2s ease;
+                }
+
+                .footer-nav-link:nth-last-child(1) {
                     border-bottom: none;
                 }
     
