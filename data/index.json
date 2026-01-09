@@ -2,8 +2,8 @@
   "meta_title": "Webwing Design Agency UG - Your Brand's Wingman Online",
   "meta_description": "Webwing: Design, Conversion Optimization, SEO, Performance & Development for your brand.",
   "hero": {
-    "title_html": "<div class=\"hero-line\">Designed for <span class=\"gradient-text-purple\">Performance</span></div>\n<div class=\"hero-line bold\">Built to <span class=\"underline-scribble\"><span class=\"gradient-text-pink\">Dominate </span></span>Markets</div>",
-    "subtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+    "title_html": "<div class=\"hero-line\">Websites, die Marken stärken </div>\n<div class=\"hero-line\">und Kunden <span class=\"underline-scribble\">gewinnen</span></div>",
+    "subtitle": "Design ist bei uns kein Selbstzweck. Wir bauen Webseiten, die Ihre Marke als unangefochtene Autorität positionieren und technisch so kompromisslos sind, dass sie Besucher in Kunden verwandeln. Wir liefern die Seitenperformance, die Ihren Wettbewerb abhängt und das Design, das Ihren Markenwert widerspiegelt",
     "cta_text": "kostenloses Erstgespräch",
     "cta_link": "kostenloses-erstgespräch.html",
     "hero_image": "/assets/hero-bg.png"
@@ -13,37 +13,37 @@
       "key": "design",
       "icon": "/assets/icons/design.svg",
       "title": "Design",
-      "text": "Webdesign. Mit unserer Expertise im Bereich UI/UX schaffen wir Designs..."
+      "text": "Unsere Designsprache ist modern, klar strukturiert und voll visueller Raffinesse. Unsere Websites sind wahre Design-Produkte, die ihr Brand Image stärken und ihre Autorität im Wettbewerb verfestigen."
     },
     {
       "key": "conversion",
       "icon": "/assets/icons/shopping.svg",
       "title": "Conversion-Optimierung",
-      "text": "Wir optimieren Ihre Website gezielt..."
+      "text": "Seitenstruktur und Inhalte passen wir für eine zielführende Nutzerführung und beste Conversionrates an."
     },
     {
       "key": "seo",
       "icon": "/assets/icons/search.svg",
       "title": "SEO",
-      "text": "Mit effektiven SEO-Strategien sorgen wir dafür..."
+      "text": "Laut Think with Google verlassen 53% der Nutzer auf Mobilgeräten eine Website frühzeitig, wenn diese mehr als 3s zum Laden benötigt. Wir stellen sicher, dass ihre Seite deutlich schneller lädt."
     },
     {
       "key": "code",
       "icon": "/assets/icons/code.svg",
       "title": "Entwicklung",
-      "text": "Wir entwickeln maßgeschneiderte Websites..."
+      "text": "Wir wandeln erstellte Designs in optimalen Code um. Da wir noch handwerklich manuell programmieren und keine 0815 Sitebuilder verwenden, sind unsere Möglichkeiten der Gestaltung und der Funktionen fast uneinschränkt."
     },
     {
       "key": "performance",
       "icon": "/assets/icons/speedometer.svg",
       "title": "Performance-Optimierung",
-      "text": "Durch Optimierung der Ladezeiten..."
+      "text": "Laut Think with Google verlassen 53% der Nutzer auf Mobilgeräten eine Website frühzeitig, wenn diese mehr als 3s zum Laden benötigt. Wir stellen sicher, dass ihre Seite deutlich schneller lädt."
     },
     {
       "key": "ai",
       "icon": "/assets/icons/robot.svg",
       "title": "AI Integration",
-      "text": "Wir integrieren KI-Lösungen..."
+      "text": "Wir helfen ihnen AI gewinnbringend in die Akquiseprozuesse ihrer Website einzubauen. Beispielsweise in Form eines Chatbots oder intelligenter Datenverarbeitung im Backend."
     }
   ],
   "projects": [
