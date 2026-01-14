@@ -1,47 +1,82 @@
 {
-    "meta_title": "Unser Angebot an Dienstleistungen - Webwing Design Agency",
-    "meta_description": "Dienstleistungen von Webwing – Webdesign, Entwicklung, App, SEO und Grafikdesign.",
-    "page_title": "Dienstleistungen",
-    "filters": ["Webdesign", "Webentwicklung", "Grafikdesign", "App", "SEO"],
-    "services": [
-      {
-        "title": "Webdesign",
-        "images": [
-          "/assets/images/services/service-1.png",
-          "/assets/images/services/service-2.png",
-          "/assets/images/services/service-3.png",
-          "/assets/images/services/service-4.png"
-        ],
-        "description": "Kurze Beschreibung des Webdesign-Angebots. Wir erstellen moderne, conversion-optimierte Interfaces, die Ihre Marke stärken.",
-        "specs": ["UI/UX Design", "Responsive Layout", "Prototyping", "Branding"],
-        "ctas": { "more_link": "", "contact_link": "kostenloses-erstgespräch.html" }
+  "meta_title": "Unser Angebot an Dienstleistungen - Webwing Design Agency",
+  "meta_description": "Dienstleistungen von Webwing – Webdesign, Entwicklung, App, SEO und Grafikdesign.",
+  "page_title": "Dienstleistungen",
+  "filters": [
+    "UI/UX Design",
+    "Webentwicklung",
+    "Grafikdesign",
+    "App",
+    "SEO"
+  ],
+  "services": [
+    {
+      "title": "Webdesign",
+      "images": [
+        "/assets/images/services/service-1.png",
+        "/assets/images/services/service-2.png",
+        "/assets/images/services/service-3.png",
+        "/assets/images/services/service-4.png"
+      ],
+      "description": "Kurze Beschreibung des Webdesign-Angebots. Wir erstellen moderne, conversion-optimierte Interfaces, die Ihre Marke stärken.",
+      "specs": [
+        "UI/UX Design",
+        "Responsive Layout",
+        "Prototyping",
+        "Branding"
+      ],
+      "ctas": {
+        "more_link": "",
+        "contact_link": "kostenloses-erstgespräch.html"
       },
-      {
-        "title": "Webentwicklung",
-        "images": [
-          "/assets/images/services/service-1.png",
-          "/assets/images/services/service-2.png",
-          "/assets/images/services/service-3.png",
-          "/assets/images/services/service-4.png"
-        ],
-        "description": "Maßgeschneiderte Frontend- und Backend-Entwicklung mit Fokus auf Performance und Wartbarkeit.",
-        "specs": ["React", "Jamstack", "Performance Optimierung", "APIs"],
-        "ctas": { "more_link": "", "contact_link": "kostenloses-erstgespräch.html" }
+      "contact_link": "kontakt.html",
+      "learn_more_link": "#"
+    },
+    {
+      "title": "Webentwicklung",
+      "images": [
+        "/assets/images/services/service-1.png",
+        "/assets/images/services/service-2.png",
+        "/assets/images/services/service-3.png",
+        "/assets/images/services/service-4.png"
+      ],
+      "description": "Maßgeschneiderte Frontend- und Backend-Entwicklung mit Fokus auf Performance und Wartbarkeit.",
+      "specs": [
+        "React",
+        "Jamstack",
+        "Performance Optimierung",
+        "APIs"
+      ],
+      "ctas": {
+        "more_link": "",
+        "contact_link": "kostenloses-erstgespräch.html"
       },
-      {
-        "title": "Grafikdesign",
-        "images": [
-          "/assets/images/services/service-1.png",
-          "/assets/images/services/service-2.png",
-          "/assets/images/services/service-3.png",
-          "/assets/images/services/service-4.png"
-        ],
-        "description": "Branding, Illustration und Marketing-Materialien, die Ihre Kommunikation klar und attraktiv machen.",
-        "specs": ["Logo Design", "Illustration", "Print Assets", "Marketing Assets"],
-        "ctas": { "more_link": "", "contact_link": "kostenloses-erstgespräch.html" }
-      }
-    ],
-    "cta_text": "kostenloses Erstgespräch buchen",
-    "cta_label": "Sie haben Fragen zu unserem Angebot?"
-  }
-  
+      "contact_link": "kontakt.html",
+      "learn_more_link": "#"
+    },
+    {
+      "title": "Grafikdesign",
+      "images": [
+        "/assets/images/services/service-1.png",
+        "/assets/images/services/service-2.png",
+        "/assets/images/services/service-3.png",
+        "/assets/images/services/service-4.png"
+      ],
+      "description": "Branding, Illustration und Marketing-Materialien, die Ihre Kommunikation klar und attraktiv machen.",
+      "specs": [
+        "Logo Design",
+        "Illustration",
+        "Print Assets",
+        "Marketing Assets"
+      ],
+      "ctas": {
+        "more_link": "",
+        "contact_link": "kostenloses-erstgespräch.html"
+      },
+      "contact_link": "kontakt.html",
+      "learn_more_link": "#"
+    }
+  ],
+  "cta_text": "kostenloses Erstgespräch buchen",
+  "cta_label": "Sie haben Fragen zu unserem Angebot?"
+}
