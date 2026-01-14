@@ -22,7 +22,7 @@
 
   const heroConfig = {
     mode: 'label',
-    headline: { startAt: 0.12, duration: 0.8, stagger: 0.12 },
+    headline: { startAt: 0, duration: 0.65, stagger: 0.2 },
     subtitle: { duration: 0.7, startAfter: 0.45, overlapFromEnd: 0.5 },
     cta: { duration: 0.55, startAfter: 0.6 },
     bg: { duration: 2.4 },
@@ -65,10 +65,10 @@
     }
 
     // initial states (only if targets exist)
-    if (titleTargets.length) gs.set(titleTargets, { y: 10, autoAlpha: 1, willChange: 'transform,opacity' });
-    if (subtitle) gs.set(subtitle, { y: 12, autoAlpha: 1, willChange: 'transform,opacity' });
-    if (cta) gs.set(cta, { y: 10, autoAlpha: 1, willChange: 'transform,opacity' });
-    if (bg) gs.set(bg, { scale: 1.04, y: 8, autoAlpha: 1, willChange: 'transform,opacity' });
+    if (titleTargets.length) gs.set(titleTargets, { y: 10, autoAlpha: 0, willChange: 'transform,opacity' });
+    if (subtitle) gs.set(subtitle, { y: 12, autoAlpha: 0, willChange: 'transform,opacity' });
+    if (cta) gs.set(cta, { y: 10, autoAlpha: 0, willChange: 'transform,opacity' });
+    if (bg) gs.set(bg, { scale: 1.04, y: 8, autoAlpha: 0, willChange: 'transform,opacity' });
 
     if (scribblePath) {
       const pathLength = scribblePath.getTotalLength?.() || 0;
@@ -91,7 +91,7 @@
       if (titleTargets.length) {
         tl.fromTo(
           titleTargets,
-          { y: 10, autoAlpha: 1 },
+          { y: 10, autoAlpha: 0.7 },
           {
             y: 0,
             autoAlpha: 1,
@@ -111,12 +111,34 @@
       tl.addLabel('headlineStart', headlineStart);
 
       if (subtitle) {
-        tl.to(subtitle, { y: 0, autoAlpha: 1, duration: heroConfig.subtitle.duration, ease: 'power2.out' }, `headlineStart+=${heroConfig.subtitle.startAfter}`);
+        tl.fromTo(
+          subtitle,
+          { y: 12, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: heroConfig.subtitle.duration,
+            ease: 'power2.out'
+          },
+          `headlineStart+=${heroConfig.subtitle.startAfter}`
+        );
       }
+      
 
       if (cta) {
-        tl.to(cta, { y: 0, autoAlpha: 1, duration: heroConfig.cta.duration, ease: 'power2.out' }, `headlineStart+=${heroConfig.cta.startAfter}`);
+        tl.fromTo(
+          cta,
+          { y: 10, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: heroConfig.cta.duration,
+            ease: 'power2.out'
+          },
+          `headlineStart+=${heroConfig.cta.startAfter}`
+        );
       }
+      
 
       if (scribblePath) {
         const n = Math.max(1, titleTargets.length);

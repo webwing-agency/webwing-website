@@ -166,9 +166,9 @@
             }
 
     .hero-bg {
-        top: 5rem;
-        width: 100vw;
-        left: 0;
+        top: 10rem;
+        width: 50vw;
+        left: 25vw;
     }
 
     .book-call-section {

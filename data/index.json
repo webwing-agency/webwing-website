@@ -2,11 +2,11 @@
   "meta_title": "Webwing Design Agency UG - Your Brand's Wingman Online",
   "meta_description": "Webwing: Design, Conversion Optimization, SEO, Performance & Development for your brand.",
   "hero": {
-    "title_html": "<div class=\"hero-line\">Websites, die Marken stärken </div>\n<div class=\"hero-line\">und Kunden <span class=\"underline-scribble\">gewinnen</span></div>",
+    "title_html": "<div class=\"hero-line\">Websites, die Marken stärken </div>\n<div class=\"hero-line bold\">und Kunden <span class=\"underline-scribble\">gewinnen</span></div>",
     "subtitle": "Design ist bei uns kein Selbstzweck. Wir bauen Webseiten, die Ihre Marke als unangefochtene Autorität positionieren und technisch so kompromisslos sind, dass sie Besucher in Kunden verwandeln. Wir liefern die Seitenperformance, die Ihren Wettbewerb abhängt und das Design, das Ihren Markenwert widerspiegelt",
     "cta_text": "kostenloses Erstgespräch",
     "cta_link": "kostenloses-erstgespräch.html",
-    "hero_image": "/assets/hero-bg.svg"
+    "hero_image": "/assets/hero-bg.png"
   },
   "expertise": [
     {
