@@ -57,18 +57,43 @@
         max-width: 650px;
     }
 
+    /* Final state for hero CTA after initial GSAP animation.
+   Keeps the same visual values GSAP animates to, but via a class
+   so :hover transitions continue to work (no inline styles to override). */
+    .hero-cta.is-animated-in {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+    /* Optional: ensure the transition matches your .cta rules (you already have them on .cta) */
+    .hero-cta {
+        /* initial state is already set in your inline head <style> (translateY(10px), opacity:0.7).
+        Keep this in place so class toggling transitions correctly. */
+    }
+    
+
     .hero-cta {
         opacity: 0;
     }
 
-    .hero-bg {
+    .hero-bg-container {
         position: absolute;
-        width: 20vw;
-        min-width: 16rem;
-        height: auto;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        top: 0;
         left: 0;
-        top: 15rem;
-        z-index: -9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: -10;
+        pointer-events: none;
+    }
+
+    .hero-bg {
+        min-width: 300px;
+        width: 60vw;
+        height: auto;
         will-change: transform;
     }
 
@@ -490,33 +515,3 @@
                             margin-top: 12px;
                         }
                         
-                            .submit-button {
-                                width: 100%;
-                                padding: 10px 0;
-                                border-radius: 999px;
-                                border: var(--global-border );
-                                cursor: pointer;
-                                font-weight: 600;
-                                color: black;
-                                background: white;
-                                transition: 0.5s;
-                            }
-                            
-                            .submit-button:hover {
-                                background: var(--accent-color);
-                                color: white;
-                                transition: 0.5s;
-                            }
-  
-/* GSAP styles */
-
-.section-title { opacity: 0; transform: translateY(18px); will-change: transform, opacity; }
-.grid-card { opacity: 0; transform: translateY(24px); will-change: transform, opacity; }
-
-.section-title,
-.grid-card,
-.book-call-card {
-  opacity: 0;
-  transform: translateY(24px);
-  will-change: transform, opacity;
-}

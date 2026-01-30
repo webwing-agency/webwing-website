@@ -15,42 +15,35 @@
 </head>
 <body>
 
-    <header>
+  <header>
+    <a href="index.html" class="nav-logo"> <img src="assets/logo.svg" width="80" height="40" alt="Logo"></a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="referenzen.html" class="nav-link">Referenzen</a>
+      <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
+      <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
+    </nav>
 
-        <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="nav-logo"></object>
+    <div class="hamburger-menu"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
 
-        <nav class="nav-links">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="referenzen.html" class="nav-link">Referenzen</a>
-            <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
-            <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
-        </nav>
+    <div class="popup-menu">
+      <div class="popup-menu-link-container">
 
-        <div class="hamburger-menu">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
+          <div class="popup-link"><a href="index.html">Home</a></div>
+          <div class="popup-link"><a href="referenzen.html">Referenzen</a></div>
+          <div class="popup-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+          <div class="popup-link"><a href="kontakt.html">Kontakt</a></div>
+          <div class="popup-link"><a href="kostenloses-erstgespräch.html">Erstgespräch buchen</a></div>
 
-        <div class="popup-menu">
-            <div class="popup-menu-link-container">
-                <a href="index.html" class="popup-link">Home</a>
-                <a href="referenzen.html" class="popup-link">Referenzen</a>
-                <a href="dienstleistungen.html" class="popup-link">Dienstleistungen</a>
-                <a href="kontakt.html" class="popup-link">Kontakt</a>
-                <a href="kostenloses-erstgespräch.html" class="popup-link">Erstgespräch buchen</a>
-            </div>
-
-            <div class="popup-menu-decorations">
-                <span>Webwing Design Agency UG</span><span>+</span>
-                <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
-                <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
-                <span>Available for Work</span>
-            </div>
-            
-        </div>
-
-    </header>
+      </div>
+      <div class="popup-menu-decorations">
+        <span>Webwing Design Agency UG</span><span>+</span>
+        <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
+        <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
+        <span>Available for Work</span>
+      </div>
+    </div>
+  </header>
 
     <main>
 
@@ -107,47 +100,48 @@
               </div>
       
             </div>
-            <!-- /CMS project -->
       
           </div>
       
         </section>
       
         <div class="sticky-cta-container">
-          <span class="cta-label"><!-- CMS --></span>
-          <a href="" class="cta"><!-- CMS --></a>
+          <span class="cta-label"></span>
+          <a href="" class="cta"></a>
         </div>
       
       </main>
       
 
-    <footer>
+      <footer>
         <div class="footer-content">
             
             <div class="logo-container">
-
+    
                 <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="logo"></object>
-
+    
                 <span class="slogan">Your Brand’s Wingman Online.</span>
-
+    
             </div>
-
+    
             <nav class="footer-nav">
-                <a href="index.html">Home</a>
-                <a href="referenzen.html">Projekte</a>
-                <a href="dienstleistungen.html">Dienstleistungen</a>
-                <a href="kontakt.html">Kontakt</a>
+                <div class="footer-nav-link"><a href="index.html">Home</a></div>
+                <div class="footer-nav-link"><a href="referenzen.html">Referenzen</a></div>
+                <div class="footer-nav-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+                <div class="footer-nav-link"><a href="kontakt.html">Kontakt</a></div>
             </nav>
             <div class="legal-links">
                 <a href="impressum.html">Impressum</a>
                 <a href="datenschutzerklärung.html">Datenschutzerklärung</a>
             </div>
         </div>
-    </footer>    
+    </footer>       
     
     <style>
         .references-page-fold {
             padding-bottom: 10rem;
+            align-items: flex-start;
+            position: relative;;
         }
 
         .selection-flex {
@@ -156,14 +150,27 @@
             gap: 1rem;
             margin-bottom: 5rem;
             flex-wrap: wrap-reverse;
+            position: relative; /* damit absolute Kinder (search-wrapper) relativ zu diesem Container sind */
+            min-height: 3rem;   
         }
 
         .filter-select, .search-bar {
-            background-color: var(--card-bg);
-            padding: 0.75rem 1.5rem;
-            border-radius: 10px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.065);
+            height: 2.75rem;
+            padding: 0rem 1.5rem;
+            border-radius: 30px;
+            border: 0.5px solid rgba(255, 255, 255, 0.25);
             cursor: pointer;
+            color: var(--text-color);
+            transition: background-color 0.2s, color 0.2s;
+            text-wrap: nowrap;
+            display: inline-block
+        }
+
+        .filter-select:hover, .search-bar:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            transition: background-color 0.2s, color 0.2s;
         }
 
         .filter-select, .search-bar::placeholder {
@@ -179,8 +186,14 @@
             align-items: center;
         }
 
+            .filter-select.active {
+              background-color: rgba(255, 255, 255, 0.15) !important;
+              border-color: rgba(255, 255, 255, 0.4) !important;
+            }
+
         .search-wrapper {
-            position: relative;
+            position: absolute;
+            right: 0;
             flex: 2;
             min-width: 20rem;
         }
@@ -192,7 +205,7 @@
                 transform: translateY(-50%);
                 width: 18px;
                 height: 18px;
-                color: #fff;
+                color: var(--text-color);
                 pointer-events: none;
             }
 
@@ -219,8 +232,11 @@
             margin-bottom: 1.5rem;
             width: 100%;
             height: auto;
-            
         }
+
+                .project-images-grid * {
+                    border: var(--global-border);
+                }
 
                 .project-image-1 {
                     /* should occupy first 3 columns and 2 rows */
@@ -296,10 +312,13 @@
         }
 
         .search-wrapper::after {
-            content: var(--search-count);
+            content: var(--search-count, "");
+            position: absolute;
+            right: 1rem;
+            bottom: -2rem;
             display: block;
             margin-top: 0.25rem;
-            font-size: 0.9rem;
+            font-size: var(--text-font-size);
             color: rgba(255, 255, 255, 0.5);
         }
 
@@ -309,160 +328,128 @@
             border-radius: 2px;
         }
 
-
-
     </style>
 
-<script>
-    (function () {
-      const wrapper = document.querySelector('.search-wrapper');
-      const input = wrapper?.querySelector('.search-bar');
-      const cards = Array.from(document.querySelectorAll('.project-card'));
-    
-      if (!wrapper || !input || cards.length === 0) return;
-    
-      const normalize = s =>
-        (s || '')
-          .toLowerCase()
-          .normalize('NFD')
-          .replace(/\p{Diacritic}/gu, '')
-          .trim();
-    
-      const escapeRegExp = s =>
-        s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    
-      const debounce = (fn, wait = 100) => {
-        let t;
-        return (...args) => {
-          clearTimeout(t);
-          t = setTimeout(() => fn(...args), wait);
-        };
-      };
-    
-      // Build index + store originals
-      const index = cards.map(card => {
-        const titleEl = card.querySelector('.project-title');
-        const descEl = card.querySelector('.project-description');
-        const specsEl = card.querySelector('.project-specs');
-    
-        return {
-          card,
-          titleEl,
-          descEl,
-          specsEl,
-          originalDisplay: card.style.display || '',
-          titleHTML: titleEl?.innerHTML || '',
-          descHTML: descEl?.innerHTML || '',
-          specsHTML: specsEl?.innerHTML || '',
-          searchText: normalize(
-            `${titleEl?.textContent || ''} ${descEl?.textContent || ''} ${specsEl?.textContent || ''}`
-          )
-        };
-      });
-    
-      const restore = item => {
-        if (item.titleEl) item.titleEl.innerHTML = item.titleHTML;
-        if (item.descEl) item.descEl.innerHTML = item.descHTML;
-        if (item.specsEl) item.specsEl.innerHTML = item.specsHTML;
-      };
-    
-      const highlightElement = (el, query) => {
-        if (!el || !query) return;
-    
-        const rx = new RegExp(escapeRegExp(query), 'gi');
-        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
-          acceptNode(node) {
-            if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-            if (node.parentNode.closest('mark.search-highlight')) {
-              return NodeFilter.FILTER_REJECT;
-            }
-            return NodeFilter.FILTER_ACCEPT;
-          }
+
+    <script>
+      // init-search-projects.js — drop in referenzen (oder import)
+      document.addEventListener('projectsRendered', initSearch);
+
+      function initSearch() {
+        const wrapper = document.querySelector('.search-wrapper');
+        const input = wrapper?.querySelector('.search-bar');
+        const cards = Array.from(document.querySelectorAll('.project-card'));
+
+        if (!wrapper || !input || cards.length === 0) return;
+
+        const normalize = s => (s||'').toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+        const escapeRegExp = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const debounce = (fn, wait=120) => { let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), wait); }; };
+
+        const index = cards.map(card => {
+          const titleEl = card.querySelector('.project-title');
+          const descEl  = card.querySelector('.project-description');
+          const specsEl = card.querySelector('.project-specs');
+
+          return {
+            card,
+            titleEl, descEl, specsEl,
+            originalDisplay: window.getComputedStyle(card).display || 'block',
+            titleHTML: titleEl?.innerHTML || '',
+            descHTML: descEl?.innerHTML || '',
+            specsHTML: specsEl?.innerHTML || '',
+            searchText: normalize(`${titleEl?.textContent||''} ${descEl?.textContent||''} ${specsEl?.textContent||''}`)
+          };
         });
-    
-        const nodes = [];
-        while (walker.nextNode()) nodes.push(walker.currentNode);
-    
-        nodes.forEach(node => {
-          const text = node.nodeValue;
-          let match;
-          let last = 0;
-          const frag = document.createDocumentFragment();
-    
-          while ((match = rx.exec(text)) !== null) {
-            const i = match.index;
-            if (i > last) {
-              frag.appendChild(document.createTextNode(text.slice(last, i)));
+
+        const restore = item => {
+          if (item.titleEl) item.titleEl.innerHTML = item.titleHTML;
+          if (item.descEl)  item.descEl.innerHTML  = item.descHTML;
+          if (item.specsEl) item.specsEl.innerHTML = item.specsHTML;
+        };
+
+        const highlightElement = (el, query) => {
+          if (!el || !query) return;
+          const rx = new RegExp(escapeRegExp(query), 'gi');
+
+          const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+          const nodes = [];
+          while (walker.nextNode()) nodes.push(walker.currentNode);
+
+          nodes.forEach(node => {
+            const text = node.nodeValue;
+            if (!text || !rx.test(text)) return;
+            rx.lastIndex = 0;
+            const frag = document.createDocumentFragment();
+            let last = 0, match;
+            while ((match = rx.exec(text)) !== null) {
+              if (match.index > last) frag.appendChild(document.createTextNode(text.slice(last, match.index)));
+              const mark = document.createElement('mark');
+              mark.className = 'search-highlight';
+              mark.textContent = match[0];
+              frag.appendChild(mark);
+              last = match.index + match[0].length;
             }
-            const mark = document.createElement('mark');
-            mark.className = 'search-highlight';
-            mark.textContent = match[0];
-            frag.appendChild(mark);
-            last = i + match[0].length;
-          }
-    
-          if (last < text.length) {
-            frag.appendChild(document.createTextNode(text.slice(last)));
-          }
-    
-          if (frag.childNodes.length) {
+            if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
             node.parentNode.replaceChild(frag, node);
-          }
-    
-          rx.lastIndex = 0;
-        });
-      };
-    
-      const runFilter = value => {
-        const query = value.trim();
-        const qNorm = normalize(query);
-    
-        if (!query) {
-          index.forEach(item => {
-            item.card.style.display = item.originalDisplay;
-            restore(item);
           });
-          wrapper.removeAttribute('data-count');
-          return;
-        }
-    
-        let visible = 0;
-    
-        index.forEach(item => {
-          if (item.searchText.includes(qNorm)) {
-            item.card.style.display = item.originalDisplay;
-            restore(item);
-            highlightElement(item.titleEl, query);
-            highlightElement(item.descEl, query);
-            highlightElement(item.specsEl, query);
-            visible++;
-          } else {
-            item.card.style.display = 'none';
-            restore(item);
+        };
+
+        const runFilter = value => {
+          const q = value.trim();
+          const qNorm = normalize(q);
+          if (!q) {
+            index.forEach(item => { item.card.style.display = item.originalDisplay; restore(item); });
+            wrapper.style.setProperty('--search-count', '""');
+            return;
           }
+
+          let visible = 0;
+          index.forEach(item => {
+            restore(item);
+            if (item.searchText.includes(qNorm)) {
+              item.card.style.display = item.originalDisplay;
+              highlightElement(item.titleEl, q);
+              highlightElement(item.descEl, q);
+              highlightElement(item.specsEl, q);
+              visible++;
+            } else {
+              item.card.style.display = 'none';
+            }
+          });
+
+          wrapper.style.setProperty('--search-count', `"${visible} von ${index.length} Ergebnissen"`);
+        };
+
+        input.addEventListener('input', debounce(e => runFilter(e.target.value)));
+        
+        // Filter buttons (delegation on .selection-flex)
+        document.querySelector('.selection-flex')?.addEventListener('click', e => {
+          const filter = e.target.closest('.filter-select');
+          if (!filter) return;
+          const value = filter.textContent.trim().toLowerCase();
+          const current = input.value.trim().toLowerCase();
+          document.querySelectorAll('.filter-select').forEach(f => f.classList.remove('active'));
+          if (current === value) {
+            input.value = '';
+          } else {
+            input.value = value;
+            filter.classList.add('active');
+          }
+          input.dispatchEvent(new Event('input', { bubbles: true }));
         });
-    
-        wrapper.setAttribute(
-          'data-count',
-          `${visible} von ${index.length} Ergebnissen`
-        );
-      };
-    
-      input.addEventListener(
-        'input',
-        debounce(e => runFilter(e.target.value))
-      );
-    
-      // initial state
-      runFilter('');
-    })();
+
+        input.addEventListener('input', () => {
+          if (input.value.trim() === '') document.querySelectorAll('.filter-select.active').forEach(f => f.classList.remove('active'));
+        });
+
+        runFilter('');
+      }
+
     </script>
 
     <script type="module" src="js/render/projects.js" defer></script>
 
-        
-        
-    
-    
 </body>
 </html>

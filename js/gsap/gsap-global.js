@@ -1,188 +1,267 @@
-(function (window, document, gsap, ScrollTrigger) {
-    'use strict';
-    if (!gsap || !ScrollTrigger) {
-      console.warn('GSAP or ScrollTrigger missing — animations disabled.');
-      return;
-    }
-  
-    gsap.registerPlugin(ScrollTrigger);
-  
+(function (window, document) {
+  'use strict';
+
+  // ------------------------------------------------
+  // Robust GSAP + ScrollTrigger resolution
+  // ------------------------------------------------
+  const gsap = window.gsap;
+  const ScrollTrigger =
+    window.ScrollTrigger ||
+    (gsap && gsap.plugins && gsap.plugins.ScrollTrigger);
+
+  if (!gsap || !ScrollTrigger) {
+    console.warn('GSAP or ScrollTrigger missing — animations disabled.');
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ------------------------------------------------
+  // Config
+  // ------------------------------------------------
+  const START_OFFSET = 'top 85%';
+
+  const TITLE_Y = 18;
+  const SELECTION_X = -20;       
+  const CARD_Y = 24;
+  const BOOK_Y = 20;
+
+  const TITLE_DURATION = 0.6;
+  const PAGE_TITLE_DURATION = 0.6;
+  const SUBTITLE_DURATION = 0.22;
+  const MAIN_CARD_DURATION = 0.28;
+  const MAIN_CARD_Y = 5;
+
+  // Selection animation tuning
+  const SELECTION_DURATION = 0.32;
+  const SELECTION_STAGGER = 0.06;
+  const SELECTION_EASE = 'power2.out';
+
+  // Card fly-in tuning
+  const CARD_DURATION = 0.56;
+  const CARD_STAGGER = 0.08;
+  const CARD_FLY_X = 0;         
+  const CARD_FLY_Y = 30;         
+  const BATCH_INTERVAL = 0.12;
+  const BATCH_MAX = 10;
+
+  const BOOK_DURATION = 0.55;
+
+  const EASE_OUT = 'power3.out';
+
+  // ------------------------------------------------
+  // Helpers
+  // ------------------------------------------------
+  function killTriggerForElement(el) {
+    ScrollTrigger.getAll().forEach(st => {
+      if (st.trigger === el) st.kill();
+    });
+  }
+
+  // ------------------------------------------------
+  // Core init
+  // ------------------------------------------------
+  function initAnimations() {
+    // Kill previous triggers (important for dynamic re-init)
+    ScrollTrigger.getAll().forEach(st => st.kill());
+
     // -------------------------
-    // Config (feel free to tweak)
+    // SECTION TITLES
     // -------------------------
-    const START_OFFSET = 'top 85%';      // when trigger's top crosses 85% of viewport
-    const TITLE_Y = 18;
-    const CARD_Y = 24;
-    const BOOK_Y = 20;
-    const PAGE_TITLE_Y = 24;
-    const SELECTION_Y = 18;
-  
-    const TITLE_DURATION = 0.6;
-    const CARD_DURATION = 0.6;
-    const BOOK_DURATION = 0.55;
-    const PAGE_TITLE_DURATION = 0.6;
-    const SELECTION_DURATION = 0.55;
-  
-    const CARD_STAGGER = 0.08;
-    const BATCH_INTERVAL = 0.12;
-    const BATCH_MAX = 10;
-  
-    const EASE_OUT = 'power3.out';
-  
-    // -------------------------
-    // Helpers
-    // -------------------------
-    function killTriggerForElement(el) {
-      // Find the ScrollTrigger whose trigger === el and kill it (if any)
-      const all = ScrollTrigger.getAll();
-      for (let i = 0; i < all.length; i++) {
-        const st = all[i];
-        if (st && st.trigger === el) {
-          st.kill();
-          return true;
+    gsap.utils.toArray('.section-title').forEach(el => {
+      gsap.set(el, { y: TITLE_Y, autoAlpha: 0 });
+
+      ScrollTrigger.create({
+        trigger: el,
+        start: START_OFFSET,
+        onEnter(self) {
+          gsap.to(el, {
+            y: 0,
+            autoAlpha: 1,
+            duration: TITLE_DURATION,
+            ease: EASE_OUT
+          });
+          self.kill();
         }
-      }
-      return false;
-    }
-  
-    function isInViewport(el) {
-      const rect = el.getBoundingClientRect();
-      return rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
-             rect.bottom > 0;
-    }
-  
+      });
+    });
+
     // -------------------------
-    // Core init function
+    // PAGE TITLES + SUBTITLE + MAIN-CARD (chained)
     // -------------------------
-    function initAnimations() {
-      // Clean previous triggers if any (useful when injecting script twice)
-      ScrollTrigger.getAll().forEach(st => st.kill());
-  
-      // SECTION TITLES (.section-title)
-      gsap.utils.toArray('.section-title').forEach(title => {
-        gsap.set(title, { y: TITLE_Y, autoAlpha: 0, willChange: 'transform, opacity' });
-  
-        ScrollTrigger.create({
-          trigger: title,
-          start: START_OFFSET,
-          onEnter(self) {
-            gsap.to(title, { y: 0, autoAlpha: 1, duration: TITLE_DURATION, ease: EASE_OUT });
-            self.kill(); // ensure play-once
+    gsap.utils.toArray('.page-title').forEach(el => {
+      gsap.set(el, { autoAlpha: 0 });
+
+      const container =
+        el.closest('section, .page, .hero, .container') || el.parentElement;
+      const subtitle = container ? container.querySelector('.page-subtitle') : null;
+      const mainCard = container ? container.querySelector('.main-card') : null;
+
+      if (subtitle) gsap.set(subtitle, { autoAlpha: 0 });
+      if (mainCard) gsap.set(mainCard, { y: MAIN_CARD_Y, autoAlpha: 0 });
+
+      ScrollTrigger.create({
+        trigger: el,
+        start: START_OFFSET,
+        onEnter(self) {
+          const tl = gsap.timeline({
+            defaults: { ease: EASE_OUT },
+            onComplete: () => {
+              try { self.kill(); } catch (e) {}
+            }
+          });
+
+          tl.to(el, { autoAlpha: 1, duration: PAGE_TITLE_DURATION });
+
+          if (subtitle) {
+            tl.to(subtitle,
+              { autoAlpha: 1, duration: SUBTITLE_DURATION, ease: 'power1.out' },
+              '-=0.20'
+            );
           }
-        });
-      });
-  
-      // PAGE TITLES (.page-title)
-      gsap.utils.toArray('.page-title').forEach(pt => {
-        gsap.set(pt, { y: PAGE_TITLE_Y, autoAlpha: 0, willChange: 'transform, opacity' });
-  
-        ScrollTrigger.create({
-          trigger: pt,
-          start: START_OFFSET,
-          onEnter(self) {
-            gsap.to(pt, { y: 0, autoAlpha: 1, duration: PAGE_TITLE_DURATION, ease: EASE_OUT });
-            self.kill();
+
+          if (mainCard) {
+            tl.to(mainCard,
+              { y: 0, autoAlpha: 1, duration: MAIN_CARD_DURATION, ease: 'power1.out' },
+              '-=0.10'
+            );
           }
-        });
+        }
       });
-  
-      // SELECTION-FLEX page-load stagger (all children animated on initial load)
-      // If you only want visible children, wrap with isInViewport check
-      gsap.utils.toArray('.selection-flex').forEach(container => {
-        const children = Array.from(container.children || []);
-        if (!children.length) return;
-  
-        // set initial state
-        gsap.set(children, { y: SELECTION_Y, autoAlpha: 0, willChange: 'transform, opacity' });
-  
-        // small delay to ensure styles are applied before animating (and looks smooth)
-        gsap.to(children, {
-          y: 0,
-          autoAlpha: 1,
-          duration: SELECTION_DURATION,
-          ease: EASE_OUT,
-          stagger: 0.06,
-          delay: 0.08
-        });
+    });
+
+    // -------------------------
+    // SELECTION-FLEX: animate ALL children (staggered) when container enters
+    // -------------------------
+    gsap.utils.toArray('.selection-flex').forEach(container => {
+      // take all element children (not text nodes)
+      const children = Array.from(container.children).filter(n => n.nodeType === 1);
+      if (!children.length) return;
+
+      // initial: subtle down + invisible
+      gsap.set(children, { x: SELECTION_X, autoAlpha: 0, rotation: 0.01 });
+
+      ScrollTrigger.create({
+        trigger: container,
+        start: 'top 92%',
+        onEnter(self) {
+          gsap.to(children, {
+            x: 0,
+            autoAlpha: 1,
+            duration: SELECTION_DURATION,
+            ease: SELECTION_EASE,
+            stagger: { each: SELECTION_STAGGER, from: 'start' },
+            overwrite: true
+          });
+          // einmalig, wir wollen keine wiederholten Einblendungen
+          self.kill();
+        }
       });
-  
-      // GRID CARDS (per-grid use ScrollTrigger.batch)
-      gsap.utils.toArray('.grid').forEach(grid => {
-        const cards = Array.from(grid.querySelectorAll('.grid-card'));
+    });
+
+    // -------------------------
+    // SERVICE / GRID CARDS -> gestaggertes "fly-in"
+    // -------------------------
+    gsap.utils
+      .toArray('.services-grid, .projects-grid, .grid')
+
+      .forEach(grid => {
+        const cards = Array.from(
+          grid.querySelectorAll('.service-card, .grid-card')
+        );
+
         if (!cards.length) return;
-  
-        // deterministic starting state
-        gsap.set(cards, { y: CARD_Y, autoAlpha: 0, willChange: 'transform, opacity' });
-  
-        // Batch setup
+
+        // set initial fly-in state (slightly shifted + transparent + tiny rotation)
+        gsap.set(cards, {
+          x: CARD_FLY_X,
+          y: CARD_FLY_Y,
+          autoAlpha: 0,
+        });
+
         ScrollTrigger.batch(cards, {
+          start: START_OFFSET,
           interval: BATCH_INTERVAL,
           batchMax: BATCH_MAX,
-          start: START_OFFSET,
+
           onEnter: batch => {
-            // Animate only the batch elements
+            // from current offset -> into place
             gsap.to(batch, {
+              x: 0,
               y: 0,
               autoAlpha: 1,
               duration: CARD_DURATION,
-              ease: EASE_OUT,
+              ease: 'power2.out',
               stagger: { each: CARD_STAGGER, from: 'start' },
               overwrite: true
             });
-  
-            // Kill per-element triggers so they never replay. ScrollTrigger.batch creates triggers
-            // internally; find and kill them by matching st.trigger === el.
-            batch.forEach(el => killTriggerForElement(el));
+            batch.forEach(killTriggerForElement);
           },
-          // onEnterBack behaves same when scrolling up
+
           onEnterBack: batch => {
             gsap.to(batch, {
+              x: 0,
               y: 0,
               autoAlpha: 1,
               duration: CARD_DURATION,
-              ease: EASE_OUT,
+              ease: 'power2.out',
               stagger: { each: CARD_STAGGER, from: 'end' },
               overwrite: true
             });
-            batch.forEach(el => killTriggerForElement(el));
-          }
-          // note: we intentionally do NOT reset onLeave so animations play once
-        });
-      });
-  
-      // BOOK CALL CARD (single element animations)
-      gsap.utils.toArray('.book-call-card').forEach(card => {
-        gsap.set(card, { y: BOOK_Y, autoAlpha: 0, willChange: 'transform, opacity' });
-  
-        ScrollTrigger.create({
-          trigger: card,
-          start: START_OFFSET,
-          onEnter(self) {
-            gsap.to(card, { y: 0, autoAlpha: 1, duration: BOOK_DURATION, ease: EASE_OUT });
-            self.kill(); // play once
+            batch.forEach(killTriggerForElement);
           }
         });
       });
-  
-      // Ensure ScrollTrigger evaluates elements that are already in the viewport on load.
-      // This forces onEnter handlers for in-fold elements to fire immediately.
-      // Using a small timeout ensures layout has stabilized (fonts/images) before refresh.
-      setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 50);
+
+    // -------------------------
+    // Final refresh (layout safe)
+    // -------------------------
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 80);
+  }
+
+  // ------------------------------------------------
+  // Auto-run on load
+  // ------------------------------------------------
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAnimations, {
+      once: true
+    });
+  } else {
+    initAnimations();
+  }
+
+  // ------------------------------------------------
+  // Public API (IMPORTANT for dynamic content)
+  // ------------------------------------------------
+  window.GlobalAnimations = {
+    init: initAnimations,
+    refresh: () => ScrollTrigger.refresh()
+  };
+})(window, document);
+
+(function () {
+  function onRenderEvent() {
+    if (!window.GlobalAnimations || typeof window.GlobalAnimations.init !== 'function') return;
+
+    try {
+      if (window.ScrollTrigger && typeof window.ScrollTrigger.getAll === 'function') {
+        // defensive kill before re-init
+        window.ScrollTrigger.getAll().forEach(t => t.kill());
+      }
+    } catch (e) {
+      // ignore
     }
-  
-    // Auto-run on DOMContentLoaded
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initAnimations, { once: true });
-    } else {
-      initAnimations();
+
+    // init + force refresh (measurements)
+    window.GlobalAnimations.init();
+    if (window.ScrollTrigger && typeof window.ScrollTrigger.refresh === 'function') {
+      // pass true to force measurement
+      window.ScrollTrigger.refresh(true);
     }
-  
-    // Expose a global API to refresh/re-init when content changes dynamically
-    window.GlobalAnimations = {
-      init: initAnimations,
-      refresh: () => ScrollTrigger.refresh()
-    };
-  
-  })(window, document, window.gsap, window.ScrollTrigger);
+  }
+
+  document.addEventListener('servicesRendered', onRenderEvent);
+  document.addEventListener('projectsRendered', onRenderEvent);
+})();

@@ -7,49 +7,44 @@
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/responsive/desktop.css">
     <script src="js/nav.js" defer></script>
-    <script type="module" src="js/render/services.js" defer></script>
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="js/render/services.js"></script>
+    
+    
 </head>
 <body>
 
-    <header>
+  <header>
+    <a href="index.html" class="nav-logo"> <img src="assets/logo.svg" width="80" height="40" alt="Logo"></a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="referenzen.html" class="nav-link">Referenzen</a>
+      <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
+      <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
+    </nav>
 
-        <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="nav-logo"></object>
+    <div class="hamburger-menu"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
 
-        <nav class="nav-links">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="referenzen.html" class="nav-link">Referenzen</a>
-            <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
-            <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
-        </nav>
+    <div class="popup-menu">
+      <div class="popup-menu-link-container">
 
-        <div class="hamburger-menu">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
+          <div class="popup-link"><a href="index.html">Home</a></div>
+          <div class="popup-link"><a href="referenzen.html">Referenzen</a></div>
+          <div class="popup-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+          <div class="popup-link"><a href="kontakt.html">Kontakt</a></div>
+          <div class="popup-link"><a href="kostenloses-erstgespräch.html">Erstgespräch buchen</a></div>
 
-        <div class="popup-menu">
-            <div class="popup-menu-link-container">
-                <a href="index.html" class="popup-link">Home</a>
-                <a href="referenzen.html" class="popup-link">Referenzen</a>
-                <a href="dienstleistungen.html" class="popup-link">Dienstleistungen</a>
-                <a href="kontakt.html" class="popup-link">Kontakt</a>
-                <a href="kostenloses-erstgespräch.html" class="popup-link">Erstgespräch buchen</a>
-            </div>
-
-            <div class="popup-menu-decorations">
-                <span>Webwing Design Agency UG</span><span>+</span>
-                <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
-                <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
-                <span>Available for Work</span>
-            </div>
-            
-        </div>
-
-    </header>
+      </div>
+      <div class="popup-menu-decorations">
+        <span>Webwing Design Agency UG</span><span>+</span>
+        <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
+        <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
+        <span>Available for Work</span>
+      </div>
+    </div>
+  </header>
 
     <main>
 
@@ -61,15 +56,16 @@
       
           <div class="selection-flex">
 
-            <!-- CMS: filter tags (optional) -->
+            
       
             <div class="search-wrapper">
-              <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"></circle>
-                <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"></line>
+              <svg class="search-icon" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/>
+                <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/>
               </svg>
               <input type="text" class="search-bar" placeholder="">
             </div>
+            
           </div>
       
           <div class="services-grid">
@@ -125,45 +121,55 @@
         <div class="footer-content">
             
             <div class="logo-container">
-
+    
                 <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="logo"></object>
-
+    
                 <span class="slogan">Your Brand’s Wingman Online.</span>
-
+    
             </div>
-
+    
             <nav class="footer-nav">
-                <a href="index.html">Home</a>
-                <a href="referenzen.html">Projekte</a>
-                <a href="dienstleistungen.html">Dienstleistungen</a>
-                <a href="kontakt.html">Kontakt</a>
+                <div class="footer-nav-link"><a href="index.html">Home</a></div>
+                <div class="footer-nav-link"><a href="referenzen.html">Referenzen</a></div>
+                <div class="footer-nav-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+                <div class="footer-nav-link"><a href="kontakt.html">Kontakt</a></div>
             </nav>
             <div class="legal-links">
                 <a href="impressum.html">Impressum</a>
                 <a href="datenschutzerklärung.html">Datenschutzerklärung</a>
             </div>
         </div>
-    </footer>    
+    </footer>   
 
     <style>
-        .services-page-fold {
-            padding-bottom: 10rem;
-        }
-
         .selection-flex {
             width: 100%;
             display: flex;
             gap: 1rem;
             margin-bottom: 5rem;
             flex-wrap: wrap-reverse;
+            position: relative; /* damit absolute Kinder (search-wrapper) relativ zu diesem Container sind */
+            min-height: 3rem;   
         }
 
+
         .filter-select, .search-bar {
-            background-color: var(--card-bg);
-            padding: 0.75rem 1.5rem;
-            border-radius: 10px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.025);
+            height: 2.75rem;
+            padding: 0rem 1.5rem;
+            border-radius: 30px;
+            border: 0.5px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
+            color: var(--text-color);
+            transition: background-color 0.2s, color 0.2s;
+            text-wrap: nowrap;
+            display: inline-block
+        }
+
+        .filter-select:hover, .search-bar:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            transition: background-color 0.2s, color 0.2s;
         }
 
         .filter-select, .search-bar::placeholder {
@@ -177,12 +183,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            text-wrap: nowrap;
         }
 
+            .filter-select.active {
+              background-color: rgba(255, 255, 255, 0.15) !important;
+              border-color: rgba(255, 255, 255, 0.4) !important;
+            }
+
         .search-wrapper {
-            position: relative;
-            min-width: 20rem;
+            position: absolute;
+            right: 0;
             flex: 2;
+            min-width: 20rem;
         }
 
             .search-icon {
@@ -192,7 +205,7 @@
                 transform: translateY(-50%);
                 width: 18px;
                 height: 18px;
-                color: #fff;
+                color: var(--text-color);
                 pointer-events: none;
             }
 
@@ -224,6 +237,7 @@
                 .service-image {
                     flex: 1;
                     object-fit: cover;
+                    border: var(--global-border);
                 }
 
 
@@ -286,210 +300,194 @@
             border-radius: 2px;
         }
 
+        .filter-select.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .search-wrapper {
+            position: relative;
+            --search-count: "";
+        }
+
+        .search-wrapper::after {
+            content: var(--search-count);
+            display: block;
+            margin-top: 0.25rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .search-highlight {
+            background-color: rgba(255, 255, 0, 0.25);
+            padding: 0 0.1em;
+            border-radius: 2px;
+        }
+
+        .filter-select.active {
+          background-color: rgba(255, 255, 255, 0.15);
+          border-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .filter-select:hover:not(.active) {
+          background-color: rgba(255, 255, 255, 0.05);
+      }
+
+      .filter-select {
+          transition: background-color 0.2s, border-color 0.2s;
+      }
 
 
     </style>
 
-<script>
-    /*
-      Universal live search + safe highlight + ::after counter
-      - auto-applies for services or projects pages
-      - safe: only touches text nodes of allowed fields (title, desc, specs)
-      - only shows counter when input non-empty (data-count on .search-wrapper)
-    */
-    
-    (function () {
-      const configs = [
-        // Dienstleistungen
-        {
-          cardSelector: '.service-card',
-          titleSel: '.service-title',
-          descSel: '.service-description',
-          specsSel: '.service-specs',
-          wrapperSel: '.search-wrapper'
-        },
-        // Referenzen / Projekte
-        {
-          cardSelector: '.project-card',
-          titleSel: '.project-title',
-          descSel: '.project-description',
-          specsSel: '.project-specs',
-          wrapperSel: '.search-wrapper'
-        }
-      ];
-    
-      // Utilities
-      const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    
-      const normalize = (s) =>
-        (s || '').toString().toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '').trim();
-    
-      const debounce = (fn, wait = 120) => {
-        let t;
-        return (...args) => {
-          clearTimeout(t);
-          t = setTimeout(() => fn(...args), wait);
-        };
+<script src="js/gsap/gsap-global.js"></script>
+
+
+<script defer>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('servicesRendered', initSearch);
+  });
+  
+  function initSearch() {
+    const filters = document.querySelectorAll('.filter-select');
+    const wrapper = document.querySelector('.search-wrapper');
+    const input = wrapper?.querySelector('.search-bar');
+    const cards = Array.from(document.querySelectorAll('.service-card'));
+  
+    if (!wrapper || !input || cards.length === 0) return;
+  
+    const normalize = s =>
+      (s || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim();
+  
+    const escapeRegExp = s =>
+      s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  
+    const debounce = (fn, wait = 120) => {
+      let t;
+      return (...args) => {
+        clearTimeout(t);
+        t = setTimeout(() => fn(...args), wait);
       };
-    
-      // Walk all configs and initialize where cards exist
-      configs.forEach(initForConfig);
-    
-      function initForConfig(cfg) {
-        const sampleCard = document.querySelector(cfg.cardSelector);
-        if (!sampleCard) return; // this config not needed on the page
-    
-        const wrapper = document.querySelector(cfg.wrapperSel);
-        const input = wrapper ? wrapper.querySelector('.search-bar') : document.querySelector('.search-bar');
-        if (!input) return;
-    
-        // give wrapper aria-live for screen readers
-        if (wrapper) wrapper.setAttribute('aria-live', 'polite');
-    
-        const cards = Array.from(document.querySelectorAll(cfg.cardSelector));
-        // Index and store originals
-        const index = cards.map(card => {
-          const titleEl = card.querySelector(cfg.titleSel);
-          const descEl = card.querySelector(cfg.descSel);
-          const specsEl = card.querySelector(cfg.specsSel);
-    
-          // Save original HTML to restore highlights safely later
-          const titleHTML = titleEl ? titleEl.innerHTML : '';
-          const descHTML = descEl ? descEl.innerHTML : '';
-          const specsHTML = specsEl ? specsEl.innerHTML : '';
-    
-          // concat text for searching (normalize diacritics for robust search)
-          const combinedText = `${titleEl ? titleEl.textContent : ''} ${descEl ? descEl.textContent : ''} ${specsEl ? specsEl.textContent : ''}`;
-          return {
-            card,
-            titleEl,
-            descEl,
-            specsEl,
-            originalDisplay: card.style.display || '',
-            titleHTML,
-            descHTML,
-            specsHTML,
-            textSearch: normalize(combinedText)
-          };
-        });
-    
-        // Restore originals (remove highlights)
-        function restoreOriginals(item) {
-          if (item.titleEl) item.titleEl.innerHTML = item.titleHTML;
-          if (item.descEl) item.descEl.innerHTML = item.descHTML;
-          if (item.specsEl) item.specsEl.innerHTML = item.specsHTML;
+    };
+  
+    const index = cards.map(card => {
+      const titleEl = card.querySelector('.service-title');
+      const descEl = card.querySelector('.service-description');
+      const specsEl = card.querySelector('.service-specs');
+  
+      return {
+        card,
+        titleEl,
+        descEl,
+        specsEl,
+        originalDisplay: card.style.display || '',
+        titleHTML: titleEl?.innerHTML || '',
+        descHTML: descEl?.innerHTML || '',
+        specsHTML: specsEl?.innerHTML || '',
+        searchText: normalize(
+          `${titleEl?.textContent || ''} ${descEl?.textContent || ''} ${specsEl?.textContent || ''}`
+        )
+      };
+    });
+  
+    const restore = item => {
+      if (item.titleEl) item.titleEl.innerHTML = item.titleHTML;
+      if (item.descEl) item.descEl.innerHTML = item.descHTML;
+      if (item.specsEl) item.specsEl.innerHTML = item.specsHTML;
+    };
+  
+    const highlight = (el, query) => {
+      if (!el || !query) return;
+      const rx = new RegExp(escapeRegExp(query), 'gi');
+  
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+  
+      nodes.forEach(node => {
+        const text = node.nodeValue;
+        if (!rx.test(text)) return;
+        rx.lastIndex = 0;
+  
+        const frag = document.createDocumentFragment();
+        let last = 0;
+        let match;
+  
+        while ((match = rx.exec(text))) {
+          frag.append(text.slice(last, match.index));
+          const mark = document.createElement('mark');
+          mark.className = 'search-highlight';
+          mark.textContent = match[0];
+          frag.append(mark);
+          last = match.index + match[0].length;
         }
-    
-        // Highlight matches only in text nodes of a given element
-        function highlightElement(el, query) {
-          if (!el || !query) return;
-          // Restore original first to prevent nested marks
-          // (we assume caller restored from stored originals earlier, but be safe)
-          // We'll not restore here globally; caller ensures original is used first.
-    
-          const rx = new RegExp(escapeRegExp(query), 'gi');
-    
-          // Recursive walker for text nodes
-          const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
-            acceptNode(node) {
-              // ignore empty/whitespace-only nodes
-              if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-              // ignore text nodes that are inside <mark> (avoid re-highlighting)
-              if (node.parentNode && node.parentNode.closest && node.parentNode.closest('mark.search-highlight')) return NodeFilter.FILTER_REJECT;
-              return NodeFilter.FILTER_ACCEPT;
-            }
-          });
-    
-          const textNodes = [];
-          while (walker.nextNode()) textNodes.push(walker.currentNode);
-    
-          textNodes.forEach(textNode => {
-            const txt = textNode.nodeValue;
-            // test quickly
-            if (!rx.test(txt)) {
-              rx.lastIndex = 0;
-              return;
-            }
-            rx.lastIndex = 0;
-    
-            const frag = document.createDocumentFragment();
-            let lastIndex = 0;
-            let match;
-            while ((match = rx.exec(txt)) !== null) {
-              const idx = match.index;
-              if (idx > lastIndex) {
-                frag.appendChild(document.createTextNode(txt.slice(lastIndex, idx)));
-              }
-              const mark = document.createElement('mark');
-              mark.className = 'search-highlight';
-              mark.textContent = txt.slice(idx, idx + match[0].length);
-              frag.appendChild(mark);
-              lastIndex = idx + match[0].length;
-            }
-            if (lastIndex < txt.length) {
-              frag.appendChild(document.createTextNode(txt.slice(lastIndex)));
-            }
-            textNode.parentNode.replaceChild(frag, textNode);
-            rx.lastIndex = 0;
-          });
-        }
-    
-        // Run filter & highlight
-        function runFilter(rawQuery) {
-          const q = rawQuery.trim();
-          const qNorm = normalize(q);
-    
-          if (!q) {
-            // empty: show all, remove data-count attribute, restore originals
-            index.forEach(item => {
-              item.card.style.display = item.originalDisplay;
-              restoreOriginals(item);
-            });
-            if (wrapper) wrapper.removeAttribute('data-count');
-            return;
+  
+        frag.append(text.slice(last));
+        node.replaceWith(frag);
+      });
+    };
+  
+    const runFilter = value => {
+      const query = value.trim();
+      const qNorm = normalize(query);
+  
+      let visible = 0;
+  
+      index.forEach(item => {
+        restore(item);
+        if (!query || item.searchText.includes(qNorm)) {
+          item.card.style.display = item.originalDisplay;
+          if (query) {
+            highlight(item.titleEl, query);
+            highlight(item.descEl, query);
+            highlight(item.specsEl, query);
           }
-    
-          let visible = 0;
-          index.forEach(item => {
-            if (item.textSearch.indexOf(qNorm) !== -1) {
-              // show
-              item.card.style.display = item.originalDisplay;
-              // restore originals (so highlights are applied cleanly)
-              restoreOriginals(item);
-              // safe highlight only inside allowed elements
-              highlightElement(item.titleEl, q);
-              highlightElement(item.descEl, q);
-              highlightElement(item.specsEl, q);
-              visible++;
-            } else {
-              // hide and restore originals (so hidden cards don't keep wrapped markup)
-              item.card.style.display = 'none';
-              restoreOriginals(item);
-            }
-          });
-    
-          // set data-count attr only when query present (so ::after only shows then)
-          if (wrapper) {
-            wrapper.setAttribute('data-count', `${visible} von ${index.length} Ergebnissen`);
-          }
+          visible++;
+        } else {
+          item.card.style.display = 'none';
         }
-    
-        const handler = debounce((e) => runFilter(e.target.value), 80);
-        input.addEventListener('input', handler);
-    
-        // run initial if input already filled
-        if (input.value && input.value.trim() !== '') runFilter(input.value);
+      });
+  
+      wrapper.style.setProperty(
+        '--search-count',
+        query ? `"${visible} von ${index.length} Ergebnissen"` : '""'
+      );
+    };
+  
+    input.addEventListener('input', debounce(e => runFilter(e.target.value)));
+  
+    document.querySelector('.selection-flex').addEventListener('click', e => {
+      const filter = e.target.closest('.filter-select');
+      if (!filter) return;
+  
+      const value = filter.textContent.trim().toLowerCase();
+  
+      filters.forEach(f => f.classList.remove('active'));
+  
+      if (input.value.trim().toLowerCase() === value) {
+        input.value = '';
+      } else {
+        input.value = value;
+        filter.classList.add('active');
       }
-    })();
-    </script>
-    
-    <script src="js/gsap/gsap-global.js"></script>
-
-
-    
-    
-    
-    
+  
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+  
+    input.addEventListener('input', () => {
+      if (input.value === '') {
+        filters.forEach(f => f.classList.remove('active'));
+      }
+    });
+  
+    runFilter('');
+  }
+  </script>
+  
 
 </body>
 </html>

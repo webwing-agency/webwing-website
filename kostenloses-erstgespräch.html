@@ -2,15 +2,27 @@
 <html lang="de">
 <head>
   <meta charset="utf-8">
-  <title>Buchen sie ein kostenloses Erstgespräch - Website Projekt umsetzej | Webwing Design Agency UG</title>
+  <title>Buchen sie ein kostenloses Erstgespräch - Website Projekt umsetzen | Webwing Design Agency UG</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="styles/global.css">
 
   <style>
+
     .book-call-section {
-    width: 100vw;
-    padding: 4rem 1.25rem;
-    margin-bottom: 50vh;
-}
+        width: 100vw;
+        padding: 4rem 1.25rem;
+        margin-bottom: 50vh;
+        margin-top: 0;
+    }
+
+    .book-call-title {
+      margin-bottom: 1rem;
+    }
+
+    .book-call-subtitle {
+      max-width: 600px;
+      text-align: center;
+    }
 
     .book-call-card {
         background-color: var(--card-bg);
@@ -19,6 +31,8 @@
         display: flex;
         flex-direction: column;
         max-width: calc(100vw - 2.5rem);
+        margin-top: 4rem;
+        max-width: 900px;
     }
 
         .book-call-card .left-side, .book-call-card  .right-side {
@@ -32,8 +46,8 @@
             border-radius: 25px 25px 0px 0px;
         }
 
-            .book-call-title {
-                max-width: 90%;
+            .book-call-card-title {
+                font-size: var(--main-card-title-font-size);
             }
 
             .book-call-paragraph {
@@ -260,25 +274,7 @@
                             margin-top: 12px;
                         }
                         
-                            .submit-button {
-                                width: 100%;
-                                padding: 10px 0;
-                                border-radius: 999px;
-                                border: 1px solid rgba(255, 255, 255, 0.25);
-                                cursor: pointer;
-                                font-weight: 600;
-                                color: black;
-                                background: white;
-                                transition: 0.5s;
-                            }
-                            
-                            .submit-button:hover {
-                                background: var(--accent-color);
-                                color: white;
-                                transition: 0.5s;
-                            }
   </style>
-  <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/responsive/desktop.css">
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
   <meta name="robots" content="noindex, nofollow">
@@ -292,41 +288,34 @@
 </head>
 <body>
     <header>
-
-        <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="nav-logo"></object>
-
+        <a href="index.html" class="nav-logo"> <img src="assets/logo.svg" width="80" height="40" alt="Logo"></a>
         <nav class="nav-links">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="referenzen.html" class="nav-link">Referenzen</a>
-            <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
-            <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="referenzen.html" class="nav-link">Referenzen</a>
+          <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
+          <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
         </nav>
-
-        <div class="hamburger-menu">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-
+    
+        <div class="hamburger-menu"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+    
         <div class="popup-menu">
-            <div class="popup-menu-link-container">
-                <a href="index.html" class="popup-link">Home</a>
-                <a href="referenzen.html" class="popup-link">Referenzen</a>
-                <a href="dienstleistungen.html" class="popup-link">Dienstleistungen</a>
-                <a href="kontakt.html" class="popup-link">Kontakt</a>
-                <a href="kostenloses-erstgespräch.html" class="popup-link">Erstgespräch buchen</a>
-            </div>
-
-            <div class="popup-menu-decorations">
-                <span>Webwing Design Agency UG</span><span>+</span>
-                <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
-                <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
-                <span>Available for Work</span>
-            </div>
-            
+          <div class="popup-menu-link-container">
+    
+              <div class="popup-link"><a href="index.html">Home</a></div>
+              <div class="popup-link"><a href="referenzen.html">Referenzen</a></div>
+              <div class="popup-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+              <div class="popup-link"><a href="kontakt.html">Kontakt</a></div>
+              <div class="popup-link"><a href="kostenloses-erstgespräch.html">Erstgespräch buchen</a></div>
+    
+          </div>
+          <div class="popup-menu-decorations">
+            <span>Webwing Design Agency UG</span><span>+</span>
+            <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
+            <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
+            <span>Available for Work</span>
+          </div>
         </div>
-
-    </header>
+      </header>
 
 
   <main>
@@ -334,15 +323,14 @@
       
     <section class="book-call-section">
 
-        <div class="book-call-card">
+        <h2 class="book-call-title page-title-small page-title"></h2>
+        <p class="book-call-subtitle page-subtitle"></p>
 
+        <div class="book-call-card main-card">
             <div class="left-side">
-                <h2 class="book-call-title section-title"></h2>
-
-                <p class="book-call-paragraph paragraph"></p>
-
+                <h2 class="book-call-card-title card-title"></h2>
+                <p class="book-call-card-text paragraph"></p>
                 <div class="contact-details-container container">
-
                     <div class="contact-container">
                         <div class="contact-icon-container icon-container ">
                             <object data="/assets/icons/mail.svg" type="image/svg+xml" width="40" height="40" class="icon"></object>
@@ -355,33 +343,24 @@
                         </div>
                         <a href="tel:06221 123456" class="contact-link"></a>
                     </div>
-
                 </div>
-            
                 </div>
-
 
             <div class="right-side">
-
                 <form class="booking-form">
-
                     <div class="form-group">
                         <label class="form-label" for="bookingName">Name</label>
                         <input type="text" id="bookingName" class="form-input" placeholder="Ihr Name">
                     </div>
-
                     <div class="form-group">
                         <label class="form-label" for="bookingEmail">E-Mail</label>
                         <input type="email" id="bookingEmail" class="form-input" placeholder="Ihre E-Mail-Adresse">
                     </div>
-
                     <div class="form-group">
                         <label class="form-label" for="bookingPhone">Telefonnummer</label>
                         <input type="tel" id="bookingPhone" class="form-input" placeholder="Ihre Telefonnummer">
                     </div>
-
                     <div class="datetime-container">
-
                         <div class="date-container">
                             <h3 class="form-label">Tag</h3>
                             <div class="calendar">
@@ -401,14 +380,13 @@
                         <div class="time-container">
                             <h3 class="form-label">Uhrzeit</h3>
                             <div class="timeslots">
-                               
                             </div>
                         </div>
 
                     </div>
 
                     <div class="submit-container">
-                        <button type="submit" class="submit-button">jetzt kostenloses Erstgespräch buchen</button>
+                        <button type="submit" class="cta submit-button">jetzt kostenloses Erstgespräch buchen</button>
                     </div>
 
                 </form>
@@ -433,23 +411,21 @@
         </div>
 
         <nav class="footer-nav">
-            <a href="index.html">Home</a>
-            <a href="referenzen.html">Projekte</a>
-            <a href="dienstleistungen.html">Dienstleistungen</a>
-            <a href="kontakt.html">Kontakt</a>
+            <div class="footer-nav-link"><a href="index.html">Home</a></div>
+            <div class="footer-nav-link"><a href="referenzen.html">Referenzen</a></div>
+            <div class="footer-nav-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+            <div class="footer-nav-link"><a href="kontakt.html">Kontakt</a></div>
         </nav>
         <div class="legal-links">
             <a href="impressum.html">Impressum</a>
             <a href="datenschutzerklärung.html">Datenschutzerklärung</a>
         </div>
     </div>
-</footer>    
-
-  </main>
+</footer>     
   
 <script src="js/booking/bookingPage.js"></script>
 
-<script type="module" src="js/render/book.js" defer></script>
+<script type="module" src="js/render/book-call.js" defer></script>
 
 
 </body>

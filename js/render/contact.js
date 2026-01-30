@@ -20,6 +20,12 @@ async function fetchContact() {
     if (pageTitleEl && data.page_title) pageTitleEl.textContent = data.page_title;
     const subtitle = document.querySelector('.contact-page-subtitle');
     if (subtitle && data.subtitle) subtitle.textContent = data.subtitle;
+    const cardTitleEl = document.querySelector('.contact-card-title');
+    if (cardTitleEl && data.card_title) cardTitleEl.textContent = data.card_title;
+    const cardTextEl = document.querySelector('.contact-card-text');
+    if (cardTextEl && data.card_text) cardTextEl.textContent = data.card_text;
+    const contactPersonEl = document.querySelector('.contact-person');
+    if (contactPersonEl && data.contact_person) contactPersonEl.textContent = data.contact_person;
   }
   
   function setContactFields(data) {

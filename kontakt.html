@@ -5,151 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontaktieren sie uns - Webwing Design Agency UG - Your Brand's Wingman Online</title>
     <link rel="stylesheet" href="styles/global.css">
-    <style>
-
-        .contact-page-fold {
-                width: 100vw;
-                padding: 4rem 10vw;
-            }
-
-
-        .contact-page-title {
-            text-align: left;
-        }
-
-        .contact-page-fold {
-            padding-bottom: 20rem;
-            min-height: 100vh;
-            margin-top: 0;
-        }
-
-        .contact-card {
-            background-color: var(--card-bg);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 80rem;
-            max-width: calc(100vw - 6rem);
-        }
-
-        .contact-card .left-side, .contact-card  .right-side {
-            width: 100%;
-            padding: 2rem;
-        }
-
-
-        .left-side {
-            width: 100%;
-            padding: 1rem;
-            background: radial-gradient(120% 90% at 17% 12%, rgba(230, 0, 255, 0.25) 0%, rgba(55, 0, 255, 0.25) 100%);
-            border-radius: 25px 0px 0px 25px;
-        }
-
-            .contact-title {
-                max-width: 90%;
-            }
-
-            .contact-paragraph {
-                width: 85%;
-            }
-
-            .contact-details-container {
-                margin-top: 2rem;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-                .contact-container {
-                    display: flex;
-                    align-items: center;
-                    gap: 1rem;
-                }
-
-                    .contact-icon-container {
-                        background-color: rgba(230, 0, 255, 0.25);
-                    }
-
-                    .contact-link {
-                        text-decoration: none;
-                        color: #fff;
-                    }
-
-        .right-side {
-            width: 100%;
-            padding: 1rem;
-        }
-
-            .contact-form {
-                display: flex;
-                flex-direction: column;
-                gap: 17px;
-            }
-                
-                .form-group {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 3px;
-                }
-                
-                    .form-label {
-                        color: var(--text-muted);
-                        font-size: 14px;
-                        margin-left: 20px;
-                    }
-                    
-                    .form-input {
-                        background: var(--bg-soft);
-                        border: 1px solid #2f2f33;
-                        color: var(--text-main);
-                        padding: 14px 18px;
-                        border-radius: var(--radius-md);
-                        font-size: var(--text-font-size);
-                        outline: none;
-                        transition: border var(--transition);
-                        border-radius: 30px;
-                    }
-
-                    textarea {
-                        font-family: 'Roboto', sans-serif;
-                    }
-
-                    .form-input-text {
-                        height: 100px;
-                    }
-                    
-                    .form-input::placeholder {
-                        color: #6f6f75;
-                    }
-                    
-                    .form-input:focus {
-                        border-color: var(--accent);
-                    }
-                    
-                        .submit-container {
-                            margin-top: 12px;
-                        }
-                        
-                            .submit-button {
-                                width: 100%;
-                                padding: 10px 0;
-                                border-radius: 999px;
-                                border: 1px solid rgba(255, 255, 255, 0.25);
-                                cursor: pointer;
-                                font-weight: 600;
-                                color: black;
-                                background: white;
-                                transition: 0.5s;
-                            }
-                            
-                            .submit-button:hover {
-                                background: var(--accent-color);
-                                color: white;
-                                transition: 0.5s;
-                            }
-    </style>
     <link rel="stylesheet" href="styles/responsive/desktop.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="js/nav.js" defer></script>
@@ -163,62 +18,49 @@
 </head>
 <body>
 
-    <header>
+  <header>
+    <a href="index.html" class="nav-logo"> <img src="assets/logo.svg" width="80" height="40" alt="Logo"></a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="referenzen.html" class="nav-link">Referenzen</a>
+      <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
+      <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
+    </nav>
 
-        <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="nav-logo"></object>
+    <div class="hamburger-menu"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
 
-        <nav class="nav-links">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="referenzen.html" class="nav-link">Referenzen</a>
-            <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
-            <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
-        </nav>
+    <div class="popup-menu">
+      <div class="popup-menu-link-container">
 
-        <div class="hamburger-menu">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
+          <div class="popup-link"><a href="index.html">Home</a></div>
+          <div class="popup-link"><a href="referenzen.html">Referenzen</a></div>
+          <div class="popup-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+          <div class="popup-link"><a href="kontakt.html">Kontakt</a></div>
+          <div class="popup-link"><a href="kostenloses-erstgespräch.html">Erstgespräch buchen</a></div>
 
-        <div class="popup-menu">
-            <div class="popup-menu-link-container">
-                <a href="index.html" class="popup-link">Home</a>
-                <a href="referenzen.html" class="popup-link">Referenzen</a>
-                <a href="dienstleistungen.html" class="popup-link">Dienstleistungen</a>
-                <a href="kontakt.html" class="popup-link">Kontakt</a>
-                <a href="kostenloses-erstgespräch.html" class="popup-link">Erstgespräch buchen</a>
-            </div>
-
-            <div class="popup-menu-decorations">
-                <span>Webwing Design Agency UG</span><span>+</span>
-                <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
-                <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
-                <span>Available for Work</span>
-            </div>
-            
-        </div>
-
-    </header>
+      </div>
+      <div class="popup-menu-decorations">
+        <span>Webwing Design Agency UG</span><span>+</span>
+        <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
+        <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
+        <span>Available for Work</span>
+      </div>
+    </div>
+  </header>
 
     <main>
 
         <section class="contact-page-fold">
-      
-          <div class="contact-card">
-      
+          <h2 class="contact-page-title page-title-small page-title"></h2>
+          <p class="contact-page-subtitle page-subtitle"></p>
+          <div class="contact-card main-card">
             <div class="left-side">
-      
-              <h2 class="page-title-small contact-page-title page-title">
-                <!-- CMS: title -->
-              </h2>
-      
-              <p class="contact-page-subtitle">
-                <!-- CMS: subtitle -->
+              <h2 class="contact-card-title card-title"></h2>
+              <p class="contact-card-text"></p>
+              <p class="contact-person"></p>
               </p>
-      
+              <p class="contact-page-subtitle"></p>
               <div class="contact-details-container">
-      
-                <!-- CMS: contact items -->
                     <div class="contact-container">
                       <div class="contact-icon-container icon-container ">
                         <object data="assets/icons/mail.svg" type="image/svg+xml" width="40" height="40" class="icon"></object>
@@ -230,73 +72,53 @@
                         <object data="assets/icons/phone.svg" type="image/svg+xml" width="40" height="40" class="icon"></object>
                       </div>
                       <a id="contact-phone" href="" class="contact-link" id="contact-phone"></a>
-      
               </div>
             </div>
-      
             </div>
-      
             <div class="right-side">
-      
               <form class="contact-form">
-                <!-- form stays static (not CMS-driven) -->
-      
                 <div class="form-group">
                   <label class="form-label" for="contactName">Name</label>
                   <input type="text" id="contactName" class="form-input" name="name" placeholder="Ihr Name">
                 </div>
-      
                 <div class="form-group">
                   <label class="form-label" for="contactEmail">E-Mail</label>
                   <input type="email" id="contactEmail" class="form-input" name="email" placeholder="Ihre E-Mail-Adresse">
                 </div>
-      
                 <div class="form-group">
                   <label class="form-label" for="contactPhone">Telefon</label>
                   <input type="tel" id="contactPhone" class="form-input" name="phone" placeholder="Ihre Telefonnummer">
                 </div>
-      
                 <div class="form-group">
                   <label class="form-label" for="messageText">Nachricht</label>
                   <textarea id="messageText" class="form-input form-input-text" name="message" placeholder="Ihre Nachricht"></textarea>
                 </div>
-      
                 <div class="submit-container">
-                  <button type="submit" class="submit-button">Abschicken</button>
+                  <button type="submit" class="cta submit-button">Abschicken</button>
                 </div>
-      
               </form>
-      
             </div>
-      
           </div>
-      
         </section>
-      
-        <div class="sticky-cta-container">
-          <span class="cta-label"><!-- CMS --></span>
-          <a href="" class="cta"><!-- CMS --></a>
-        </div>
-      
       </main>
       
 
-    <footer>
+      <footer>
         <div class="footer-content">
             
             <div class="logo-container">
-
+    
                 <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="logo"></object>
-
+    
                 <span class="slogan">Your Brand’s Wingman Online.</span>
-
+    
             </div>
-
+    
             <nav class="footer-nav">
-                <a href="index.html">Home</a>
-                <a href="referenzen.html">Referenzen</a>
-                <a href="dienstleistungen.html">Dienstleistungen</a>
-                <a href="kontakt.html">Kontakt</a>
+                <div class="footer-nav-link"><a href="index.html">Home</a></div>
+                <div class="footer-nav-link"><a href="referenzen.html">Referenzen</a></div>
+                <div class="footer-nav-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+                <div class="footer-nav-link"><a href="kontakt.html">Kontakt</a></div>
             </nav>
             <div class="legal-links">
                 <a href="impressum.html">Impressum</a>
@@ -365,6 +187,146 @@
       });
     });
     </script>
+
+<style>
+
+
+  .contact-page-fold {
+          width: 100vw;
+          padding: 4rem 10vw;
+          padding-top: 20vh;
+          padding-bottom: 20rem;
+          min-height: 100vh;
+          margin-top: 0;
+  }
+
+  .contact-page-title {
+      margin-bottom: 1rem;
+  }
+
+  .contact-page-subtitle {
+      max-width: 500px;
+      text-align: center;
+  }
+
+  .contact-card {
+      background-color: var(--card-bg);
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 900px;
+      margin-top: 4rem;
+  }
+
+  .contact-card .left-side, .contact-card  .right-side {
+      width: 100%;
+      padding: 2.5rem;
+  }
+
+
+  .left-side {
+      width: 100%;
+      flex: 4;
+      padding: 1rem;
+      background: radial-gradient(120% 90% at 17% 12%, rgba(230, 0, 255, 0.25) 0%, rgba(55, 0, 255, 0.25) 100%);
+      border-radius: 25px 0px 0px 25px;
+  }
+
+      .contact-card-title {
+          max-width: 90%;
+          font-size: var(--main-card-title-font-size);
+      }
+
+      .contact-card-text {
+          width: 85%;
+          margin: 1.5rem 0 1rem 0;
+      }
+
+      .contact-details-container {
+          margin-top: 3rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+      }
+
+          .contact-container {
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+          }
+
+              .contact-icon-container {
+                  background-color: rgba(230, 0, 255, 0.25);
+              }
+
+              .contact-link {
+                  text-decoration: none;
+                  color: #fff;
+              }
+
+  .right-side {
+      width: 100%;
+      flex: 6;
+      padding: 1rem;
+  }
+
+      .contact-form {
+          display: flex;
+          flex-direction: column;
+          gap: 17px;
+      }
+          
+          .form-group {
+              display: flex;
+              flex-direction: column;
+              gap: 3px;
+          }
+          
+              .form-label {
+                  color: var(--text-muted);
+                  font-size: 14px;
+                  margin-left: 20px;
+              }
+              
+              .form-input {
+                  background: var(--bg-soft);
+                  border: 1px solid #2f2f33;
+                  color: var(--text-main);
+                  padding: 14px 18px;
+                  border-radius: var(--radius-md);
+                  font-size: var(--text-font-size);
+                  outline: none;
+                  transition: border var(--transition);
+                  border-radius: 30px;
+              }
+
+              textarea {
+                  font-family: 'Roboto', sans-serif;
+              }
+
+              .form-input-text {
+                  height: 100px;
+              }
+              
+              .form-input::placeholder {
+                  color: #6f6f75;
+              }
+              
+              .form-input:focus {
+                  border-color: var(--accent);
+              }
+              
+                  .submit-container {
+                      margin-top: 12px;
+                  }
+
+                      .cta {
+                          cursor: pointer;
+                      }
+                      
+  </style>
 
     
 </body>

@@ -7,15 +7,17 @@
         --small-text-font-size: 1rem;
     
         --page-title-font-size-large: 6rem;
-        --page-title-font-size-small: 2.5rem;
+        --page-title-font-size-small: 3rem;
     
-        --hero-title-font-size: calc(5.5rem + 1.5vw);
+        --hero-title-font-size: calc(3rem + 1.5vw);
         --section-title-font-size: 2.5rem;
+
+        --cta-font-size: 1.1rem;
 
         --card-title-font-size: 1.7rem;
         --card-text-font-size: 1rem;
 
-        --popup-link-font-size: 3.5rem;
+        --popup-link-font-size: 2rem;
 
     }
 
@@ -54,18 +56,15 @@
         }
 
     footer {
-        position: absolute;
-        box-sizing: border-box;
-        bottom: 0;
-        width: 100vw;
-        background-color: rgba(255, 255, 255, 0.05);
-        border-top: 1px solid rgba(255, 255, 255, 0.25);
-        padding: 3rem;
+        min-height: fit-content;
+        height: 15rem !important;
+        padding: 2.5rem;
     }
     
         .footer-content {
             position: relative;
-            height: 25rem;
+            min-height: 20rem;
+            height: fit-content;
         }
     
         footer .logo-container {
@@ -81,7 +80,6 @@
             }
     
             footer .slogan {
-                color: rgba(255, 255, 255, 0.75);
                 font-weight: 600;
                 font-style: italic;
             }
@@ -97,11 +95,9 @@
                 top: 0;
                 right: 0;
                 margin: 0;
-                margin-top: 2rem;
             }
     
                 .footer-nav a {
-                    color: white;
                     text-decoration: none;
                     font-weight: 600;
                 }
@@ -166,14 +162,14 @@
             }
 
     .hero-bg {
-        top: 10rem;
-        width: 50vw;
-        left: 25vw;
+        top: 0rem;
+        width: 70vw;
+        left: 15vw;
     }
 
     .book-call-section {
         width: 100vw;
-        padding: 4rem 10vw;
+        padding: 20vh 10vw;
         margin-bottom: 40vh;
     }
 
@@ -190,13 +186,13 @@
     }
 
     .selection-flex {
-        flex-wrap: nowrap;
+        position: relative;
+        flex-wrap: nowrap !important;
     }
 
     .project-card-text-container {
         flex-direction: row;
     }
-
     /* Kontakt */
 
     .contact-card {
@@ -214,6 +210,22 @@
             width: 60%;
             padding: 4rem;
         }
+
+  }
+
+
+  @media (min-width: 1000px) {
+
+    :root {
+        --hero-title-font-size: calc(3rem + 3vw);
+        --popup-font-size: 4rem;
+    }
+    
+    .search-wrapper {
+        position: absolute;
+        margin-left: 10%;
+        right: 0px;
+    }
 
   }
 

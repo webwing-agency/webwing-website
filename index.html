@@ -72,7 +72,7 @@
     .hero-line,
     #hero-title,
     .hero-subtitle,
-    .cta,
+    .hero-cta,
     .hero-bg {
       opacity: 0.7;
       transform: translateY(10px);
@@ -95,7 +95,7 @@
 </head>
 <body>
   <header>
-    <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="nav-logo"></object>
+    <a href="index.html" class="nav-logo"> <img src="assets/logo.svg" width="80" height="40" alt="Logo"></a>
     <nav class="nav-links">
       <a href="index.html" class="nav-link">Home</a>
       <a href="referenzen.html" class="nav-link">Referenzen</a>
@@ -128,8 +128,8 @@
     <section class="hero-section">
       <h1 class="hero-title section-title" id="hero-title"></h1>
       <p class="hero-subtitle paragraph" id="hero-subtitle"></p>
-      <a id="hero-cta" class="cta" href="#">CTA</a>
-      <img id="hero-image" src="" alt="Hero Section Hintergrund" class="hero-bg" />
+      <a id="hero-cta" class="cta hero-cta" href="#">CTA</a>
+      <div class="hero-bg-container"><img  class="hero-bg" src="assets/hero-bg.png" alt="Hero Section Hintergrund"/></div>
     </section>
 
     <section class="expertise-section">
@@ -205,7 +205,7 @@
             </div>
 
             <div class="submit-container">
-              <button type="submit" class="submit-button" id="submit-booking">jetzt kostenloses Erstgespräch buchen</button>
+              <button type="submit" class="cta submit-button" id="submit-booking">Jetzt kostenloses Erstgespräch buchen</button>
             </div>
           </form>
         </div>

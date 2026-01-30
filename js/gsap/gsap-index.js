@@ -1,9 +1,3 @@
-// gsap-index.js
-// Safe, copy-paste-ready GSAP animations for the project.
-// - Waits for content to be populated (listens for 'content:ready').
-// - Guards against missing targets.
-// - Uses ScrollTrigger properly (registerPlugin + once on ScrollTrigger).
-
 (function () {
   const START_OFFSET = 'top 85%';
   const TITLE_Y = 10;
@@ -178,13 +172,44 @@
     tl.to({}, { duration: 0.08 });
 
     tl.eventCallback('onComplete', () => {
+      // restore will-change flags (you had this already)
       titleTargets.forEach(el => (el.style.willChange = 'auto'));
       if (subtitle) subtitle.style.willChange = 'auto';
       if (cta) cta.style.willChange = 'auto';
       if (bg) bg.style.willChange = 'auto';
       if (scribblePath) scribblePath.style.willChange = 'auto';
+    
+      // --- hero-cta specific: expose final state to CSS and remove inline props ---
+      try {
+        const gs = window.gsap;
+        if (cta) {
+          // 1) add a class that defines the final visual state — this lets CSS transitions handle micro-interactions later
+          cta.classList.add('is-animated-in');
+    
+          // 2) clear the inline transform/opacity that GSAP left behind so :hover rules work again
+          if (gs) {
+            // clear only the props that interfere with your hover transitions
+            gs.set(cta, { clearProps: 'transform,opacity' });
+          } else {
+            // fallback: try to remove inline style attributes if gsap not present (very defensive)
+            try {
+              cta.style.removeProperty('transform');
+              cta.style.removeProperty('opacity');
+            } catch (e) {}
+          }
+        }
+    
+        // scribble: clear svg inline props if present (optional, safe)
+        if (scribblePath && gs) {
+          gs.set(scribblePath, { clearProps: 'strokeDashoffset,strokeDasharray,opacity,strokeWidth' });
+        }
+      } catch (e) {
+        // swallow — don't break runtime
+        console.error('Hero cleanup error', e);
+      }
     });
-
+    
+    
     // expose for debugging
     hero._heroTimeline = tl;
   } // initHeroAnimations
@@ -237,8 +262,18 @@
             duration: CARD_DURATION,
             ease: EASE_OUT,
             stagger: { each: CARD_STAGGER, from: 'start' },
-            overwrite: true
+            overwrite: true,
+            onComplete: function() {
+              try {
+                const gs = window.gsap;
+                if (gs) {
+                  // batch ist ein Array — gs.set akzeptiert Arrays
+                  gs.set(batch, { clearProps: 'transform,opacity' });
+                }
+              } catch (e) {}
+            }
           });
+          
         }
       });
     });
