@@ -10,7 +10,6 @@
 
 // global imports
 import './styles/global.css';
-import './styles/index.css';
 import './styles/responsive/desktop.css';
 import './js/gsap/gsap-global.js';
 import './js/nav.js';
@@ -23,12 +22,10 @@ import './js/nav.js';
 
     // -------- HOME --------
     if (body.classList.contains('page-home')) {
-        await import('./js/render/index.js');
         await Promise.all([
+            import('./styles/index.css'),
             import('./js/gsap/gsap-index.js'),
             import('./js/render/index.js'),
-            import('./js/fetch/api.js'),
-            import('./js/fetch/availability.js'),
             import('./js/booking/main.js')
           ]);          
       const { inlineScribbles } = await import('./js/ui/scribbles.js');
@@ -42,8 +39,9 @@ import './js/nav.js';
     // -------- BOOKING --------
     if (body.classList.contains('page-booking')) {
       await Promise.all([
-        import('./js/booking/bookingPage.js'),
-        import('./js/render/book-call.js')
+        import('./styles/individual/book-call.css'),
+        import('./js/render/book-call.js'),
+        import('./js/booking/main.js'),
       ]);
     }
 

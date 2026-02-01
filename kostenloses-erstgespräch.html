@@ -5,288 +5,10 @@
   <title>Buchen sie ein kostenloses Erstgespräch - Website Projekt umsetzen | Webwing Design Agency UG</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <script type="module" src="/src/main.js"></script>
-
-  <style>
-
-    .book-call-section {
-        width: 100vw;
-        padding: 4rem 1.25rem;
-        margin-bottom: 50vh;
-        margin-top: 0;
-    }
-
-    .book-call-title {
-      margin-bottom: 1rem;
-    }
-
-    .book-call-subtitle {
-      max-width: 600px;
-      text-align: center;
-    }
-
-    .book-call-card {
-        background-color: var(--card-bg);
-        border-radius: 30px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        display: flex;
-        flex-direction: column;
-        max-width: calc(100vw - 2.5rem);
-        margin-top: 4rem;
-        max-width: 900px;
-    }
-
-        .book-call-card .left-side, .book-call-card  .right-side {
-            width: 100%;
-            padding: 2rem;
-        }
-
-        .left-side {
-            padding-bottom: 4rem !important;
-            background: radial-gradient(120% 90% at 17% 12%, rgba(230, 0, 255, 0.25) 0%, rgba(55, 0, 255, 0.25) 100%);
-            border-radius: 25px 25px 0px 0px;
-        }
-
-            .book-call-card-title {
-                font-size: var(--main-card-title-font-size);
-            }
-
-            .book-call-paragraph {
-                width: 85%;
-            }
-
-            .contact-details-container {
-                margin-top: 2rem;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-                .contact-container {
-                    display: flex;
-                    align-items: center;
-                    gap: 1rem;
-                }
-
-                    .contact-icon-container {
-                        background-color: rgba(230, 0, 255, 0.25);
-                    }
-
-                    .contact-link {
-                        text-decoration: none;
-                        color: #fff;
-                    }
-
-        .right-side {
-            padding: 4rem;
-        }
-
-            .booking-form {
-                display: flex;
-                flex-direction: column;
-                gap: 17px;
-            }
-                
-                .form-group {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 3px;
-                }
-                
-                    .form-label {
-                        color: var(--text-muted);
-                        font-size: 14px;
-                        margin-left: 20px;
-                    }
-                    
-                    .form-input {
-                        background: var(--bg-soft);
-                        border: 1px solid #2f2f33;
-                        color: var(--text-main);
-                        padding: 14px 18px;
-                        border-radius: var(--radius-md);
-                        font-size: var(--text-font-size);
-                        outline: none;
-                        transition: border var(--transition);
-                        border-radius: 30px;
-                    }
-                    
-                    .form-input::placeholder {
-                        color: #6f6f75;
-                    }
-                    
-                    .form-input:focus {
-                        border-color: var(--accent);
-                    }
-                    
-                    .datetime-container {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 15px;
-                    }
-
-                        .date-container {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 5px;
-                        }
-                        
-                            .calendar {
-                                background: var(--bg-card);
-                                padding: 15px;
-                                border: 1px solid rgba(255, 255, 255, 0.25);
-                                border-radius: 30px;
-                            }
-                            
-                                .calendar-header {
-                                    height: 17px;
-                                    margin-top: 10px;
-                                    margin-bottom: 10px;
-                                    gap: 10px;
-                                    display: grid;
-                                    grid-template-columns: repeat(7, 1fr);
-                                    text-align: center;
-                                    font-size: var(--small-text-font-size);
-                                    color: rgba(255, 255, 255, 0.75);
-                                    font-weight: 600;
-                                }
-
-                                .calendar-month-header {
-                                    display: flex;
-                                    justify-content: space-between;
-                                    align-items: center;
-                                    margin-bottom: 10px;
-                                    background-color: rgba(255, 255, 255, 0.05);
-                                    border-radius: 27px;
-                                    height: 27px;
-                                }
-
-                                    .calendar-prev, .calendar-next {
-                                        cursor: pointer;
-                                        font-size: var(--text-font-size);
-                                        color: var(--text-color);
-                                        background-color: rgba(255, 255, 255, 0.05);
-                                        border: 1px solid rgba(255, 255, 255, 0.25);
-                                        border-radius: 50%;
-                                        width: 17px;
-                                        height: 17px;
-                                        display: flex;
-                                        justify-content: center;
-                                        align-items: center;
-                                        margin: 0px 3px;
-                                    }
-                                
-                                    .calendar-month-year {
-                                        font-size: var(--text-font-size);
-                                        font-weight: 600;
-                                    }
-                                    
-                                    .calendar-nav-button {
-                                        background: transparent;
-                                        border: none;
-                                        color: var(--text-color);
-                                        cursor: pointer;
-                                        font-size: var(--text-font-size);
-                                        font-weight: 600;
-                                        transition: color var(--transition);
-                                    }
-                                    
-                                    .calendar-nav-button:hover {
-                                        color: var(--accent-color);
-                                    }
-                            
-                                .calendar-grid {
-                                    display: flex;
-                                    flex-direction: column;
-                                    gap: 10px;
-                                }
-                            
-                                    .calendar-day {
-                                        width: 27px;
-                                        height: 27px;
-                                        border-radius: 50%;
-                                        background: rgba(255, 255, 255, 0.1);
-                                        color: var(--text-color);
-                                        border: none;
-                                        cursor: pointer;
-                                        transition: background var(--transition), transform var(--transition);
-                                    }
-                                    
-                                    .calendar-day:hover {
-                                        background: #2e2e33;
-                                        transform: translateY(-1px);
-                                    }
-                                    
-                                    .calendar-day.is-active {
-                                        background: var(--accent-color);
-                                        color: #fff;
-                                    }
-                                    
-                                    .calendar-day.is-disabled {
-                                        color: var(--danger);
-                                        background: transparent;
-                                        cursor: not-allowed;
-                                        pointer-events: none;
-                                    }
-
-                        .time-container {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 5px;
-                        }
-                        
-                            .timeslots {
-                                height: 100%;
-                                padding: 13px;
-                                display: flex;
-                                flex-direction: column;
-                                gap: 10px;
-                                border: 1px solid rgba(255, 255, 255, 0.25);
-                                border-radius: 30px;
-                            }
-                            
-                                .timeslot {
-                                    height: 27px;
-                                    background: rgba(255, 255, 255, 0.1);
-                                    color: #fff;
-                                    border-radius: 999px;
-                                    border: none;
-                                    cursor: pointer;
-                                    font-size: var(--small-text-font-size);
-                                }
-                                
-                                .timeslot:hover {
-                                    background: #2e2e33;
-                                    transform: translateY(-1px);
-                                }
-                                
-                                .timeslot.is-active {
-                                    background: var(--accent-color);
-                                    color: #fff;
-                                }
-
-                                .timeslot.is-today {
-                                    color: red;
-                                    font-weight: 500;
-                                    color: #fff;
-                                }
-                    
-                        .submit-container {
-                            margin-top: 12px;
-                        }
-                        
-  </style>
-  <link rel="stylesheet" href="styles/responsive/desktop.css">
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
-  <meta name="robots" content="noindex, nofollow">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="js/gsap/gsap-global.js"></script>
-  <script src="js/nav.js" defer></script>
-
-
 
 </head>
-<body class="page-bookin">
+<body class="page-booking">
     <header>
         <a href="index.html" class="nav-logo"> <img src="assets/logo.svg" width="80" height="40" alt="Logo"></a>
         <nav class="nav-links">
@@ -347,7 +69,7 @@
                 </div>
 
             <div class="right-side">
-                <form class="booking-form">
+                <form class="booking-form" id="booking-form">
                     <div class="form-group">
                         <label class="form-label" for="bookingName">Name</label>
                         <input type="text" id="bookingName" class="form-input" placeholder="Ihr Name">
@@ -363,27 +85,14 @@
                     <div class="datetime-container">
                         <div class="date-container">
                             <h3 class="form-label">Tag</h3>
-                            <div class="calendar">
-                                <div class="calendar-header">
-                                    <span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
-                                </div>
-                                <div class="calendar-grid">
-                                    <button class="calendar-day">1</button><button class="calendar-day">2</button><button class="calendar-day">3</button><button class="calendar-day">4</button><button class="calendar-day">5</button><button class="calendar-day">6</button><button class="calendar-day">7</button>
-                                    <button class="calendar-day">8</button><button class="calendar-day">9</button><button class="calendar-day">10</button><button class="calendar-day">11</button><button class="calendar-day">12</button><button class="calendar-day">13</button><button class="calendar-day">14</button>
-                                    <button class="calendar-day">15</button><button class="calendar-day">16</button><button class="calendar-day">17</button><button class="calendar-day">18</button><button class="calendar-day">19</button><button class="calendar-day">20</button><button class="calendar-day">21</button>
-                                    <button class="calendar-day">22</button><button class="calendar-day">23</button><button class="calendar-day">24</button><button class="calendar-day">25</button><button class="calendar-day">26</button><button class="calendar-day">27</button><button class="calendar-day">28</button>
-                                    <button class="calendar-day">29</button><button class="calendar-day">30</button><button class="calendar-day">31</button>
-                                </div>
-                            </div>
+                            <div class="calendar" id="calendar-root"> </div>
                         </div>
 
                         <div class="time-container">
                             <h3 class="form-label">Uhrzeit</h3>
-                            <div class="timeslots">
+                            <div id="timeslots" class="timeslots"></div>
                             </div>
                         </div>
-
-                    </div>
 
                     <div class="submit-container">
                         <button type="submit" class="cta submit-button">jetzt kostenloses Erstgespräch buchen</button>
@@ -421,12 +130,7 @@
             <a href="datenschutzerklärung.html">Datenschutzerklärung</a>
         </div>
     </div>
-</footer>     
-  
-<script src="js/booking/bookingPage.js"></script>
-
-<script type="module" src="js/render/book-call.js" defer></script>
-
+</footer>   
 
 </body>
 </html>

@@ -1,12 +1,12 @@
-// js/fetch/book.js
+// src/js/fetch/book.js
 import { API_BASE } from './api.js';
 
 /**
- * bookAppointment(payload) -> { ok: bool, body: any }
- * payload example: { name, email, phone, startLocal, timezone, idempotencyKey, source }
+ * bookAppointment(payload) -> { ok: bool, body: any, status }
+ * payload: { name, email, phone?, startLocal, timezone, idempotencyKey, source? }
  */
 export async function bookAppointment(payload) {
-  const url = `${API_BASE}/api/book`;
+  const url = `${API_BASE}/book`;
   try {
     const res = await fetch(url, {
       method: 'POST',
@@ -19,6 +19,6 @@ export async function bookAppointment(payload) {
     return { ok: res.ok, body: data, status: res.status };
   } catch (err) {
     console.error('[booking] network error', err);
-    return { ok: false, body: { message: 'network error' } };
+    return { ok: false, body: { message: 'network error' }, status: 0 };
   }
 }

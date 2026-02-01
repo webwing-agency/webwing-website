@@ -673,7 +673,6 @@ body {
     .submit-button {
         display: block;
         width: 100%;
-        max-width: 400px;
         margin-top: 1rem;
         text-align: center;
     }

@@ -55,6 +55,16 @@
             right: 3rem;
         }
 
+    .submit-button {
+        display: block;
+        width: 100%;
+        max-width: 350px;
+        min-width: fit-content;
+        white-space: nowrap;
+        margin-top: 1rem;
+        text-align: center;
+    }
+
     footer {
         min-height: fit-content;
         height: 15rem !important;
@@ -119,8 +129,14 @@
 
     /* Index */
 
+    .hero-bg {
+        top: 0rem;
+        width: 70vw;
+        left: 15vw;
+    }
+
     .hero-section {
-        position: unset; /*for absolute placement of .hero-bg */
+        position: unset
     }
 
     .grid {
@@ -135,37 +151,31 @@
         margin-bottom: 2rem;
     }
 
-    .book-call-card {
-        flex-direction: row;
+     .book-call-card {
+        flex-direction: row !important;
     }
 
         .book-call-card .left-side {
-            width: 40%;
-            padding: 4rem;
-            padding-bottom: 4rem;
+            width: 40% !important;
+            padding: 4rem !important;
             border-radius: 25px 0px 0px 25px;
         }
 
         .book-call-card .right-side {
-            width: 60%;
-            padding: 4rem;
+            width: 60% !important;
+            padding: 4rem !important;
         }
 
         .datetime-container {
-            display: grid;
-            grid-template-columns: 5fr 4fr;
+            display: grid !important;
+            grid-template-columns: 5fr 4fr !important;
             gap: 15px;
         }
 
-            .time-container {
+        .time-container {
                 margin: 0;
             }
 
-    .hero-bg {
-        top: 0rem;
-        width: 70vw;
-        left: 15vw;
-    }
 
     .book-call-section {
         width: 100vw;
@@ -210,6 +220,36 @@
             width: 60%;
             padding: 4rem;
         }
+
+    /* Erstgespräüch Seite */
+
+
+
+    .page-booking .book-call-card {
+        flex-direction: row;
+    }
+
+        .page-booking .book-call-card .left-side {
+            width: 40%;
+            padding: 4rem;
+            padding-bottom: 4rem;
+            border-radius: 25px 0px 0px 25px;
+        }
+
+        .page-booking .book-call-card .right-side {
+            width: 60%;
+            padding: 4rem;
+        }
+
+        .page-booking .datetime-container {
+            display: grid;
+            grid-template-columns: 5fr 4fr;
+            gap: 15px;
+        }
+
+        .page-booking .time-container {
+                margin: 0;
+            }
 
   }
 
