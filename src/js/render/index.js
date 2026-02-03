@@ -75,13 +75,10 @@ async function fetchHome() {
       iconWrap.dataset.icon = key;
   
       if (icon) {
-        const obj = document.createElement('object');
-        obj.type = 'image/svg+xml';
-        obj.data = icon;
-        obj.width = 40;
-        obj.height = 40;
-        obj.className = 'icon';
-        iconWrap.appendChild(obj);
+        const img = document.createElement('img');
+        img.src = icon;
+        img.className = 'icon';
+        iconWrap.appendChild(img);
       }
   
       const h3 = document.createElement('h3');
