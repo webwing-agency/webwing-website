@@ -1,7 +1,10 @@
 // src/js/fetch/api.js
+// Works for both local dev (set VITE_NETLIFY_API_BASE) and production (relative path)
 export const API_BASE = (() => {
-  // if you want to override on runtime from server-rendered page use window.__BOOKING_API_BASE__
-  if (typeof window !== 'undefined' && window.__BOOKING_API_BASE__) return window.__BOOKING_API_BASE__;
-  // default: use relative path; netlify dev rewrites /api/* -> /.netlify/functions/*
-  return '/api';
+  // Local dev: set VITE_NETLIFY_API_BASE to e.g. "http://localhost:8888/.netlify/functions"
+  if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_NETLIFY_API_BASE) {
+    return import.meta.env.VITE_NETLIFY_API_BASE;
+  }
+  // On Netlify deployments functions are mounted under /.netlify/functions
+  return '/.netlify/functions';
 })();
