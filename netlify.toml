@@ -6,18 +6,14 @@
   port = 8888
   targetPort = 5173
 
+# Internes Rewrite: /api/* -> /.netlify/functions/:splat
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
+  force = true
 
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-
+# CORS für Functions (Netlify macht das als Response-Header)
 [[headers]]
   for = "/.netlify/functions/*"
   [headers.values]
@@ -25,9 +21,16 @@
     Access-Control-Allow-Headers = "Content-Type"
     Access-Control-Allow-Methods = "GET, POST, OPTIONS"
 
-# Für React / Vue / Vanilla SPA Routing
+# Allgemeine Sicherheits-Header
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# SPA fallback (letzte Regel)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-

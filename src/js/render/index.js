@@ -162,9 +162,16 @@ async function fetchHome() {
       renderReviews(data?.reviews || []);
       renderContact(data?.contact || {});
   
-      // 👇 THIS IS THE KEY
       requestAnimationFrame(() => {
-        initScrollAnimations();
+        if (typeof initScrollAnimations === 'function') {
+          try {
+            initScrollAnimations();
+          } catch (err) {
+            console.warn('[initScrollAnimations] failed', err);
+          }
+        } else {
+          console.warn('[initScrollAnimations] not defined — skipping');
+        }
         ScrollTrigger.refresh();
       });
   
