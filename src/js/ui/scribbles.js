@@ -1,5 +1,7 @@
 // src/js/ui/scribbles.js
 const SCRIBBLE_URL = '/assets/underline-scribble.svg';
+const OBSERVE_TIMEOUT_MS = 2200;
+let observerActive = false;
 
 async function fetchSvgText(url) {
   const res = await fetch(url, { cache: 'no-store' });
@@ -54,29 +56,77 @@ function clearFallbackStyles(paths) {
   });
 }
 
-function runGsapAnimation(paths) {
+function runGsapAnimation(paths, options = {}) {
   if (!window.gsap || !paths.length) return;
+  const {
+    duration = 0.95,
+    stagger = 0.08,
+    ease = 'power3.out',
+    finalStrokeWidth = 4
+  } = options;
   clearFallbackStyles(paths);
   try {
+    window.gsap.set(paths, { opacity: 0.35 });
     window.gsap.to(paths, {
       strokeDashoffset: 0,
-      duration: 0.9,
-      ease: 'power2.out',
-      stagger: 0.06
+      opacity: 1,
+      duration,
+      ease,
+      stagger,
+      overwrite: 'auto'
     });
+    window.gsap.fromTo(
+      paths,
+      { strokeWidth: 1.4 },
+      {
+        strokeWidth: finalStrokeWidth,
+        duration: Math.min(0.4, duration * 0.5),
+        ease: 'power1.out',
+        stagger,
+        overwrite: false
+      }
+    );
   } catch (err) {
     console.warn('[scribbles] GSAP animation failed', err);
   }
 }
 
-export async function inlineScribbles() {
+function maybeObserveForTargets() {
+  if (observerActive || typeof MutationObserver === 'undefined') return;
+  if (!document.body) return;
+  observerActive = true;
+  const obs = new MutationObserver(() => {
+    if (document.querySelector('.underline-scribble')) {
+      obs.disconnect();
+      observerActive = false;
+      inlineScribbles().catch(() => {});
+    }
+  });
+  obs.observe(document.body, { childList: true, subtree: true });
+  setTimeout(() => {
+    if (!observerActive) return;
+    obs.disconnect();
+    observerActive = false;
+  }, OBSERVE_TIMEOUT_MS);
+}
+
+export async function inlineScribbles(options = {}) {
+  const { animate = true, heroControlled = true } = options;
   const targets = Array.from(document.querySelectorAll('.underline-scribble'));
-  if (!targets.length) return;
+  if (!targets.length) {
+    maybeObserveForTargets();
+    return;
+  }
 
   const already = targets.every(t => t.querySelector('.scribble-svg'));
   if (already) {
     const existingPaths = Array.from(document.querySelectorAll('.scribble-svg path'));
-    runGsapAnimation(existingPaths);
+    const heroPaths = existingPaths.filter(p => p.closest('.hero-section'));
+    const otherPaths = existingPaths.filter(p => !p.closest('.hero-section'));
+    if (animate) {
+      if (otherPaths.length) runGsapAnimation(otherPaths);
+      if (!heroControlled || !window.gsap) runGsapAnimation(heroPaths);
+    }
     return;
   }
 
@@ -109,20 +159,25 @@ export async function inlineScribbles() {
   if (!paths.length) return;
 
   initStrokeStylesForPaths(paths);
-  runFallbackAnimation(paths);
+  const heroPaths = paths.filter(p => p.closest('.hero-section'));
+  const otherPaths = paths.filter(p => !p.closest('.hero-section'));
+  const canUseGsap = !!window.gsap;
 
-  if (window.gsap) {
-    setTimeout(() => runGsapAnimation(paths), 120);
+  function animateGroup(group, opts = {}) {
+    if (!group.length) return;
+    runFallbackAnimation(group);
+    if (canUseGsap) setTimeout(() => runGsapAnimation(group, opts), 120);
+  }
+
+  if (animate) {
+    animateGroup(otherPaths);
+    if (!heroControlled || !canUseGsap) {
+      animateGroup(heroPaths);
+    } else {
+      heroPaths.forEach(p => { p.style.opacity = '0'; });
+    }
   } else {
-    let waited = 0;
-    const int = setInterval(() => {
-      if (window.gsap) {
-        clearInterval(int);
-        runGsapAnimation(paths);
-      } else if ((waited += 100) > 2000) {
-        clearInterval(int);
-      }
-    }, 100);
+    if (!heroControlled || !canUseGsap) runFallbackAnimation(paths);
   }
 }
 

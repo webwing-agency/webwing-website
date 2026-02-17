@@ -2,10 +2,11 @@
 <html lang="de">
 <head>
   <meta charset="utf-8">
-  <title>Impressum — Webwing Design Agency UG</title>
+  <title>Impressum — Webwing Design Agency </title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
   <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/critical.css">
   <script type="module" src="/src/main.js"></script>
   <style>
     body {
@@ -34,7 +35,7 @@
 
   </style>
 </head>
-<body>
+<body class="page-legal" data-barba="wrapper">
     <header>
       <a href="index.html" class="nav-logo"> <img src="assets/logo.svg" width="80" height="40" alt="Logo"></a>
       <nav class="nav-links">
@@ -57,7 +58,7 @@
     
           </div>
           <div class="popup-menu-decorations">
-            <span>Webwing Design Agency UG</span><span>+</span>
+            <span>Webwing Design Agency </span><span>+</span>
             <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
             <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
             <span>Available for Work</span>
@@ -66,13 +67,11 @@
       </header>
 
 
-  <main>
-
-    <div class="legal-section">
-
-    <h1 class="page-title-small page-title">Impressum</h1>
-
-
+  <main data-barba="container" data-barba-namespace="legal" data-body-class="page-legal" data-legal="impressum">
+    <section class="legal-section">
+      <h1 class="page-title-small page-title">Impressum</h1>
+      <div class="legal-content"></div>
+    </section>
   </main>
 
   <footer>
@@ -80,7 +79,7 @@
         
         <div class="logo-container">
 
-            <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="logo"></object>
+            <img src="/assets/logo.svg" alt="Webwing Logo" class="logo">
 
             <span class="slogan">Your Brand’s Wingman Online.</span>
 
@@ -95,11 +94,10 @@
         <div class="legal-links">
             <a href="impressum.html">Impressum</a>
             <a href="datenschutzerklärung.html">Datenschutzerklärung</a>
+            <a href="agb.html">AGB</a>
         </div>
     </div>
 </footer>    
-
-<script type="module" src="js/render/legal.js" defer></script>
 
 </body>
 </html>

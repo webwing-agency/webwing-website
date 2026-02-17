@@ -535,15 +535,16 @@ header {
             align-items: flex-start;
         }
     
-            footer .logo {
-                width: 120px;
-            }
+footer .logo {
+    width: 96px;
+    height: auto;
+}
     
             footer .slogan {
                 color: rgba(255, 255, 255, 0.4);
                 font-weight: 800;
                 font-size: 0.8rem;
-                transform: translateY(-7.5px) translateX(1.5px);
+                transform: translateY(-5.5px) translateX(1.5px);
             }
     
             .footer-nav {
@@ -676,3 +677,30 @@ body {
         margin-top: 1rem;
         text-align: center;
     }
+
+/* Feature Lists with Icons */
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.feature-item {
+    display: grid;
+    grid-template-columns: 1.1rem 1fr;
+    gap: 0.6rem;
+    align-items: start;
+    color: var(--text-color);
+}
+
+.feature-icon {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    transform: translateY(2px);
+}
+
+.feature-text {
+    display: block;
+}

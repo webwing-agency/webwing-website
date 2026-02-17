@@ -108,9 +108,17 @@ collections:
               - { name: "images", label: "Image paths (comma separated)", widget: "string", hint: "Comma-separated list of image paths" }
               - { name: "title", widget: "string" }
               - { name: "description", widget: "text" }
-              - { name: "specs", widget: "list", field: { name: "spec", widget: "string" } }
+              - label: "Specs"
+                name: "specs"
+                widget: "list"
+                fields:
+                  - { name: "text", label: "Text", widget: "string" }
+                  - { name: "icon", label: "Font Awesome class", widget: "string", hint: "z.B. fa-solid fa-pen-ruler" }
               - { name: "learn_more_link", widget: "string" }
               - { name: "contact_link", widget: "string" }
+          - { name: "cta_text", widget: "string" }
+          - { name: "cta_label", widget: "string" }
+          - { name: "cta_link", widget: "string" }
 
       - label: "Referenzen (Projects)"
         name: "projects"
@@ -127,9 +135,17 @@ collections:
               - { name: "images", label: "Image paths (comma separated)", widget: "string" }
               - { name: "title", widget: "string" }
               - { name: "description", widget: "text" }
-              - { name: "specs", widget: "list", field: { name: "spec", widget: "string" } }
+              - label: "Specs"
+                name: "specs"
+                widget: "list"
+                fields:
+                  - { name: "text", label: "Text", widget: "string" }
+                  - { name: "icon", label: "Font Awesome class", widget: "string", hint: "z.B. fa-solid fa-pen-ruler" }
               - { name: "learn_more_link", widget: "string" }
               - { name: "contact_link", widget: "string" }
+          - { name: "cta_text", widget: "string" }
+          - { name: "cta_label", widget: "string" }
+          - { name: "cta_link", widget: "string" }
 
       - label: "Kontakt"
         name: "kontakt"
@@ -185,3 +201,13 @@ collections:
           - { name: "meta_description", widget: "text" }
           - { name: "page_title", widget: "string" }
           - { name: "content_html", label: "Privacy HTML / Markdown", widget: "markdown" }
+
+      - label: "AGB"
+        name: "agb"
+        file: "data/agb.json"
+        format: json
+        fields:
+          - { name: "meta_title", widget: "string" }
+          - { name: "meta_description", widget: "text" }
+          - { name: "page_title", widget: "string" }
+          - { name: "content_html", label: "AGB HTML / Markdown", widget: "markdown" }

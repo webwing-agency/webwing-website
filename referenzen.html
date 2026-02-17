@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Referenzen - Unsere vergangenenen Projekte - Webwing Design Agency</title>
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/critical.css">
     <script type="module" src="/src/main.js"></script>
 </head>
 
-<body class="page-projects">
+<body class="page-projects" data-barba="wrapper">
 
   <header>
     <a href="index.html" class="nav-logo"> <img src="assets/logo.svg" width="80" height="40" alt="Logo"></a>
@@ -32,7 +33,7 @@
 
       </div>
       <div class="popup-menu-decorations">
-        <span>Webwing Design Agency UG</span><span>+</span>
+        <span>Webwing Design Agency </span><span>+</span>
         <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
         <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
         <span>Available for Work</span>
@@ -40,7 +41,7 @@
     </div>
   </header>
 
-    <main>
+    <main data-barba="container" data-barba-namespace="projects" data-body-class="page-projects">
 
         <section class="references-page-fold">
       
@@ -113,7 +114,7 @@
             
             <div class="logo-container">
     
-                <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="logo"></object>
+                <img src="/assets/logo.svg" alt="Webwing Logo" class="logo">
     
                 <span class="slogan">Your Brand’s Wingman Online.</span>
     
@@ -128,323 +129,10 @@
             <div class="legal-links">
                 <a href="impressum.html">Impressum</a>
                 <a href="datenschutzerklärung.html">Datenschutzerklärung</a>
+                <a href="agb.html">AGB</a>
             </div>
         </div>
     </footer>       
     
-    <style>
-        .references-page-fold {
-            padding-bottom: 10rem;
-            align-items: flex-start;
-            position: relative;;
-        }
-
-        .selection-flex {
-            width: 100%;
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 5rem;
-            flex-wrap: wrap-reverse;
-            position: relative; /* damit absolute Kinder (search-wrapper) relativ zu diesem Container sind */
-            min-height: 3rem;   
-        }
-
-        .filter-select, .search-bar {
-            background-color: rgba(255, 255, 255, 0.065);
-            height: 2.75rem;
-            padding: 0rem 1.5rem;
-            border-radius: 30px;
-            border: 0.5px solid rgba(255, 255, 255, 0.25);
-            cursor: pointer;
-            color: var(--text-color);
-            transition: background-color 0.2s, color 0.2s;
-            text-wrap: nowrap;
-            display: inline-block
-        }
-
-        .filter-select:hover, .search-bar:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: #fff;
-            transition: background-color 0.2s, color 0.2s;
-        }
-
-        .filter-select, .search-bar::placeholder {
-            font-weight: 500;
-            font-size: var(--text-font-size);
-        }
-
-        .filter-select {
-            flex: 1;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-            .filter-select.active {
-              background-color: rgba(255, 255, 255, 0.15) !important;
-              border-color: rgba(255, 255, 255, 0.4) !important;
-            }
-
-        .search-wrapper {
-            position: absolute;
-            right: 0;
-            flex: 2;
-            min-width: 20rem;
-        }
-
-            .search-icon {
-                position: absolute;
-                left: 12px;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 18px;
-                height: 18px;
-                color: var(--text-color);
-                pointer-events: none;
-            }
-
-            .search-bar {
-                width: 100%;
-                padding: 10px 12px 10px 40px; 
-                font-size: 16px;
-                box-sizing: border-box;
-                color: #fff;
-            }
-
-
-        .projects-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
-
-        .project-images-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            width: 100%;
-            height: auto;
-        }
-
-                .project-images-grid * {
-                    border: var(--global-border);
-                }
-
-                .project-image-1 {
-                    /* should occupy first 3 columns and 2 rows */
-                    grid-column: 1 / span 3;
-                    grid-row: 1 / span 2;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    border-radius: 15px;
-                }
-
-                .project-image-2 {
-                    /* should occupy columns 4-5 and row 1 */
-                    grid-column: 4 / span 2;
-                    grid-row: 1 / span 1;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    border-radius: 15px;
-                }
-
-                .project-image-3 {
-                    /* should occupy columns 4-5 and row 2 */
-                    grid-column: 4 / span 2;
-                    grid-row: 2 / span 1;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    border-radius: 15px;
-                }
-
-        .project-title {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-specs {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            margin-bottom: 1rem;
-            font-size: var(--text-font-size);
-            color: var(--text-color);
-            line-height: 1.8;
-        }
-
-        .project-card-text-container {
-            justify-content: space-between;
-            gap: 2rem;
-            flex-direction: column-reverse;
-        }   
-
-            .project-specs {
-                flex: 1;
-            }
-
-            .project-description {
-                flex: 3;
-                font-size: var(--text-font-size);
-                color: var(--text-color);
-            }
-
-        .card-cta-container {
-            margin-top: 3rem;
-        }
-
-
-        .search-wrapper {
-            position: relative;
-            --search-count: "";
-        }
-
-        .search-wrapper::after {
-            content: var(--search-count, "");
-            position: absolute;
-            right: 1rem;
-            bottom: -2rem;
-            display: block;
-            margin-top: 0.25rem;
-            font-size: var(--text-font-size);
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .search-highlight {
-            background-color: rgba(255, 255, 0, 0.25);
-            padding: 0 0.1em;
-            border-radius: 2px;
-        }
-
-    </style>
-
-
-    <script>
-      // init-search-projects.js — drop in referenzen (oder import)
-      document.addEventListener('projectsRendered', initSearch);
-
-      function initSearch() {
-        const wrapper = document.querySelector('.search-wrapper');
-        const input = wrapper?.querySelector('.search-bar');
-        const cards = Array.from(document.querySelectorAll('.project-card'));
-
-        if (!wrapper || !input || cards.length === 0) return;
-
-        const normalize = s => (s||'').toLowerCase()
-          .normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
-        const escapeRegExp = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const debounce = (fn, wait=120) => { let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), wait); }; };
-
-        const index = cards.map(card => {
-          const titleEl = card.querySelector('.project-title');
-          const descEl  = card.querySelector('.project-description');
-          const specsEl = card.querySelector('.project-specs');
-
-          return {
-            card,
-            titleEl, descEl, specsEl,
-            originalDisplay: window.getComputedStyle(card).display || 'block',
-            titleHTML: titleEl?.innerHTML || '',
-            descHTML: descEl?.innerHTML || '',
-            specsHTML: specsEl?.innerHTML || '',
-            searchText: normalize(`${titleEl?.textContent||''} ${descEl?.textContent||''} ${specsEl?.textContent||''}`)
-          };
-        });
-
-        const restore = item => {
-          if (item.titleEl) item.titleEl.innerHTML = item.titleHTML;
-          if (item.descEl)  item.descEl.innerHTML  = item.descHTML;
-          if (item.specsEl) item.specsEl.innerHTML = item.specsHTML;
-        };
-
-        const highlightElement = (el, query) => {
-          if (!el || !query) return;
-          const rx = new RegExp(escapeRegExp(query), 'gi');
-
-          const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
-          const nodes = [];
-          while (walker.nextNode()) nodes.push(walker.currentNode);
-
-          nodes.forEach(node => {
-            const text = node.nodeValue;
-            if (!text || !rx.test(text)) return;
-            rx.lastIndex = 0;
-            const frag = document.createDocumentFragment();
-            let last = 0, match;
-            while ((match = rx.exec(text)) !== null) {
-              if (match.index > last) frag.appendChild(document.createTextNode(text.slice(last, match.index)));
-              const mark = document.createElement('mark');
-              mark.className = 'search-highlight';
-              mark.textContent = match[0];
-              frag.appendChild(mark);
-              last = match.index + match[0].length;
-            }
-            if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
-            node.parentNode.replaceChild(frag, node);
-          });
-        };
-
-        const runFilter = value => {
-          const q = value.trim();
-          const qNorm = normalize(q);
-          if (!q) {
-            index.forEach(item => { item.card.style.display = item.originalDisplay; restore(item); });
-            wrapper.style.setProperty('--search-count', '""');
-            return;
-          }
-
-          let visible = 0;
-          index.forEach(item => {
-            restore(item);
-            if (item.searchText.includes(qNorm)) {
-              item.card.style.display = item.originalDisplay;
-              highlightElement(item.titleEl, q);
-              highlightElement(item.descEl, q);
-              highlightElement(item.specsEl, q);
-              visible++;
-            } else {
-              item.card.style.display = 'none';
-            }
-          });
-
-          wrapper.style.setProperty('--search-count', `"${visible} von ${index.length} Ergebnissen"`);
-        };
-
-        input.addEventListener('input', debounce(e => runFilter(e.target.value)));
-        
-        // Filter buttons (delegation on .selection-flex)
-        document.querySelector('.selection-flex')?.addEventListener('click', e => {
-          const filter = e.target.closest('.filter-select');
-          if (!filter) return;
-          const value = filter.textContent.trim().toLowerCase();
-          const current = input.value.trim().toLowerCase();
-          document.querySelectorAll('.filter-select').forEach(f => f.classList.remove('active'));
-          if (current === value) {
-            input.value = '';
-          } else {
-            input.value = value;
-            filter.classList.add('active');
-          }
-          input.dispatchEvent(new Event('input', { bubbles: true }));
-        });
-
-        input.addEventListener('input', () => {
-          if (input.value.trim() === '') document.querySelectorAll('.filter-select.active').forEach(f => f.classList.remove('active'));
-        });
-
-        runFilter('');
-      }
-
-    </script>
-
-    <script type="module" src="js/render/projects.js" defer></script>
-
 </body>
 </html>

@@ -28,9 +28,3 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-
-# SPA fallback (letzte Regel)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200

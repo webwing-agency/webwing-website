@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="meta-title">Webwing Design Agency UG - Your Brand's Wingman Online</title>
+  <title id="meta-title">Webwing Design Agency - Your Brand's Wingman Online</title>
   <meta id="meta-description" name="description" content="Webwing: Design, Conversion Optimization, SEO, Performance & Development for your brand." />
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/critical.css">
   <script type="module" src="/src/main.js"></script>
   <script>
     (function(){
@@ -84,7 +85,7 @@
   <script>document.documentElement.classList.remove('no-js');</script>
 
 </head>
-<body class="page-home">
+<body class="page-home" data-barba="wrapper">
   <header>
     <a href="index.html" class="nav-logo"> <img src="assets/logo.svg" width="80" height="40" alt="Logo"></a>
     <nav class="nav-links">
@@ -107,7 +108,7 @@
 
       </div>
       <div class="popup-menu-decorations">
-        <span>Webwing Design Agency UG</span><span>+</span>
+        <span>Webwing Design Agency</span><span>+</span>
         <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
         <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
         <span>Available for Work</span>
@@ -115,8 +116,13 @@
     </div>
   </header>
 
-  <main>
+  <main data-barba="container" data-barba-namespace="home" data-body-class="page-home">
     <section class="hero-section">
+      <div class="hero-mesh" aria-hidden="true">
+        <span class="mesh-blob mesh-blob-1"></span>
+        <span class="mesh-blob mesh-blob-2"></span>
+        <span class="mesh-blob mesh-blob-3"></span>
+      </div>
       <h1 class="hero-title section-title" id="hero-title"></h1>
       <p class="hero-subtitle paragraph" id="hero-subtitle"></p>
       <a id="hero-cta" class="cta hero-cta" href="#">CTA</a>
@@ -224,6 +230,7 @@
         <div class="legal-links">
             <a href="impressum.html">Impressum</a>
             <a href="datenschutzerklärung.html">Datenschutzerklärung</a>
+            <a href="agb.html">AGB</a>
         </div>
     </div>
 </footer>    

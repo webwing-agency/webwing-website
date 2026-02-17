@@ -13,14 +13,15 @@
   const BATCH_MAX = 10;
 
   const EASE_OUT = 'power3.out';
+  let heroScribbleDeadline = null;
 
   const heroConfig = {
     mode: 'label',
-    headline: { startAt: 0, duration: 0.65, stagger: 0.2 },
-    subtitle: { duration: 0.7, startAfter: 0.45, overlapFromEnd: 0.5 },
-    cta: { duration: 0.55, startAfter: 0.6 },
-    bg: { duration: 2.4 },
-    scribble: { duration: 0.66, strokeWidthPolish: 0.14, finalStrokeWidth: 4.2 }
+    headline: { startAt: 0.06, duration: 0.8, stagger: 0.16, y: 18, blur: 6 },
+    subtitle: { duration: 0.7, startAfter: 0.38, overlapFromEnd: 0.5, y: 14 },
+    cta: { duration: 0.6, startAfter: 0.55, y: 12, ease: 'back.out(1.5)' },
+    bg: { duration: 2.2, startAt: 0 },
+    scribble: { duration: 0.95, strokeWidthPolish: 0.2, finalStrokeWidth: 4.2, stagger: 0.05 }
   };
 
   // -------------------------
@@ -33,16 +34,18 @@
 
     const hero = document.querySelector('.hero-section');
     if (!hero) return;
+    if (hero.dataset.heroAnimated === 'true') return;
+    hero.dataset.heroAnimated = 'true';
 
     // split lines OR fallback to title element
-    const titleLines = gs.utils.toArray('.hero-line');
-    const titleFallbackEl = document.getElementById('hero-title');
+    const titleLines = gs.utils.toArray(hero.querySelectorAll('.hero-line'));
+    const titleFallbackEl = hero.querySelector('#hero-title');
     const titleTargets = titleLines.length ? titleLines : (titleFallbackEl ? [titleFallbackEl] : []);
 
     const subtitle = hero.querySelector('.hero-subtitle');
-    const cta = hero.querySelector('.cta');
+    const cta = hero.querySelector('.hero-cta');
     const bg = hero.querySelector('.hero-bg');
-    const scribblePath = document.querySelector('.scribble-svg path');
+    const scribblePaths = gs.utils.toArray(hero.querySelectorAll('.scribble-svg path'));
 
     // reduced motion
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -51,33 +54,37 @@
       if (subtitle) gs.set(subtitle, { y: 0, autoAlpha: 1, clearProps: 'all' });
       if (cta) gs.set(cta, { y: 0, autoAlpha: 1, clearProps: 'all' });
       if (bg) gs.set(bg, { scale: 1, y: 0, autoAlpha: 1, clearProps: 'all' });
-      if (scribblePath) {
-        const L = scribblePath.getTotalLength?.() || 0;
-        gs.set(scribblePath, { strokeDasharray: L, strokeDashoffset: 0, clearProps: 'all' });
+      if (scribblePaths.length) {
+        scribblePaths.forEach(path => {
+          const L = path.getTotalLength?.() || 0;
+          gs.set(path, { strokeDasharray: L, strokeDashoffset: 0, opacity: 1, clearProps: 'all' });
+        });
       }
       return;
     }
 
     // initial states (only if targets exist)
-    if (titleTargets.length) gs.set(titleTargets, { y: 10, autoAlpha: 0, willChange: 'transform,opacity' });
-    if (subtitle) gs.set(subtitle, { y: 12, autoAlpha: 0, willChange: 'transform,opacity' });
-    if (cta) gs.set(cta, { y: 10, autoAlpha: 0, willChange: 'transform,opacity' });
+    if (titleTargets.length) gs.set(titleTargets, { y: heroConfig.headline.y, autoAlpha: 0, filter: `blur(${heroConfig.headline.blur}px)`, willChange: 'transform,opacity,filter' });
+    if (subtitle) gs.set(subtitle, { y: heroConfig.subtitle.y, autoAlpha: 0, willChange: 'transform,opacity' });
+    if (cta) gs.set(cta, { y: heroConfig.cta.y, autoAlpha: 0, willChange: 'transform,opacity' });
     if (bg) gs.set(bg, { scale: 1.04, y: 8, autoAlpha: 0, willChange: 'transform,opacity' });
 
-    if (scribblePath) {
-      const pathLength = scribblePath.getTotalLength?.() || 0;
-      gs.set(scribblePath, {
-        strokeDasharray: pathLength,
-        strokeDashoffset: pathLength,
-        opacity: 0,
-        willChange: 'stroke-dashoffset'
+    if (scribblePaths.length) {
+      scribblePaths.forEach(path => {
+        const pathLength = path.getTotalLength?.() || 0;
+        gs.set(path, {
+          strokeDasharray: pathLength,
+          strokeDashoffset: pathLength,
+          opacity: 0,
+          willChange: 'stroke-dashoffset,opacity,stroke-width'
+        });
       });
     }
 
     const tl = gs.timeline({ defaults: { ease: 'power2.out' } });
 
     if (bg) {
-      tl.to(bg, { scale: 1, y: 0, autoAlpha: 1, duration: heroConfig.bg.duration, ease: 'power2.out' }, 0);
+      tl.to(bg, { scale: 1, y: 0, autoAlpha: 1, duration: heroConfig.bg.duration, ease: 'power2.out' }, heroConfig.bg.startAt);
     }
 
     function addHeadline() {
@@ -85,10 +92,11 @@
       if (titleTargets.length) {
         tl.fromTo(
           titleTargets,
-          { y: 10, autoAlpha: 0.7 },
+          { y: heroConfig.headline.y, autoAlpha: 0, filter: `blur(${heroConfig.headline.blur}px)` },
           {
             y: 0,
             autoAlpha: 1,
+            filter: 'blur(0px)',
             duration: heroConfig.headline.duration,
             stagger: heroConfig.headline.stagger,
             ease: 'power3.out'
@@ -107,7 +115,7 @@
       if (subtitle) {
         tl.fromTo(
           subtitle,
-          { y: 12, autoAlpha: 0 },
+          { y: heroConfig.subtitle.y, autoAlpha: 0 },
           {
             y: 0,
             autoAlpha: 1,
@@ -122,34 +130,34 @@
       if (cta) {
         tl.fromTo(
           cta,
-          { y: 10, autoAlpha: 0 },
+          { y: heroConfig.cta.y, autoAlpha: 0 },
           {
             y: 0,
             autoAlpha: 1,
             duration: heroConfig.cta.duration,
-            ease: 'power2.out'
+            ease: heroConfig.cta.ease || 'power2.out'
           },
           `headlineStart+=${heroConfig.cta.startAfter}`
         );
       }
       
 
-      if (scribblePath) {
+      if (scribblePaths.length) {
         const n = Math.max(1, titleTargets.length);
         const headlineEnd = headlineStart + heroConfig.headline.duration + heroConfig.headline.stagger * (n - 1);
-        const scribbleStart = Math.max(headlineStart, headlineEnd - 0.32);
-        tl.to(scribblePath, { strokeDashoffset: 0, duration: heroConfig.scribble.duration, ease: 'sine.out' }, scribbleStart);
-        tl.to(scribblePath, { opacity: 1, duration: 0.08 }, '<');
-        tl.to(scribblePath, { strokeWidth: heroConfig.scribble.finalStrokeWidth, duration: heroConfig.scribble.strokeWidthPolish, ease: 'power1.out' }, '<');
+        const scribbleStart = Math.max(headlineStart, headlineEnd - 0.26);
+        tl.to(scribblePaths, { opacity: 1, duration: 0.12, stagger: heroConfig.scribble.stagger }, scribbleStart);
+        tl.to(scribblePaths, { strokeDashoffset: 0, duration: heroConfig.scribble.duration, ease: 'power2.out', stagger: heroConfig.scribble.stagger }, scribbleStart);
+        tl.to(scribblePaths, { strokeWidth: heroConfig.scribble.finalStrokeWidth, duration: heroConfig.scribble.strokeWidthPolish, ease: 'power1.out', stagger: heroConfig.scribble.stagger }, `<+=${Math.max(0.08, heroConfig.scribble.duration - heroConfig.scribble.strokeWidthPolish)}`);
       }
 
     } else if (heroConfig.mode === 'relative') {
       if (subtitle) tl.to(subtitle, { y: 0, autoAlpha: 1, duration: heroConfig.subtitle.duration, ease: 'power2.out' }, `<+=${heroConfig.subtitle.startAfter}`);
-      if (cta) tl.to(cta, { y: 0, autoAlpha: 1, duration: heroConfig.cta.duration, ease: 'power2.out' }, `<+=${heroConfig.cta.startAfter}`);
-      if (scribblePath) {
-        tl.to(scribblePath, { strokeDashoffset: 0, duration: heroConfig.scribble.duration, ease: 'sine.out' }, `<+=${Math.max(0, heroConfig.headline.duration - 0.32)}`);
-        tl.to(scribblePath, { opacity: 1, duration: 0.08 }, '<');
-        tl.to(scribblePath, { strokeWidth: heroConfig.scribble.finalStrokeWidth, duration: heroConfig.scribble.strokeWidthPolish, ease: 'power1.out' }, '<');
+      if (cta) tl.to(cta, { y: 0, autoAlpha: 1, duration: heroConfig.cta.duration, ease: heroConfig.cta.ease || 'power2.out' }, `<+=${heroConfig.cta.startAfter}`);
+      if (scribblePaths.length) {
+        tl.to(scribblePaths, { opacity: 1, duration: 0.12, stagger: heroConfig.scribble.stagger }, `<+=${Math.max(0, heroConfig.headline.duration - 0.28)}`);
+        tl.to(scribblePaths, { strokeDashoffset: 0, duration: heroConfig.scribble.duration, ease: 'power2.out', stagger: heroConfig.scribble.stagger }, '<');
+        tl.to(scribblePaths, { strokeWidth: heroConfig.scribble.finalStrokeWidth, duration: heroConfig.scribble.strokeWidthPolish, ease: 'power1.out', stagger: heroConfig.scribble.stagger }, `<+=${Math.max(0.08, heroConfig.scribble.duration - heroConfig.scribble.strokeWidthPolish)}`);
       }
 
     } else { // absolute
@@ -159,13 +167,13 @@
       if (subtitle) tl.to(subtitle, { y: 0, autoAlpha: 1, duration: heroConfig.subtitle.duration, ease: 'power2.out' }, subtitleStart);
       if (cta) {
         const ctaStart = subtitleStart + 0.12;
-        tl.to(cta, { y: 0, autoAlpha: 1, duration: heroConfig.cta.duration, ease: 'power2.out' }, ctaStart);
+        tl.to(cta, { y: 0, autoAlpha: 1, duration: heroConfig.cta.duration, ease: heroConfig.cta.ease || 'power2.out' }, ctaStart);
       }
-      if (scribblePath) {
-        const scribbleStart = Math.max(0, headlineEnd - 0.32);
-        tl.to(scribblePath, { strokeDashoffset: 0, duration: heroConfig.scribble.duration, ease: 'sine.out' }, scribbleStart);
-        tl.to(scribblePath, { opacity: 1, duration: 0.08 }, '<');
-        tl.to(scribblePath, { strokeWidth: heroConfig.scribble.finalStrokeWidth, duration: heroConfig.scribble.strokeWidthPolish, ease: 'power1.out' }, '<');
+      if (scribblePaths.length) {
+        const scribbleStart = Math.max(0, headlineEnd - 0.26);
+        tl.to(scribblePaths, { opacity: 1, duration: 0.12, stagger: heroConfig.scribble.stagger }, scribbleStart);
+        tl.to(scribblePaths, { strokeDashoffset: 0, duration: heroConfig.scribble.duration, ease: 'power2.out', stagger: heroConfig.scribble.stagger }, scribbleStart);
+        tl.to(scribblePaths, { strokeWidth: heroConfig.scribble.finalStrokeWidth, duration: heroConfig.scribble.strokeWidthPolish, ease: 'power1.out', stagger: heroConfig.scribble.stagger }, `<+=${Math.max(0.08, heroConfig.scribble.duration - heroConfig.scribble.strokeWidthPolish)}`);
       }
     }
 
@@ -177,7 +185,7 @@
       if (subtitle) subtitle.style.willChange = 'auto';
       if (cta) cta.style.willChange = 'auto';
       if (bg) bg.style.willChange = 'auto';
-      if (scribblePath) scribblePath.style.willChange = 'auto';
+      if (scribblePaths.length) scribblePaths.forEach(p => (p.style.willChange = 'auto'));
     
       // --- hero-cta specific: expose final state to CSS and remove inline props ---
       try {
@@ -200,8 +208,11 @@
         }
     
         // scribble: clear svg inline props if present (optional, safe)
-        if (scribblePath && gs) {
-          gs.set(scribblePath, { clearProps: 'strokeDashoffset,strokeDasharray,opacity,strokeWidth' });
+        if (scribblePaths.length && gs) {
+          gs.set(scribblePaths, { clearProps: 'strokeDashoffset,strokeDasharray,opacity,strokeWidth' });
+        }
+        if (titleTargets.length && gs) {
+          gs.set(titleTargets, { clearProps: 'filter' });
         }
       } catch (e) {
         // swallow — don't break runtime
@@ -302,12 +313,29 @@
   // BOOT: wait for content & gsap then init animations
   // -------------------------
   let started = false;
+  function isHeroContentReady() {
+    const hero = document.querySelector('.hero-section');
+    if (!hero) return true;
+    const hasLines = hero.querySelectorAll('.hero-line').length > 0;
+    const titleEl = hero.querySelector('#hero-title');
+    const hasTitleText = titleEl && titleEl.textContent && titleEl.textContent.trim().length > 0;
+    const hasTitleContent = hasLines || hasTitleText;
+    if (!hasTitleContent) return false;
+    const scribbleTargets = hero.querySelectorAll('.underline-scribble');
+    if (scribbleTargets.length > 0 && hero.querySelectorAll('.scribble-svg').length === 0) {
+      if (!heroScribbleDeadline) heroScribbleDeadline = Date.now() + 1500;
+      if (Date.now() < heroScribbleDeadline) return false;
+    }
+    return true;
+  }
+
   function startIfReady() {
     if (started) return;
     if (!window.gsap) return;
     // prefer to init after render has run and produced DOM; check for hero/section elements
-    const hasContent = document.querySelector('.hero-section') || document.querySelector('.section-title') || document.querySelector('.grid');
+    const hasContent = document.querySelector('.section-title') || document.querySelector('.grid') || document.querySelector('.book-call-card') || document.querySelector('.hero-section');
     if (!hasContent) return;
+    if (!isHeroContentReady()) return;
     started = true;
     try {
       initHeroAnimations();
@@ -325,6 +353,10 @@
     setTimeout(startIfReady, 8);
   }, { once: true });
 
+  window.addEventListener('hero:rendered', () => {
+    setTimeout(startIfReady, 8);
+  });
+
   // Secondary: try to start as soon as GSAP exists and the DOM has content
   const checkInterval = setInterval(() => {
     if (started) { clearInterval(checkInterval); return; }
@@ -338,4 +370,24 @@
 
   // Last resort: attempt to start after a short timeout (dev convenience)
   setTimeout(() => { startIfReady(); }, 1000);
+
+  // Public API for Barba re-init
+  window.IndexAnimations = {
+    reinit() {
+      started = false;
+      heroScribbleDeadline = null;
+      try {
+        if (window.ScrollTrigger && typeof window.ScrollTrigger.getAll === 'function') {
+          window.ScrollTrigger.getAll().forEach(t => t.kill());
+        }
+      } catch (e) {}
+      startIfReady();
+    }
+  };
 })();
+
+export function reinitIndexAnimations() {
+  if (window.IndexAnimations?.reinit) {
+    window.IndexAnimations.reinit();
+  }
+}

@@ -6,6 +6,9 @@
     height: 100vh;
     gap: 2.5rem;
     margin-top: 0px;
+    position: relative;
+    overflow: visible;
+    z-index: 0;
 }
 
     .hero-title {
@@ -47,7 +50,7 @@
               .scribble-svg path {
                 stroke: currentColor;
                 will-change: stroke-dashoffset;
-                stroke-width: 3px !important;
+                stroke-width: 3px;
               }
               
 
@@ -86,7 +89,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: -10;
+        z-index: -1;
         pointer-events: none;
     }
 
@@ -95,6 +98,91 @@
         width: 60vw;
         height: auto;
         will-change: transform;
+    }
+
+    .hero-mesh {
+        position: absolute;
+        inset: -20% -10% -10%;
+        z-index: -2;
+        pointer-events: none;
+        transform: translate3d(0, var(--mesh-scroll, 0px), 0);
+        transition: transform 0.25s ease-out;
+        filter: saturate(115%);
+    }
+
+    .mesh-blob {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.28;
+        filter: blur(50px);
+        mix-blend-mode: screen;
+        animation: meshDriftA 36s ease-in-out infinite;
+    }
+
+    .mesh-blob-1 {
+        width: 56vw;
+        height: 56vw;
+        max-width: 640px;
+        max-height: 640px;
+        min-width: 280px;
+        min-height: 280px;
+        top: -8%;
+        left: -12%;
+        background: radial-gradient(circle at 30% 30%, rgba(210, 90, 255, 0.55), rgba(210, 90, 255, 0) 65%);
+        animation-duration: 38s;
+    }
+
+    .mesh-blob-2 {
+        width: 48vw;
+        height: 48vw;
+        max-width: 520px;
+        max-height: 520px;
+        min-width: 240px;
+        min-height: 240px;
+        top: 12%;
+        right: -8%;
+        background: radial-gradient(circle at 65% 35%, rgba(70, 120, 255, 0.5), rgba(70, 120, 255, 0) 62%);
+        animation: meshDriftB 42s ease-in-out infinite;
+    }
+
+    .mesh-blob-3 {
+        width: 44vw;
+        height: 44vw;
+        max-width: 480px;
+        max-height: 480px;
+        min-width: 220px;
+        min-height: 220px;
+        bottom: -12%;
+        left: 22%;
+        background: radial-gradient(circle at 40% 60%, rgba(120, 255, 220, 0.45), rgba(120, 255, 220, 0) 60%);
+        animation: meshDriftC 46s ease-in-out infinite;
+    }
+
+    @keyframes meshDriftA {
+        0% { transform: translate3d(0, 0, 0) scale(1); }
+        50% { transform: translate3d(40px, -30px, 0) scale(1.05); }
+        100% { transform: translate3d(0, 0, 0) scale(1); }
+    }
+
+    @keyframes meshDriftB {
+        0% { transform: translate3d(0, 0, 0) scale(1); }
+        50% { transform: translate3d(-35px, 25px, 0) scale(1.04); }
+        100% { transform: translate3d(0, 0, 0) scale(1); }
+    }
+
+    @keyframes meshDriftC {
+        0% { transform: translate3d(0, 0, 0) scale(1); }
+        50% { transform: translate3d(25px, -35px, 0) scale(1.03); }
+        100% { transform: translate3d(0, 0, 0) scale(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .hero-mesh {
+            transform: none;
+        }
+        .mesh-blob {
+            animation: none;
+        }
     }
 
   
@@ -449,6 +537,12 @@
                                             border: none;
                                             cursor: pointer;
                                             transition: background var(--transition), transform var(--transition);
+                                        }
+
+                                        .calendar-day.is-loading {
+                                            opacity: 0.5;
+                                            cursor: wait;
+                                            transform: none;
                                         }
                                     
                                         .calendar-day:hover {

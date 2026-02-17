@@ -51,7 +51,7 @@ async function fetchContact() {
     window.API_BASE = data.contact_api_base || window.API_BASE || 'http://localhost:3000';
   }
   
-  (async function init() {
+  export async function initContactPage() {
     try {
       const data = await fetchContact();
       setMetaAndTitle(data);
@@ -59,5 +59,5 @@ async function fetchContact() {
     } catch (err) {
       console.error('contact render error', err);
     }
-  })();
+  }
   

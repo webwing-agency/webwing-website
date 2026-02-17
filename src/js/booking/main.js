@@ -2,17 +2,33 @@
 import { fetchAvailabilityRaw } from '../fetch/availability.js';
 import { bookAppointment } from '../fetch/book.js';
 
-console.debug('[booking] main loaded');
+const availabilityCache = new Map();
+const availabilityInflight = new Map();
+const RENDER = { token: 0 };
+const MAX_CONCURRENCY = 6;
 
-const calendarRoot = document.getElementById('calendar-root') || (function(){
-  const el = document.createElement('div'); el.className='calendar'; document.body.insertBefore(el, document.body.firstChild); return el;
-})();
-const timeslotsContainer = document.getElementById('timeslots');
-const bookingForm = document.getElementById('booking-form');
+export function initBookingPage(root = document) {
+  console.debug('[booking] main loaded');
 
-if (!bookingForm) {
-  console.warn('[booking] booking form not found; booking module disabled.');
-} else {
+  const calendarRoot = root.querySelector('#calendar-root') || (function(){
+    const el = document.createElement('div'); el.className='calendar';
+    const anchor = root.querySelector('.date-container') || root;
+    anchor.appendChild(el);
+    return el;
+  })();
+  const timeslotsContainer = root.querySelector('#timeslots');
+  const bookingForm = root.querySelector('#booking-form');
+
+  if (!bookingForm) {
+    console.warn('[booking] booking form not found; booking module disabled.');
+    return;
+  }
+
+  if (calendarRoot.dataset.bookingInit === '1') {
+    console.debug('[booking] calendar already initialized; skipping duplicate init');
+    return;
+  }
+  calendarRoot.dataset.bookingInit = '1';
   let startLocalInput = bookingForm.querySelector('input[name="startLocal"]');
   if (!startLocalInput) {
     startLocalInput = document.createElement('input');
@@ -26,6 +42,14 @@ if (!bookingForm) {
   let selectedSlot = null;
 
   function createMonthHeader(root) {
+    const existing = root.querySelector('.calendar-month-header');
+    if (existing) {
+      return {
+        prevBtn: existing.querySelector('.calendar-prev'),
+        nextBtn: existing.querySelector('.calendar-next'),
+        monthLabel: existing.querySelector('.calendar-month-label')
+      };
+    }
     const headerRow = document.createElement('div'); headerRow.className='calendar-month-header';
     headerRow.style.display='flex'; headerRow.style.justifyContent='space-between'; headerRow.style.alignItems='center'; headerRow.style.marginBottom='8px';
     const prevBtn = document.createElement('button'); prevBtn.className='calendar-prev'; prevBtn.type='button'; prevBtn.textContent='‹';
@@ -54,13 +78,45 @@ if (!bookingForm) {
   const isoFromYMD = (y,m,d) => `${y}-${pad(m)}-${pad(d)}`;
   const monthLabelText = date => date.toLocaleDateString('de-DE', { month:'long', year:'numeric' });
 
+  async function getAvailability(iso) {
+    if (availabilityCache.has(iso)) return availabilityCache.get(iso);
+    if (availabilityInflight.has(iso)) return availabilityInflight.get(iso);
+    const promise = fetchAvailabilityRaw(iso)
+      .then(data => {
+        availabilityCache.set(iso, data);
+        availabilityInflight.delete(iso);
+        return data;
+      })
+      .catch(err => {
+        availabilityInflight.delete(iso);
+        throw err;
+      });
+    availabilityInflight.set(iso, promise);
+    return promise;
+  }
+
   async function isDateDisabled(dateObj) {
     const iso = isoFromYMD(dateObj.getFullYear(), dateObj.getMonth()+1, dateObj.getDate());
-    const data = await fetchAvailabilityRaw(iso);
+    const data = await getAvailability(iso);
     return !!(data && data.disabled);
   }
 
+  function runLimited(tasks, token) {
+    if (!tasks.length) return Promise.resolve();
+    let index = 0;
+    const workerCount = Math.min(MAX_CONCURRENCY, tasks.length);
+    const workers = Array.from({ length: workerCount }, async () => {
+      while (index < tasks.length) {
+        const taskIndex = index++;
+        if (token !== RENDER.token) return;
+        await tasks[taskIndex]();
+      }
+    });
+    return Promise.all(workers);
+  }
+
   async function renderCalendar() {
+    const token = ++RENDER.token;
     gridEl.innerHTML = '';
     headerControls.monthLabel.textContent = monthLabelText(viewDate);
 
@@ -76,6 +132,9 @@ if (!bookingForm) {
     const today = new Date(); today.setHours(0,0,0,0);
 
     let dayCounter = 1;
+    const fragment = document.createDocumentFragment();
+    const tasks = [];
+
     for (let r = 0; r < rows; r++) {
       const row = document.createElement('div'); row.className='calendar-row';
       row.style.display='flex';
@@ -87,24 +146,49 @@ if (!bookingForm) {
           cell.appendChild(emptyBtn);
         } else {
           const iso = isoFromYMD(year, month+1, dayCounter);
-          const btn = document.createElement('button'); btn.type='button'; btn.className='calendar-day'; btn.textContent = String(dayCounter); btn.dataset.date = iso;
+          const btn = document.createElement('button'); btn.type='button'; btn.className='calendar-day is-loading'; btn.textContent = String(dayCounter); btn.dataset.date = iso;
           const cellDate = new Date(year, month, dayCounter); cellDate.setHours(0,0,0,0);
-          let disabled = true;
-          try { disabled = await isDateDisabled(cellDate); } catch (e) { console.warn('[booking] isDateDisabled error', e); disabled = true; }
-          if (cellDate < today || disabled) { btn.classList.add('is-disabled'); btn.disabled = true; }
+
+          if (cellDate < today) {
+            btn.classList.add('is-disabled');
+            btn.classList.remove('is-loading');
+            btn.disabled = true;
+          } else {
+            btn.disabled = true;
+            tasks.push(async () => {
+              try {
+                const data = await getAvailability(iso);
+                if (token !== RENDER.token) return;
+                const disabled = !!(data && data.disabled);
+                btn.classList.toggle('is-disabled', disabled);
+                btn.disabled = disabled;
+              } catch (e) {
+                if (token !== RENDER.token) return;
+                btn.classList.add('is-disabled');
+                btn.disabled = true;
+                console.warn('[booking] isDateDisabled error', e);
+              } finally {
+                if (token === RENDER.token) btn.classList.remove('is-loading');
+              }
+            });
+          }
           cell.appendChild(btn);
           dayCounter++;
         }
         row.appendChild(cell);
       }
-      gridEl.appendChild(row);
+      fragment.appendChild(row);
     }
 
-    bindCalendarDays();
+    gridEl.appendChild(fragment);
+
+    runLimited(tasks, token).catch(err => {
+      if (token === RENDER.token) console.warn('[booking] calendar availability batch failed', err);
+    });
   }
 
   async function fetchAvailableTimes(isoDate) {
-    const data = await fetchAvailabilityRaw(isoDate);
+    const data = await getAvailability(isoDate);
     if (!data || !Array.isArray(data.slots)) return [];
     return data.slots.filter(s => !s.isDisabled).map(s => s.time);
   }
@@ -127,23 +211,18 @@ if (!bookingForm) {
     });
   }
 
-  function bindCalendarDays() {
-    document.querySelectorAll('.calendar-day').forEach(btn => {
-      const clone = btn.cloneNode(true);
-      btn.replaceWith(clone);
+  if (!gridEl.dataset.bound) {
+    gridEl.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.calendar-day');
+      if (!btn || btn.classList.contains('empty') || btn.classList.contains('is-disabled') || btn.classList.contains('is-loading') || btn.disabled) return;
+      e.preventDefault();
+      selectedDate = btn.dataset.date;
+      calendarRoot.querySelectorAll('.calendar-day').forEach(x => x.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      const slots = await fetchAvailableTimes(selectedDate);
+      renderTimeSlots(slots);
     });
-
-    document.querySelectorAll('.calendar-day').forEach(btn => {
-      if (btn.classList.contains('empty') || btn.classList.contains('is-disabled')) return;
-      btn.addEventListener('click', async (e) => {
-        e.preventDefault();
-        selectedDate = btn.dataset.date;
-        document.querySelectorAll('.calendar-day').forEach(x => x.classList.remove('is-active'));
-        btn.classList.add('is-active');
-        const slots = await fetchAvailableTimes(selectedDate);
-        renderTimeSlots(slots);
-      });
-    });
+    gridEl.dataset.bound = 'true';
   }
 
   headerControls.prevBtn.addEventListener('click', () => { viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth()-1, 1); renderCalendar(); });
@@ -152,9 +231,9 @@ if (!bookingForm) {
   bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = (document.getElementById('bookingName')?.value || '').trim();
-    const email = (document.getElementById('bookingEmail')?.value || '').trim();
-    const phone = (document.getElementById('bookingPhone')?.value || '').trim();
+    const name = (root.querySelector('#bookingName')?.value || '').trim();
+    const email = (root.querySelector('#bookingEmail')?.value || '').trim();
+    const phone = (root.querySelector('#bookingPhone')?.value || '').trim();
     const timezone = 'Europe/Berlin';
 
     if (!name) { alert('Bitte geben Sie Ihren Namen ein.'); return; }
@@ -174,7 +253,7 @@ if (!bookingForm) {
         alert('Termin gebucht! Eine Bestätigung wird an Ihre E-Mail gesendet.');
         bookingForm.reset();
         timeslotsContainer.innerHTML = '';
-        document.querySelectorAll('.calendar-day').forEach(x => x.classList.remove('is-active'));
+        calendarRoot.querySelectorAll('.calendar-day').forEach(x => x.classList.remove('is-active'));
         selectedDate = null; selectedSlot = null;
       } else {
         console.error('[booking] booking failed', result);

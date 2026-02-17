@@ -202,6 +202,12 @@
                                     cursor: pointer;
                                     transition: background var(--transition), transform var(--transition);
                                 }
+
+                                .calendar-day.is-loading {
+                                    opacity: 0.5;
+                                    cursor: wait;
+                                    transform: none;
+                                }
                                 
                                 .calendar-day:hover {
                                     background: #2e2e33;

@@ -22,11 +22,11 @@ async function fetchHome() {
     }
   }
   
-  function renderHero(hero) {
-    const titleEl = document.getElementById('hero-title');
-    const subtitleEl = document.getElementById('hero-subtitle');
-    const ctaEl = document.getElementById('hero-cta');
-    const img = document.getElementById('hero-image');
+  function renderHero(hero, root = document) {
+    const titleEl = root.querySelector('#hero-title');
+    const subtitleEl = root.querySelector('#hero-subtitle');
+    const ctaEl = root.querySelector('#hero-cta');
+    const img = root.querySelector('#hero-image');
   
     if (!hero) {
       console.debug('[render] hero object missing');
@@ -55,8 +55,8 @@ async function fetchHome() {
     }
   }
   
-  function renderExpertise(list) {
-    const grid = document.getElementById('expertise-grid');
+  function renderExpertise(list, root = document) {
+    const grid = root.querySelector('#expertise-grid');
     if (!grid || !Array.isArray(list)) return;
   
     grid.innerHTML = '';
@@ -94,8 +94,8 @@ async function fetchHome() {
     });
   }
   
-  function renderProjects(list) {
-    const grid = document.getElementById('projects-grid');
+  function renderProjects(list, root = document) {
+    const grid = root.querySelector('#projects-grid');
     if (!grid) return;
     grid.innerHTML = '';
     if (!Array.isArray(list)) return;
@@ -118,8 +118,8 @@ async function fetchHome() {
     });
   }
   
-  function renderReviews(list) {
-    const grid = document.getElementById('reviews-grid');
+  function renderReviews(list, root = document) {
+    const grid = root.querySelector('#reviews-grid');
     if (!grid) return;
     grid.innerHTML = '';
     if (!Array.isArray(list)) return;
@@ -139,26 +139,34 @@ async function fetchHome() {
     });
   }
   
-  function renderContact(contact) {
+  function renderContact(contact, root = document) {
     if (!contact) {
       console.debug('[render] contact missing');
       return;
     }
-    const email = document.getElementById('contact-email'); if (email) { email.href = `mailto:${safeString(contact.email || '')}`; email.textContent = safeString(contact.email || ''); }
-    const phone = document.getElementById('contact-phone'); if (phone) { phone.href = `tel:${safeString(contact.phone || '')}`; phone.textContent = safeString(contact.phone || ''); }
+    const email = root.querySelector('#contact-email'); if (email) { email.href = `mailto:${safeString(contact.email || '')}`; email.textContent = safeString(contact.email || ''); }
+    const phone = root.querySelector('#contact-phone'); if (phone) { phone.href = `tel:${safeString(contact.phone || '')}`; phone.textContent = safeString(contact.phone || ''); }
     if (contact.booking_api_base) window.__BOOKING_API_BASE__ = safeString(contact.booking_api_base);
   }
   
-  (async function init(){
+  export async function initHomePage(root = document) {
     try {
       const data = await fetchHome();
       setMeta(data || {});
-      renderHero(data?.hero || {});
-      renderExpertise(data?.expertise || []);
-      renderProjects(data?.projects || []);
-      renderReviews(data?.reviews || []);
-      renderContact(data?.contact || {});
-  
+      renderHero(data?.hero || {}, root);
+      renderExpertise(data?.expertise || [], root);
+      renderProjects(data?.projects || [], root);
+      renderReviews(data?.reviews || [], root);
+      renderContact(data?.contact || {}, root);
+
+      try {
+        window.dispatchEvent(new Event('hero:rendered'));
+        window.dispatchEvent(new Event('content:ready'));
+        document.dispatchEvent(new Event('content:rendered'));
+      } catch (e) {
+        // ignore if window/document not available
+      }
+
       requestAnimationFrame(() => {
         if (typeof initScrollAnimations === 'function') {
           try {
@@ -169,12 +177,14 @@ async function fetchHome() {
         } else {
           console.warn('[initScrollAnimations] not defined — skipping');
         }
-        ScrollTrigger.refresh();
+        if (window.ScrollTrigger && typeof window.ScrollTrigger.refresh === 'function') {
+          window.ScrollTrigger.refresh();
+        }
       });
-  
+
     } catch (err) {
       console.error('Failed to load content JSON', err);
     }
-  })();
+  }
   
   

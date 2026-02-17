@@ -4,6 +4,7 @@ import { DateTime } from 'luxon';
 const AIRTABLE_BASE = process.env.AIRTABLE_BASE_ID;
 const AIRTABLE_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BOOKINGS_TABLE = process.env.AIRTABLE_BOOKINGS_TABLE || 'Appointments';
+const HAS_AIRTABLE_CONFIG = Boolean(AIRTABLE_BASE && AIRTABLE_KEY);
 
 async function airtableCreate(fields) {
   const url = `https://api.airtable.com/v0/${AIRTABLE_BASE}/${encodeURIComponent(AIRTABLE_BOOKINGS_TABLE)}`;
@@ -19,6 +20,11 @@ async function airtableCreate(fields) {
 
 export const handler = async (event) => {
   try {
+    if (!HAS_AIRTABLE_CONFIG) {
+      console.warn('[book] Airtable not configured. Set AIRTABLE_BASE_ID and AIRTABLE_API_KEY.');
+      return { statusCode: 500, body: JSON.stringify({ message: 'Airtable not configured' }) };
+    }
+
     const body = JSON.parse(event.body || '{}');
     const { name, email, startLocal, timezone, durationMin = 20, idempotencyKey, source } = body;
     if (!name || !email || !startLocal || !timezone || !idempotencyKey) {
@@ -42,7 +48,7 @@ export const handler = async (event) => {
 
     console.log('[book] airtable create response', created);
 
-    // TEMP DEBUG: await background call and log response (so we can see what's sent)
+    // TEMP DEB: await background call and log response (so we can see what's sent)
     const baseUrl = process.env.URL || process.env.DEPLOY_URL || 'http://localhost:8888';
     try {
       const payload = {

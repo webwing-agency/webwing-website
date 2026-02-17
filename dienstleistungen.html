@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unser Angebot an Dienstleistungnen - Webwing Design Agency</title>
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/critical.css">
     <script type="module" src="/src/main.js"></script>   
 </head>
-<body class="page-services">
+<body class="page-services" data-barba="wrapper">
 
   <header>
     <a href="index.html" class="nav-logo"> <img src="assets/logo.svg" width="80" height="40" alt="Logo"></a>
@@ -31,7 +32,7 @@
 
       </div>
       <div class="popup-menu-decorations">
-        <span>Webwing Design Agency UG</span><span>+</span>
+        <span>Webwing Design Agency </span><span>+</span>
         <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
         <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
         <span>Available for Work</span>
@@ -39,7 +40,7 @@
     </div>
   </header>
 
-    <main>
+    <main data-barba="container" data-barba-namespace="services" data-body-class="page-services">
 
         <section class="services-page-fold">
       
@@ -115,7 +116,7 @@
             
             <div class="logo-container">
     
-                <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="logo"></object>
+                <img src="/assets/logo.svg" alt="Webwing Logo" class="logo">
     
                 <span class="slogan">Your Brand’s Wingman Online.</span>
     
@@ -127,360 +128,13 @@
                 <div class="footer-nav-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
                 <div class="footer-nav-link"><a href="kontakt.html">Kontakt</a></div>
             </nav>
-            <div class="legal-links">
-                <a href="impressum.html">Impressum</a>
-                <a href="datenschutzerklärung.html">Datenschutzerklärung</a>
-            </div>
+        <div class="legal-links">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutzerklärung.html">Datenschutzerklärung</a>
+            <a href="agb.html">AGB</a>
+        </div>
         </div>
     </footer>   
-
-    <style>
-        .selection-flex {
-            width: 100%;
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 5rem;
-            flex-wrap: wrap-reverse;
-            position: relative; /* damit absolute Kinder (search-wrapper) relativ zu diesem Container sind */
-            min-height: 3rem;   
-        }
-
-
-        .filter-select, .search-bar {
-            background-color: rgba(255, 255, 255, 0.025);
-            height: 2.75rem;
-            padding: 0rem 1.5rem;
-            border-radius: 30px;
-            border: 0.5px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            color: var(--text-color);
-            transition: background-color 0.2s, color 0.2s;
-            text-wrap: nowrap;
-            display: inline-block
-        }
-
-        .filter-select:hover, .search-bar:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: #fff;
-            transition: background-color 0.2s, color 0.2s;
-        }
-
-        .filter-select, .search-bar::placeholder {
-            font-weight: 500;
-            font-size: var(--text-font-size);
-        }
-
-        .filter-select {
-            flex: 1;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-wrap: nowrap;
-        }
-
-            .filter-select.active {
-              background-color: rgba(255, 255, 255, 0.15) !important;
-              border-color: rgba(255, 255, 255, 0.4) !important;
-            }
-
-        .search-wrapper {
-            position: absolute;
-            right: 0;
-            flex: 2;
-            min-width: 20rem;
-        }
-
-            .search-icon {
-                position: absolute;
-                left: 12px;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 18px;
-                height: 18px;
-                color: var(--text-color);
-                pointer-events: none;
-            }
-
-            .search-bar {
-                width: 100%;
-                padding: 10px 12px 10px 40px; 
-                font-size: 16px;
-                box-sizing: border-box;
-                color: #fff;
-            }
-
-        .services-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-            width: 100%;
-        }
-
-        .service-images-grid {
-            width: calc(90vw - 4rem);
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            height: 20rem;
-            width: 100%;
-            overflow-x: scroll;
-        }
-
-                .service-image {
-                    flex: 1;
-                    object-fit: cover;
-                    border: var(--global-border);
-                }
-
-
-        .service-title {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-specs {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            margin-bottom: 1rem;
-            font-size: var(--text-font-size);
-            color: var(--text-color);
-            line-height: 1.8;
-        }
-
-        .service-card-text-container {
-            justify-content: space-between;
-            gap: 2rem;
-            flex-direction: column;
-        }   
-
-            .service-specs {
-                flex: 1;
-            }
-
-            .service-description {
-                flex: 3;
-                font-size: var(--text-font-size);
-                color: var(--text-color);
-            }
-
-        .card-cta-container {
-            margin-top: 3rem;
-        }
-
-        .search-wrapper {
-            position: relative;
-            --search-count: "";
-        }
-
-        .search-wrapper::after {
-            content: var(--search-count);
-            position: absolute;
-            right: 1rem;
-            top: 1.5rem;
-            display: block;
-            margin-top: 0.25rem;
-            font-size: var(--text-font-size);
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .search-highlight {
-            background-color: rgba(255, 255, 0, 0.5);
-            padding: 0 0.1em;
-            border-radius: 2px;
-        }
-
-        .filter-select.active {
-            background-color: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-
-        .search-wrapper {
-            position: relative;
-            --search-count: "";
-        }
-
-        .search-wrapper::after {
-            content: var(--search-count);
-            display: block;
-            margin-top: 0.25rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .search-highlight {
-            background-color: rgba(255, 255, 0, 0.25);
-            padding: 0 0.1em;
-            border-radius: 2px;
-        }
-
-        .filter-select.active {
-          background-color: rgba(255, 255, 255, 0.15);
-          border-color: rgba(255, 255, 255, 0.4);
-      }
-
-      .filter-select:hover:not(.active) {
-          background-color: rgba(255, 255, 255, 0.05);
-      }
-
-      .filter-select {
-          transition: background-color 0.2s, border-color 0.2s;
-      }
-
-
-    </style>
-
-<script src="js/gsap/gsap-global.js"></script>
-
-
-<script defer>
-  document.addEventListener('DOMContentLoaded', () => {
-    document.addEventListener('servicesRendered', initSearch);
-  });
-  
-  function initSearch() {
-    const filters = document.querySelectorAll('.filter-select');
-    const wrapper = document.querySelector('.search-wrapper');
-    const input = wrapper?.querySelector('.search-bar');
-    const cards = Array.from(document.querySelectorAll('.service-card'));
-  
-    if (!wrapper || !input || cards.length === 0) return;
-  
-    const normalize = s =>
-      (s || '')
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .trim();
-  
-    const escapeRegExp = s =>
-      s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  
-    const debounce = (fn, wait = 120) => {
-      let t;
-      return (...args) => {
-        clearTimeout(t);
-        t = setTimeout(() => fn(...args), wait);
-      };
-    };
-  
-    const index = cards.map(card => {
-      const titleEl = card.querySelector('.service-title');
-      const descEl = card.querySelector('.service-description');
-      const specsEl = card.querySelector('.service-specs');
-  
-      return {
-        card,
-        titleEl,
-        descEl,
-        specsEl,
-        originalDisplay: card.style.display || '',
-        titleHTML: titleEl?.innerHTML || '',
-        descHTML: descEl?.innerHTML || '',
-        specsHTML: specsEl?.innerHTML || '',
-        searchText: normalize(
-          `${titleEl?.textContent || ''} ${descEl?.textContent || ''} ${specsEl?.textContent || ''}`
-        )
-      };
-    });
-  
-    const restore = item => {
-      if (item.titleEl) item.titleEl.innerHTML = item.titleHTML;
-      if (item.descEl) item.descEl.innerHTML = item.descHTML;
-      if (item.specsEl) item.specsEl.innerHTML = item.specsHTML;
-    };
-  
-    const highlight = (el, query) => {
-      if (!el || !query) return;
-      const rx = new RegExp(escapeRegExp(query), 'gi');
-  
-      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-      const nodes = [];
-      while (walker.nextNode()) nodes.push(walker.currentNode);
-  
-      nodes.forEach(node => {
-        const text = node.nodeValue;
-        if (!rx.test(text)) return;
-        rx.lastIndex = 0;
-  
-        const frag = document.createDocumentFragment();
-        let last = 0;
-        let match;
-  
-        while ((match = rx.exec(text))) {
-          frag.append(text.slice(last, match.index));
-          const mark = document.createElement('mark');
-          mark.className = 'search-highlight';
-          mark.textContent = match[0];
-          frag.append(mark);
-          last = match.index + match[0].length;
-        }
-  
-        frag.append(text.slice(last));
-        node.replaceWith(frag);
-      });
-    };
-  
-    const runFilter = value => {
-      const query = value.trim();
-      const qNorm = normalize(query);
-  
-      let visible = 0;
-  
-      index.forEach(item => {
-        restore(item);
-        if (!query || item.searchText.includes(qNorm)) {
-          item.card.style.display = item.originalDisplay;
-          if (query) {
-            highlight(item.titleEl, query);
-            highlight(item.descEl, query);
-            highlight(item.specsEl, query);
-          }
-          visible++;
-        } else {
-          item.card.style.display = 'none';
-        }
-      });
-  
-      wrapper.style.setProperty(
-        '--search-count',
-        query ? `"${visible} von ${index.length} Ergebnissen"` : '""'
-      );
-    };
-  
-    input.addEventListener('input', debounce(e => runFilter(e.target.value)));
-  
-    document.querySelector('.selection-flex').addEventListener('click', e => {
-      const filter = e.target.closest('.filter-select');
-      if (!filter) return;
-  
-      const value = filter.textContent.trim().toLowerCase();
-  
-      filters.forEach(f => f.classList.remove('active'));
-  
-      if (input.value.trim().toLowerCase() === value) {
-        input.value = '';
-      } else {
-        input.value = value;
-        filter.classList.add('active');
-      }
-  
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-    });
-  
-    input.addEventListener('input', () => {
-      if (input.value === '') {
-        filters.forEach(f => f.classList.remove('active'));
-      }
-    });
-  
-    runFilter('');
-  }
-  </script>
-  
 
 </body>
 </html>

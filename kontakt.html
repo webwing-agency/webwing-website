@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontaktieren sie uns - Webwing Design Agency UG - Your Brand's Wingman Online</title>
+    <title>Kontaktieren sie uns - Webwing Design Agency - Your Brand's Wingman Online</title>
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/critical.css">
     <script type="module" src="/src/main.js"></script>
 </head>
-<body class="page-contact">
+<body class="page-contact" data-barba="wrapper">
 
   <header>
     <a href="index.html" class="nav-logo"> <img src="assets/logo.svg" width="80" height="40" alt="Logo"></a>
@@ -31,7 +32,7 @@
 
       </div>
       <div class="popup-menu-decorations">
-        <span>Webwing Design Agency UG</span><span>+</span>
+        <span>Webwing Design Agency</span><span>+</span>
         <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
         <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
         <span>Available for Work</span>
@@ -39,7 +40,7 @@
     </div>
   </header>
 
-    <main>
+    <main data-barba="container" data-barba-namespace="contact" data-body-class="page-contact">
 
         <section class="contact-page-fold">
           <h2 class="contact-page-title page-title-small page-title"></h2>
@@ -49,22 +50,20 @@
               <h2 class="contact-card-title card-title"></h2>
               <p class="contact-card-text"></p>
               <p class="contact-person"></p>
-              </p>
-              <p class="contact-page-subtitle"></p>
               <div class="contact-details-container">
                     <div class="contact-container">
                       <div class="contact-icon-container icon-container ">
-                        <object data="assets/icons/mail.svg" type="image/svg+xml" width="40" height="40" class="icon"></object>
+                        <img src="/assets/icons/mail.svg" alt="E-Mail" class="icon">
                       </div>
-                      <a id="contact-email" href="" class="contact-link" id="contact-email"></a>
+                      <a id="contact-email" href="" class="contact-link"></a>
                     </div>
                     <div class="contact-container">
                       <div class="contact-icon-container icon-container">
-                        <object data="assets/icons/phone.svg" type="image/svg+xml" width="40" height="40" class="icon"></object>
+                        <img src="/assets/icons/phone.svg" alt="Telefon" class="icon">
                       </div>
-                      <a id="contact-phone" href="" class="contact-link" id="contact-phone"></a>
+                      <a id="contact-phone" href="" class="contact-link"></a>
+                    </div>
               </div>
-            </div>
             </div>
             <div class="right-side">
               <form class="contact-form">
@@ -90,6 +89,7 @@
               </form>
             </div>
           </div>
+          </div>
         </section>
       </main>
       
@@ -99,7 +99,7 @@
             
             <div class="logo-container">
     
-                <object data="assets/logo.svg" type="image/svg+xml" width="40" height="40" class="logo"></object>
+                <img src="/assets/logo.svg" alt="Webwing Logo" class="logo">
     
                 <span class="slogan">Your Brand’s Wingman Online.</span>
     
@@ -114,211 +114,9 @@
             <div class="legal-links">
                 <a href="impressum.html">Impressum</a>
                 <a href="datenschutzerklärung.html">Datenschutzerklärung</a>
+                <a href="agb.html">AGB</a>
             </div>
         </div>
     </footer>    
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const API_BASE = window.API_BASE || 'http://localhost:3000';
-      const form = document.querySelector('.contact-form');
-      if (!form) return;
-    
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const name = document.getElementById('contactName').value.trim();
-        const email = document.getElementById('contactEmail').value.trim();
-        const phone = document.getElementById('contactPhone').value.trim();
-        const message = document.getElementById('messageText').value.trim();
-    
-        if (!name || !email || !message) {
-          alert('Bitte Name, E-Mail und Nachricht ausfüllen.');
-          return;
-        }
-    
-        // Turnstile token - widget injects an input named "cf-turnstile-response" after challenge
-        const tokenEl = document.querySelector('input[name="cf-turnstile-response"]');
-        const token = tokenEl ? tokenEl.value : null;
-    
-        // If you temporarily enabled ALLOW_CONTACT_NO_CAPTCHA on backend, token may be omitted.
-        const payload = { name, email, phone, message, token };
-    
-        const submitBtn = form.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.dataset.orig = submitBtn.textContent;
-        submitBtn.textContent = 'Senden…';
-    
-        try {
-          const res = await fetch(`${API_BASE}/api/contact`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          const data = await res.json();
-          if (res.ok) {
-            alert('Danke — Ihre Nachricht wurde gesendet.');
-            form.reset();
-            // reset Turnstile if included
-            if (typeof turnstile !== 'undefined' && typeof turnstile.reset === 'function') {
-              // there may be multiple widgets; this resets all
-              try { turnstile.reset(); } catch(e){ /* ignore */ }
-            }
-          } else {
-            alert('Fehler: ' + (data?.message || 'Serverfehler'));
-          }
-        } catch (err) {
-          console.error('Contact submit error', err);
-          alert('Netzwerkfehler. Bitte später versuchen.');
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = submitBtn.dataset.orig || 'Senden';
-        }
-      });
-    });
-    </script>
-
-<style>
-
-
-  .contact-page-fold {
-          width: 100vw;
-          padding: 4rem 10vw;
-          padding-top: 20vh;
-          padding-bottom: 20rem;
-          min-height: 100vh;
-          margin-top: 0;
-  }
-
-  .contact-page-title {
-      margin-bottom: 1rem;
-  }
-
-  .contact-page-subtitle {
-      max-width: 500px;
-      text-align: center;
-  }
-
-  .contact-card {
-      background-color: var(--card-bg);
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 900px;
-      margin-top: 4rem;
-  }
-
-  .contact-card .left-side, .contact-card  .right-side {
-      width: 100%;
-      padding: 2.5rem;
-  }
-
-
-  .left-side {
-      width: 100%;
-      flex: 4;
-      padding: 1rem;
-      background: radial-gradient(120% 90% at 17% 12%, rgba(230, 0, 255, 0.25) 0%, rgba(55, 0, 255, 0.25) 100%);
-      border-radius: 25px 0px 0px 25px;
-  }
-
-      .contact-card-title {
-          max-width: 90%;
-          font-size: var(--main-card-title-font-size);
-      }
-
-      .contact-card-text {
-          width: 85%;
-          margin: 1.5rem 0 1rem 0;
-      }
-
-      .contact-details-container {
-          margin-top: 3rem;
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-      }
-
-          .contact-container {
-              display: flex;
-              align-items: center;
-              gap: 1rem;
-          }
-
-              .contact-icon-container {
-                  background-color: rgba(230, 0, 255, 0.25);
-              }
-
-              .contact-link {
-                  text-decoration: none;
-                  color: #fff;
-              }
-
-  .right-side {
-      width: 100%;
-      flex: 6;
-      padding: 1rem;
-  }
-
-      .contact-form {
-          display: flex;
-          flex-direction: column;
-          gap: 17px;
-      }
-          
-          .form-group {
-              display: flex;
-              flex-direction: column;
-              gap: 3px;
-          }
-          
-              .form-label {
-                  color: var(--text-muted);
-                  font-size: 14px;
-                  margin-left: 20px;
-              }
-              
-              .form-input {
-                  background: var(--bg-soft);
-                  border: 1px solid #2f2f33;
-                  color: var(--text-main);
-                  padding: 14px 18px;
-                  border-radius: var(--radius-md);
-                  font-size: var(--text-font-size);
-                  outline: none;
-                  transition: border var(--transition);
-                  border-radius: 30px;
-              }
-
-              textarea {
-                  font-family: 'Roboto', sans-serif;
-              }
-
-              .form-input-text {
-                  height: 100px;
-              }
-              
-              .form-input::placeholder {
-                  color: #6f6f75;
-              }
-              
-              .form-input:focus {
-                  border-color: var(--accent);
-              }
-              
-                  .submit-container {
-                      margin-top: 12px;
-                  }
-
-                      .cta {
-                          cursor: pointer;
-                      }
-                      
-  </style>
-
-    
 </body>
 </html>

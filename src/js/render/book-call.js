@@ -4,7 +4,7 @@ async function fetchBookCall() {
     return res.json();
   }
  
-function setMetaAndTitle(data) {
+function setMetaAndTitle(data, root = document) {
     if (data.meta_title) document.title = data.meta_title;
     if (data.meta_description) {
       let md = document.querySelector('meta[name="description"]');
@@ -15,35 +15,35 @@ function setMetaAndTitle(data) {
       }
       md.content = data.meta_description;
     }
-    const pageTitleEl = document.querySelector('.book-call-title') || document.querySelector('.page-title');
+    const pageTitleEl = root.querySelector('.book-call-title') || root.querySelector('.page-title');
     if (pageTitleEl && data.page_title) pageTitleEl.textContent = data.page_title;
-    const subtitle = document.querySelector('.book-call-subtitle');
+    const subtitle = root.querySelector('.book-call-subtitle');
     if (subtitle && data.subtitle) subtitle.textContent = data.subtitle;
-    const cardTitleEl = document.querySelector('.book-call-card-title');
+    const cardTitleEl = root.querySelector('.book-call-card-title');
     if (cardTitleEl && data.card_title) cardTitleEl.textContent = data.card_title;
-    const cardTextEl = document.querySelector('.book-call-card-text');
+    const cardTextEl = root.querySelector('.book-call-card-text');
     if (cardTextEl && data.card_text) cardTextEl.textContent = data.card_text;
   }
 
-  function setContactFields(data) {
-    const emailEl = document.getElementById('contact-email') || document.querySelector('.contact-link[href^="mailto:"]');
+  function setContactFields(data, root = document) {
+    const emailEl = root.querySelector('#contact-email') || root.querySelector('.contact-link[href^="mailto:"]');
     if (emailEl && data.email) {
       emailEl.href = `mailto:${data.email}`;
       emailEl.textContent = data.email;
     }
-    const phoneEl = document.getElementById('contact-phone') || document.querySelector('.contact-link[href^="tel:"]');
+    const phoneEl = root.querySelector('#contact-phone') || root.querySelector('.contact-link[href^="tel:"]');
     if (phoneEl && data.phone) {
       phoneEl.href = `tel:${data.phone}`;
       phoneEl.textContent = data.phone;
     }
     }
 
-  (async function init() {
+  export async function initBookCallPage(root = document) {
     try {
       const data = await fetchBookCall();
-      setMetaAndTitle(data);
-      setContactFields(data);
+      setMetaAndTitle(data, root);
+      setContactFields(data, root);
     } catch (err) {
       console.error('book-call render error', err);
     }
-  })();
+  }

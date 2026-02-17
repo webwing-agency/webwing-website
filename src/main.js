@@ -9,86 +9,150 @@
 // src/main.js
 
 // global imports
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import './styles/global.css';
 import './styles/responsive/desktop.css';
 import './js/gsap/gsap-global.js';
-import './js/nav.js';
+import { initNav } from './js/nav.js';
+import { initBarba } from './js/barba.js';
+import { initPrefetch } from './js/prefetch.js';
 
-// --- conditional page scripts ---
-(async () => {
+let scribbleApi = null;
+let globalListenersBound = false;
+
+async function initPage(containerOverride = null) {
   const body = document.body;
+  const container = containerOverride || (function () {
+    const containers = document.querySelectorAll('main[data-barba="container"]');
+    return containers.length ? containers[containers.length - 1] : document.querySelector('main');
+  })();
+  if (container?.dataset.pageInit === '1') return;
+  if (container) container.dataset.pageInit = '1';
 
   try {
-
     // -------- HOME --------
     if (body.classList.contains('page-home')) {
-        await Promise.all([
-            import('./styles/index.css'),
-            import('./js/gsap/gsap-index.js'),
-            import('./js/render/index.js'),
-            import('./js/booking/main.js')
-          ]);          
-      const { inlineScribbles } = await import('./js/ui/scribbles.js');
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', inlineScribbles, { once: true });
-      } else {
-        inlineScribbles();
+      await import('./styles/index.css');
+      await import('./js/gsap/gsap-index.js');
+      const [
+        { initHomePage },
+        { initBookingPage },
+        { inlineScribbles, rerunScribbles },
+        { initHeroMesh }
+      ] = await Promise.all([
+        import('./js/render/index.js'),
+        import('./js/booking/main.js'),
+        import('./js/ui/scribbles.js'),
+        import('./js/ui/hero-mesh.js')
+      ]);
+
+      scribbleApi = { inlineScribbles, rerunScribbles };
+      await initHomePage(container);
+      initHeroMesh();
+      if (container?.querySelector('#booking-form')) {
+        initBookingPage(container);
       }
+      const scribbleReady = inlineScribbles({ heroControlled: true });
+      Promise.resolve(scribbleReady).finally(() => {
+        if (window.IndexAnimations?.reinit) window.IndexAnimations.reinit();
+      });
     }
 
     // -------- BOOKING --------
     if (body.classList.contains('page-booking')) {
-      await Promise.all([
-        import('./styles/individual/book-call.css'),
+      await import('./styles/individual/book-call.css');
+      const [{ initBookCallPage }, { initBookingPage }] = await Promise.all([
         import('./js/render/book-call.js'),
-        import('./js/booking/main.js'),
+        import('./js/booking/main.js')
       ]);
+      await initBookCallPage(container);
+      initBookingPage(container);
     }
 
     // -------- CONTACT --------
     if (body.classList.contains('page-contact')) {
-      await import('./js/render/contact.js');
+      await import('./styles/individual/contact.css');
+      const [{ initContactPage }, { initContactForm }] = await Promise.all([
+        import('./js/render/contact.js'),
+        import('./js/contact-form.js')
+      ]);
+      await initContactPage();
+      initContactForm();
     }
 
     // -------- LEGAL --------
     if (body.classList.contains('page-legal')) {
-      await import('./js/render/legal.js');
+      await import('./styles/individual/legal.css');
+      const { initLegalPage } = await import('./js/render/legal.js');
+      await initLegalPage();
     }
 
     // -------- PROJECTS --------
     if (body.classList.contains('page-projects')) {
-      await import('./js/render/projects.js');
+      await import('./styles/individual/projects.css');
+      const { initProjectsPage } = await import('./js/render/projects.js');
+      await initProjectsPage(container);
     }
 
     // -------- SERVICES --------
     if (body.classList.contains('page-services')) {
-      await import('./js/render/services.js');
+      await import('./styles/individual/services.css');
+      const { initServicesPage } = await import('./js/render/services.js');
+      await initServicesPage(container);
     }
 
   } catch (err) {
     console.error('[main] Failed to load page scripts', err);
   }
-})();
+
+  if (window.GlobalAnimations?.init) {
+    try {
+      window.GlobalAnimations.init();
+      if (window.ScrollTrigger?.refresh) {
+        window.ScrollTrigger.refresh(true);
+      }
+    } catch (e) {
+      console.warn('[main] GlobalAnimations init failed', e);
+    }
+  }
+
+  // Prefetch likely next pages after each page init (works with Barba)
+  initPrefetch();
+}
+
+function bindGlobalListeners() {
+  if (globalListenersBound) return;
+  globalListenersBound = true;
+
+  ['servicesRendered', 'projectsRendered'].forEach(evName => {
+    document.addEventListener(evName, () => {
+      refreshScribbles(`event:${evName}`);
+    });
+  });
+
+  document.addEventListener('content:rendered', () => {
+    refreshScribbles('event:content:rendered');
+  });
+}
+
+window.__APP_PAGE_INIT__ = initPage;
+
+initNav();
+bindGlobalListeners();
+initPage();
+initBarba();
 
   
 
 // ... then your animation init/refresh code follows here
 
 function refreshScribbles(reason = '') {
-    if (!scribblesApi?.rerunScribbles) return;
-    scribblesApi.rerunScribbles();
+    if (!scribbleApi?.rerunScribbles) return;
+    scribbleApi.rerunScribbles();
     console.log('[main] rerunScribbles()', reason);
   }
   
-  ['servicesRendered', 'projectsRendered'].forEach(evName => {
-    document.addEventListener(evName, () => {
-      refreshScribbles(`event:${evName}`);
-    });
-  });
-  
-  document.addEventListener('content:rendered', () => {
-    refreshScribbles('event:content:rendered');
-  });
+  // listeners bound in bindGlobalListeners()
 
   
 

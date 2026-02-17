@@ -4,11 +4,20 @@ import { DateTime } from 'luxon';
 const AIRTABLE_BASE = process.env.AIRTABLE_BASE_ID;
 const AIRTABLE_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_DISABLED_DATES_TABLE = process.env.AIRTABLE_DISABLED_DATES_TABLE || 'DisabledDates';
-const AIRTABLE_BOOKINGS_TABLE = process.env.AIRTABLE_BOOKINGS_TABLE || 'Appointmens';
+const AIRTABLE_BOOKINGS_TABLE = process.env.AIRTABLE_BOOKINGS_TABLE || 'Appointments';
+const HAS_AIRTABLE_CONFIG = Boolean(AIRTABLE_BASE && AIRTABLE_KEY);
+let warnedMissingAirtable = false;
 
 function pad(n){ return String(n).padStart(2,'0'); }
 
 async function listAirtableRecords(tableName) {
+  if (!HAS_AIRTABLE_CONFIG) {
+    if (!warnedMissingAirtable) {
+      warnedMissingAirtable = true;
+      console.warn('[availability] Airtable not configured. Set AIRTABLE_BASE_ID and AIRTABLE_API_KEY.');
+    }
+    return { ok: false, status: 0, body: 'Airtable not configured' };
+  }
   const url = `https://api.airtable.com/v0/${AIRTABLE_BASE}/${encodeURIComponent(tableName)}`;
   try {
     const res = await fetch(url, { headers: { Authorization: `Bearer ${AIRTABLE_KEY}` } });

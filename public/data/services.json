@@ -20,10 +20,10 @@
       ],
       "description": "Wir gestalten digitale Erlebnisse, die Ihre Nutzerinnen und Nutzer schnell verstehen, lieben und zu den gewünschten Aktionen führen — weniger Verwirrung, mehr Vertrauen, bessere Conversion. Unser Prozess verbindet Nutzerforschung, datengetriebene Entscheidungen und pixelgenaue Gestaltung: Wireframes und interaktive Prototypen zeigen früh die Nutzerreise, Usability-Tests validieren Annahmen, und Design-Systeme sorgen für Konsistenz über alle Touchpoints hinweg. Ergebnis: Produkte, die nicht nur schön aussehen, sondern messbar besser funktionieren. Technische Merkmale",
       "specs": [
-        "UI/UX Design",
-        "Responsive Layout",
-        "Prototyping",
-        "Branding"
+        { "text": "UI/UX Design", "icon": "fa-solid fa-pen-ruler" },
+        { "text": "Responsive Layout", "icon": "fa-solid fa-mobile-screen-button" },
+        { "text": "Prototyping", "icon": "fa-solid fa-diagram-project" },
+        { "text": "Branding", "icon": "fa-solid fa-palette" }
       ],
       "ctas": {
         "more_link": "",
@@ -42,10 +42,10 @@
       ],
       "description": "Maßgeschneiderte Frontend- und Backend-Entwicklung mit Fokus auf Performance und Wartbarkeit.",
       "specs": [
-        "React",
-        "Jamstack",
-        "Performance Optimierung",
-        "APIs"
+        { "text": "React", "icon": "fa-solid fa-atom" },
+        { "text": "Jamstack", "icon": "fa-solid fa-layer-group" },
+        { "text": "Performance Optimierung", "icon": "fa-solid fa-gauge-high" },
+        { "text": "APIs", "icon": "fa-solid fa-plug" }
       ],
       "ctas": {
         "more_link": "",
@@ -64,10 +64,10 @@
       ],
       "description": "Branding, Illustration und Marketing-Materialien, die Ihre Kommunikation klar und attraktiv machen.",
       "specs": [
-        "Logo Design",
-        "Illustration",
-        "Print Assets",
-        "Marketing Assets"
+        { "text": "Logo Design", "icon": "fa-solid fa-pen-nib" },
+        { "text": "Illustration", "icon": "fa-solid fa-paintbrush" },
+        { "text": "Print Assets", "icon": "fa-solid fa-print" },
+        { "text": "Marketing Assets", "icon": "fa-solid fa-bullhorn" }
       ],
       "ctas": {
         "more_link": "",
@@ -78,5 +78,6 @@
     }
   ],
   "cta_text": "kostenloses Erstgespräch buchen",
-  "cta_label": "Sie haben Fragen zu unserem Angebot?"
+  "cta_label": "Sie haben Fragen zu unserem Angebot?",
+  "cta_link": "kostenloses-erstgespräch.html"
 }

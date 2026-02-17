@@ -7,7 +7,7 @@ async function loadAndRender(path){
     if (data.meta_description) document.querySelector('meta[name="description"]')?.setAttribute('content', data.meta_description);
     const titleEl = document.querySelector('.page-title-small') || document.querySelector('h1');
     if (titleEl && data.page_title) titleEl.textContent = data.page_title;
-    const container = document.querySelector('.legal-section') || document.querySelector('main');
+    const container = document.querySelector('.legal-content') || document.querySelector('.legal-section') || document.querySelector('main');
     if (container && data.content_html) {
       // content_html is markdown in config; the CMS stored markdown. We will render as simple HTML
       // If CMS field is actually markdown, the JSON contains markdown string; we insert as text or basic conversion.
@@ -19,9 +19,15 @@ async function loadAndRender(path){
     }
   }
   
-  (async function(){
-    // try both files; which one exists is determined by the page route
-    await loadAndRender('/data/impressum.json');
-    await loadAndRender('/data/privacy.json');
-  })();
+  export async function initLegalPage() {
+    const main = document.querySelector('main[data-legal]');
+    const key = main?.dataset?.legal;
+    const map = {
+      impressum: '/data/impressum.json',
+      privacy: '/data/privacy.json',
+      agb: '/data/agb.json'
+    };
+    const target = map[key] || '/data/impressum.json';
+    await loadAndRender(target);
+  }
   
