@@ -404,7 +404,7 @@ header {
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-image: url('../assets/icons/frame.svg');
+                background-image: url('/assets/icons/frame.svg');
                 background-size: cover; 
                 background-position: center; 
                 z-index: 0; 
@@ -423,7 +423,7 @@ header {
     width: 100vw;
     height: 100vh;
     padding: 2rem 2rem;
-    background-image: url('../assets/nav-bg.jpg');
+    background-image: url('/assets/nav-bg.jpg');
     background-size: cover;
     background-position: center;
     display: none;
