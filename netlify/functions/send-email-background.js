@@ -151,7 +151,8 @@ export default async (req, context) => {
     const commonHeaders = { 'List-Unsubscribe': `<mailto:${FROM_EMAIL}>` };
 
     if (payload.type === 'booking') {
-      const { name, email, startLocal, timezone = process.env.BUSINESS_TZ || 'Europe/Berlin', durationMin = 20, airtableResponse } = payload;
+      const { name, email, startLocal, timezone = process.env.BUSINESS_TZ || 'Europe/Berlin', durationMin = 20, baserowResponse, airtableResponse } = payload;
+      const bookingResponse = baserowResponse || airtableResponse || {};
       if (!name || !email || !startLocal) {
         console.warn('[send-email-background] booking payload missing fields', { name, email, startLocal });
         return undefined;
@@ -188,12 +189,12 @@ export default async (req, context) => {
         </div>
       `;
 
-      const ownerText = `Neue Buchung von ${name}\nEmail: ${email}\nStart: ${startDT.setLocale('de-DE').toLocaleString(DateTime.DATETIME_FULL)}\nAirtableId: ${airtableResponse?.id || 'n/a'}`;
+      const ownerText = `Neue Buchung von ${name}\nEmail: ${email}\nStart: ${startDT.setLocale('de-DE').toLocaleString(DateTime.DATETIME_FULL)}\nBookingId: ${bookingResponse?.id || 'n/a'}`;
       const ownerHtml = `<div style="font-family:system-ui, -apple-system, 'Segoe UI', Roboto, Arial; color:#111;">
         <p>Neue Buchung von <strong>${name}</strong></p>
         <p>Email: ${email}</p>
         <p>Start: ${startDT.setLocale('de-DE').toLocaleString(DateTime.DATETIME_FULL)}</p>
-        <p>AirtableId: ${airtableResponse?.id || 'n/a'}</p>
+        <p>BookingId: ${bookingResponse?.id || 'n/a'}</p>
       </div>`;
 
       const attachments = [{

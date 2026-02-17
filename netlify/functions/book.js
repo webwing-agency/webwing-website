@@ -1,28 +1,32 @@
 // netlify/functions/book.js
 import { DateTime } from 'luxon';
 
-const AIRTABLE_BASE = process.env.AIRTABLE_BASE_ID;
-const AIRTABLE_KEY = process.env.AIRTABLE_API_KEY;
-const AIRTABLE_BOOKINGS_TABLE = process.env.AIRTABLE_BOOKINGS_TABLE || 'Appointments';
-const HAS_AIRTABLE_CONFIG = Boolean(AIRTABLE_BASE && AIRTABLE_KEY);
+const BASEROW_URL_RAW = process.env.BASEROW_URL || '';
+const BASEROW_URL = BASEROW_URL_RAW.replace(/\/$/, '');
+const BASEROW_TOKEN = process.env.BASEROW_TOKEN;
+const BASEROW_BOOKINGS_TABLE_ID = process.env.BASEROW_BOOKINGS_TABLE_ID;
+const HAS_BASEROW_CONFIG = Boolean(BASEROW_URL && BASEROW_TOKEN && BASEROW_BOOKINGS_TABLE_ID);
 
-async function airtableCreate(fields) {
-  const url = `https://api.airtable.com/v0/${AIRTABLE_BASE}/${encodeURIComponent(AIRTABLE_BOOKINGS_TABLE)}`;
-  console.log('[book] airtable create URL', url);
+async function baserowCreate(fields) {
+  const url = `${BASEROW_URL}/api/database/rows/table/${BASEROW_BOOKINGS_TABLE_ID}/?user_field_names=true`;
+  console.log('[book] baserow create URL', url);
   const res = await fetch(url, {
     method: 'POST',
-    headers: { Authorization: `Bearer ${AIRTABLE_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ fields })
+    headers: {
+      Authorization: `Token ${BASEROW_TOKEN}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(fields)
   });
   const text = await res.text();
-  try { return JSON.parse(text); } catch(e) { return { error: 'invalid-json', raw: text }; }
+  try { return JSON.parse(text); } catch (e) { return { error: 'invalid-json', raw: text }; }
 }
 
 export const handler = async (event) => {
   try {
-    if (!HAS_AIRTABLE_CONFIG) {
-      console.warn('[book] Airtable not configured. Set AIRTABLE_BASE_ID and AIRTABLE_API_KEY.');
-      return { statusCode: 500, body: JSON.stringify({ message: 'Airtable not configured' }) };
+    if (!HAS_BASEROW_CONFIG) {
+      console.warn('[book] Baserow not configured. Set BASEROW_URL, BASEROW_TOKEN, BASEROW_BOOKINGS_TABLE_ID.');
+      return { statusCode: 500, body: JSON.stringify({ message: 'Baserow not configured' }) };
     }
 
     const body = JSON.parse(event.body || '{}');
@@ -34,7 +38,7 @@ export const handler = async (event) => {
     const startUTC = DateTime.fromISO(startLocal, { zone: timezone }).toUTC().toISO();
     const endUTC = DateTime.fromISO(startLocal, { zone: timezone }).plus({ minutes: Number(durationMin) }).toUTC().toISO();
 
-    const created = await airtableCreate({
+    const created = await baserowCreate({
       Name: name,
       Email: email,
       StartUTC: startUTC,
@@ -46,14 +50,14 @@ export const handler = async (event) => {
       IdempotencyKey: idempotencyKey
     });
 
-    console.log('[book] airtable create response', created);
+    console.log('[book] baserow create response', created);
 
     // TEMP DEB: await background call and log response (so we can see what's sent)
     const baseUrl = process.env.URL || process.env.DEPLOY_URL || 'http://localhost:8888';
     try {
       const payload = {
         type: 'booking',
-        name, email, startLocal, timezone, durationMin, airtableResponse: created
+        name, email, startLocal, timezone, durationMin, baserowResponse: created
       };
       console.log('[book] triggering background with payload', payload);
       const bgRes = await fetch(`${baseUrl}/.netlify/functions/send-email-background`, {
@@ -68,7 +72,7 @@ export const handler = async (event) => {
       console.warn('[book] background trigger failed', e);
     }
 
-    return { statusCode: 200, body: JSON.stringify({ message: 'booked', airtableResponse: created }) };
+    return { statusCode: 200, body: JSON.stringify({ message: 'booked', baserowResponse: created }) };
   } catch (err) {
     console.error('book error', err);
     return { statusCode: 500, body: JSON.stringify({ message: 'server error', error: err.message }) };
