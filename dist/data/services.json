@@ -1,0 +1,83 @@
+{
+  "meta_title": "Unser Angebot an Dienstleistungen - Webwing Design Agency",
+  "meta_description": "Dienstleistungen von Webwing – Webdesign, Entwicklung, App, SEO und Grafikdesign.",
+  "page_title": "Dienstleistungen",
+  "filters": [
+    "UI/UX Design",
+    "Webentwicklung",
+    "Grafikdesign",
+    "App",
+    "SEO"
+  ],
+  "services": [
+    {
+      "title": "Webdesign",
+      "images": [
+        "/assets/images/services/service-1.png",
+        "/assets/images/services/service-2.png",
+        "/assets/images/services/service-3.png",
+        "/assets/images/services/service-4.png"
+      ],
+      "description": "Wir gestalten digitale Erlebnisse, die Ihre Nutzerinnen und Nutzer schnell verstehen, lieben und zu den gewünschten Aktionen führen — weniger Verwirrung, mehr Vertrauen, bessere Conversion. Unser Prozess verbindet Nutzerforschung, datengetriebene Entscheidungen und pixelgenaue Gestaltung: Wireframes und interaktive Prototypen zeigen früh die Nutzerreise, Usability-Tests validieren Annahmen, und Design-Systeme sorgen für Konsistenz über alle Touchpoints hinweg. Ergebnis: Produkte, die nicht nur schön aussehen, sondern messbar besser funktionieren. Technische Merkmale",
+      "specs": [
+        { "text": "UI/UX Design", "icon": "fa-solid fa-pen-ruler" },
+        { "text": "Responsive Layout", "icon": "fa-solid fa-mobile-screen-button" },
+        { "text": "Prototyping", "icon": "fa-solid fa-diagram-project" },
+        { "text": "Branding", "icon": "fa-solid fa-palette" }
+      ],
+      "ctas": {
+        "more_link": "",
+        "contact_link": "kostenloses-erstgespräch.html"
+      },
+      "contact_link": "kontakt.html",
+      "learn_more_link": "#"
+    },
+    {
+      "title": "Webentwicklung",
+      "images": [
+        "/assets/images/services/service-1.png",
+        "/assets/images/services/service-2.png",
+        "/assets/images/services/service-3.png",
+        "/assets/images/services/service-4.png"
+      ],
+      "description": "Maßgeschneiderte Frontend- und Backend-Entwicklung mit Fokus auf Performance und Wartbarkeit.",
+      "specs": [
+        { "text": "React", "icon": "fa-solid fa-atom" },
+        { "text": "Jamstack", "icon": "fa-solid fa-layer-group" },
+        { "text": "Performance Optimierung", "icon": "fa-solid fa-gauge-high" },
+        { "text": "APIs", "icon": "fa-solid fa-plug" }
+      ],
+      "ctas": {
+        "more_link": "",
+        "contact_link": "kostenloses-erstgespräch.html"
+      },
+      "contact_link": "kontakt.html",
+      "learn_more_link": "#"
+    },
+    {
+      "title": "Grafikdesign",
+      "images": [
+        "/assets/images/services/service-1.png",
+        "/assets/images/services/service-2.png",
+        "/assets/images/services/service-3.png",
+        "/assets/images/services/service-4.png"
+      ],
+      "description": "Branding, Illustration und Marketing-Materialien, die Ihre Kommunikation klar und attraktiv machen.",
+      "specs": [
+        { "text": "Logo Design", "icon": "fa-solid fa-pen-nib" },
+        { "text": "Illustration", "icon": "fa-solid fa-paintbrush" },
+        { "text": "Print Assets", "icon": "fa-solid fa-print" },
+        { "text": "Marketing Assets", "icon": "fa-solid fa-bullhorn" }
+      ],
+      "ctas": {
+        "more_link": "",
+        "contact_link": "kostenloses-erstgespräch.html"
+      },
+      "contact_link": "kontakt.html",
+      "learn_more_link": "#"
+    }
+  ],
+  "cta_text": "kostenloses Erstgespräch buchen",
+  "cta_label": "Sie haben Fragen zu unserem Angebot?",
+  "cta_link": "kostenloses-erstgespräch.html"
+}

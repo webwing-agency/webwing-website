@@ -8,13 +8,51 @@ export function initNav() {
   const bars = document.querySelectorAll('.hamburger-menu .bar');
   const links = gsap?.utils?.toArray ? gsap.utils.toArray('.popup-link') : Array.from(document.querySelectorAll('.popup-link'));
   const decorations = gsap?.utils?.toArray ? gsap.utils.toArray('.popup-menu-decorations > *') : Array.from(document.querySelectorAll('.popup-menu-decorations > *'));
+  const THEME_BASE = '#000000';
+  const THEME_MENU = '#e100ff';
+  let closeSafetyTimer = null;
+
+  function getThemeMeta() {
+    let meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'theme-color');
+      document.head.appendChild(meta);
+    }
+    return meta;
+  }
+
+  function setThemeColor(color) {
+    const meta = getThemeMeta();
+    meta.setAttribute('content', color);
+  }
+
+  function clearMenuUiState() {
+    document.body.classList.remove('menu-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+    menu.classList.remove('active');
+    menu.style.display = 'none';
+    setThemeColor(THEME_BASE);
+  }
 
   hamburger.dataset.navBound = 'true';
+  clearMenuUiState();
 
   if (!gsap) {
-    // fallback: just toggle class
+    // fallback without GSAP: keep body/theme state in sync
     hamburger.addEventListener('click', () => {
-      menu.classList.toggle('active');
+      const opening = !menu.classList.contains('active');
+      if (opening) {
+        menu.classList.add('active');
+        menu.style.display = 'flex';
+        document.body.classList.add('menu-open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        menu.setAttribute('aria-hidden', 'false');
+        setThemeColor(THEME_MENU);
+      } else {
+        clearMenuUiState();
+      }
     });
     return;
   }
@@ -67,14 +105,16 @@ export function initNav() {
     document.body.classList.add('menu-open');
     hamburger.setAttribute('aria-expanded', 'true');
     menu.setAttribute('aria-hidden', 'false');
+    setThemeColor(THEME_MENU);
   });
 
   // when reversing completes, hide display and clear GSAP inline props so next open is clean
   tl.eventCallback('onReverseComplete', () => {
-    menu.style.display = 'none';
-    document.body.classList.remove('menu-open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    menu.setAttribute('aria-hidden', 'true');
+    clearMenuUiState();
+    if (closeSafetyTimer) {
+      clearTimeout(closeSafetyTimer);
+      closeSafetyTimer = null;
+    }
 
     // clear all inline transform/opacity props that GSAP left on elements
     gsap.set([...links, ...decorations, ...Array.from(bars)], { clearProps: 'all' });
@@ -101,6 +141,12 @@ export function initNav() {
       }
     } else {
       tl.reverse();
+      // iOS Safari can keep toolbar tint if reverse gets interrupted by navigation.
+      if (closeSafetyTimer) clearTimeout(closeSafetyTimer);
+      closeSafetyTimer = setTimeout(() => {
+        if (!tl.reversed()) return;
+        clearMenuUiState();
+      }, 420);
       // return focus to hamburger once closed (small delay)
       setTimeout(() => hamburger.focus(), 300);
     }
@@ -119,22 +165,33 @@ export function initNav() {
   // Close when clicking a link (mobile expectation)
   links.forEach((a) => {
     a.addEventListener('click', () => {
-      if (!tl.reversed()) tl.reverse();
+      if (!tl.reversed()) {
+        tl.reverse();
+        clearMenuUiState();
+      }
     });
   });
 
   // Close when clicking backdrop area
   menu.addEventListener('click', (e) => {
     if (e.target === menu && !tl.reversed()) {
-      tl.reverse();
+      toggleMenu();
     }
   });
 
   // Close on Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !tl.reversed()) {
-      tl.reverse();
+      toggleMenu({ viaKeyboard: true });
     }
+  });
+
+  // Reset any stale mobile-nav state after SPA/container changes.
+  document.addEventListener('content:rendered', () => {
+    if (!tl.reversed()) {
+      tl.pause(0).reverse(0);
+    }
+    clearMenuUiState();
   });
 }
   

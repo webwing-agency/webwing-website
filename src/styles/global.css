@@ -557,7 +557,7 @@ footer .logo {
                 color: rgba(255, 255, 255, 0.4);
                 font-weight: 800;
                 font-size: 0.8rem;
-                transform: translateY(-5.5px) translateX(1.5px);
+                margin-top: 0.35rem;
             }
     
             .footer-nav {

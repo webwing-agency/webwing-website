@@ -1,0 +1,65 @@
+{
+    "meta_title": "Referenzen - Webwing Design Agency",
+    "meta_description": "Unsere vergangenen Projekte – Cases und Ergebnisse.",
+    "page_title": "Referenzen",
+    "filters": [
+      "E-Commerce",
+      "SaaS",
+      "Software",
+      "B2B",
+      "Aviation",
+      "Healthcare"
+    ],
+    "projects": [
+      {
+        "title": "Ofenkäse-Versandhandel Rainer Winkler GmbH",
+        "images": [
+          "/assets/images/projects/project-1.png",
+          "/assets/images/projects/project-2.png",
+          "/assets/images/projects/project-3.png"
+        ],
+        "specs": [
+          { "text": "React", "icon": "fa-solid fa-atom" },
+          { "text": "E-Commerce", "icon": "fa-solid fa-cart-shopping" },
+          { "text": "Conversion", "icon": "fa-solid fa-arrow-up-right-dots" }
+        ],
+        "description": "Entwicklung eines E-Commerce-Shops mit Fokus auf Usability und Conversion.",
+        "ctas": { "more_link": "", "contact_link": "kostenloses-erstgespräch.html" }
+      },
+      {
+        "title": "GreenTech Solutions AG",
+        "images": [
+          "/assets/images/projects/project-2.png",
+          "/assets/images/projects/project-1.png",
+          "/assets/images/projects/project-3.png"
+        ],
+        "specs": [
+          { "text": "WordPress", "icon": "fa-brands fa-wordpress" },
+          { "text": "SEO", "icon": "fa-solid fa-magnifying-glass" },
+          { "text": "Performance", "icon": "fa-solid fa-gauge-high" }
+        ],
+        "description": "Nachhaltige Unternehmenswebsite mit besonderem Fokus auf SEO und Performance.",
+        "ctas": { "more_link": "", "contact_link": "kostenloses-erstgespräch.html" }
+      },
+      {
+        "title": "UrbanFit App",
+        "images": [
+          "/assets/images/projects/project-3.png",
+          "/assets/images/projects/project-1.png",
+          "/assets/images/projects/project-2.png"
+        ],
+        "specs": [
+          { "text": "Flutter", "icon": "fa-solid fa-code" },
+          { "text": "Mobile App", "icon": "fa-solid fa-mobile-screen-button" },
+          { "text": "UI/UX", "icon": "fa-solid fa-pen-ruler" }
+        ],
+        "description": "Mobile Fitness-App mit hoher Nutzerbindung und modernem Design.",
+        "ctas": { "more_link": "", "contact_link": "kostenloses-erstgespräch.html" }
+      }
+    ],
+    "cta_text": "kostenloses Erstgespräch buchen",
+    "cta_label": "Sie haben Fragen zu unserem Angebot?",
+    "cta_link": "kostenloses-erstgespräch.html"
+  }
+  
+  

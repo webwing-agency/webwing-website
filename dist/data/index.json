@@ -1,0 +1,108 @@
+{
+  "meta_title": "Webwing Design Agency  - Your Brand's Wingman Online",
+  "meta_description": "Webwing: Design, Conversion Optimization, SEO, Performance & Development for your brand.",
+  "hero": {
+    "title_html": "<div class=\"hero-line\">Websites, die Marken stärken </div>\n<div class=\"hero-line bold\">und Kunden <span class=\"underline-scribble\">gewinnen</span></div>",
+    "subtitle": "Design ist bei uns kein Selbstzweck. Wir schaffen Markenwerte, die Kunden gewinnen und Wettbewerber neidisch machen. Wir machen Schluss mit Mittelmäßigkeit und transformieren Ihren Auftritt von ‚na ja‘ auf absolutes Premium-Niveau. Ihr Aufwand: ein Briefing. In nur wenigen Wochen ist Ihre neue Website online.",
+    "cta_text": "kostenloses Erstgespräch",
+    "cta_link": "kostenloses-erstgespräch.html",
+    "hero_image": "/assets/hero-bg.png"
+  },
+  "expertise": [
+    {
+      "key": "design",
+      "icon": "/assets/icons/design.svg",
+      "title": "Design",
+      "text": "Unsere Designsprache ist modern, klar strukturiert und voll visueller Raffinesse. Unsere Websites sind wahre Design-Produkte, die ihr Brand Image stärken und ihre Autorität im Wettbewerb verfestigen."
+    },
+    {
+      "key": "conversion",
+      "icon": "/assets/icons/shopping.svg",
+      "title": "Conversion-Optimierung",
+      "text": "Seitenstruktur und Inhalte passen wir für eine zielführende Nutzerführung und beste Conversionrates an."
+    },
+    {
+      "key": "seo",
+      "icon": "/assets/icons/search.svg",
+      "title": "SEO",
+      "text": "Laut Think with Google verlassen 53% der Nutzer auf Mobilgeräten eine Website frühzeitig, wenn diese mehr als 3s zum Laden benötigt. Wir stellen sicher, dass ihre Seite deutlich schneller lädt."
+    },
+    {
+      "key": "code",
+      "icon": "/assets/icons/code.svg",
+      "title": "Entwicklung",
+      "text": "Wir wandeln erstellte Designs in optimalen Code um. Da wir noch handwerklich manuell programmieren und keine 0815 Sitebuilder verwenden, sind unsere Möglichkeiten der Gestaltung und der Funktionen fast uneinschränkt."
+    },
+    {
+      "key": "performance",
+      "icon": "/assets/icons/speedometer.svg",
+      "title": "Performance-Optimierung",
+      "text": "Laut Think with Google verlassen 53% der Nutzer auf Mobilgeräten eine Website frühzeitig, wenn diese mehr als 3s zum Laden benötigt. Wir stellen sicher, dass ihre Seite deutlich schneller lädt."
+    },
+    {
+      "key": "ai",
+      "icon": "/assets/icons/robot.svg",
+      "title": "AI Integration",
+      "text": "Wir helfen ihnen AI gewinnbringend in die Akquiseprozuesse ihrer Website einzubauen. Beispielsweise in Form eines Chatbots oder intelligenter Datenverarbeitung im Backend."
+    }
+  ],
+  "projects": [
+    {
+      "image": "/assets/images/projects/project-1.png",
+      "title": "Ofenkäse-Versandhandel Rainer Winkler GmbH",
+      "text": "Ein erfolgreiches E-Commerce-Projekt, bei dem wir eine benutzerfreundliche Plattform entwickelt haben, die sowohl Design als auch Funktionalität vereint.",
+      "tags": [
+        "React",
+        "E-Commerce"
+      ]
+    },
+    {
+      "image": "/assets/images/projects/project-2.png",
+      "title": "GreenTech Solutions AG",
+      "text": "Entwicklung einer nachhaltigen Unternehmenswebsite mit Fokus auf SEO und Performance, um die Sichtbarkeit in Suchmaschinen zu maximieren.",
+      "tags": [
+        "WordPress",
+        "SEO",
+        "Performance"
+      ]
+    },
+    {
+      "image": "/assets/images/projects/project-3.png",
+      "title": "UrbanFit App",
+      "text": "Eine mobile Fitness-App, die wir mit einem modernen Design und einer intuitiven Benutzeroberfläche ausgestattet haben, um die Nutzerbindung zu fördern.",
+      "tags": [
+        "Flutter",
+        "Mobile App",
+        "UI/UX"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "client_img": "/assets/images/clients/client-1.png",
+      "client_name": "Rainer Winkler",
+      "corporation_name": "Ofenkäse-Versandhandel Winkler GmbH",
+      "text": "Webwing hat unsere Erwartungen übertroffen! Die neue Website ist nicht nur optisch ansprechend, sondern auch extrem benutzerfreundlich. Unsere Kunden lieben das Design, und wir sehen bereits eine deutliche Steigerung der Conversion-Rate.",
+      "star_count": 5
+    },
+    {
+      "client_img": "/assets/images/clients/client-2.png",
+      "client_name": "Joseph Stalin",
+      "corporation_name": "Communist Innovations GmbH",
+      "text": "Dank Webwing haben wir eine Website, die perfekt zu unserer Marke passt. Die Zusammenarbeit war professionell und effizient. Wir sind begeistert von den Ergebnissen!",
+      "star_count": 5
+    },
+    {
+      "client_img": "/assets/images/clients/client-3.png",
+      "client_name": "Arnold Schwarzenegger",
+      "corporation_name": "Onion Ring Digital Solutions LLC",
+      "text": "Die neue Benutzeroberfläche unserer App ist ein echter Gamechanger. Webwing hat großartige Arbeit geleistet und unsere Vision perfekt umgesetzt.",
+      "star_count": 5
+    }
+  ],
+  "contact": {
+    "email": "contact@webwing.agency",
+    "phone": "06221 123456",
+    "booking_api_base": "http://localhost:3000"
+  }
+}

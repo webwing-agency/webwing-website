@@ -1,0 +1,15 @@
+{
+    "meta_title": "Kostenloses Erstgespräch - Webwing",
+    "meta_description": "Buche ein unverbindliches 20-minütiges Erstgespräch.",
+    "hero": {
+      "title_html": "Bereit, Ihr Projekt zu kickstarten?",
+      "subtitle": "Vereinbaren Sie ein unverbindliches 20-minütiges Erstgespräch.",
+      "cta_text": "kostenloses Erstgespräch"
+    },
+    "contact": {
+      "email": "contact@webwing.agency",
+      "phone": "06221 123456"
+    },
+    "booking_api_base": "http://localhost:3000"
+  }
+  

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="de" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="meta-title">Webwing Design Agency - Your Brand's Wingman Online</title>
+  <meta id="meta-description" name="description" content="Webwing: Design, Conversion Optimization, SEO, Performance & Development for your brand." />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/critical.css">
+  <script>
+    (function(){
+      // wait for gsap to exist (if it's loaded later)
+      function instrument(){
+        if (!window.gsap) return;
+        const methods = ['to','from','fromTo','set','killTweensOf','delayedCall','timeline'];
+        methods.forEach(name => {
+          if (typeof gsap[name] !== 'function') return;
+          const orig = gsap[name].bind(gsap);
+          gsap[name] = function(targets, vars, ...rest) {
+            try {
+              // log and remove invalid 'once' in tween vars
+              if (vars && vars.once !== undefined) {
+                console.warn('[GSAP-INSTRUMENT] Removing invalid tween prop "once":', { name, targets, vars });
+                console.warn(new Error().stack);
+                delete vars.once;
+              }
+              // detect empty targets
+              try {
+                const resolved = gsap.utils ? gsap.utils.toArray(targets) : (Array.isArray(targets) ? targets : []);
+                if (Array.isArray(resolved) && resolved.length === 0) {
+                  console.warn('[GSAP-INSTRUMENT] Tween called with empty target:', { name, targets });
+                  console.warn(new Error().stack);
+                }
+              } catch(e) {}
+              return orig(targets, vars, ...rest);
+            } catch (err) {
+              console.error('[GSAP-INSTRUMENT] Tween threw', { name, targets, vars, err });
+              console.error(err.stack);
+              throw err;
+            }
+          };
+        });
+        console.info('[GSAP-INSTRUMENT] active');
+      }
+    
+      if (window.gsap) instrument();
+      else {
+        const t = setInterval(()=>{ if(window.gsap){ clearInterval(t); instrument(); } }, 50);
+      }
+    
+      // global error listener to highlight the charAt error and show file/line
+      window.addEventListener('error', (ev) => {
+        if (ev.error && ev.error.stack && ev.message && ev.message.includes('charAt')) {
+          console.error('[GLOBAL ERROR LISTENER] CharAt error caught:', ev.message, ev.filename, ev.lineno, ev.colno);
+          console.error(ev.error.stack);
+        }
+      });
+    })();
+    </script>
+
+  <style>
+    /* hide animated parts until JS takes over */
+    .hero-line,
+    #hero-title,
+    .hero-subtitle,
+    .hero-cta,
+    .hero-bg {
+      opacity: 0.7;
+      transform: translateY(10px);
+    }
+  
+    /* If JS is not available, preserve visibility for accessibility / no-JS fallback */
+    .no-js .hero-line,
+    .no-js #hero-title,
+    .no-js .hero-subtitle,
+    .no-js .cta,
+    .no-js .hero-bg,
+    .no-js .scribble-svg path {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+
+  <script>document.documentElement.classList.remove('no-js');</script>
+
+  <script type="module" crossorigin src="/assets/main-CFc6jUMw.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-DGeTuJXY.css">
+</head>
+<body class="page-home" data-barba="wrapper">
+  <header>
+    <a href="index.html" class="nav-logo"> <img src="assets/logo.svg" width="80" height="40" alt="Logo"></a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="referenzen.html" class="nav-link">Referenzen</a>
+      <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
+      <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
+    </nav>
+
+    <div class="hamburger-menu"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+
+    <div class="popup-menu">
+      <div class="popup-menu-link-container">
+
+          <div class="popup-link"><a href="index.html">Home</a></div>
+          <div class="popup-link"><a href="referenzen.html">Referenzen</a></div>
+          <div class="popup-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+          <div class="popup-link"><a href="kontakt.html">Kontakt</a></div>
+          <div class="popup-link"><a href="kostenloses-erstgespräch.html">Erstgespräch buchen</a></div>
+
+      </div>
+      <div class="popup-menu-decorations">
+        <span>Webwing Design Agency</span><span>+</span>
+        <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
+        <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
+        <span>Available for Work</span>
+      </div>
+    </div>
+  </header>
+
+  <main data-barba="container" data-barba-namespace="home" data-body-class="page-home">
+    <section class="hero-section">
+      <div class="hero-mesh" aria-hidden="true">
+        <span class="mesh-blob mesh-blob-1"></span>
+        <span class="mesh-blob mesh-blob-2"></span>
+        <span class="mesh-blob mesh-blob-3"></span>
+      </div>
+      <h1 class="hero-title section-title" id="hero-title"></h1>
+      <p class="hero-subtitle paragraph" id="hero-subtitle"></p>
+      <a id="hero-cta" class="cta hero-cta" href="#">CTA</a>
+      <div class="hero-bg-container"><img  class="hero-bg" src="assets/hero-bg.png" alt="Hero Section Hintergrund"/></div>
+    </section>
+
+    <section class="expertise-section">
+      <div class="section-title-container flex">
+        <h2 class="expertise-title section-title">Unsere Expertise</h2>
+        <a href="dienstleistungen.html" class="reference-link">Mehr erfahren →</a>
+      </div>
+
+      <div class="grid expertise-grid" id="expertise-grid"></div>
+    </section>
+
+    <section class="projects-section">
+      <div class="section-title-container flex">
+        <h2 class="projects-title section-title">Zurückliegende Projekte</h2>
+        <a href="dienstleistungen.html" class="reference-link">Alle Projekte →</a>
+      </div>
+
+      <div class="grid" id="projects-grid"></div>
+    </section>
+
+    <section class="reviews-section">
+      <h2 class="reviews-title section-title">Das sagen unsere Kunden</h2>
+      <div class="grid" id="reviews-grid"></div>
+    </section>
+
+    <section class="book-call-section">
+      <div class="book-call-card">
+        <div class="left-side">
+          <h2 class="book-call-title section-title">Bereit, Ihr Projekt zu kickstarten?</h2>
+          <p class="book-call-paragraph paragraph">Vereinbaren sie jetzt ein <b>unverbindliches und kostenloses 20-minütiges Erstgespräch</b>, in welchem wir ihre Bedürfnisse und Wünsche erörtern ...</p>
+
+          <div class="contact-details-container container">
+            <div class="contact-container">
+              <div class="contact-icon-container icon-container ">
+                <img src="/assets/icons/mail.svg" class="icon">
+              </div>
+              <a id="contact-email" href="mailto:contact@webwing.agency" class="contact-link">contact@webwing.agency</a>
+            </div>
+            <div class="contact-container">
+              <div class="contact-icon-container icon-container">
+                <img src="/assets/icons/phone.svg" class="icon">
+              </div>
+              <a id="contact-phone" href="tel:06221 123456" class="contact-link">06221 123456</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-side">
+          <form class="booking-form" id="booking-form">
+            <div class="form-group">
+              <label class="form-label" for="bookingName">Name</label>
+              <input type="text" id="bookingName" class="form-input" placeholder="Ihr Name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="bookingEmail">E-Mail</label>
+              <input type="email" id="bookingEmail" class="form-input" placeholder="Ihre E-Mail-Adresse" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="bookingPhone">Telefonnummer</label>
+              <input type="tel" id="bookingPhone" class="form-input" placeholder="Ihre Telefonnummer" />
+            </div>
+
+            <div class="datetime-container">
+              <div class="date-container">
+                <h3 class="form-label">Tag</h3>
+                <div class="calendar" id="calendar-root"></div>
+              </div>
+
+              <div class="time-container">
+                <h3 class="form-label">Uhrzeit</h3>
+                <div class="timeslots" id="timeslots"></div>
+              </div>
+            </div>
+
+            <div class="submit-container">
+              <button type="submit" class="cta submit-button" id="submit-booking">Jetzt kostenloses Erstgespräch buchen</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+        
+        <div class="logo-container">
+
+            <img src="assets/logo.svg" alt="Webwing Logo" class="logo">
+
+            <span class="slogan">Your Brand’s Wingman Online.</span>
+
+        </div>
+
+        <nav class="footer-nav">
+            <div class="footer-nav-link"><a href="index.html">Home</a></div>
+            <div class="footer-nav-link"><a href="referenzen.html">Referenzen</a></div>
+            <div class="footer-nav-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+            <div class="footer-nav-link"><a href="kontakt.html">Kontakt</a></div>
+        </nav>
+        <div class="legal-links">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutzerklärung.html">Datenschutzerklärung</a>
+            <a href="agb.html">AGB</a>
+        </div>
+    </div>
+</footer>    
+
+</body>
+</html>
