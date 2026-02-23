@@ -76,8 +76,8 @@ async function initPage(containerOverride = null) {
         import('./js/render/contact.js'),
         import('./js/contact-form.js')
       ]);
-      await initContactPage();
-      initContactForm();
+      await initContactPage(container);
+      initContactForm(container);
     }
 
     // -------- LEGAL --------

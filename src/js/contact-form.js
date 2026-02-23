@@ -1,23 +1,23 @@
 // src/js/contact-form.js
-export function initContactForm() {
-  const form = document.querySelector('.contact-form');
+export function initContactForm(container = document) {
+  const form = container.querySelector('.contact-form');
   if (!form) return;
   if (form.dataset.bound === 'true') return;
   form.dataset.bound = 'true';
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = document.getElementById('contactName')?.value?.trim() || '';
-    const email = document.getElementById('contactEmail')?.value?.trim() || '';
-    const phone = document.getElementById('contactPhone')?.value?.trim() || '';
-    const message = document.getElementById('messageText')?.value?.trim() || '';
+    const name = form.querySelector('#contactName')?.value?.trim() || '';
+    const email = form.querySelector('#contactEmail')?.value?.trim() || '';
+    const phone = form.querySelector('#contactPhone')?.value?.trim() || '';
+    const message = form.querySelector('#messageText')?.value?.trim() || '';
 
     if (!name || !email || !message) {
       alert('Bitte Name, E-Mail und Nachricht ausfüllen.');
       return;
     }
 
-    const tokenEl = document.querySelector('input[name="cf-turnstile-response"]');
+    const tokenEl = form.querySelector('input[name="cf-turnstile-response"]');
     const token = tokenEl ? tokenEl.value : null;
     const payload = { name, email, phone, message, token };
 

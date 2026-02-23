@@ -5,7 +5,7 @@ async function fetchContact() {
     return res.json();
   }
   
-  function setMetaAndTitle(data) {
+  function setMetaAndTitle(data, root = document) {
     if (data.meta_title) document.title = data.meta_title;
     if (data.meta_description) {
       let md = document.querySelector('meta[name="description"]');
@@ -16,25 +16,25 @@ async function fetchContact() {
       }
       md.content = data.meta_description;
     }
-    const pageTitleEl = document.querySelector('.contact-page-title') || document.querySelector('.page-title');
+    const pageTitleEl = root.querySelector('.contact-page-title') || root.querySelector('.page-title');
     if (pageTitleEl && data.page_title) pageTitleEl.textContent = data.page_title;
-    const subtitle = document.querySelector('.contact-page-subtitle');
+    const subtitle = root.querySelector('.contact-page-subtitle');
     if (subtitle && data.subtitle) subtitle.textContent = data.subtitle;
-    const cardTitleEl = document.querySelector('.contact-card-title');
+    const cardTitleEl = root.querySelector('.contact-card-title');
     if (cardTitleEl && data.card_title) cardTitleEl.textContent = data.card_title;
-    const cardTextEl = document.querySelector('.contact-card-text');
+    const cardTextEl = root.querySelector('.contact-card-text');
     if (cardTextEl && data.card_text) cardTextEl.textContent = data.card_text;
-    const contactPersonEl = document.querySelector('.contact-person');
+    const contactPersonEl = root.querySelector('.contact-person');
     if (contactPersonEl && data.contact_person) contactPersonEl.textContent = data.contact_person;
   }
   
-  function setContactFields(data) {
-    const emailEl = document.getElementById('contact-email') || document.querySelector('.contact-link[href^="mailto:"]');
+  function setContactFields(data, root = document) {
+    const emailEl = root.querySelector('#contact-email') || root.querySelector('.contact-link[href^="mailto:"]');
     if (emailEl && data.email) {
       emailEl.href = `mailto:${data.email}`;
       emailEl.textContent = data.email;
     }
-    const phoneEl = document.getElementById('contact-phone') || document.querySelector('.contact-link[href^="tel:"]');
+    const phoneEl = root.querySelector('#contact-phone') || root.querySelector('.contact-link[href^="tel:"]');
     if (phoneEl && data.phone) {
       phoneEl.href = `tel:${data.phone}`;
       phoneEl.textContent = data.phone;
@@ -42,7 +42,7 @@ async function fetchContact() {
   
     // Set Turnstile sitekey if element exists. IMPORTANT: include this script *before*
     // the Turnstile script tag in contact.html so the sitekey is present when the Turnstile script parses.
-    const widget = document.querySelector('.cf-turnstile');
+    const widget = root.querySelector('.cf-turnstile');
     if (widget && data.turnstile_sitekey) {
       widget.setAttribute('data-sitekey', data.turnstile_sitekey);
     }
@@ -51,11 +51,11 @@ async function fetchContact() {
     window.API_BASE = data.contact_api_base || window.API_BASE || 'http://localhost:3000';
   }
   
-  export async function initContactPage() {
+  export async function initContactPage(container = document) {
     try {
       const data = await fetchContact();
-      setMetaAndTitle(data);
-      setContactFields(data);
+      setMetaAndTitle(data, container);
+      setContactFields(data, container);
     } catch (err) {
       console.error('contact render error', err);
     }

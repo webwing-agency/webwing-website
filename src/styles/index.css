@@ -185,6 +185,90 @@
         }
     }
 
+@media (max-width: 768px) {
+    .hero-section {
+        height: 100svh;
+        min-height: 100svh;
+        margin: 0;
+        padding: 6rem 1.6rem 4.5rem;
+        gap: 1.25rem;
+        position: relative;
+        isolation: isolate;
+    }
+
+    .hero-section::before {
+        content: "";
+        position: absolute;
+        inset: -10% -10% 35%;
+        background:
+          radial-gradient(60% 55% at 50% 20%, rgba(120, 120, 255, 0.22), rgba(0,0,0,0) 70%),
+          radial-gradient(55% 55% at 20% 30%, rgba(200, 90, 255, 0.18), rgba(0,0,0,0) 70%),
+          radial-gradient(45% 50% at 80% 35%, rgba(60, 160, 255, 0.18), rgba(0,0,0,0) 70%);
+        z-index: -1;
+        filter: blur(10px);
+        opacity: 0.9;
+    }
+
+    .hero-section::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.6) 100%);
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 8vw, 3.2rem);
+        line-height: 1.02;
+        letter-spacing: -0.025em;
+        max-width: 16ch;
+        text-wrap: balance;
+        opacity: 0.96;
+        text-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        max-width: 38ch;
+        text-wrap: pretty;
+        opacity: 0.8;
+    }
+
+    .hero-cta {
+        padding: 13px 24px;
+        border-radius: 16px;
+        font-size: 0.92rem;
+        letter-spacing: 0.035em;
+        margin-top: 0.5rem;
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,0.12),
+          0 16px 36px rgba(0,0,0,0.45);
+    }
+
+    .hero-bg-container {
+        opacity: 0.4;
+    }
+
+    .hero-bg {
+        width: 86vw;
+        max-width: 420px;
+        transform: translateY(6px);
+        filter: drop-shadow(0 18px 38px rgba(0,0,0,0.45));
+    }
+
+    .hero-mesh {
+        inset: -25% -20% -10%;
+        filter: saturate(112%);
+    }
+
+    .mesh-blob {
+        opacity: 0.2;
+        filter: blur(46px);
+    }
+}
+
   
 
 /* Expertise Section */

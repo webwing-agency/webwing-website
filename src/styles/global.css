@@ -75,6 +75,18 @@
 
 }
 
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+    html, body {
+        overflow-x: clip;
+    }
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: #000;
@@ -84,8 +96,8 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 100vw;
-    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
     padding-bottom: 25rem;
 }
 
@@ -94,7 +106,7 @@ main {
 }
 
 section {
-    width: 100vw;
+    width: 100%;
     max-width: 170rem;
     min-height: 45vh;
     padding: 2rem;
@@ -423,6 +435,7 @@ header {
     width: 100vw;
     height: 100vh;
     padding: 2rem 2rem;
+    background-color: #e100ff;
     background-image: url('/assets/nav-bg.jpg');
     background-size: cover;
     background-position: center;
