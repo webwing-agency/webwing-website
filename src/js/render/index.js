@@ -10,6 +10,18 @@ async function fetchHome() {
     if (typeof v === 'string') return v;
     return String(v);
   }
+
+  function formatHeroTitleHtml(raw) {
+    const html = safeString(raw);
+    if (!html) return '';
+    const parts = html.split(/<br\s*\/?>/i);
+    if (parts.length === 1) return html;
+    return parts
+      .map(part => part.trim())
+      .filter(Boolean)
+      .map(part => `<span class="hero-title-line">${part}</span>`)
+      .join('');
+  }
   
   function setMeta(data) {
     if (data && 'meta_title' in data) {
@@ -39,7 +51,7 @@ async function fetchHome() {
   
     // title_html may contain HTML; ensure it's a string
     const titleHtml = safeString(hero.title_html);
-    if (titleEl) titleEl.innerHTML = titleHtml || '';
+    if (titleEl) titleEl.innerHTML = formatHeroTitleHtml(titleHtml);
   
     if (subtitleEl) subtitleEl.textContent = safeString(hero.subtitle || '');
   

@@ -10,18 +10,42 @@ const MAX_CONCURRENCY = 6;
 export function initBookingPage(root = document) {
   console.debug('[booking] main loaded');
 
+  const bookingForm = root.querySelector('#booking-form');
+  const timeslotsContainer = root.querySelector('#timeslots');
+
+  if (!bookingForm) {
+    const retries = Number(root?.dataset?.bookingInitRetry || 0);
+    if (retries < 4) {
+      if (root?.dataset) root.dataset.bookingInitRetry = String(retries + 1);
+      setTimeout(() => initBookingPage(root), 120);
+      console.debug('[booking] booking form not found; retrying init', retries + 1);
+      return;
+    }
+    console.warn('[booking] booking form not found; booking module disabled.');
+    return;
+  }
+
+  if (!timeslotsContainer) {
+    const retries = Number(root?.dataset?.bookingInitRetry || 0);
+    if (retries < 4) {
+      if (root?.dataset) root.dataset.bookingInitRetry = String(retries + 1);
+      setTimeout(() => initBookingPage(root), 120);
+      console.debug('[booking] timeslots container missing; retrying init', retries + 1);
+      return;
+    }
+    console.warn('[booking] timeslots container missing; booking module disabled.');
+    return;
+  }
+
   const calendarRoot = root.querySelector('#calendar-root') || (function(){
     const el = document.createElement('div'); el.className='calendar';
     const anchor = root.querySelector('.date-container') || root;
     anchor.appendChild(el);
     return el;
   })();
-  const timeslotsContainer = root.querySelector('#timeslots');
-  const bookingForm = root.querySelector('#booking-form');
 
-  if (!bookingForm) {
-    console.warn('[booking] booking form not found; booking module disabled.');
-    return;
+  if (root?.dataset) {
+    delete root.dataset.bookingInitRetry;
   }
 
   if (calendarRoot.dataset.bookingInit === '1') {
