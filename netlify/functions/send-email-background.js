@@ -254,14 +254,14 @@ export default async (req, context) => {
     }
 
     if (payload.type === 'contact') {
-      const { name, email, message, ip } = payload;
+      const { name, email, phone, message, ip } = payload;
       if (!name || !email || !message) {
         console.warn('[send-email-background] contact payload missing fields');
         return undefined;
       }
 
       const ownerSubject = `Kontaktanfrage von ${name}`;
-      const ownerText = `Name: ${name}\nEmail: ${email}\nIP: ${ip || 'n/a'}\n\nMessage:\n${message}`;
+      const ownerText = `Name: ${name}\nEmail: ${email}\nTelefon: ${phone || 'n/a'}\nIP: ${ip || 'n/a'}\n\nMessage:\n${message}`;
       const userSubject = 'Danke für Ihre Nachricht – Webwing';
       const userText = `Hallo ${name},\n\nDanke! Wir haben Ihre Nachricht erhalten und melden uns so schnell wie möglich.\n\nBeste Grüße,\nWebwing`;
 
@@ -298,6 +298,7 @@ export default async (req, context) => {
         await trySendWithRetries(() => sendViaEmailJS({
           to_email: CONTACT_NOTIFICATION_EMAIL,
           from_email: email,
+          phone: phone || '',
           user_name: name,
           user_message: message
         }), 2);

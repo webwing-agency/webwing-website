@@ -6,6 +6,11 @@
   port = 8888
   targetPort = 5173
 
+[[redirects]]
+  from = "/admin"
+  to = "/admin/"
+  status = 301
+
 # Internes Rewrite: /api/* -> /.netlify/functions/:splat
 [[redirects]]
   from = "/api/*"

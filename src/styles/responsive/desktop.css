@@ -197,9 +197,27 @@
         text-align: left;
     }
 
-    .selection-flex {
+    .page-projects .selection-flex,
+    .page-services .selection-flex {
         position: relative;
-        flex-wrap: nowrap !important;
+        flex-wrap: wrap !important;
+        align-items: center;
+    }
+
+    .page-projects .filter-select,
+    .page-services .filter-select {
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+
+    .page-projects .search-wrapper,
+    .page-services .search-wrapper {
+        position: relative;
+        flex: 1 1 24rem;
+        min-width: min(20rem, 100%);
+        width: min(100%, 32rem);
+        margin-left: auto;
+        right: auto;
     }
 
     .project-card-text-container {
@@ -263,10 +281,11 @@
         --popup-font-size: 4rem;
     }
     
-    .search-wrapper {
-        position: absolute;
-        margin-left: 10%;
-        right: 0px;
+    .page-projects .search-wrapper,
+    .page-services .search-wrapper {
+        position: relative;
+        margin-left: auto;
+        right: auto;
     }
 
   }

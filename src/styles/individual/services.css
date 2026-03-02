@@ -1,12 +1,24 @@
 /* Services (Dienstleistungen) page */
+.services-page-fold {
+  width: 100%;
+  max-width: 100%;
+  align-items: flex-start;
+}
+
 .selection-flex {
   width: 100%;
   display: flex;
-  gap: 1rem;
-  margin-bottom: 5rem;
-  flex-wrap: wrap-reverse;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
   position: relative;
-  min-height: 3rem;
+  min-height: 2.75rem;
+  align-items: center;
+}
+
+.page-services .selection-flex {
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .filter-select,
@@ -37,13 +49,16 @@
 }
 
 .filter-select {
-  flex: 1;
+  flex: 0 1 auto;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-wrap: nowrap;
+  white-space: nowrap;
   transition: background-color 0.2s, border-color 0.2s;
+  min-width: 0;
+  max-width: 100%;
+  padding-inline: 1.15rem;
 }
 
 .filter-select.active {
@@ -55,11 +70,23 @@
   background-color: rgba(255, 255, 255, 0.05);
 }
 
+.search-bar {
+  background-color: rgba(255, 255, 255, 0.025);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.search-bar:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
 .search-wrapper {
   position: relative;
-  right: 0;
-  flex: 2;
-  min-width: 20rem;
+  right: auto;
+  flex: 1 1 22rem;
+  min-width: min(20rem, 100%);
+  width: min(100%, 34rem);
+  margin-left: auto;
   --search-count: "";
 }
 
@@ -85,22 +112,42 @@
 .services-grid {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 3rem;
   width: 100%;
+  max-width: 100%;
+  min-height: 12rem;
+  min-width: 0;
+}
+
+.service-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .service-images-grid {
-  width: calc(90vw - 4rem);
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(14rem, 1fr);
   gap: 1rem;
   margin-bottom: 1.5rem;
   height: 20rem;
   width: 100%;
-  overflow-x: scroll;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.35rem;
 }
 
 .service-image {
-  flex: 1;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
   object-fit: cover;
   border: var(--global-border);
 }
@@ -146,7 +193,7 @@
   content: var(--search-count);
   position: absolute;
   right: 1rem;
-  top: 1.5rem;
+  bottom: -1.5rem;
   display: block;
   margin-bottom: 5px;
   font-size: calc(var(--text-font-size) * 0.75);
@@ -157,4 +204,83 @@
   background-color: rgba(255, 255, 0, 0.25);
   padding: 0 0.1em;
   border-radius: 2px;
+}
+
+.search-empty-state {
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+  min-height: 8rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.72);
+  border-style: dashed;
+}
+
+@media (max-width: 767px) {
+  .page-services .selection-flex {
+    margin-bottom: 2.5rem;
+  }
+
+  .page-services .search-wrapper {
+    order: -1;
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+    margin-left: 0;
+  }
+
+  .page-services .filter-select {
+    flex: 1 1 auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-services .selection-flex {
+    flex-wrap: wrap !important;
+  }
+
+  .page-services .filter-select {
+    flex: 0 1 auto;
+    white-space: nowrap;
+  }
+
+  .page-services .search-wrapper {
+    flex: 1 1 24rem;
+    width: min(100%, 32rem);
+    margin-left: auto;
+  }
+
+  .page-services .service-images-grid {
+    grid-auto-columns: minmax(18rem, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .page-services .search-wrapper {
+    position: relative;
+    right: auto;
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-services .selection-flex {
+    flex-wrap: nowrap !important;
+    align-items: center;
+  }
+
+  .page-services .filter-select {
+    flex: 0 0 auto;
+  }
+
+  .page-services .search-wrapper {
+    flex: 0 0 clamp(18rem, 22vw, 25rem);
+    width: clamp(18rem, 22vw, 25rem);
+    min-width: 0;
+    margin-left: auto;
+  }
 }

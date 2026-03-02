@@ -1,21 +1,80 @@
 // js/render/legal.js
-async function loadAndRender(path){
+import { applySeo } from '../seo.js';
+
+function markdownToHtmlBasic(md) {
+    if (!md) return '';
+    const lines = String(md).split('\n');
+    const out = [];
+    let inList = false;
+  
+    const closeList = () => {
+      if (inList) {
+        out.push('</ul>');
+        inList = false;
+      }
+    };
+  
+    lines.forEach(raw => {
+      const line = raw.trim();
+      if (!line) {
+        closeList();
+        return;
+      }
+      if (/^---+$/.test(line)) {
+        closeList();
+        out.push('<hr/>');
+        return;
+      }
+      if (/^###\s+/.test(line)) {
+        closeList();
+        out.push(`<h3>${line.replace(/^###\s+/, '')}</h3>`);
+        return;
+      }
+      if (/^##\s+/.test(line)) {
+        closeList();
+        out.push(`<h2>${line.replace(/^##\s+/, '')}</h2>`);
+        return;
+      }
+      if (/^#\s+/.test(line)) {
+        closeList();
+        out.push(`<h1>${line.replace(/^#\s+/, '')}</h1>`);
+        return;
+      }
+      if (/^[-*]\s+/.test(line)) {
+        if (!inList) {
+          out.push('<ul>');
+          inList = true;
+        }
+        out.push(`<li>${line.replace(/^[-*]\s+/, '')}</li>`);
+        return;
+      }
+      closeList();
+      out.push(`<p>${line}</p>`);
+    });
+  
+    closeList();
+    return out.join('');
+  }
+  
+  async function loadAndRender(path, canonicalPath){
     const res = await fetch(path, {cache: 'no-store'});
     if (!res.ok) { console.warn('no legal file', path); return; }
     const data = await res.json();
     if (data.meta_title) document.title = data.meta_title;
     if (data.meta_description) document.querySelector('meta[name="description"]')?.setAttribute('content', data.meta_description);
+    applySeo({
+      title: data.meta_title,
+      description: data.meta_description,
+      canonicalPath,
+      robots: 'noindex, nofollow'
+    });
     const titleEl = document.querySelector('.page-title-small') || document.querySelector('h1');
     if (titleEl && data.page_title) titleEl.textContent = data.page_title;
     const container = document.querySelector('.legal-content') || document.querySelector('.legal-section') || document.querySelector('main');
     if (container && data.content_html) {
-      // content_html is markdown in config; the CMS stored markdown. We will render as simple HTML
-      // If CMS field is actually markdown, the JSON contains markdown string; we insert as text or basic conversion.
-      // For now we set innerHTML using safe minimal replace of newlines -> <p>
-      // If you prefer a markdown renderer, add one (marked.js) and use it here.
-      const html = data.content_html
-        .split(/\n{2,}/).map(para => `<p>${para.replace(/\n/g,'<br/>')}</p>`).join('');
-      container.innerHTML = html;
+      const raw = String(data.content_html || '').trim();
+      const looksLikeHtml = /<\w+[\s>]/.test(raw);
+      container.innerHTML = looksLikeHtml ? raw : markdownToHtmlBasic(raw);
     }
   }
   
@@ -23,11 +82,11 @@ async function loadAndRender(path){
     const main = document.querySelector('main[data-legal]');
     const key = main?.dataset?.legal;
     const map = {
-      impressum: '/data/impressum.json',
-      privacy: '/data/privacy.json',
-      agb: '/data/agb.json'
+      impressum: { dataPath: '/data/impressum.json', canonicalPath: '/impressum.html' },
+      privacy: { dataPath: '/data/privacy.json', canonicalPath: '/datenschutzerkl%C3%A4rung.html' },
+      agb: { dataPath: '/data/agb.json', canonicalPath: '/agb.html' }
     };
-    const target = map[key] || '/data/impressum.json';
-    await loadAndRender(target);
+    const target = map[key] || map.impressum;
+    await loadAndRender(target.dataPath, target.canonicalPath);
   }
   

@@ -7,12 +7,25 @@ export const handler = async (event) => {
     }
 
     const body = JSON.parse(event.body || '{}');
-    const { name, email, message, token } = body;
+    const { name, email, phone, message, token } = body;
 
     if (!name || !email || !message) {
       return {
         statusCode: 400,
         body: JSON.stringify({ message: 'Missing fields' })
+      };
+    }
+
+    const hasSmtp = Boolean(process.env.SMTP_HOST);
+    const hasEmailJs = Boolean(
+      process.env.EMAILJS_SERVICE_ID &&
+      process.env.EMAILJS_TEMPLATE_ID &&
+      (process.env.EMAILJS_USER_ID || process.env.EMAILJS_PUBLIC_KEY)
+    );
+    if (!hasSmtp && !hasEmailJs) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ message: 'Email sending is not configured on server.' })
       };
     }
 
@@ -25,19 +38,27 @@ export const handler = async (event) => {
       process.env.DEPLOY_URL || // Netlify preview
       'http://localhost:8888';  // netlify dev
 
-    fetch(`${baseUrl}/.netlify/functions/send-email-background`, {
+    const bgRes = await fetch(`${baseUrl}/.netlify/functions/send-email-background`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         type: 'contact',
         name,
         email,
+        phone,
         message,
         ip: event.headers['x-forwarded-for']?.split(',')[0]
       })
-    }).catch(err => {
-      console.warn('[contact] background email failed', err);
     });
+
+    if (!bgRes.ok) {
+      const text = await bgRes.text().catch(() => '');
+      console.warn('[contact] background enqueue failed', bgRes.status, text);
+      return {
+        statusCode: 502,
+        body: JSON.stringify({ message: 'Could not queue email sending.' })
+      };
+    }
 
     return {
       statusCode: 200,

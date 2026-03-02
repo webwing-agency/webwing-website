@@ -1,4 +1,15 @@
 // src/js/contact-form.js
+function getContactEndpoint() {
+  const rawBase = (window.API_BASE || '').trim();
+  const base = rawBase.replace(/\/$/, '');
+
+  if (!base) return '/api/contact';
+  if (base.endsWith('/api')) return `${base}/contact`;
+  if (base.endsWith('/.netlify/functions')) return `${base}/contact`;
+  if (base.endsWith('/contact') || base.endsWith('/api/contact')) return base;
+  return `${base}/api/contact`;
+}
+
 export function initContactForm(container = document) {
   const form = container.querySelector('.contact-form');
   if (!form) return;
@@ -20,6 +31,7 @@ export function initContactForm(container = document) {
     const tokenEl = form.querySelector('input[name="cf-turnstile-response"]');
     const token = tokenEl ? tokenEl.value : null;
     const payload = { name, email, phone, message, token };
+    const endpoint = getContactEndpoint();
 
     const submitBtn = form.querySelector('button[type="submit"]');
     if (submitBtn) {
@@ -29,13 +41,14 @@ export function initContactForm(container = document) {
     }
 
     try {
-      const API_BASE = window.API_BASE || 'http://localhost:3000';
-      const res = await fetch(`${API_BASE}/api/contact`, {
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-      const data = await res.json();
+      const text = await res.text();
+      let data = {};
+      try { data = text ? JSON.parse(text) : {}; } catch (e) { data = { message: text }; }
       if (res.ok) {
         alert('Danke — Ihre Nachricht wurde gesendet.');
         form.reset();

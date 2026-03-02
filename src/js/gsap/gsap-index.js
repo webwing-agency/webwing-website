@@ -313,6 +313,44 @@
   // BOOT: wait for content & gsap then init animations
   // -------------------------
   let started = false;
+  let visibilityFallbackTimer = null;
+
+  function forceHeroVisibleIfStuck() {
+    const hero = document.querySelector('.hero-section');
+    if (!hero) return;
+    const titleLines = Array.from(hero.querySelectorAll('.hero-line'));
+    const title = hero.querySelector('#hero-title');
+    const subtitle = hero.querySelector('.hero-subtitle');
+    const cta = hero.querySelector('.hero-cta');
+    const bg = hero.querySelector('.hero-bg');
+    const targets = [...titleLines, title, subtitle, cta, bg].filter(Boolean);
+    if (!targets.length) return;
+
+    targets.forEach(el => {
+      const opacity = Number.parseFloat(window.getComputedStyle(el).opacity || '1');
+      if (Number.isFinite(opacity) && opacity > 0.92) return;
+      if (window.gsap) {
+        window.gsap.set(el, {
+          autoAlpha: 1,
+          y: 0,
+          clearProps: 'transform,opacity,filter'
+        });
+      } else {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.filter = 'none';
+      }
+    });
+  }
+
+  function scheduleVisibilityFallback() {
+    if (visibilityFallbackTimer) clearTimeout(visibilityFallbackTimer);
+    visibilityFallbackTimer = setTimeout(() => {
+      forceHeroVisibleIfStuck();
+      visibilityFallbackTimer = null;
+    }, 1700);
+  }
+
   function isHeroContentReady() {
     const hero = document.querySelector('.hero-section');
     if (!hero) return true;
@@ -337,13 +375,19 @@
     if (!hasContent) return;
     if (!isHeroContentReady()) return;
     started = true;
+    if (visibilityFallbackTimer) {
+      clearTimeout(visibilityFallbackTimer);
+      visibilityFallbackTimer = null;
+    }
     try {
       initHeroAnimations();
       initScrollAnimations();
+      scheduleVisibilityFallback();
       // console.info('GSAP animations initialized');
     } catch (err) {
       // fail gracefully in production; log for dev
       console.error('Failed to initialize GSAP animations', err);
+      forceHeroVisibleIfStuck();
     }
   }
 
@@ -351,10 +395,14 @@
   window.addEventListener('content:ready', () => {
     // small delay to ensure DOM insertion finished
     setTimeout(startIfReady, 8);
-  }, { once: true });
+  });
 
   window.addEventListener('hero:rendered', () => {
     setTimeout(startIfReady, 8);
+  });
+
+  document.addEventListener('content:rendered', () => {
+    setTimeout(startIfReady, 10);
   });
 
   // Secondary: try to start as soon as GSAP exists and the DOM has content
@@ -366,7 +414,7 @@
   // Fallback: if page fully loaded, try to start (also covers direct, static pages)
   window.addEventListener('load', () => {
     setTimeout(startIfReady, 10);
-  }, { once: true });
+  });
 
   // Last resort: attempt to start after a short timeout (dev convenience)
   setTimeout(() => { startIfReady(); }, 1000);
@@ -376,12 +424,17 @@
     reinit() {
       started = false;
       heroScribbleDeadline = null;
+      if (visibilityFallbackTimer) {
+        clearTimeout(visibilityFallbackTimer);
+        visibilityFallbackTimer = null;
+      }
       try {
         if (window.ScrollTrigger && typeof window.ScrollTrigger.getAll === 'function') {
           window.ScrollTrigger.getAll().forEach(t => t.kill());
         }
       } catch (e) {}
       startIfReady();
+      scheduleVisibilityFallback();
     }
   };
 })();

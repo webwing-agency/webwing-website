@@ -1,4 +1,6 @@
 // js/render/contact.js
+import { applySeo } from '../seo.js';
+
 async function fetchContact() {
     const res = await fetch('/data/contact.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to fetch contact.json');
@@ -16,6 +18,11 @@ async function fetchContact() {
       }
       md.content = data.meta_description;
     }
+    applySeo({
+      title: data.meta_title,
+      description: data.meta_description,
+      canonicalPath: '/kontakt.html'
+    });
     const pageTitleEl = root.querySelector('.contact-page-title') || root.querySelector('.page-title');
     if (pageTitleEl && data.page_title) pageTitleEl.textContent = data.page_title;
     const subtitle = root.querySelector('.contact-page-subtitle');
@@ -47,8 +54,9 @@ async function fetchContact() {
       widget.setAttribute('data-sitekey', data.turnstile_sitekey);
     }
   
-    // expose contact API base to contact form script if any
-    window.API_BASE = data.contact_api_base || window.API_BASE || 'http://localhost:3000';
+    // expose contact API base to contact form script if configured via CMS.
+    // Default stays same-origin via /api rewrite.
+    window.API_BASE = data.contact_api_base || window.API_BASE || '/api';
   }
   
   export async function initContactPage(container = document) {

@@ -8,11 +8,12 @@
 .selection-flex {
   width: 100%;
   display: flex;
-  gap: 1rem;
-  margin-bottom: 5rem;
-  flex-wrap: wrap-reverse;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
   position: relative;
-  min-height: 3rem;
+  min-height: 2.75rem;
+  align-items: center;
 }
 
 .filter-select,
@@ -43,11 +44,15 @@
 }
 
 .filter-select {
-  flex: 1;
+  flex: 0 1 auto;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
+  min-width: 0;
+  max-width: 100%;
+  padding-inline: 1.15rem;
 }
 
 .filter-select.active {
@@ -55,11 +60,23 @@
   border-color: rgba(255, 255, 255, 0.4) !important;
 }
 
+.search-bar {
+  background-color: rgba(255, 255, 255, 0.065);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.search-bar:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
 .search-wrapper {
   position: relative;
-  right: 0;
-  flex: 2;
-  min-width: 20rem;
+  right: auto;
+  flex: 1 1 22rem;
+  min-width: min(20rem, 100%);
+  width: min(100%, 34rem);
+  margin-left: auto;
   --search-count: "";
 }
 
@@ -85,7 +102,10 @@
 .projects-grid {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 3rem;
+  width: 100%;
+  min-height: 12rem;
 }
 
 .project-images-grid {
@@ -181,4 +201,54 @@
   background-color: rgba(255, 255, 0, 0.25);
   padding: 0 0.1em;
   border-radius: 2px;
+}
+
+.search-empty-state {
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+  min-height: 8rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.72);
+  border-style: dashed;
+}
+
+@media (max-width: 767px) {
+  .page-projects .selection-flex {
+    margin-bottom: 2.5rem;
+  }
+
+  .page-projects .search-wrapper {
+    order: -1;
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+    margin-left: 0;
+  }
+
+  .page-projects .filter-select {
+    flex: 1 1 auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-projects .selection-flex {
+    flex-wrap: nowrap !important;
+    align-items: center;
+  }
+
+  .page-projects .filter-select {
+    flex: 0 0 auto;
+  }
+
+  .page-projects .search-wrapper {
+    flex: 0 0 clamp(18rem, 22vw, 25rem);
+    width: clamp(18rem, 22vw, 25rem);
+    min-width: 0;
+    margin-left: auto;
+  }
 }

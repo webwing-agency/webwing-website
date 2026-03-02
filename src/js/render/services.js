@@ -1,5 +1,6 @@
 // js/render/services.js
 // --- vollständige, robuste Version ---
+import { applySeo } from '../seo.js';
 
 async function fetchServices() {
   const res = await fetch('/data/services.json', { cache: 'no-store' });
@@ -29,6 +30,12 @@ function setMetaAndTitle(data) {
   if (data.meta_title) {
     document.title = data.meta_title;
   }
+
+  applySeo({
+    title: data.meta_title,
+    description: data.meta_description,
+    canonicalPath: '/dienstleistungen.html'
+  });
 
   const titleEl =
     document.querySelector('.services-page-title') ||
@@ -234,9 +241,10 @@ function initServiceSearch(root = document) {
   const wrapper = root.querySelector('.search-wrapper');
   const input = wrapper?.querySelector('.search-bar');
   const selectionFlex = root.querySelector('.selection-flex');
+  const grid = root.querySelector('.services-grid');
   const cards = Array.from(root.querySelectorAll('.service-card'));
 
-  if (!wrapper || !input || !selectionFlex || cards.length === 0) return;
+  if (!wrapper || !input || !selectionFlex || !grid || cards.length === 0) return;
   if (wrapper.dataset.searchInit === '1') return;
   wrapper.dataset.searchInit = '1';
 
@@ -282,6 +290,23 @@ function initServiceSearch(root = document) {
     if (item.descEl) item.descEl.innerHTML = item.descHTML;
     if (item.specsEl) item.specsEl.innerHTML = item.specsHTML;
   };
+
+  let emptyState = null;
+  function setEmptyState(show, query) {
+    if (!show) {
+      if (emptyState) emptyState.style.display = 'none';
+      return;
+    }
+    if (!emptyState) {
+      emptyState = document.createElement('div');
+      emptyState.className = 'grid-card search-empty-state';
+      grid.appendChild(emptyState);
+    }
+    emptyState.textContent = query
+      ? `Keine Ergebnisse fuer "${query}". Bitte Suchbegriff oder Filter anpassen.`
+      : 'Keine Ergebnisse gefunden.';
+    emptyState.style.display = '';
+  }
 
   const highlight = (el, query) => {
     if (!el || !query) return;
@@ -334,6 +359,8 @@ function initServiceSearch(root = document) {
         item.card.style.display = 'none';
       }
     });
+
+    setEmptyState(visible === 0 && Boolean(query), query);
 
     wrapper.style.setProperty(
       '--search-count',

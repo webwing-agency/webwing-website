@@ -49,12 +49,19 @@ async function initPage(containerOverride = null) {
       scribbleApi = { inlineScribbles, rerunScribbles };
       await initHomePage(container);
       initHeroMesh();
-      if (container?.querySelector('#booking-form')) {
-        initBookingPage(container);
+      initBookingPage(container);
+
+      // Ensure index GSAP always rebinds on Barba re-entry to Home.
+      if (window.IndexAnimations?.reinit) {
+        window.IndexAnimations.reinit();
       }
+
       const scribbleReady = inlineScribbles({ heroControlled: true });
       Promise.resolve(scribbleReady).finally(() => {
-        if (window.IndexAnimations?.reinit) window.IndexAnimations.reinit();
+        if (window.IndexAnimations?.reinit) {
+          // One more reinit after scribbles to avoid stale hidden states.
+          requestAnimationFrame(() => window.IndexAnimations.reinit());
+        }
       });
     }
 
@@ -105,7 +112,8 @@ async function initPage(containerOverride = null) {
     console.error('[main] Failed to load page scripts', err);
   }
 
-  if (window.GlobalAnimations?.init) {
+  const isHome = body.classList.contains('page-home');
+  if (!isHome && window.GlobalAnimations?.init) {
     try {
       window.GlobalAnimations.init();
       if (window.ScrollTrigger?.refresh) {
@@ -164,6 +172,9 @@ let animationsInitialized = false;
 // --- helper: debounced refresh/init ---
 let refreshTimeout = null;
 function scheduleAnimationsRefresh(reason = '') {
+    if (document.body.classList.contains('page-home')) {
+      return;
+    }
     if (refreshTimeout) clearTimeout(refreshTimeout);
   
     refreshTimeout = setTimeout(() => {
@@ -203,6 +214,7 @@ document.addEventListener('content:rendered', () => scheduleAnimationsRefresh('e
 
 // --- startup check: maybe content already present (renderer fired before import) ---
 function startupScanAndRefresh() {
+  if (document.body.classList.contains('page-home')) return;
   const hasServices = !!document.querySelector('.services-grid, .selection-flex, .service-card');
   const hasProjects = !!document.querySelector('.projects-grid, .project-card, .projects-list');
   if (hasServices) scheduleAnimationsRefresh('startup:found-services');

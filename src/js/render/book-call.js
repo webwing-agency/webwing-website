@@ -1,3 +1,5 @@
+import { applySeo } from '../seo.js';
+
 async function fetchBookCall() {
     const res = await fetch('/data/book-call.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to fetch book-call.json');
@@ -15,6 +17,11 @@ function setMetaAndTitle(data, root = document) {
       }
       md.content = data.meta_description;
     }
+    applySeo({
+      title: data.meta_title,
+      description: data.meta_description,
+      canonicalPath: '/kostenloses-erstgespr%C3%A4ch.html'
+    });
     const pageTitleEl = root.querySelector('.book-call-title') || root.querySelector('.page-title');
     if (pageTitleEl && data.page_title) pageTitleEl.textContent = data.page_title;
     const subtitle = root.querySelector('.book-call-subtitle');

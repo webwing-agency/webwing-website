@@ -129,6 +129,22 @@ export function initNav() {
   tl.reversed(true);
 
   // Toggle with awareness of input method (keyboard vs mouse)
+  function closeMenu({ viaKeyboard = false, restoreThemeEarly = false } = {}) {
+    if (tl.reversed() || tl.progress() === 0) return;
+    tl.reverse();
+    if (restoreThemeEarly) setThemeColor(THEME_BASE);
+    // iOS Safari can keep toolbar tint if reverse gets interrupted by navigation.
+    if (closeSafetyTimer) clearTimeout(closeSafetyTimer);
+    const closeDelay = Math.max(600, Math.ceil(tl.duration() * 1000) + 120);
+    closeSafetyTimer = setTimeout(() => {
+      if (!tl.reversed()) return;
+      clearMenuUiState();
+    }, closeDelay);
+    if (viaKeyboard) {
+      setTimeout(() => hamburger.focus(), 300);
+    }
+  }
+
   function toggleMenu({ viaKeyboard = false } = {}) {
     if (tl.isActive()) return;
     if (tl.reversed() || tl.progress() === 0) {
@@ -140,15 +156,7 @@ export function initNav() {
         }, 220);
       }
     } else {
-      tl.reverse();
-      // iOS Safari can keep toolbar tint if reverse gets interrupted by navigation.
-      if (closeSafetyTimer) clearTimeout(closeSafetyTimer);
-      closeSafetyTimer = setTimeout(() => {
-        if (!tl.reversed()) return;
-        clearMenuUiState();
-      }, 420);
-      // return focus to hamburger once closed (small delay)
-      setTimeout(() => hamburger.focus(), 300);
+      closeMenu({ viaKeyboard: true });
     }
   }
 
@@ -165,32 +173,28 @@ export function initNav() {
   // Close when clicking a link (mobile expectation)
   links.forEach((a) => {
     a.addEventListener('click', () => {
-      if (!tl.reversed()) {
-        tl.reverse();
-        clearMenuUiState();
-      }
+      closeMenu({ viaKeyboard: false, restoreThemeEarly: true });
     });
   });
 
   // Close when clicking backdrop area
   menu.addEventListener('click', (e) => {
     if (e.target === menu && !tl.reversed()) {
-      toggleMenu();
+      closeMenu({ viaKeyboard: false });
     }
   });
 
   // Close on Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !tl.reversed()) {
-      toggleMenu({ viaKeyboard: true });
+      closeMenu({ viaKeyboard: true });
     }
   });
 
   // Reset any stale mobile-nav state after SPA/container changes.
   document.addEventListener('content:rendered', () => {
-    if (!tl.reversed()) {
-      tl.pause(0).reverse(0);
-    }
+    if (!document.body.classList.contains('menu-open')) return;
+    tl.pause(0);
     clearMenuUiState();
   });
 }

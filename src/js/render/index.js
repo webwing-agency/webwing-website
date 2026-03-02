@@ -1,4 +1,6 @@
 // js/render/index.js
+import { applySeo } from '../seo.js';
+
 async function fetchHome() {
     const res = await fetch('/data/index.json', {cache: 'no-store'});
     if (!res.ok) throw new Error('Failed to fetch index.json: ' + res.status);
@@ -24,14 +26,21 @@ async function fetchHome() {
   }
   
   function setMeta(data) {
+    let titleVal = '';
+    let descVal = '';
     if (data && 'meta_title' in data) {
-      const titleVal = safeString(data.meta_title);
+      titleVal = safeString(data.meta_title);
       if (titleVal) document.getElementById('meta-title').textContent = titleVal;
     }
     if (data && 'meta_description' in data) {
-      const descVal = safeString(data.meta_description);
+      descVal = safeString(data.meta_description);
       if (descVal) document.getElementById('meta-description').setAttribute('content', descVal);
     }
+    applySeo({
+      title: titleVal,
+      description: descVal,
+      canonicalPath: '/'
+    });
   }
   
   function renderHero(hero, root = document) {

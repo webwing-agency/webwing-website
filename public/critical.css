@@ -1,15 +1,23 @@
-html {
-  color-scheme: dark;
-  background-color: #000;
+/* Minimal critical CSS loaded before Vite bundle.
+   Prevents white flash and missing-style fallback when JS/CSS are still loading. */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
 }
 
 body {
-  margin: 0;
-  background-color: #000;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-}
-
-a {
-  color: inherit;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }

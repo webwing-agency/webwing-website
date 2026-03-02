@@ -1,5 +1,6 @@
 // js/render/projects.js
 // robust: wait for images + layout before dispatching "projectsRendered"
+import { applySeo } from '../seo.js';
 
 function waitForImages(container) {
   const imgs = Array.from(container?.querySelectorAll('img') || []);
@@ -21,6 +22,12 @@ async function renderProjects(root = document) {
     const res = await fetch("/data/projects.json", { cache: 'no-store' });
     if (!res.ok) throw new Error("Failed to load /data/projects.json");
     const data = await res.json();
+
+    applySeo({
+      title: data.meta_title,
+      description: data.meta_description,
+      canonicalPath: '/referenzen.html'
+    });
 
     /* ---------- Page title ---------- */
     const pageTitle = root.querySelector(".references-page-title");
@@ -155,9 +162,10 @@ function initProjectSearch(root = document) {
   const wrapper = root.querySelector('.search-wrapper');
   const input = wrapper?.querySelector('.search-bar');
   const selectionFlex = root.querySelector('.selection-flex');
+  const grid = root.querySelector('.projects-grid');
   const cards = Array.from(root.querySelectorAll('.project-card'));
 
-  if (!wrapper || !input || !selectionFlex || cards.length === 0) return;
+  if (!wrapper || !input || !selectionFlex || !grid || cards.length === 0) return;
   if (wrapper.dataset.searchInit === '1') return;
   wrapper.dataset.searchInit = '1';
 
@@ -189,6 +197,23 @@ function initProjectSearch(root = document) {
     if (item.descEl) item.descEl.innerHTML = item.descHTML;
     if (item.specsEl) item.specsEl.innerHTML = item.specsHTML;
   };
+
+  let emptyState = null;
+  function setEmptyState(show, query) {
+    if (!show) {
+      if (emptyState) emptyState.style.display = 'none';
+      return;
+    }
+    if (!emptyState) {
+      emptyState = document.createElement('div');
+      emptyState.className = 'grid-card search-empty-state';
+      grid.appendChild(emptyState);
+    }
+    emptyState.textContent = query
+      ? `Keine Ergebnisse fuer "${query}". Bitte Suchbegriff oder Filter anpassen.`
+      : 'Keine Ergebnisse gefunden.';
+    emptyState.style.display = '';
+  }
 
   const highlightElement = (el, query) => {
     if (!el || !query) return;
@@ -222,6 +247,7 @@ function initProjectSearch(root = document) {
     const qNorm = normalize(q);
     if (!q) {
       index.forEach(item => { item.card.style.display = item.originalDisplay; restore(item); });
+      setEmptyState(false, '');
       wrapper.style.setProperty('--search-count', '""');
       return;
     }
@@ -240,6 +266,7 @@ function initProjectSearch(root = document) {
       }
     });
 
+    setEmptyState(visible === 0, q);
     wrapper.style.setProperty('--search-count', `"${visible} von ${index.length} Ergebnissen"`);
   };
 

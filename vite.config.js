@@ -13,7 +13,8 @@ export default defineConfig({
         kontakt: fileURLToPath(new URL('kontakt.html', import.meta.url)),
         kostenloses_erstgespraech: fileURLToPath(new URL('kostenloses-erstgespr\u00e4ch.html', import.meta.url)),
         impressum: fileURLToPath(new URL('impressum.html', import.meta.url)),
-        datenschutzerklaerung: fileURLToPath(new URL('datenschutzerkl\u00e4rung.html', import.meta.url))
+        datenschutzerklaerung: fileURLToPath(new URL('datenschutzerkl\u00e4rung.html', import.meta.url)),
+        agb: fileURLToPath(new URL('agb.html', import.meta.url))
       }
     }
   },
