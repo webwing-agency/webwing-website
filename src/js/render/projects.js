@@ -210,7 +210,7 @@ function initProjectSearch(root = document) {
       grid.appendChild(emptyState);
     }
     emptyState.textContent = query
-      ? `Keine Ergebnisse fuer "${query}". Bitte Suchbegriff oder Filter anpassen.`
+      ? `Keine Ergebnisse für "${query}". Bitte Suchbegriff oder Filter anpassen.`
       : 'Keine Ergebnisse gefunden.';
     emptyState.style.display = '';
   }
