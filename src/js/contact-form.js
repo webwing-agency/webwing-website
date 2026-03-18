@@ -10,6 +10,35 @@ function getContactEndpoint() {
   return `${base}/api/contact`;
 }
 
+function getContactFormCopy() {
+  const fallback = {
+    button: {
+      submit: 'Abschicken',
+      loading: 'Senden…'
+    },
+    messages: {
+      required: 'Bitte Name, E-Mail und Nachricht ausfüllen.',
+      success: 'Danke — Ihre Nachricht wurde gesendet.',
+      error_prefix: 'Fehler: ',
+      error_fallback: 'Serverfehler',
+      network_error: 'Netzwerkfehler. Bitte später versuchen.'
+    }
+  };
+
+  return {
+    ...fallback,
+    ...(window.__CONTACT_FORM_COPY__ || {}),
+    button: {
+      ...fallback.button,
+      ...((window.__CONTACT_FORM_COPY__ || {}).button || {})
+    },
+    messages: {
+      ...fallback.messages,
+      ...((window.__CONTACT_FORM_COPY__ || {}).messages || {})
+    }
+  };
+}
+
 export function initContactForm(container = document) {
   const form = container.querySelector('.contact-form');
   if (!form) return;
@@ -18,13 +47,14 @@ export function initContactForm(container = document) {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const copy = getContactFormCopy();
     const name = form.querySelector('#contactName')?.value?.trim() || '';
     const email = form.querySelector('#contactEmail')?.value?.trim() || '';
     const phone = form.querySelector('#contactPhone')?.value?.trim() || '';
     const message = form.querySelector('#messageText')?.value?.trim() || '';
 
     if (!name || !email || !message) {
-      alert('Bitte Name, E-Mail und Nachricht ausfüllen.');
+      alert(copy.messages.required);
       return;
     }
 
@@ -37,7 +67,7 @@ export function initContactForm(container = document) {
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.dataset.orig = submitBtn.textContent;
-      submitBtn.textContent = 'Senden…';
+      submitBtn.textContent = copy.button.loading;
     }
 
     try {
@@ -50,21 +80,21 @@ export function initContactForm(container = document) {
       let data = {};
       try { data = text ? JSON.parse(text) : {}; } catch (e) { data = { message: text }; }
       if (res.ok) {
-        alert('Danke — Ihre Nachricht wurde gesendet.');
+        alert(copy.messages.success);
         form.reset();
         if (typeof turnstile !== 'undefined' && typeof turnstile.reset === 'function') {
           try { turnstile.reset(); } catch (e) {}
         }
       } else {
-        alert('Fehler: ' + (data?.message || 'Serverfehler'));
+        alert(copy.messages.error_prefix + (data?.message || copy.messages.error_fallback));
       }
     } catch (err) {
       console.error('Contact submit error', err);
-      alert('Netzwerkfehler. Bitte später versuchen.');
+      alert(copy.messages.network_error);
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.textContent = submitBtn.dataset.orig || 'Senden';
+        submitBtn.textContent = submitBtn.dataset.orig || copy.button.submit;
       }
     }
   });

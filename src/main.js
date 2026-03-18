@@ -13,9 +13,11 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import './styles/global.css';
 import './styles/responsive/desktop.css';
 import './js/gsap/gsap-global.js';
+import { initSiteChrome } from './js/render/site.js';
 import { initNav } from './js/nav.js';
 import { initBarba } from './js/barba.js';
 import { initPrefetch } from './js/prefetch.js';
+import { initCardGlare } from './js/ui/card-glare.js';
 
 let scribbleApi = null;
 let globalListenersBound = false;
@@ -126,6 +128,7 @@ async function initPage(containerOverride = null) {
 
   // Prefetch likely next pages after each page init (works with Barba)
   initPrefetch();
+  initCardGlare(container || document);
 }
 
 function bindGlobalListeners() {
@@ -145,10 +148,13 @@ function bindGlobalListeners() {
 
 window.__APP_PAGE_INIT__ = initPage;
 
-initNav();
-bindGlobalListeners();
-initPage();
-initBarba();
+(async () => {
+  await initSiteChrome(document);
+  initNav();
+  bindGlobalListeners();
+  initPage();
+  initBarba();
+})();
 
   
 

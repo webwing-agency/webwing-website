@@ -7,8 +7,55 @@ const availabilityInflight = new Map();
 const RENDER = { token: 0 };
 const MAX_CONCURRENCY = 6;
 
+function getBookingCopy() {
+  const fallback = {
+    labels: {
+      name: 'Name',
+      email: 'E-Mail',
+      phone: 'Telefonnummer',
+      date: 'Tag',
+      time: 'Uhrzeit'
+    },
+    placeholders: {
+      name: 'Ihr Name',
+      email: 'Ihre E-Mail-Adresse',
+      phone: 'Ihre Telefonnummer'
+    },
+    calendar: {
+      weekdays: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
+      empty_times: 'Keine verfügbaren Zeiten'
+    },
+    button: {
+      submit: 'jetzt kostenloses Erstgespräch buchen',
+      loading: 'Wird gebucht…'
+    },
+    messages: {
+      name_required: 'Bitte geben Sie Ihren Namen ein.',
+      email_invalid: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+      slot_required: 'Bitte wählen Sie ein Datum und eine Uhrzeit aus.',
+      success: 'Termin gebucht! Eine Bestätigung wird an Ihre E-Mail gesendet.',
+      error_prefix: 'Fehler beim Buchen: ',
+      error_fallback: 'Serverantwort unklar',
+      network_error: 'Netzwerkfehler. Bitte versuchen Sie es später erneut.'
+    }
+  };
+
+  const runtime = window.__BOOKING_COPY__ || {};
+
+  return {
+    ...fallback,
+    ...runtime,
+    labels: { ...fallback.labels, ...(runtime.labels || {}) },
+    placeholders: { ...fallback.placeholders, ...(runtime.placeholders || {}) },
+    calendar: { ...fallback.calendar, ...(runtime.calendar || {}) },
+    button: { ...fallback.button, ...(runtime.button || {}) },
+    messages: { ...fallback.messages, ...(runtime.messages || {}) }
+  };
+}
+
 export function initBookingPage(root = document) {
   console.debug('[booking] main loaded');
+  const bookingCopy = getBookingCopy();
 
   const bookingForm = root.querySelector('#booking-form');
   const timeslotsContainer = root.querySelector('#timeslots');
@@ -88,7 +135,10 @@ export function initBookingPage(root = document) {
 
   if (!calendarRoot.querySelector('.calendar-header')) {
     const header = document.createElement('div'); header.className='calendar-header';
-    ['Mo','Di','Mi','Do','Fr','Sa','So'].forEach(w => { const s = document.createElement('span'); s.textContent = w; header.appendChild(s); });
+    (Array.isArray(bookingCopy.calendar.weekdays) && bookingCopy.calendar.weekdays.length === 7
+      ? bookingCopy.calendar.weekdays
+      : ['Mo','Di','Mi','Do','Fr','Sa','So']
+    ).forEach(w => { const s = document.createElement('span'); s.textContent = w; header.appendChild(s); });
     calendarRoot.appendChild(header);
   }
 
@@ -220,7 +270,7 @@ export function initBookingPage(root = document) {
   function renderTimeSlots(slots) {
     timeslotsContainer.innerHTML = '';
     if (!Array.isArray(slots) || slots.length === 0) {
-      timeslotsContainer.textContent = 'Keine verfügbaren Zeiten';
+      timeslotsContainer.textContent = bookingCopy.calendar.empty_times;
       return;
     }
     slots.forEach(slot => {
@@ -260,34 +310,34 @@ export function initBookingPage(root = document) {
     const phone = (root.querySelector('#bookingPhone')?.value || '').trim();
     const timezone = 'Europe/Berlin';
 
-    if (!name) { alert('Bitte geben Sie Ihren Namen ein.'); return; }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Bitte geben Sie eine gültige E-Mail-Adresse ein.'); return; }
-    if (!selectedDate || !selectedSlot) { alert('Bitte wählen Sie ein Datum und eine Uhrzeit aus.'); return; }
+    if (!name) { alert(bookingCopy.messages.name_required); return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert(bookingCopy.messages.email_invalid); return; }
+    if (!selectedDate || !selectedSlot) { alert(bookingCopy.messages.slot_required); return; }
 
     const idempotencyKey = (typeof crypto?.randomUUID === 'function') ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2,9)}`;
 
     const payload = { name, email, phone, startLocal: startLocalInput.value, timezone, idempotencyKey, source: 'website' };
 
     const submitBtn = bookingForm.querySelector('button[type="submit"]');
-    if (submitBtn) { submitBtn.disabled = true; submitBtn.dataset.origText = submitBtn.textContent; submitBtn.textContent = 'Wird gebucht…'; }
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.dataset.origText = submitBtn.textContent; submitBtn.textContent = bookingCopy.button.loading; }
 
     try {
       const result = await bookAppointment(payload);
       if (result.ok) {
-        alert('Termin gebucht! Eine Bestätigung wird an Ihre E-Mail gesendet.');
+        alert(bookingCopy.messages.success);
         bookingForm.reset();
         timeslotsContainer.innerHTML = '';
         calendarRoot.querySelectorAll('.calendar-day').forEach(x => x.classList.remove('is-active'));
         selectedDate = null; selectedSlot = null;
       } else {
         console.error('[booking] booking failed', result);
-        alert('Fehler beim Buchen: ' + (result.body?.message || 'Serverantwort unklar'));
+        alert(bookingCopy.messages.error_prefix + (result.body?.message || bookingCopy.messages.error_fallback));
       }
     } catch (err) {
       console.error('[booking] network error', err);
-      alert('Netzwerkfehler. Bitte versuchen Sie es später erneut.');
+      alert(bookingCopy.messages.network_error);
     } finally {
-      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitBtn.dataset.origText || 'jetzt kostenloses Erstgespräch buchen'; }
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitBtn.dataset.origText || bookingCopy.button.submit; }
     }
   });
 

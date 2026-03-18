@@ -170,11 +170,12 @@ p, a, button {
     align-items: center;
     gap: 10px;
     padding: 10px 22px;
-    background: var(--accent-color);
+    background:
+      linear-gradient(135deg, #ff7be5 0%, #e100ff 46%, #7b5cff 100%);
     color: #ffffff;
     text-decoration: none;
     border: var(--strong-border);
-    border-radius: 12px;
+    border-radius: 999px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-weight: 600;
     font-size: var(--cta-font-size);
@@ -183,32 +184,38 @@ p, a, button {
     z-index: 1;
     overflow: visible; 
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.06),
-      0 8px 22px rgba(2,8,23,0.55);
+      inset 0 1px 0 rgba(255,255,255,0.14),
+      0 10px 26px rgba(74, 12, 140, 0.34),
+      0 18px 36px rgba(2,8,23,0.42);
     transition:
-      transform 160ms cubic-bezier(.2,.9,.2,1),
-      box-shadow 160ms cubic-bezier(.2,.9,.2,1),
-      filter 160ms cubic-bezier(.2,.9,.2,1);
+      transform 260ms cubic-bezier(.16,1,.3,1),
+      box-shadow 320ms cubic-bezier(.16,1,.3,1),
+      filter 260ms cubic-bezier(.16,1,.3,1),
+      background-position 420ms cubic-bezier(.22,1,.36,1);
+    background-size: 160% 160%;
+    background-position: 12% 50%;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
+    will-change: transform, box-shadow, filter, background-position;
   }
   
   
   .cta:hover{
-    transform: translateY(-1px) !important;
-    filter: brightness(1.05) !important;
+    transform: translateY(-2px) scale(1.01) !important;
+    filter: brightness(1.035) saturate(1.04) !important;
+    background-position: 88% 50%;
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.08),
-      0 14px 34px rgba(2,8,23,0.48);
-    transition: all 160ms cubic-bezier(.2,.9,.2,1);
+      inset 0 1px 0 rgba(255,255,255,0.2),
+      0 14px 34px rgba(108, 20, 186, 0.28),
+      0 28px 52px rgba(2,8,23,0.34);
   }
   
   .cta:active{
-    transform: translateY(0) scale(0.985);
+    transform: translateY(-1px) scale(0.992);
     box-shadow:
       inset 0 2px 6px rgba(0,0,0,0.18),
-      0 6px 16px rgba(2,8,23,0.48);
-    transition-duration: 80ms;
+      0 10px 22px rgba(2,8,23,0.32);
+    transition-duration: 140ms;
   }
 
   .cta:focus-visible{
@@ -237,13 +244,90 @@ p, a, button {
 }
 
 .grid-card {
+    --card-glare-x: 50%;
+    --card-glare-y: 50%;
+    --card-glare-opacity: 0;
+    --card-sheen-opacity: 0.18;
     padding: 1.25rem;
-    background: var(--card-bg);
-    border: var(--global-border);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(2px);
-    border-radius: 10px;
+    background:
+        radial-gradient(130% 100% at 10% 0%, rgba(255, 96, 230, 0.035), rgba(255, 96, 230, 0) 42%),
+        radial-gradient(120% 120% at 100% 100%, rgba(86, 94, 255, 0.05), rgba(86, 94, 255, 0) 52%),
+        linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.012)),
+        rgba(6, 8, 14, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 12px 34px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
     position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transition:
+        transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 220ms ease,
+        box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1),
+        background-color 220ms ease;
+}
+
+.grid-card::before,
+.contact-card::before,
+.book-call-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01) 20%, transparent 48%);
+    opacity: var(--card-sheen-opacity, 0.36);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.grid-card::after,
+.contact-card::after,
+.book-call-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background:
+        radial-gradient(36% 30% at var(--card-glare-x, 50%) var(--card-glare-y, 50%),
+        rgba(255, 255, 255, 0.72) 0%,
+        rgba(255, 186, 237, 0.44) 28%,
+        rgba(106, 115, 255, 0.28) 56%,
+        rgba(106, 115, 255, 0) 78%) border-box;
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    opacity: var(--card-glare-opacity, 0);
+    transition: opacity 220ms ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.grid-card > *,
+.contact-card > *,
+.book-call-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .grid-card:hover,
+    .contact-card:hover,
+    .book-call-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.1);
+        box-shadow:
+            0 16px 42px rgba(0, 0, 0, 0.26),
+            inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
 }
 
 .card-cta {
@@ -288,7 +372,9 @@ p, a, button {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100vw;
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
     height: 10rem;
     background: linear-gradient(transparent 0%, black 100%);
     display: flex;
@@ -350,8 +436,11 @@ header {
             position: relative;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s;
-            opacity: 0.8;
+            color: rgba(255, 255, 255, 1);
+            opacity: 1;
+            transition:
+                color 220ms cubic-bezier(.2,.9,.2,1),
+                opacity 220ms cubic-bezier(.2,.9,.2,1);
         }
 
         .nav-links a::after {
@@ -435,14 +524,48 @@ header {
     width: 100vw;
     height: 100vh;
     padding: 2rem 2rem;
-    background-image: url('/assets/nav-bg.jpg');
-    background-size: cover;
-    background-position: center;
+    background:
+        radial-gradient(58rem 36rem at 16% 16%, rgba(186, 38, 255, 0.94), rgba(186, 38, 255, 0) 60%),
+        radial-gradient(54rem 32rem at 84% 14%, rgba(255, 46, 178, 0.9), rgba(255, 46, 178, 0) 58%),
+        radial-gradient(56rem 38rem at 54% 100%, rgba(236, 54, 255, 0.72), rgba(236, 54, 255, 0) 64%),
+        radial-gradient(34rem 24rem at 92% 82%, rgba(110, 118, 255, 0.22), rgba(110, 118, 255, 0) 58%),
+        linear-gradient(135deg, #8d31ff 0%, #b133ff 34%, #e12fff 68%, #ff49b7 100%);
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    overflow: hidden;
+}
+
+.popup-menu::before,
+.popup-menu::after {
+    content: "";
+    position: absolute;
+    inset: auto;
+    pointer-events: none;
+    filter: blur(18px);
+    opacity: 0.8;
+}
+
+.popup-menu::before {
+    top: -12rem;
+    right: -6rem;
+    width: 34rem;
+    height: 34rem;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, rgba(255, 103, 215, 0.82) 0%, rgba(255, 103, 215, 0) 68%);
+}
+
+.popup-menu::after {
+    left: -12rem;
+    bottom: -8rem;
+    width: 38rem;
+    height: 38rem;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, rgba(167, 74, 255, 0.78) 0%, rgba(167, 74, 255, 0) 70%);
 }
 
 .popup-menu.active {
@@ -458,6 +581,7 @@ header {
     position: absolute;
     top: 10rem;
     left: 2rem;
+    align-items: stretch;
 }
         
         /* Fix A: let GSAP handle transforms; only transition color in CSS */
@@ -468,20 +592,22 @@ header {
             color: #fff;
             text-decoration: none;
             font-weight: 600;
+            display: block;
+            width: 100%;
+            text-align: left;
         
-            /* DON'T transition transform here — GSAP will animate transform smoothly */
-            transition: margin 220ms ease;
+            transition: color 220ms ease, transform 220ms ease;
             will-change: transform, opacity;
         }
 
         .popup-link {
-            transition: margin 220ms ease;
+            width: 100%;
         }
         
         .popup-link:hover a,
         .popup-link:focus a {
-            margin-left: 5px;
-            transition: margin 220ms ease;
+            color: rgba(255, 255, 255, 0.82);
+            transform: translateX(4px);
         }
   
         
@@ -530,21 +656,35 @@ header {
         width: 100vw;
         background-color: rgba(255, 255, 255, 0.05);
         border-top: var(--global-border);
-        padding: 2rem;
-        min-height: 30rem;
+        padding: 2.5rem 1.5rem 1.75rem;
+        min-height: 0;
     }
     
         .footer-content {
             position: relative;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: calc(2rem + 5px);
+        }
+
+        .footer-top-row {
+            display: flex;
+            flex-direction: column;
+            gap: calc(1.85rem + 5px);
+            align-items: center;
+        }
+
+        .footer-brand-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
         }
     
         footer .logo-container {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
         }
     
 footer .logo {
@@ -558,53 +698,92 @@ footer .logo {
                 font-size: 0.8rem;
                 margin-top: 0.35rem;
             }
+
+            .footer-about {
+                margin: 0;
+                max-width: 32rem;
+                color: rgba(255, 255, 255, 0.58);
+                font-size: 0.92rem;
+                line-height: 1.6;
+                text-align: center;
+            }
     
             .footer-nav {
                 width: 100%;
-                margin: 1.5rem 0;
-                gap: 1rem;
+                max-width: 20rem;
+                margin: 0;
+                gap: calc(0.85rem + 5px);
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
+                align-items: stretch;
             }
 
                 .footer-nav-link {
                     width: 100%;
-                    padding-bottom: 10px;
+                    padding-bottom: 0.65rem;
                     border-bottom: var(--global-border);
                 }
     
                 .footer-nav-link a {    
                     display: block;   
                     width: 100%;      
-                    text-align: right;
-                    color: var(--text-color);
+                    text-align: center;
+                    color: rgba(255, 255, 255, 1);
                     text-decoration: none;
-                    font-weight: 600;  
-                    transition: transform 0.2s ease;
+                    font-weight: 500;
+                    font-size: 1rem;
+                    letter-spacing: 0;
+                    line-height: 1.2;
+                    transition:
+                        color 220ms cubic-bezier(.2,.9,.2,1),
+                        transform 220ms cubic-bezier(.2,.9,.2,1);
                 }
 
                 .footer-nav-link:hover a {
+                    color: var(--accent-color);
                     transform: translateX(-2px);
-                    color: white;
-                    transition: transform color 0.2s ease;
                 }
 
                 .footer-nav-link:nth-last-child(1) {
                     border-bottom: none;
                 }
-    
-            .legal-links {
+
+            .footer-bottom-bar {
+                border-top: 1px solid rgba(255, 255, 255, 0.5);
+                padding-top: calc(1.15rem + 5px);
                 display: flex;
                 flex-direction: column;
-                align-items: flex-end;
+                align-items: center;
+                gap: calc(0.9rem + 5px);
             }
-    
-                .legal-links a {
-                    color: rgba(255, 255, 255, 0.35);
-                    font-weight: 600;
-                    text-decoration: none;
-                }
+
+            .footer-meta {
+                color: rgba(255, 255, 255, 0.46);
+                font-size: 0.84rem;
+                font-weight: 500;
+                text-align: center;
+            }
+
+            .legal-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                gap: 25px;
+            }
+
+            .legal-links a {
+                color: rgba(255, 255, 255, 0.35);
+                font-weight: 600;
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: color 220ms cubic-bezier(.2,.9,.2,1), opacity 220ms cubic-bezier(.2,.9,.2,1);
+            }
+
+            .legal-links a:hover {
+                color: #fff;
+                opacity: 1;
+            }
 
 
 /* Page Titles */

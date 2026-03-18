@@ -58,12 +58,46 @@ async function fetchContact() {
     // Default stays same-origin via /api rewrite.
     window.API_BASE = data.contact_api_base || window.API_BASE || '/api';
   }
+
+  function applyContactFormContent(form, root = document) {
+    if (!form) return;
+
+    const labels = form.labels || {};
+    const placeholders = form.placeholders || {};
+    const button = form.button || {};
+
+    const setLabel = (fieldId, text) => {
+      const el = root.querySelector(`label[for="${fieldId}"]`);
+      if (el && text) el.textContent = text;
+    };
+
+    const setPlaceholder = (fieldId, text) => {
+      const el = root.querySelector(`#${fieldId}`);
+      if (el && text) el.setAttribute('placeholder', text);
+    };
+
+    setLabel('contactName', labels.name);
+    setLabel('contactEmail', labels.email);
+    setLabel('contactPhone', labels.phone);
+    setLabel('messageText', labels.message);
+
+    setPlaceholder('contactName', placeholders.name);
+    setPlaceholder('contactEmail', placeholders.email);
+    setPlaceholder('contactPhone', placeholders.phone);
+    setPlaceholder('messageText', placeholders.message);
+
+    const submitButton = root.querySelector('.contact-form .submit-button');
+    if (submitButton && button.submit) submitButton.textContent = button.submit;
+
+    window.__CONTACT_FORM_COPY__ = form;
+  }
   
   export async function initContactPage(container = document) {
     try {
       const data = await fetchContact();
       setMetaAndTitle(data, container);
       setContactFields(data, container);
+      applyContactFormContent(data.form || {}, container);
     } catch (err) {
       console.error('contact render error', err);
     }

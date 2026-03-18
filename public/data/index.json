@@ -2,11 +2,18 @@
   "meta_title": "Webdesign Agentur Heidelberg | Webwing Design Agency",
   "meta_description": "Webwing entwickelt Premium-Websites mit Fokus auf Design, Conversion, SEO und Performance für Unternehmen in Deutschland.",
   "hero": {
-    "title_html": "<div class=\"hero-line\">Websites, die Marken stärken </div>\n<div class=\"hero-line bold\">und Kunden <span class=\"underline-scribble\">gewinnen</span></div>",
+    "title_html": "<span class=\"hero-line\">Websites, die Marken stärken</span>\n<span class=\"hero-line bold\">und Kunden <span class=\"underline-scribble\">gewinnen</span></span>",
     "subtitle": "Design ist bei uns kein Selbstzweck. Wir schaffen Markenwerte, die Kunden gewinnen und Wettbewerber neidisch machen. Wir machen Schluss mit Mittelmäßigkeit und transformieren Ihren Auftritt von ‚na ja‘ auf absolutes Premium-Niveau. Ihr Aufwand: ein Briefing. In nur wenigen Wochen ist Ihre neue Website online.",
     "cta_text": "kostenloses Erstgespräch",
     "cta_link": "kostenloses-erstgespräch.html",
-    "hero_image": "/assets/hero-bg.png"
+    "hero_image": "/assets/hero-bg.png",
+    "capability_items": [
+      "Beratung",
+      "UI/UX-Design",
+      "Webentwicklung",
+      "SEO",
+      "Hosting & Wartung"
+    ]
   },
   "expertise": [
     {
@@ -68,11 +75,11 @@
     },
     {
       "image": "/assets/images/projects/project-3.png",
-      "title": "UrbanFit App",
-      "text": "Eine mobile Fitness-App, die wir mit einem modernen Design und einer intuitiven Benutzeroberfläche ausgestattet haben, um die Nutzerbindung zu fördern.",
+      "title": "UrbanFit Plattform",
+      "text": "Eine digitale Fitness-Plattform, die wir mit einem modernen Design und einer intuitiven Benutzeroberfläche ausgestattet haben, um die Nutzerbindung zu fördern.",
       "tags": [
         "Flutter",
-        "Mobile App",
+        "Digitale Plattform",
         "UI/UX"
       ]
     }
@@ -96,13 +103,65 @@
       "client_img": "/assets/images/clients/client-3.png",
       "client_name": "Arnold Schwarzenegger",
       "corporation_name": "Onion Ring Digital Solutions LLC",
-      "text": "Die neue Benutzeroberfläche unserer App ist ein echter Gamechanger. Webwing hat großartige Arbeit geleistet und unsere Vision perfekt umgesetzt.",
+      "text": "Die neue Benutzeroberfläche unserer Plattform ist ein echter Gamechanger. Webwing hat großartige Arbeit geleistet und unsere Vision perfekt umgesetzt.",
       "star_count": 5
     }
   ],
   "contact": {
     "email": "contact@webwing.agency",
     "phone": "06221 123456",
-    "booking_api_base": "http://localhost:3000"
+    "booking_api_base": "/api"
+  },
+  "sections": {
+    "expertise_title": "Unsere Expertise",
+    "expertise_link_label": "Mehr erfahren →",
+    "expertise_link": "dienstleistungen.html",
+    "projects_title": "Zurückliegende Projekte",
+    "projects_link_label": "Alle Projekte →",
+    "projects_link": "referenzen.html",
+    "reviews_title": "Das sagen unsere Kunden"
+  },
+  "book_section": {
+    "title": "Bereit, Ihr Projekt zu kickstarten?",
+    "text": "Vereinbaren sie jetzt ein unverbindliches und kostenloses 20-minütiges Erstgespräch, in welchem wir ihre Bedürfnisse und Wünsche erörtern ...",
+    "form": {
+      "labels": {
+        "name": "Name",
+        "email": "E-Mail",
+        "phone": "Telefonnummer",
+        "date": "Tag",
+        "time": "Uhrzeit"
+      },
+      "placeholders": {
+        "name": "Ihr Name",
+        "email": "Ihre E-Mail-Adresse",
+        "phone": "Ihre Telefonnummer"
+      },
+      "calendar": {
+        "weekdays": [
+          "Mo",
+          "Di",
+          "Mi",
+          "Do",
+          "Fr",
+          "Sa",
+          "So"
+        ],
+        "empty_times": "Keine verfügbaren Zeiten"
+      },
+      "button": {
+        "submit": "Jetzt kostenloses Erstgespräch buchen",
+        "loading": "Wird gebucht…"
+      },
+      "messages": {
+        "name_required": "Bitte geben Sie Ihren Namen ein.",
+        "email_invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        "slot_required": "Bitte wählen Sie ein Datum und eine Uhrzeit aus.",
+        "success": "Termin gebucht! Eine Bestätigung wird an Ihre E-Mail gesendet.",
+        "error_prefix": "Fehler beim Buchen: ",
+        "error_fallback": "Serverantwort unklar",
+        "network_error": "Netzwerkfehler. Bitte versuchen Sie es später erneut."
+      }
+    }
   }
 }

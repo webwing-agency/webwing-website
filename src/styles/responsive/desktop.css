@@ -58,7 +58,6 @@
     .submit-button {
         display: block;
         width: 100%;
-        max-width: 350px;
         min-width: fit-content;
         white-space: nowrap;
         margin-top: 1rem;
@@ -75,12 +74,26 @@
             position: relative;
             min-height: 20rem;
             height: fit-content;
+            gap: 2.5rem;
+        }
+
+        .footer-top-row {
+            display: grid;
+            grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .footer-brand-column {
+            gap: 1.15rem;
+            align-items: flex-start;
         }
     
         footer .logo-container {
             display: flex;
             flex-direction: column;
             width: fit-content;
+            align-items: flex-start;
         }
     
             footer .logo {
@@ -95,39 +108,50 @@
                 font-weight: 600;
                 font-style: italic;
             }
+
+            .footer-about {
+                max-width: 300px;
+                text-align: left;
+            }
     
     
             .footer-nav {
-                width: 30%;
-                max-width: 50rem;
+                width: 100%;
+                max-width: 400px;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
-                position: absolute;
-                top: 0;
-                right: 0;
+                justify-content: flex-start;
+                align-items: flex-end;
+                justify-self: end;
+                margin-left: auto;
+                position: static;
                 margin: 0;
             }
     
                 .footer-nav a {
                     text-decoration: none;
                     font-weight: 600;
+                    text-align: right;
                 }
     
+            .footer-bottom-bar {
+                width: 100%;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 2rem;
+            }
+
             .legal-links {
                 display: flex;
-                flex-direction: column;
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                align-items: flex-end;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 2rem;
+                width: 100%;
+                max-width: 400px;
+                margin-left: auto;
             }
-    
-                .legal-links a {
-                    color: rgba(255, 255, 255, 0.35);
-                    font-weight: 600;
-                    text-decoration: none;
-                }
 
     /* Index */
 
@@ -202,6 +226,14 @@
         position: relative;
         flex-wrap: wrap !important;
         align-items: center;
+    }
+
+    .references-page-fold,
+    .services-page-fold {
+        width: min(170rem, calc(100vw - 0.7rem));
+        max-width: min(170rem, calc(100vw - 0.7rem));
+        padding-inline: 0.35rem;
+        margin-inline: auto;
     }
 
     .page-projects .filter-select,

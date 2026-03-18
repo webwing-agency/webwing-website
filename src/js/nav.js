@@ -9,7 +9,7 @@ export function initNav() {
   const links = gsap?.utils?.toArray ? gsap.utils.toArray('.popup-link') : Array.from(document.querySelectorAll('.popup-link'));
   const decorations = gsap?.utils?.toArray ? gsap.utils.toArray('.popup-menu-decorations > *') : Array.from(document.querySelectorAll('.popup-menu-decorations > *'));
   const THEME_BASE = '#000000';
-  const THEME_MENU = '#e100ff';
+  const THEME_MENU = '#d62dff';
   let closeSafetyTimer = null;
 
   function getThemeMeta() {

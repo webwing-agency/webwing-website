@@ -1,5 +1,5 @@
 // src/js/fetch/availability.js
-import { API_BASE } from './api.js';
+import { getApiBase } from './api.js';
 
 function pad(n){ return String(n).padStart(2,'0'); }
 
@@ -49,7 +49,7 @@ export async function fetchAvailabilityRaw(dateIso) {
 
   // Try server-side first (Netlify function)
   try {
-    const url = `${API_BASE}/availability?date=${encodeURIComponent(dateIso)}`;
+    const url = `${getApiBase()}/availability?date=${encodeURIComponent(dateIso)}`;
     const res = await fetch(url, { cache: 'no-cache' });
     if (res.ok) {
       const json = await res.json();

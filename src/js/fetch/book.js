@@ -1,12 +1,12 @@
 // src/js/fetch/book.js
-import { API_BASE } from './api.js';
+import { getApiBase } from './api.js';
 
 /**
  * bookAppointment(payload) -> { ok: bool, body: any, status }
  * payload: { name, email, phone?, startLocal, timezone, idempotencyKey, source? }
  */
 export async function bookAppointment(payload) {
-  const url = `${API_BASE}/book`;
+  const url = `${getApiBase()}/book`;
   try {
     const res = await fetch(url, {
       method: 'POST',

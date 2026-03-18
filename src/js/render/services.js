@@ -66,6 +66,12 @@ function normalizeSpec(spec) {
   return { text: '', icon: '' };
 }
 
+function applyTemplate(template, values) {
+  return String(template || '').replace(/\{\{(\w+)\}\}/g, (_, key) => {
+    return key in values ? String(values[key]) : '';
+  });
+}
+
 function buildSpecItem(spec) {
   const { text, icon } = normalizeSpec(spec);
   const li = document.createElement('li');
@@ -85,7 +91,7 @@ function buildSpecItem(spec) {
   return li;
 }
 
-function buildServiceCard(item) {
+function buildServiceCard(item, ui = {}) {
   const card = document.createElement('div');
   card.className = 'service-card grid-card';
 
@@ -118,15 +124,15 @@ function buildServiceCard(item) {
     ul.appendChild(buildSpecItem(spec));
   });
 
-  textContainer.appendChild(desc);
   textContainer.appendChild(ul);
+  textContainer.appendChild(desc);
 
   const ctaWrap = document.createElement('div');
   ctaWrap.className = 'card-cta-container flex';
 
   const more = document.createElement('a');
   more.className = 'card-cta';
-  more.textContent = 'Mehr erfahren';
+  more.textContent = ui.card_cta_more_text || 'Mehr erfahren';
   more.href =
     item.ctas?.more_link && isValidURL(item.ctas.more_link)
       ? item.ctas.more_link
@@ -134,7 +140,7 @@ function buildServiceCard(item) {
 
   const contact = document.createElement('a');
   contact.className = 'card-cta';
-  contact.textContent = 'In Kontakt treten';
+  contact.textContent = ui.card_cta_contact_text || 'In Kontakt treten';
   contact.href =
     item.ctas?.contact_link && isValidURL(item.ctas.contact_link)
       ? item.ctas.contact_link
@@ -190,6 +196,7 @@ function waitForImages(container) {
 async function renderServices(root = document) {
   try {
     const data = await fetchServices();
+    const ui = data.ui || {};
 
     setMetaAndTitle(data);
 
@@ -201,7 +208,7 @@ async function renderServices(root = document) {
     const fragment = document.createDocumentFragment();
 
     data.services.forEach(service => {
-      fragment.appendChild(buildServiceCard(service));
+      fragment.appendChild(buildServiceCard(service, ui));
     });
 
     grid.appendChild(fragment);
@@ -209,7 +216,12 @@ async function renderServices(root = document) {
     // render filters
     renderFilters(data.filters, root);
 
-    initServiceSearch(root);
+    const searchInput = root.querySelector('.search-bar');
+    if (searchInput && ui.search_placeholder) {
+      searchInput.setAttribute('placeholder', ui.search_placeholder);
+    }
+
+    initServiceSearch(root, ui);
 
     // Sticky CTA
     const cta = root.querySelector('.cta');
@@ -237,7 +249,7 @@ async function renderServices(root = document) {
   }
 }
 
-function initServiceSearch(root = document) {
+function initServiceSearch(root = document, ui = {}) {
   const wrapper = root.querySelector('.search-wrapper');
   const input = wrapper?.querySelector('.search-bar');
   const selectionFlex = root.querySelector('.selection-flex');
@@ -303,8 +315,8 @@ function initServiceSearch(root = document) {
       grid.appendChild(emptyState);
     }
     emptyState.textContent = query
-      ? `Keine Ergebnisse für "${query}". Bitte Suchbegriff oder Filter anpassen.`
-      : 'Keine Ergebnisse gefunden.';
+      ? `${ui.empty_state_query_prefix || 'Keine Ergebnisse für "'}${query}${ui.empty_state_query_suffix || '". Bitte Suchbegriff oder Filter anpassen.'}`
+      : (ui.empty_state_default || 'Keine Ergebnisse gefunden.');
     emptyState.style.display = '';
   }
 
@@ -364,7 +376,7 @@ function initServiceSearch(root = document) {
 
     wrapper.style.setProperty(
       '--search-count',
-      query ? `"${visible} von ${index.length} Ergebnissen"` : '""'
+      query ? `"${applyTemplate(ui.results_count_template || '{{visible}} von {{total}} Ergebnissen', { visible, total: index.length })}"` : '""'
     );
   };
 

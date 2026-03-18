@@ -25,7 +25,7 @@ async function fetchHome() {
       .join('');
   }
   
-  function setMeta(data) {
+function setMeta(data) {
     let titleVal = '';
     let descVal = '';
     if (data && 'meta_title' in data) {
@@ -41,6 +41,42 @@ async function fetchHome() {
       description: descVal,
       canonicalPath: '/'
     });
+  }
+
+  function renderHeroCapabilityMarquee(items, root = document) {
+    const track = root.querySelector('.hero-capability-track');
+    const marquee = root.querySelector('.hero-capability-marquee');
+    if (!track || !Array.isArray(items) || items.length === 0) return;
+
+    if (marquee) {
+      marquee.setAttribute('aria-label', safeString('Unsere Aufgabenbereiche'));
+    }
+
+    const buildGroup = () => {
+      const group = document.createElement('div');
+      group.className = 'hero-capability-group';
+      group.setAttribute('aria-hidden', 'true');
+
+      items.forEach((item, index) => {
+        const label = document.createElement('span');
+        label.className = 'hero-capability-item';
+        label.textContent = safeString(item);
+        group.appendChild(label);
+
+        if (index < items.length - 1) {
+          const separator = document.createElement('span');
+          separator.className = 'hero-capability-separator';
+          separator.textContent = '+';
+          group.appendChild(separator);
+        }
+      });
+
+      return group;
+    };
+
+    track.innerHTML = '';
+    track.appendChild(buildGroup());
+    track.appendChild(buildGroup());
   }
   
   function renderHero(hero, root = document) {
@@ -74,6 +110,8 @@ async function fetchHome() {
       if (src) img.src = src;
       else img.removeAttribute('src');
     }
+
+    renderHeroCapabilityMarquee(hero.capability_items || [], root);
   }
   
   function renderExpertise(list, root = document) {
@@ -99,6 +137,7 @@ async function fetchHome() {
         const img = document.createElement('img');
         img.src = icon;
         img.className = 'icon';
+        img.alt = `${title || 'Expertise'} Icon`;
         iconWrap.appendChild(img);
       }
   
@@ -169,16 +208,97 @@ async function fetchHome() {
     const phone = root.querySelector('#contact-phone'); if (phone) { phone.href = `tel:${safeString(contact.phone || '')}`; phone.textContent = safeString(contact.phone || ''); }
     if (contact.booking_api_base) window.__BOOKING_API_BASE__ = safeString(contact.booking_api_base);
   }
+
+  function renderHomeSections(sections, root = document) {
+    if (!sections) return;
+
+    const expertiseTitle = root.querySelector('.expertise-title');
+    if (expertiseTitle && sections.expertise_title) {
+      expertiseTitle.textContent = safeString(sections.expertise_title);
+    }
+
+    const expertiseLink = root.querySelector('.expertise-section .reference-link');
+    if (expertiseLink) {
+      if (sections.expertise_link_label) expertiseLink.textContent = safeString(sections.expertise_link_label);
+      if (sections.expertise_link) expertiseLink.href = safeString(sections.expertise_link);
+    }
+
+    const projectsTitle = root.querySelector('.projects-title');
+    if (projectsTitle && sections.projects_title) {
+      projectsTitle.textContent = safeString(sections.projects_title);
+    }
+
+    const projectsLink = root.querySelector('.projects-section .reference-link');
+    if (projectsLink) {
+      if (sections.projects_link_label) projectsLink.textContent = safeString(sections.projects_link_label);
+      if (sections.projects_link) projectsLink.href = safeString(sections.projects_link);
+    }
+
+    const reviewsTitle = root.querySelector('.reviews-title');
+    if (reviewsTitle && sections.reviews_title) {
+      reviewsTitle.textContent = safeString(sections.reviews_title);
+    }
+  }
+
+  function renderBookingFormContent(form, root = document) {
+    if (!form) return;
+
+    const labels = form.labels || {};
+    const placeholders = form.placeholders || {};
+    const button = form.button || {};
+
+    const setLabel = (fieldId, text) => {
+      const el = root.querySelector(`label[for="${fieldId}"]`);
+      if (el && text) el.textContent = safeString(text);
+    };
+
+    const setPlaceholder = (fieldId, text) => {
+      const el = root.querySelector(`#${fieldId}`);
+      if (el && text) el.setAttribute('placeholder', safeString(text));
+    };
+
+    setLabel('bookingName', labels.name);
+    setLabel('bookingEmail', labels.email);
+    setLabel('bookingPhone', labels.phone);
+    setPlaceholder('bookingName', placeholders.name);
+    setPlaceholder('bookingEmail', placeholders.email);
+    setPlaceholder('bookingPhone', placeholders.phone);
+
+    const dateLabel = root.querySelector('.date-container .form-label');
+    if (dateLabel && labels.date) dateLabel.textContent = safeString(labels.date);
+
+    const timeLabel = root.querySelector('.time-container .form-label');
+    if (timeLabel && labels.time) timeLabel.textContent = safeString(labels.time);
+
+    const submitButton = root.querySelector('#submit-booking') || root.querySelector('.booking-form .submit-button');
+    if (submitButton && button.submit) submitButton.textContent = safeString(button.submit);
+
+    window.__BOOKING_COPY__ = form;
+  }
+
+  function renderBookSection(section, root = document) {
+    if (!section) return;
+
+    const title = root.querySelector('.book-call-title');
+    if (title && section.title) title.textContent = safeString(section.title);
+
+    const text = root.querySelector('.book-call-paragraph');
+    if (text && section.text) text.innerHTML = safeString(section.text);
+
+    renderBookingFormContent(section.form || {}, root);
+  }
   
   export async function initHomePage(root = document) {
     try {
       const data = await fetchHome();
       setMeta(data || {});
       renderHero(data?.hero || {}, root);
+      renderHomeSections(data?.sections || {}, root);
       renderExpertise(data?.expertise || [], root);
       renderProjects(data?.projects || [], root);
       renderReviews(data?.reviews || [], root);
       renderContact(data?.contact || {}, root);
+      renderBookSection(data?.book_section || {}, root);
 
       try {
         window.dispatchEvent(new Event('hero:rendered'));

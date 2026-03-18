@@ -1,11 +1,50 @@
 {
-    "meta_title": "Kostenloses Erstgespräch buchen | Webwing Design Agency",
-    "meta_description": "Buchen Sie ein kostenloses 20-minütiges Erstgespräch mit Webwing für Ihr Website-Projekt.",
-    "page_title": "Bereit, Ihr Projekt zu kickstarten?",
-    "subtitle": "Wir beraten Sie gerne zu Ihrem Vorhaben und zeigen Ihnen, wie wir gemeinsam Ihre Ziele erreichen können.",
-    "card_title": "Kostenloses 20-minütiges Erstgespräch",
-    "card_text": "Vereinbaren sie jetzt ein unverbindliches und kostenloses 20-minütiges Erstgespräch, in dem wir ihre Wünsche und Bedfürfnisse ermitteln, sie zur besten Strategie beraten und das Projekt-Scope definieren. Wie es danach weitergeht entscheiden wir gemeinsam.",
-    "email": "contact@webwing.agency",
-    "phone": "06221 123456"
+  "meta_title": "Kostenloses Erstgespräch buchen | Webwing Design Agency",
+  "meta_description": "Buchen Sie ein kostenloses 20-minütiges Erstgespräch mit Webwing für Ihr Website-Projekt.",
+  "page_title": "Bereit, Ihr Projekt zu kickstarten?",
+  "subtitle": "Wir beraten Sie gerne zu Ihrem Vorhaben und zeigen Ihnen, wie wir gemeinsam Ihre Ziele erreichen können.",
+  "card_title": "Kostenloses 20-minütiges Erstgespräch",
+  "card_text": "Vereinbaren sie jetzt ein unverbindliches und kostenloses 20-minütiges Erstgespräch, in dem wir ihre Wünsche und Bedfürfnisse ermitteln, sie zur besten Strategie beraten und das Projekt-Scope definieren. Wie es danach weitergeht entscheiden wir gemeinsam.",
+  "email": "contact@webwing.agency",
+  "phone": "06221 123456",
+  "booking_api_base": "/api",
+  "form": {
+    "labels": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Telefonnummer",
+      "date": "Tag",
+      "time": "Uhrzeit"
+    },
+    "placeholders": {
+      "name": "Ihr Name",
+      "email": "Ihre E-Mail-Adresse",
+      "phone": "Ihre Telefonnummer"
+    },
+    "calendar": {
+      "weekdays": [
+        "Mo",
+        "Di",
+        "Mi",
+        "Do",
+        "Fr",
+        "Sa",
+        "So"
+      ],
+      "empty_times": "Keine verfügbaren Zeiten"
+    },
+    "button": {
+      "submit": "jetzt kostenloses Erstgespräch buchen",
+      "loading": "Wird gebucht…"
+    },
+    "messages": {
+      "name_required": "Bitte geben Sie Ihren Namen ein.",
+      "email_invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "slot_required": "Bitte wählen Sie ein Datum und eine Uhrzeit aus.",
+      "success": "Termin gebucht! Eine Bestätigung wird an Ihre E-Mail gesendet.",
+      "error_prefix": "Fehler beim Buchen: ",
+      "error_fallback": "Serverantwort unklar",
+      "network_error": "Netzwerkfehler. Bitte versuchen Sie es später erneut."
+    }
+  }
 }
-  

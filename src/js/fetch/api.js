@@ -1,10 +1,18 @@
 // src/js/fetch/api.js
-// Works for both local dev (set VITE_NETLIFY_API_BASE) and production (relative path)
-export const API_BASE = (() => {
-  // Local dev: set VITE_NETLIFY_API_BASE to e.g. "http://localhost:8888/.netlify/functions"
-  if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_NETLIFY_API_BASE) {
-    return import.meta.env.VITE_NETLIFY_API_BASE;
+// Works for both runtime CMS config and local dev env config.
+export function getApiBase() {
+  if (typeof window !== 'undefined') {
+    const runtimeBase = String(window.__BOOKING_API_BASE__ || '').trim();
+    if (runtimeBase) {
+      return runtimeBase.replace(/\/$/, '');
+    }
   }
-  // On Netlify deployments functions are mounted under /.netlify/functions
+
+  if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_NETLIFY_API_BASE) {
+    return import.meta.env.VITE_NETLIFY_API_BASE.replace(/\/$/, '');
+  }
+
   return '/.netlify/functions';
-})();
+}
+
+export const API_BASE = getApiBase();

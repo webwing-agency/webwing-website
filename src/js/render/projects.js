@@ -17,11 +17,18 @@ function waitForImages(container) {
   return Promise.all(promises);
 }
 
+function applyTemplate(template, values) {
+  return String(template || '').replace(/\{\{(\w+)\}\}/g, (_, key) => {
+    return key in values ? String(values[key]) : '';
+  });
+}
+
 async function renderProjects(root = document) {
   try {
     const res = await fetch("/data/projects.json", { cache: 'no-store' });
     if (!res.ok) throw new Error("Failed to load /data/projects.json");
     const data = await res.json();
+    const ui = data.ui || {};
 
     applySeo({
       title: data.meta_title,
@@ -32,6 +39,11 @@ async function renderProjects(root = document) {
     /* ---------- Page title ---------- */
     const pageTitle = root.querySelector(".references-page-title");
     if (pageTitle) pageTitle.textContent = data.page_title ?? "";
+
+    const searchInput = root.querySelector('.search-bar');
+    if (searchInput && ui.search_placeholder) {
+      searchInput.setAttribute('placeholder', ui.search_placeholder);
+    }
 
     /* ---------- Filters ---------- */
     const selectionFlex = root.querySelector(".selection-flex");
@@ -118,14 +130,14 @@ async function renderProjects(root = document) {
         const a = document.createElement("a");
         a.href = project.ctas.more_link;
         a.className = "card-cta";
-        a.textContent = "Mehr erfahren";
+        a.textContent = ui.card_cta_more_text || "Mehr erfahren";
         ctas.appendChild(a);
       }
       if (project.ctas?.contact_link) {
         const a = document.createElement("a");
         a.href = project.ctas.contact_link;
         a.className = "card-cta";
-        a.textContent = "Kontakt";
+        a.textContent = ui.card_cta_contact_text || "Kontakt";
         ctas.appendChild(a);
       }
 
@@ -143,7 +155,7 @@ async function renderProjects(root = document) {
       cta.href = ctaLink;
     }
 
-    initProjectSearch(root);
+    initProjectSearch(root, ui);
 
     // wait for images then wait two frames to ensure layout is stable,
     // then dispatch projectsRendered
@@ -158,7 +170,7 @@ async function renderProjects(root = document) {
   }
 }
 
-function initProjectSearch(root = document) {
+function initProjectSearch(root = document, ui = {}) {
   const wrapper = root.querySelector('.search-wrapper');
   const input = wrapper?.querySelector('.search-bar');
   const selectionFlex = root.querySelector('.selection-flex');
@@ -210,8 +222,8 @@ function initProjectSearch(root = document) {
       grid.appendChild(emptyState);
     }
     emptyState.textContent = query
-      ? `Keine Ergebnisse für "${query}". Bitte Suchbegriff oder Filter anpassen.`
-      : 'Keine Ergebnisse gefunden.';
+      ? `${ui.empty_state_query_prefix || 'Keine Ergebnisse für "'}${query}${ui.empty_state_query_suffix || '". Bitte Suchbegriff oder Filter anpassen.'}`
+      : (ui.empty_state_default || 'Keine Ergebnisse gefunden.');
     emptyState.style.display = '';
   }
 
@@ -267,7 +279,7 @@ function initProjectSearch(root = document) {
     });
 
     setEmptyState(visible === 0, q);
-    wrapper.style.setProperty('--search-count', `"${visible} von ${index.length} Ergebnissen"`);
+    wrapper.style.setProperty('--search-count', `"${applyTemplate(ui.results_count_template || '{{visible}} von {{total}} Ergebnissen', { visible, total: index.length })}"`);
   };
 
   input.addEventListener('input', debounce(e => runFilter(e.target.value)));

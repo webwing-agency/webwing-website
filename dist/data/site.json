@@ -1,0 +1,86 @@
+{
+  "header": {
+    "status_text": "Available for Work",
+    "nav_links": [
+      {
+        "label": "Home",
+        "href": "index.html"
+      },
+      {
+        "label": "Referenzen",
+        "href": "referenzen.html"
+      },
+      {
+        "label": "Dienstleistungen",
+        "href": "dienstleistungen.html"
+      },
+      {
+        "label": "Kontakt",
+        "href": "kontakt.html",
+        "is_cta": true
+      }
+    ],
+    "popup_links": [
+      {
+        "label": "Home",
+        "href": "index.html"
+      },
+      {
+        "label": "Referenzen",
+        "href": "referenzen.html"
+      },
+      {
+        "label": "Dienstleistungen",
+        "href": "dienstleistungen.html"
+      },
+      {
+        "label": "Kontakt",
+        "href": "kontakt.html"
+      },
+      {
+        "label": "Erstgespräch buchen",
+        "href": "kostenloses-erstgespräch.html"
+      }
+    ],
+    "popup_brand_text": "Webwing Design Agency",
+    "email": "contact@webwing.agency",
+    "phone": "06221 123456"
+  },
+  "footer": {
+    "slogan": "Your Brand’s Wingman Online.",
+    "about": "Webwing konzipiert, gestaltet und entwickelt digitale Auftritte mit Fokus auf Markenwirkung, Klarheit und messbare Ergebnisse.",
+    "copyright": "© 2026 Webwing Design Agency",
+    "nav_links": [
+      {
+        "label": "Home",
+        "href": "index.html"
+      },
+      {
+        "label": "Referenzen",
+        "href": "referenzen.html"
+      },
+      {
+        "label": "Dienstleistungen",
+        "href": "dienstleistungen.html"
+      },
+      {
+        "label": "Kontakt",
+        "href": "kontakt.html"
+      }
+    ],
+    "legal_links": [
+      {
+        "label": "Datenschutz",
+        "href": "datenschutzerklärung.html"
+      },
+      {
+        "label": "AGB",
+        "href": "agb.html"
+      },
+      {
+        "label": "Impressum",
+        "href": "impressum.html"
+      }
+    ]
+  }
+}
