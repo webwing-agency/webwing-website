@@ -13,7 +13,6 @@
   const BATCH_MAX = 10;
 
   const EASE_OUT = 'power3.out';
-  let heroScribbleDeadline = null;
 
   const heroConfig = {
     mode: 'label',
@@ -357,14 +356,7 @@
     const hasLines = hero.querySelectorAll('.hero-line').length > 0;
     const titleEl = hero.querySelector('#hero-title');
     const hasTitleText = titleEl && titleEl.textContent && titleEl.textContent.trim().length > 0;
-    const hasTitleContent = hasLines || hasTitleText;
-    if (!hasTitleContent) return false;
-    const scribbleTargets = hero.querySelectorAll('.underline-scribble');
-    if (scribbleTargets.length > 0 && hero.querySelectorAll('.scribble-svg').length === 0) {
-      if (!heroScribbleDeadline) heroScribbleDeadline = Date.now() + 1500;
-      if (Date.now() < heroScribbleDeadline) return false;
-    }
-    return true;
+    return hasLines || hasTitleText;
   }
 
   function startIfReady() {
@@ -423,10 +415,13 @@
   window.IndexAnimations = {
     reinit() {
       started = false;
-      heroScribbleDeadline = null;
       if (visibilityFallbackTimer) {
         clearTimeout(visibilityFallbackTimer);
         visibilityFallbackTimer = null;
+      }
+      const hero = document.querySelector('.hero-section');
+      if (hero) {
+        delete hero.dataset.heroAnimated;
       }
       try {
         if (window.ScrollTrigger && typeof window.ScrollTrigger.getAll === 'function') {
