@@ -360,3 +360,20 @@
     margin-left: auto;
   }
 }
+
+@media (max-width: 768px) {
+  .service-specs {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding-bottom: 0;
+  }
+
+  .service-specs .feature-item {
+    flex: 0 1 auto;
+  }
+
+  .service-specs .feature-text {
+    white-space: normal;
+  }
+}

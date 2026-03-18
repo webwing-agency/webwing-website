@@ -311,3 +311,9 @@
     margin-left: auto;
   }
 }
+
+@media (max-width: 768px) {
+  .project-specs .feature-text {
+    white-space: normal;
+  }
+}

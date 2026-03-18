@@ -340,6 +340,12 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
     }
 
 @media (max-width: 768px) {
+    .hero-line,
+    .hero-title-line {
+        display: inline;
+        white-space: normal;
+    }
+
     body.page-home main[data-barba-namespace="home"]::before {
         inset: -2rem 0 -4rem;
         filter: blur(44px) saturate(108%);
@@ -599,6 +605,12 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
     line-height: 1.2;
     letter-spacing: -0.01em;
     white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .tag {
+        white-space: normal;
+    }
 }
 
 /* Reviews Section */

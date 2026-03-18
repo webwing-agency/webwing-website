@@ -4,8 +4,8 @@ backend:
   branch: main
   auth_type: pkce
   base_url: https://auth.decapbridge.com
-  auth_endpoint: /sites/efb90ebb-6b52-4f53-ac59-1b5844181c01/pkce
-  auth_token_endpoint: /sites/efb90ebb-6b52-4f53-ac59-1b5844181c01/token
+  auth_endpoint: /sites/ea541a53-412d-4947-b8a3-ccba711da4ff/pkce
+  auth_token_endpoint: /sites/ea541a53-412d-4947-b8a3-ccba711da4ff/token
   gateway_url: https://gateway.decapbridge.com
   commit_messages:
     create: Create {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
@@ -22,7 +22,7 @@ auth:
   avatar_url_claim: avatar_url
 
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
-site_url: https://webwing-website.netlify.app
+site_url: https://webwing.agency
 
 media_folder: "public/assets/uploads"
 public_folder: "/assets/uploads"
