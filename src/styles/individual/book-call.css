@@ -11,6 +11,11 @@
   margin-bottom: 1.55rem;
 }
 
+.book-call-section > .section-eyebrow,
+.book-call-card .left-side > .section-eyebrow {
+    margin-bottom: 0.65rem;
+}
+
 .book-call-subtitle {
   max-width: 600px;
   text-align: center;

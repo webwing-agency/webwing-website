@@ -12,6 +12,10 @@
   margin-bottom: 1rem;
 }
 
+.contact-page-fold > .section-eyebrow {
+  margin-bottom: 0.65rem;
+}
+
 .contact-page-subtitle {
   max-width: 500px;
   text-align: center;

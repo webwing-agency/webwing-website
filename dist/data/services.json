@@ -12,10 +12,10 @@
     {
       "title": "Webdesign",
       "images": [
-        "/assets/images/services/service-1.png",
-        "/assets/images/services/service-2.png",
-        "/assets/images/services/service-3.png",
-        "/assets/images/services/service-4.png"
+        "/assets/images/services/service-1.webp",
+        "/assets/images/services/service-2.webp",
+        "/assets/images/services/service-3.webp",
+        "/assets/images/services/service-4.webp"
       ],
       "description": "Wir gestalten digitale Erlebnisse, die Ihre Nutzerinnen und Nutzer schnell verstehen, lieben und zu den gewünschten Aktionen führen — weniger Verwirrung, mehr Vertrauen, bessere Conversion. Unser Prozess verbindet Nutzerforschung, datengetriebene Entscheidungen und pixelgenaue Gestaltung: Wireframes und interaktive Prototypen zeigen früh die Nutzerreise, Usability-Tests validieren Annahmen, und Design-Systeme sorgen für Konsistenz über alle Touchpoints hinweg. Ergebnis: Produkte, die nicht nur schön aussehen, sondern messbar besser funktionieren. Technische Merkmale",
       "specs": [
@@ -46,10 +46,10 @@
     {
       "title": "Webentwicklung",
       "images": [
-        "/assets/images/services/service-1.png",
-        "/assets/images/services/service-2.png",
-        "/assets/images/services/service-3.png",
-        "/assets/images/services/service-4.png"
+        "/assets/images/services/service-1.webp",
+        "/assets/images/services/service-2.webp",
+        "/assets/images/services/service-3.webp",
+        "/assets/images/services/service-4.webp"
       ],
       "description": "Maßgeschneiderte Frontend- und Backend-Entwicklung mit Fokus auf Performance und Wartbarkeit.",
       "specs": [
@@ -80,10 +80,10 @@
     {
       "title": "Grafikdesign",
       "images": [
-        "/assets/images/services/service-1.png",
-        "/assets/images/services/service-2.png",
-        "/assets/images/services/service-3.png",
-        "/assets/images/services/service-4.png"
+        "/assets/images/services/service-1.webp",
+        "/assets/images/services/service-2.webp",
+        "/assets/images/services/service-3.webp",
+        "/assets/images/services/service-4.webp"
       ],
       "description": "Branding, Illustration und Marketing-Materialien, die Ihre Kommunikation klar und attraktiv machen.",
       "specs": [

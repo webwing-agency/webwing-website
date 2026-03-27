@@ -99,6 +99,10 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
     z-index: 0;
 }
 
+.hero-section > .section-eyebrow {
+    margin-bottom: -1.1rem;
+}
+
     .hero-title {
         font-size: var(--hero-title-font-size);
         text-align: center;
@@ -172,11 +176,6 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
         Keep this in place so class toggling transitions correctly. */
     }
     
-
-    .hero-cta {
-        opacity: 0;
-    }
-
     .hero-capability-marquee {
         position: absolute;
         left: 50%;
@@ -456,19 +455,24 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
     }
 
     .hero-capability-marquee {
-        bottom: 1rem;
+        bottom: 0.8rem;
+        mask-image: linear-gradient(90deg, transparent, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent);
+        -webkit-mask-image: linear-gradient(90deg, transparent, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent);
     }
 
     .hero-capability-item,
     .hero-capability-separator {
-        font-size: 0.74rem;
-        letter-spacing: 0.14em;
+        font-size: 0.66rem;
+        letter-spacing: 0.1em;
         color: rgba(255, 255, 255, 0.3);
     }
 
     .hero-capability-group {
-        gap: 0.9rem;
-        padding: 0 0.75rem;
+        flex: 0 0 auto;
+        min-width: max-content;
+        justify-content: flex-start;
+        gap: 0.55rem;
+        padding: 0 0.65rem;
     }
 }
 
@@ -563,6 +567,10 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
     margin-bottom: 2rem;
 }
 
+.projects-section .section-title-stack {
+    align-items: flex-end;
+}
+
 .projects-title {
     text-align: right;
     gap: 1rem;
@@ -619,6 +627,12 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
 }
 .reviews-title {
     text-align: center;
+}
+
+.reviews-section > .section-eyebrow {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.55rem;
 }
 
 .client-img {

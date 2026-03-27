@@ -13,6 +13,10 @@
   const BATCH_MAX = 10;
 
   const EASE_OUT = 'power3.out';
+  const HERO_ENTRY_ALPHA = 0.72;
+  const HERO_ENTRY_Y = 10;
+  const HERO_BG_ENTRY_SCALE = 1.02;
+  const HERO_BG_ENTRY_Y = 8;
 
   const heroConfig = {
     mode: 'label',
@@ -37,7 +41,7 @@
     hero.dataset.heroAnimated = 'true';
 
     // split lines OR fallback to title element
-    const titleLines = gs.utils.toArray(hero.querySelectorAll('.hero-line'));
+    const titleLines = gs.utils.toArray(hero.querySelectorAll('.hero-line, .hero-title-line'));
     const titleFallbackEl = hero.querySelector('#hero-title');
     const titleTargets = titleLines.length ? titleLines : (titleFallbackEl ? [titleFallbackEl] : []);
 
@@ -63,10 +67,10 @@
     }
 
     // initial states (only if targets exist)
-    if (titleTargets.length) gs.set(titleTargets, { y: heroConfig.headline.y, autoAlpha: 0, filter: `blur(${heroConfig.headline.blur}px)`, willChange: 'transform,opacity,filter' });
-    if (subtitle) gs.set(subtitle, { y: heroConfig.subtitle.y, autoAlpha: 0, willChange: 'transform,opacity' });
-    if (cta) gs.set(cta, { y: heroConfig.cta.y, autoAlpha: 0, willChange: 'transform,opacity' });
-    if (bg) gs.set(bg, { scale: 1.04, y: 8, autoAlpha: 0, willChange: 'transform,opacity' });
+    if (titleTargets.length) gs.set(titleTargets, { y: HERO_ENTRY_Y, autoAlpha: HERO_ENTRY_ALPHA, filter: `blur(${heroConfig.headline.blur}px)`, willChange: 'transform,opacity,filter' });
+    if (subtitle) gs.set(subtitle, { y: HERO_ENTRY_Y, autoAlpha: HERO_ENTRY_ALPHA, willChange: 'transform,opacity' });
+    if (cta) gs.set(cta, { y: HERO_ENTRY_Y, autoAlpha: HERO_ENTRY_ALPHA, willChange: 'transform,opacity' });
+    if (bg) gs.set(bg, { scale: HERO_BG_ENTRY_SCALE, y: HERO_BG_ENTRY_Y, autoAlpha: HERO_ENTRY_ALPHA, willChange: 'transform,opacity' });
 
     if (scribblePaths.length) {
       scribblePaths.forEach(path => {
@@ -83,7 +87,12 @@
     const tl = gs.timeline({ defaults: { ease: 'power2.out' } });
 
     if (bg) {
-      tl.to(bg, { scale: 1, y: 0, autoAlpha: 1, duration: heroConfig.bg.duration, ease: 'power2.out' }, heroConfig.bg.startAt);
+      tl.fromTo(
+        bg,
+        { scale: HERO_BG_ENTRY_SCALE, y: HERO_BG_ENTRY_Y, autoAlpha: HERO_ENTRY_ALPHA },
+        { scale: 1, y: 0, autoAlpha: 1, duration: heroConfig.bg.duration, ease: 'power2.out' },
+        heroConfig.bg.startAt
+      );
     }
 
     function addHeadline() {
@@ -91,7 +100,7 @@
       if (titleTargets.length) {
         tl.fromTo(
           titleTargets,
-          { y: heroConfig.headline.y, autoAlpha: 0, filter: `blur(${heroConfig.headline.blur}px)` },
+          { y: HERO_ENTRY_Y, autoAlpha: HERO_ENTRY_ALPHA, filter: `blur(${heroConfig.headline.blur}px)` },
           {
             y: 0,
             autoAlpha: 1,
@@ -114,7 +123,7 @@
       if (subtitle) {
         tl.fromTo(
           subtitle,
-          { y: heroConfig.subtitle.y, autoAlpha: 0 },
+          { y: HERO_ENTRY_Y, autoAlpha: HERO_ENTRY_ALPHA },
           {
             y: 0,
             autoAlpha: 1,
@@ -129,7 +138,7 @@
       if (cta) {
         tl.fromTo(
           cta,
-          { y: heroConfig.cta.y, autoAlpha: 0 },
+          { y: HERO_ENTRY_Y, autoAlpha: HERO_ENTRY_ALPHA },
           {
             y: 0,
             autoAlpha: 1,

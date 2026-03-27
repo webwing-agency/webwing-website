@@ -105,8 +105,11 @@
             }
     
             footer .slogan {
-                font-weight: 600;
-                font-style: italic;
+                font-weight: 800;
+                font-style: normal;
+                font-size: 1.08rem;
+                letter-spacing: -0.02em;
+                max-width: 16rem;
             }
 
             .footer-about {
@@ -230,9 +233,9 @@
 
     .references-page-fold,
     .services-page-fold {
-        width: min(170rem, calc(100vw - 0.7rem));
-        max-width: min(170rem, calc(100vw - 0.7rem));
-        padding-inline: 0.35rem;
+        width: min(170rem, calc(100vw - 6rem));
+        max-width: min(170rem, calc(100vw - 6rem));
+        padding-inline: 3rem;
         margin-inline: auto;
     }
 

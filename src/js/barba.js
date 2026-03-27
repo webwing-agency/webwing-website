@@ -114,7 +114,10 @@ export function initBarba() {
             y: 0,
             duration: 0.35,
             ease: 'power2.out',
-            delay: 0.05
+            delay: 0.05,
+            onComplete: () => {
+              gsap.set(next.container, { clearProps: 'transform,opacity' });
+            }
           });
         },
         once({ next }) {

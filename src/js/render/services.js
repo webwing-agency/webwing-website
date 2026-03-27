@@ -1,6 +1,7 @@
 // js/render/services.js
 // --- vollständige, robuste Version ---
 import { applySeo } from '../seo.js';
+import { initStickyCta } from '../ui/sticky-cta.js';
 
 async function fetchServices() {
   const res = await fetch('/data/services.json', { cache: 'no-store' });
@@ -103,6 +104,10 @@ function buildServiceCard(item, ui = {}) {
     img.src = src;
     img.alt = item.title || '';
     img.className = 'service-image';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.width = 1000;
+    img.height = 554;
     imagesGrid.appendChild(img);
   });
 
@@ -163,7 +168,7 @@ function renderFilters(filters, root = document) {
   const selectionFlex = root.querySelector('.selection-flex');
   const searchWrapper = selectionFlex?.querySelector('.search-wrapper');
 
-  if (!selectionFlex || !searchWrapper) return;
+  if (!selectionFlex) return;
 
   selectionFlex
     .querySelectorAll('.filter-select')
@@ -173,7 +178,11 @@ function renderFilters(filters, root = document) {
     const el = document.createElement('div');
     el.className = 'filter-select';
     el.textContent = filter;
-    selectionFlex.insertBefore(el, searchWrapper);
+    if (searchWrapper) {
+      selectionFlex.insertBefore(el, searchWrapper);
+    } else {
+      selectionFlex.appendChild(el);
+    }
   });
 }
 
@@ -216,13 +225,6 @@ async function renderServices(root = document) {
     // render filters
     renderFilters(data.filters, root);
 
-    const searchInput = root.querySelector('.search-bar');
-    if (searchInput && ui.search_placeholder) {
-      searchInput.setAttribute('placeholder', ui.search_placeholder);
-    }
-
-    initServiceSearch(root, ui);
-
     // Sticky CTA
     const cta = root.querySelector('.cta');
     const ctaLabel = root.querySelector('.cta-label');
@@ -234,6 +236,8 @@ async function renderServices(root = document) {
         ? data.cta_link
         : 'kostenloses-erstgespräch.html';
     }
+
+    initStickyCta(root);
 
     // Wait for images to load (or timeout), then wait two frames to ensure layout stable
     await waitForImages(grid);

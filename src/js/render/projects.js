@@ -1,6 +1,7 @@
 // js/render/projects.js
 // robust: wait for images + layout before dispatching "projectsRendered"
 import { applySeo } from '../seo.js';
+import { initStickyCta } from '../ui/sticky-cta.js';
 
 function waitForImages(container) {
   const imgs = Array.from(container?.querySelectorAll('img') || []);
@@ -83,6 +84,10 @@ async function renderProjects(root = document) {
         img.src = src;
         img.alt = project.title ?? '';
         img.className = `project-image-${i + 1}`;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.width = 1000;
+        img.height = 554;
         imagesGrid.appendChild(img);
       });
 
@@ -154,6 +159,8 @@ async function renderProjects(root = document) {
       const ctaLink = data.cta_link || "kostenloses-erstgespräch.html";
       cta.href = ctaLink;
     }
+
+    initStickyCta(root);
 
     initProjectSearch(root, ui);
 

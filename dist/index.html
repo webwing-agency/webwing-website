@@ -13,13 +13,14 @@
   <meta property="og:title" content="Webdesign Agentur Heidelberg | Webwing Design Agency" />
   <meta property="og:description" content="Webwing entwickelt Premium-Websites mit Fokus auf Design, Conversion, SEO und Performance für Unternehmen in Deutschland." />
   <meta property="og:url" content="https://webwing.agency/" />
-  <meta property="og:image" content="https://webwing.agency/assets/hero-bg.png" />
+  <meta property="og:image" content="https://webwing.agency/assets/hero-bg.webp" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Webdesign Agentur Heidelberg | Webwing Design Agency" />
   <meta name="twitter:description" content="Webwing entwickelt Premium-Websites mit Fokus auf Design, Conversion, SEO und Performance für Unternehmen in Deutschland." />
-  <meta name="twitter:image" content="https://webwing.agency/assets/hero-bg.png" />
+  <meta name="twitter:image" content="https://webwing.agency/assets/hero-bg.webp" />
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/critical.css">
+  <link rel="preload" as="image" href="/assets/hero-bg.webp" fetchpriority="high">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -38,71 +39,21 @@
       ]
     }
   </script>
-  <script>
-    (function(){
-      // wait for gsap to exist (if it's loaded later)
-      function instrument(){
-        if (!window.gsap) return;
-        const methods = ['to','from','fromTo','set','killTweensOf','delayedCall','timeline'];
-        methods.forEach(name => {
-          if (typeof gsap[name] !== 'function') return;
-          const orig = gsap[name].bind(gsap);
-          gsap[name] = function(targets, vars, ...rest) {
-            try {
-              // log and remove invalid 'once' in tween vars
-              if (vars && vars.once !== undefined) {
-                console.warn('[GSAP-INSTRUMENT] Removing invalid tween prop "once":', { name, targets, vars });
-                console.warn(new Error().stack);
-                delete vars.once;
-              }
-              // detect empty targets
-              try {
-                const resolved = gsap.utils ? gsap.utils.toArray(targets) : (Array.isArray(targets) ? targets : []);
-                if (Array.isArray(resolved) && resolved.length === 0) {
-                  console.warn('[GSAP-INSTRUMENT] Tween called with empty target:', { name, targets });
-                  console.warn(new Error().stack);
-                }
-              } catch(e) {}
-              return orig(targets, vars, ...rest);
-            } catch (err) {
-              console.error('[GSAP-INSTRUMENT] Tween threw', { name, targets, vars, err });
-              console.error(err.stack);
-              throw err;
-            }
-          };
-        });
-        console.info('[GSAP-INSTRUMENT] active');
-      }
-    
-      if (window.gsap) instrument();
-      else {
-        const t = setInterval(()=>{ if(window.gsap){ clearInterval(t); instrument(); } }, 50);
-      }
-    
-      // global error listener to highlight the charAt error and show file/line
-      window.addEventListener('error', (ev) => {
-        if (ev.error && ev.error.stack && ev.message && ev.message.includes('charAt')) {
-          console.error('[GLOBAL ERROR LISTENER] CharAt error caught:', ev.message, ev.filename, ev.lineno, ev.colno);
-          console.error(ev.error.stack);
-        }
-      });
-    })();
-    </script>
 
   <style>
     /* hide animated parts until JS takes over */
     .hero-line,
-    #hero-title,
+    .hero-title-line,
     .hero-subtitle,
     .hero-cta,
     .hero-bg {
-      opacity: 0.7;
+      opacity: 0.72;
       transform: translateY(10px);
     }
   
     /* If JS is not available, preserve visibility for accessibility / no-JS fallback */
     .no-js .hero-line,
-    .no-js #hero-title,
+    .no-js .hero-title-line,
     .no-js .hero-subtitle,
     .no-js .cta,
     .no-js .hero-bg,
@@ -114,8 +65,8 @@
 
   <script>document.documentElement.classList.remove('no-js');</script>
 
-  <script type="module" crossorigin src="/assets/main-C8Bc91Y1.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-DG6-Cajm.css">
+  <script type="module" crossorigin src="/assets/main-TjzraT_6.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-BCER0oyQ.css">
 </head>
 <body class="page-home" data-barba="wrapper">
   <header>
@@ -124,6 +75,7 @@
       <a href="index.html" class="nav-link">Home</a>
       <a href="referenzen.html" class="nav-link">Referenzen</a>
       <a href="dienstleistungen.html" class="nav-link">Dienstleistungen</a>
+      <a href="über-uns.html" class="nav-link">Über Uns</a>
       <a href="kontakt.html" class="nav-link cta-link">Kontakt</a>
     </nav>
 
@@ -135,14 +87,15 @@
           <div class="popup-link"><a href="index.html">Home</a></div>
           <div class="popup-link"><a href="referenzen.html">Referenzen</a></div>
           <div class="popup-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+          <div class="popup-link"><a href="über-uns.html">Über Uns</a></div>
           <div class="popup-link"><a href="kontakt.html">Kontakt</a></div>
           <div class="popup-link"><a href="kostenloses-erstgespräch.html">Erstgespräch buchen</a></div>
 
       </div>
       <div class="popup-menu-decorations">
         <span>Webwing Design Agency</span><span>+</span>
-        <span><a href="mailto:contact@webwing.agency">contact@webwing.agency</a></span><span>+</span>
-        <span><a href="tel:01234 123456">01234 123456</a></span><span>+</span>
+        <span><a href="kontakt.html">contact@webwing.agency</a></span><span>+</span>
+        <span><a href="kontakt.html">01234 123456</a></span><span>+</span>
         <span>Available for Work</span>
       </div>
     </div>
@@ -184,7 +137,7 @@
           </div>
         </div>
       </div>
-      <div class="hero-bg-container"><img id="hero-image" class="hero-bg" src="assets/hero-bg.png" alt="Hero Section Hintergrund"/></div>
+      <div class="hero-bg-container"><img id="hero-image" class="hero-bg" src="assets/hero-bg.webp" alt="Hero Section Hintergrund" width="971" height="832" fetchpriority="high" decoding="async"/></div>
     </section>
 
     <section class="expertise-section">
@@ -264,13 +217,13 @@
               <div class="contact-icon-container icon-container ">
                 <img src="/assets/icons/mail.svg" class="icon">
               </div>
-              <a id="contact-email" href="mailto:contact@webwing.agency" class="contact-link">contact@webwing.agency</a>
+              <a id="contact-email" href="kontakt.html" class="contact-link">contact@webwing.agency</a>
             </div>
             <div class="contact-container">
               <div class="contact-icon-container icon-container">
                 <img src="/assets/icons/phone.svg" class="icon">
               </div>
-              <a id="contact-phone" href="tel:06221 123456" class="contact-link">06221 123456</a>
+              <a id="contact-phone" href="kontakt.html" class="contact-link">06221 123456</a>
             </div>
           </div>
         </div>
@@ -326,6 +279,7 @@
                 <div class="footer-nav-link"><a href="index.html">Home</a></div>
                 <div class="footer-nav-link"><a href="referenzen.html">Referenzen</a></div>
                 <div class="footer-nav-link"><a href="dienstleistungen.html">Dienstleistungen</a></div>
+                <div class="footer-nav-link"><a href="über-uns.html">Über Uns</a></div>
                 <div class="footer-nav-link"><a href="kontakt.html">Kontakt</a></div>
             </nav>
         </div>

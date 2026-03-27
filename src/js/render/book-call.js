@@ -71,12 +71,12 @@ function applyBookingFormContent(form, root = document) {
   function setContactFields(data, root = document) {
     const emailEl = root.querySelector('#contact-email') || root.querySelector('.contact-link[href^="mailto:"]');
     if (emailEl && data.email) {
-      emailEl.href = `mailto:${data.email}`;
+      emailEl.href = 'kontakt.html';
       emailEl.textContent = data.email;
     }
     const phoneEl = root.querySelector('#contact-phone') || root.querySelector('.contact-link[href^="tel:"]');
     if (phoneEl && data.phone) {
-      phoneEl.href = `tel:${data.phone}`;
+      phoneEl.href = 'kontakt.html';
       phoneEl.textContent = data.phone;
     }
     if (data.booking_api_base) {

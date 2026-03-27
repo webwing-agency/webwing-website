@@ -8,12 +8,9 @@
 
 // src/main.js
 
-// global imports
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import './styles/global.css';
 import './styles/responsive/desktop.css';
 import './js/gsap/gsap-global.js';
-import { initSiteChrome } from './js/render/site.js';
 import { initNav } from './js/nav.js';
 import { initBarba } from './js/barba.js';
 import { initPrefetch } from './js/prefetch.js';
@@ -30,6 +27,8 @@ async function initPage(containerOverride = null) {
   })();
   if (container?.dataset.pageInit === '1') return;
   if (container) container.dataset.pageInit = '1';
+
+  let aboutPageInitializer = null;
 
   try {
     // -------- HOME --------
@@ -89,6 +88,15 @@ async function initPage(containerOverride = null) {
       initContactForm(container);
     }
 
+    // -------- ABOUT --------
+    if (body.classList.contains('page-about')) {
+      const [{ initAboutPage }] = await Promise.all([
+        import('./js/render/about.js'),
+        import('./styles/individual/about.css')
+      ]);
+      aboutPageInitializer = initAboutPage;
+    }
+
     // -------- LEGAL --------
     if (body.classList.contains('page-legal')) {
       await import('./styles/individual/legal.css');
@@ -98,15 +106,25 @@ async function initPage(containerOverride = null) {
 
     // -------- PROJECTS --------
     if (body.classList.contains('page-projects')) {
-      await import('./styles/individual/projects.css');
-      const { initProjectsPage } = await import('./js/render/projects.js');
+      const [{ initProjectsPage }] = await Promise.all([
+        import('./js/render/projects.js'),
+        import('@fortawesome/fontawesome-free/css/fontawesome.min.css'),
+        import('@fortawesome/fontawesome-free/css/solid.min.css'),
+        import('@fortawesome/fontawesome-free/css/brands.min.css'),
+        import('./styles/individual/projects.css')
+      ]);
       await initProjectsPage(container);
     }
 
     // -------- SERVICES --------
     if (body.classList.contains('page-services')) {
-      await import('./styles/individual/services.css');
-      const { initServicesPage } = await import('./js/render/services.js');
+      const [{ initServicesPage }] = await Promise.all([
+        import('./js/render/services.js'),
+        import('@fortawesome/fontawesome-free/css/fontawesome.min.css'),
+        import('@fortawesome/fontawesome-free/css/solid.min.css'),
+        import('@fortawesome/fontawesome-free/css/brands.min.css'),
+        import('./styles/individual/services.css')
+      ]);
       await initServicesPage(container);
     }
 
@@ -123,6 +141,14 @@ async function initPage(containerOverride = null) {
       }
     } catch (e) {
       console.warn('[main] GlobalAnimations init failed', e);
+    }
+  }
+
+  if (aboutPageInitializer) {
+    try {
+      aboutPageInitializer(container);
+    } catch (e) {
+      console.warn('[main] About page animation init failed', e);
     }
   }
 
@@ -149,7 +175,6 @@ function bindGlobalListeners() {
 window.__APP_PAGE_INIT__ = initPage;
 
 (async () => {
-  await initSiteChrome(document);
   initNav();
   bindGlobalListeners();
   initPage();

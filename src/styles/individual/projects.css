@@ -1,13 +1,17 @@
 /* Projects (Referenzen) page */
 .references-page-fold {
-  width: min(100%, calc(100vw - 1rem));
-  max-width: min(170rem, calc(100vw - 1rem));
+  width: min(100%, calc(100vw - 2.5rem));
+  max-width: min(170rem, calc(100vw - 2.5rem));
   min-width: 0;
-  padding-inline: 0.5rem;
+  padding-inline: clamp(1.25rem, 3vw, 3rem);
   padding-bottom: 10rem;
   align-items: flex-start;
   position: relative;
   margin-inline: auto;
+}
+
+.references-page-fold > .section-eyebrow {
+  margin-bottom: 0.65rem;
 }
 
 .selection-flex {

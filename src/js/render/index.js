@@ -109,6 +109,8 @@ function setMeta(data) {
       const src = safeString(hero.hero_image || '');
       if (src) img.src = src;
       else img.removeAttribute('src');
+      img.decoding = 'async';
+      img.fetchPriority = 'high';
     }
 
     renderHeroCapabilityMarquee(hero.capability_items || [], root);
@@ -138,6 +140,7 @@ function setMeta(data) {
         img.src = icon;
         img.className = 'icon';
         img.alt = `${title || 'Expertise'} Icon`;
+        img.decoding = 'async';
         iconWrap.appendChild(img);
       }
   
@@ -169,6 +172,8 @@ function setMeta(data) {
       const img = document.createElement('img'); img.className='card-img project-img';
       if (image) { img.src = image; } else { img.removeAttribute('src'); }
       img.alt = title;
+      img.loading = 'lazy';
+      img.decoding = 'async';
       const h3 = document.createElement('h3'); h3.className='card-title'; h3.textContent = title;
       const p = document.createElement('p'); p.className='card-text'; p.textContent = text;
       const tagsWrap = document.createElement('div'); tagsWrap.className='tag-container';
@@ -191,6 +196,8 @@ function setMeta(data) {
   
       const card = document.createElement('div'); card.className = 'grid-card';
       const img = document.createElement('img'); img.className='client-img'; if (client_img) img.src = client_img; img.alt = client_name;
+      img.loading = 'lazy';
+      img.decoding = 'async';
       const h3 = document.createElement('h3'); h3.className='card-title client-name'; h3.textContent = client_name;
       const corp = document.createElement('span'); corp.className='corporation-name'; corp.textContent = corporation_name;
       const p = document.createElement('p'); p.className='card-text testimonial-text'; p.textContent = text;
@@ -204,8 +211,8 @@ function setMeta(data) {
       console.debug('[render] contact missing');
       return;
     }
-    const email = root.querySelector('#contact-email'); if (email) { email.href = `mailto:${safeString(contact.email || '')}`; email.textContent = safeString(contact.email || ''); }
-    const phone = root.querySelector('#contact-phone'); if (phone) { phone.href = `tel:${safeString(contact.phone || '')}`; phone.textContent = safeString(contact.phone || ''); }
+    const email = root.querySelector('#contact-email'); if (email) { email.href = 'kontakt.html'; email.textContent = safeString(contact.email || ''); }
+    const phone = root.querySelector('#contact-phone'); if (phone) { phone.href = 'kontakt.html'; phone.textContent = safeString(contact.phone || ''); }
     if (contact.booking_api_base) window.__BOOKING_API_BASE__ = safeString(contact.booking_api_base);
   }
 
