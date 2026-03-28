@@ -1,4 +1,4 @@
-const CARD_SELECTOR = '.grid-card, .contact-card, .book-call-card';
+const CARD_SELECTOR = '.grid-card, .contact-card, .book-call-card, .about-image-card, .about-card, .about-story-step, .about-team-card, .about-history-copy p';
 
 let enabled = false;
 

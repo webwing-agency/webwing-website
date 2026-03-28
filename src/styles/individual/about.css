@@ -42,7 +42,9 @@
     text-align: left !important;
     margin: 0;
     max-width: 9ch;
-    letter-spacing: -0.028em;
+    font-size: clamp(1.55rem, 2.3vw, 2.3rem);
+    line-height: 0.98;
+    letter-spacing: -0.026em;
 }
 
 .about-lead {
@@ -87,10 +89,13 @@
 .about-hero-visual {
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 }
 
 .about-image-card {
     position: relative;
+    z-index: 2;
     width: min(100%, 470px);
     padding: 1rem;
     border-radius: 30px;
@@ -161,7 +166,7 @@
 
 .about-values-intro .section-eyebrow {
     justify-content: flex-start;
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.38rem;
 }
 
 .about-values-intro h2 {
@@ -189,7 +194,7 @@
     border-radius: 24px;
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
-        rgba(10, 10, 14, 0.72);
+        rgba(10, 10, 14, 0.56);
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
 }
@@ -239,7 +244,7 @@
 
 .about-team-intro .section-eyebrow {
     justify-content: flex-end;
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.38rem;
 }
 
 .about-team-intro h2 {
@@ -317,19 +322,67 @@
     font-size: 0.92rem;
 }
 
-.about-story {
+.about-history {
     margin-top: 10rem;
     align-items: flex-start;
+}
+
+.about-history-intro {
+    max-width: 42rem;
+    margin-bottom: 2.5rem;
+    text-align: left;
+}
+
+.about-history-intro .section-eyebrow {
+    margin-bottom: 0.5rem;
+}
+
+.about-history-intro h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.55rem, 2.3vw, 2.3rem);
+    line-height: 0.98;
+    letter-spacing: -0.026em;
+}
+
+.about-history-intro p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.7;
+}
+
+.about-history-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.25rem;
+}
+
+.about-history-copy p {
+    margin: 0;
+    padding: 1.4rem 1.35rem;
+    border-radius: 24px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+        rgba(10, 10, 14, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
+    color: rgba(255, 255, 255, 0.74);
+    line-height: 1.75;
+}
+
+.about-story {
+    margin-top: 10rem;
+    align-items: flex-end;
 }
 
 .about-story-intro {
     max-width: 700px;
     margin-bottom: 2.5rem;
+    text-align: right;
 }
 
 .about-story-intro .section-eyebrow {
     justify-content: flex-start;
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.38rem;
 }
 
 .about-story-grid {
@@ -338,7 +391,30 @@
     gap: 1rem;
 }
 
-.about-story-step span {
+.about-story-step {
+    position: relative;
+    overflow: visible;
+}
+
+
+.about-story-step .about-card-kicker {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0.9rem;
+}
+
+.about-story-connector {
+    position: absolute;
+    top: 2.15rem;
+    left: calc(100% + 1px);
+    width: 1rem;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.25);
+    pointer-events: none;
+    z-index: 3;
+}
+
+.about-story-step > span:not(.about-card-kicker):not(.about-story-connector) {
     display: inline-block;
     margin-bottom: 0.9rem;
     color: #fff;
@@ -403,7 +479,7 @@
 }
 
 .about-mission-copy .section-eyebrow {
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.38rem;
     justify-content: center;
 }
 
@@ -459,7 +535,8 @@
     }
 
     .about-values-grid,
-    .about-story-grid {
+    .about-story-grid,
+    .about-history-copy {
         grid-template-columns: 1fr;
     }
 
@@ -467,6 +544,13 @@
         flex-direction: column;
         width: min(100%, 28rem);
         gap: 1rem;
+    }
+
+    .about-story-connector {
+        top: calc(100% + 1px);
+        left: 1.78rem;
+        width: 1px;
+        height: 1rem;
     }
 
     .about-team-card {
@@ -500,12 +584,12 @@
 @media (max-width: 640px) {
     .page-about {
         background:
-            radial-gradient(circle at 18% 8%, rgba(255, 0, 184, 0.15), transparent 22%),
-            radial-gradient(circle at 82% 22%, rgba(118, 78, 255, 0.18), transparent 24%),
-            radial-gradient(circle at 24% 44%, rgba(214, 90, 255, 0.14), transparent 23%),
-            radial-gradient(circle at 78% 60%, rgba(96, 72, 255, 0.16), transparent 24%),
-            radial-gradient(circle at 18% 80%, rgba(255, 0, 184, 0.13), transparent 22%),
-            radial-gradient(circle at 76% 94%, rgba(122, 84, 255, 0.15), transparent 24%),
+            radial-gradient(circle at 18% 8%, rgba(255, 0, 184, 0.15), transparent 14%),
+            radial-gradient(circle at 82% 22%, rgba(118, 78, 255, 0.18), transparent 15%),
+            radial-gradient(circle at 24% 44%, rgba(214, 90, 255, 0.14), transparent 14%),
+            radial-gradient(circle at 78% 60%, rgba(96, 72, 255, 0.16), transparent 15%),
+            radial-gradient(circle at 18% 80%, rgba(255, 0, 184, 0.13), transparent 14%),
+            radial-gradient(circle at 76% 94%, rgba(122, 84, 255, 0.15), transparent 15%),
             #050507;
         background-repeat: no-repeat;
         background-size: 100% 100%;
@@ -529,8 +613,24 @@
         max-width: 100%;
     }
 
+    .about-hero .about-eyebrow {
+        margin-top: 1rem;
+    }
+
     .about-lead {
         font-size: 0.96rem;
+        line-height: 1.7;
+    }
+
+    .about-lead,
+    .about-values-intro p,
+    .about-team-intro p,
+    .about-story-intro p,
+    .about-mission-copy p,
+    .about-card p,
+    .about-story-step p,
+    .about-team-note span {
+        font-size: var(--text-font-size);
         line-height: 1.7;
     }
 

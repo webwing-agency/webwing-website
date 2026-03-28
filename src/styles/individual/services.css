@@ -99,6 +99,17 @@
   --search-count: "";
 }
 
+.services-search-shell {
+  position: absolute !important;
+  inline-size: 1px !important;
+  block-size: 1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
 .search-icon {
   position: absolute;
   left: 12px;

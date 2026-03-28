@@ -414,5 +414,7 @@ function initServiceSearch(root = document, ui = {}) {
 }
 
 export async function initServicesPage(root) {
-  await renderServices(root || document);
+  const pageRoot = root || document;
+  await renderServices(pageRoot);
+  initServiceSearch(pageRoot);
 }
