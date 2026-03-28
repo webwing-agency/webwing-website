@@ -19,5 +19,5 @@ jobs:
           server: ${{ secrets.IONOS_HOST }}
           username: ${{ secrets.IONOS_USER }}
           password: ${{ secrets.IONOS_PASSWORD }}
-          local-dir: ./public
+          local-dir: dist/
           server-dir: /www/htdocs
