@@ -1,0 +1,23 @@
+name: Deploy to Ionos
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout Code
+      - uses: actions/checkout@v3
+
+      # Upload via SFTP
+      - name: Upload to Ionos via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@4.4.0
+        with:
+          server: ${{ secrets.IONOS_HOST }}
+          username: ${{ secrets.IONOS_USER }}
+          password: ${{ secrets.IONOS_PASSWORD }}
+          local-dir: ./public
+          server-dir: /www/htdocs
