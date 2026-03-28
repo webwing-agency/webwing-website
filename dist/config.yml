@@ -3,11 +3,12 @@ backend:
   repo: webwing-agency/webwing-website
   branch: main
 
-  site_url: https://webwing.agency
+site_url: https://webwing.agency
 
-  media_folder: "images/uploads"
-  media_library: 
-    name: default
+media_folder: "images/uploads"
+media_library: 
+  name: default
+
 
 collections:
   - name: "home"
