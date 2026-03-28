@@ -4,32 +4,41 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager</title>
-  </head>
-  <body>
-    <!-- Wichtig: Das Script muss vor der Initialisierung geladen werden -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
+    <!-- Wichtig für Manual Init -->
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
+      window.CMS_MANUAL_INIT = true;
+    </script>
+
+    <!-- Decap CMS laden -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  </head>
+
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
         if (window.CMS) {
           window.CMS.init({
             config: {
               backend: {
                 name: "git-gateway",
                 repo: "webwing-agency/webwing-website",
-                branch: "main",
+                branch: "main"
               },
+
               site_url: "https://webwing.agency",
               display_url: "https://webwing.agency",
+
               media_folder: "images/uploads",
               public_folder: "/images/uploads",
+
               collections: [
                 {
                   name: "home",
                   label: "Homepage Content",
                   label_singular: "Home",
                   editor: {
-                    preview: false,
+                    preview: false
                   },
                   files: [
                     {
@@ -46,11 +55,11 @@
                           widget: "object",
                           fields: [
                             { name: "title_html", label: "Hero title (HTML)", widget: "text" },
-                            { name: "subtitle", label: "Hero subtitle", widget: "text" },
-                            { name: "cta_text", label: "Hero CTA text", widget: "string" },
-                            { name: "cta_link", label: "Hero CTA link", widget: "string" },
-                            { name: "hero_image", label: "Hero background image path", widget: "string" },
-                          ],
+                            { name: "subtitle", widget: "text" },
+                            { name: "cta_text", widget: "string" },
+                            { name: "cta_link", widget: "string" },
+                            { name: "hero_image", widget: "string" }
+                          ]
                         },
                         {
                           label: "Expertise cards",
@@ -60,125 +69,34 @@
                             { name: "key", widget: "string", required: false },
                             { name: "icon", widget: "string" },
                             { name: "title", widget: "string" },
-                            { name: "text", widget: "text" },
-                          ],
-                        },
-                        {
-                          label: "Projects (homepage)",
-                          name: "projects",
-                          widget: "list",
-                          fields: [
-                            { name: "image", widget: "string" },
-                            { name: "title", widget: "string" },
-                            { name: "text", widget: "text" },
-                            {
-                              name: "tags",
-                              widget: "list",
-                              field: { name: "tag", widget: "string" },
-                            },
-                          ],
-                        },
-                        {
-                          label: "Reviews",
-                          name: "reviews",
-                          widget: "list",
-                          fields: [
-                            { name: "client_img", widget: "string" },
-                            { name: "client_name", widget: "string" },
-                            { name: "corporation_name", widget: "string" },
-                            { name: "text", widget: "text" },
-                            { name: "star_count", widget: "number", default: 5 },
-                          ],
-                        },
-                        {
-                          label: "Home Kontakt",
-                          name: "contact",
-                          widget: "object",
-                          fields: [
-                            { name: "email", widget: "string" },
-                            { name: "phone", widget: "string" },
-                          ],
-                        },
-                        {
-                          label: "Booking-Widget",
-                          name: "book_section",
-                          widget: "object",
-                          fields: [
-                            { name: "title", widget: "string" },
-                            { name: "text", widget: "text" },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
+                            { name: "text", widget: "text" }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 },
+
                 {
                   name: "pages",
                   label: "Pages",
                   label_singular: "Page",
                   files: [
                     {
-                      label: "Dienstleistungen (Services)",
+                      label: "Dienstleistungen",
                       name: "services",
                       file: "public/data/services.json",
                       format: "json",
                       fields: [
                         { name: "meta_title", widget: "string" },
                         { name: "meta_description", widget: "text" },
-                        { name: "page_title", widget: "string" },
-                        {
-                          label: "Filters",
-                          name: "filters",
-                          widget: "list",
-                          field: { name: "filter", widget: "string" },
-                        },
-                        {
-                          label: "Service cards",
-                          name: "services",
-                          widget: "list",
-                          fields: [
-                            {
-                              name: "images",
-                              label: "Image paths",
-                              widget: "list",
-                              field: { name: "image", widget: "string" },
-                            },
-                            { name: "title", widget: "string" },
-                            { name: "description", widget: "text" },
-                            {
-                              label: "Specs",
-                              name: "specs",
-                              widget: "list",
-                              fields: [
-                                { name: "text", label: "Text", widget: "string" },
-                                {
-                                  name: "icon",
-                                  label: "Font Awesome class",
-                                  widget: "string",
-                                  hint: "z.B. fa-solid fa-pen-ruler",
-                                },
-                              ],
-                            },
-                            {
-                              label: "CTAs",
-                              name: "ctas",
-                              widget: "object",
-                              fields: [
-                                { name: "more_link", widget: "string", required: false },
-                                { name: "contact_link", widget: "string", required: false },
-                              ],
-                            },
-                          ],
-                        },
-                        { name: "cta_text", widget: "string" },
-                        { name: "cta_label", widget: "string" },
-                        { name: "cta_link", widget: "string" },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
+                        { name: "page_title", widget: "string" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
           });
         } else {
           console.error("Decap CMS konnte nicht geladen werden.");
