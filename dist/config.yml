@@ -4,9 +4,8 @@ backend:
   branch: main
 
 site_url: https://webwing.agency
-
 media_folder: "images/uploads"
-
+public_folder: "/images/uploads" 
 
 collections:
   - name: "home"
