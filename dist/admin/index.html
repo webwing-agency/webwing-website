@@ -9,10 +9,18 @@
 
 </head>
 <body>
+  <script>
+    (() => {
+      const hasCmsHash = typeof window.location.hash === "string" && window.location.hash.startsWith("#/");
+      if (hasCmsHash) return;
 
+      const nextUrl = `${window.location.pathname}${window.location.search}#/`;
+      window.history.replaceState(null, "", nextUrl);
+    })();
+  </script>
+
+  <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script> 
 
 </body>
 </html>
