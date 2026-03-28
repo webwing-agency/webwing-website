@@ -14,7 +14,7 @@ jobs:
 
       # Upload via SFTP
       - name: Upload to Ionos via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@4.4.0
+        uses: samkirkland/ftp-deploy-action@v4.3.6
         with:
           server: ${{ secrets.IONOS_HOST }}
           username: ${{ secrets.IONOS_USER }}
