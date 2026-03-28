@@ -6,7 +6,10 @@ backend:
 site_url: https://webwing.agency
 media_folder: "images/uploads"
 public_folder: "/images/uploads" #
-
+media_library:
+  name: folder
+  config: {}
+  
 collections:
   - name: "home"
     label: "Homepage Content"
