@@ -67,14 +67,14 @@
     --icon-ai-color: #D04BD6;                /* rgb(208,75,214) */
     --icon-ai-bg-color: rgba(208,75,214,0.18);
 
-    --icon-security-color:  #A2FF00;          
-    --icon-security-bg-color: rgba(162,255,0,0.18);
+    --icon-security-color:  #00FFD5;          
+    --icon-security-bg-color: rgba(0,255,213,0.18);
 
-    --icon-strategy-color: #FF5722;            
-    --icon-strategy-bg-color: rgba(255,87,34,0.18);
+    --icon-strategy-color: #A2FF00;            
+    --icon-strategy-bg-color: rgba(162,255,0,0.18);
 
-    --icon-analytics-color: #00FFD5;          
-    --icon-analytics-bg-color: rgba(0,255,213,0.18);
+    --icon-analytics-color: #7b00ff ;          
+    --icon-analytics-bg-color: rgba(123,0,255,0.18);
 
     /* Allgemein: Icon auf farbigem Kreis sollte Weiß sein */
     --icon-on-plate-color: #FFFFFF;
