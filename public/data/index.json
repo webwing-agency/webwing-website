@@ -62,7 +62,7 @@
       "key": "performance",
       "icon": "/assets/icons/speedometer.svg",
       "title": "Performance-Optimierung",
-      "text": "Kkk"
+      "text": "Laut Think with Google verlassen 53% der Nutzer auf Mobilgeräten eine Website frühzeitig, wenn diese mehr als 3s zum Laden benötigt. Wir stellen sicher, dass ihre Seite deutlich schneller lädt."
     },
     {
       "key": "automations & ai",
@@ -74,25 +74,25 @@
       "title": "Analytics und Tracking",
       "key": "analytics",
       "icon": "/assets/icons/analytics.svg",
-      "text": "abcdefg"
+      "text": "Wir ermöglichen Ihnen durch die Einbindung von z.B. Google Analytics den vollen Überblick über die Performancedaten Ihrer Seite (Besucher, Conversionrate etc.) und wie Nutzer mit dieser agieren, sodass Sie in Zukunft immer befähigt sind, datenfundierte Entscheidungen zu treffen."
     },
     {
       "key": "design",
       "icon": "/assets/icons/design.svg",
       "title": "Design",
-      "text": "Wir erschaffen ästhetische Websites, deren Designqualität State of the Art ist und die ihrer Marke unverhoffte Strahlkraft durch charakterstarkes und alleinstellendes Design verleihen."
+      "text": "Unsere Designsprache ist modern, klar strukturiert und voll visueller Raffinesse. Unsere Websites sind wahre Design-Produkte, die ihr Brand Image stärken und ihre Autorität im Wettbewerb verfestigen."
     },
     {
       "key": "seo",
       "icon": "/assets/icons/search.svg",
       "title": "SEO",
-      "text": "Wir optimieren die Auffindbarkeit ihrer Website in Suchmaschinen wie Google, Bing, DuckDuckGo etc. um für mehr Besucher und somit auch mehr Kunden zu sorgen indem wir auf die zuvor für möglichst beste Cinversion optimierte Website nun noch mehr Traffic leiten. Wir maximieren also beide Stellschrauben der Kundengewinnung: Conversionrate x Besucherzahl\n"
+      "text": "Wir optimieren die Auffindbarkeit ihrer Website..."
     },
     {
       "title": "Strategie & Positionierung",
       "key": "strategy",
       "icon": "/assets/icons/strategy.svg",
-      "text": "Wir verstehen ihr Geschäftsmodell und ihre Zielgruppe und positionieren ihr Unternehmen und Lösungen strategisch und effektiv durch wohl überlegte Erstellung und Verfeinerung der Texte und Botschaften ihrer Website"
+      "text": "abcdefg"
     },
     {
       "key": "conversion",
@@ -104,7 +104,7 @@
       "title": "Sicherheit und DSGVO-Konformität",
       "key": "security",
       "icon": "/assets/icons/security.svg",
-      "text": "Wir sorgen dafür, dass ihre Website und die dazugehörigen Daten sicher sind. Mit rechtsgültigem Impressum, Datenschutzerklärung usw. machen wir Ihre Seite DSGVO-konform und bewahren Sie vor lästigen Abmahnungen."
+      "text": "abcdefg"
     },
     {
       "key": "code",
