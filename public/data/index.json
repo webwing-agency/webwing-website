@@ -62,7 +62,7 @@
       "key": "performance",
       "icon": "/assets/icons/speedometer.svg",
       "title": "Performance-Optimierung",
-      "text": "Kkk"
+      "text": "Wir optimieren Ihre Seite für möglichst kurze Ladezeiten (möglichst < 1 s) um die Anzahl der Besucher, die Ihre Website frühzeitig verlassen, zu minimieren und die Nutzerfahrung zusätzlich zu verbessern."
     },
     {
       "key": "automations & ai",
@@ -74,7 +74,7 @@
       "title": "Analytics und Tracking",
       "key": "analytics",
       "icon": "/assets/icons/analytics.svg",
-      "text": "abcdefg"
+      "text": "Wir ermöglichen Ihnen durch die Einbindung von z.B. Google Analytics den vollen Überblick über die Performancedaten Ihrer Seite (Besucher, Conversionrate etc.) und wie Nutzer mit dieser agieren, sodass Sie in Zukunft immer befähigt sind, datenfundierte Entscheidungen zu treffen."
     },
     {
       "key": "design",
