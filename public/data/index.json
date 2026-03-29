@@ -59,22 +59,28 @@
   },
   "expertise": [
     {
-      "key": "performance",
-      "icon": "/assets/icons/speedometer.svg",
-      "title": "Performance-Optimierung",
-      "text": "Wir optimieren Ihre Seite für möglichst kurze Ladezeiten (möglichst < 1 s) um die Anzahl der Besucher, die Ihre Website frühzeitig verlassen, zu minimieren und die Nutzerfahrung zusätzlich zu verbessern."
+      "key": "code",
+      "icon": "/assets/icons/code.svg",
+      "title": "Entwicklung",
+      "text": "Wir wandeln erstellte Designs in optimalen Code um. Da wir noch handwerklich manuell programmieren und keine 0815 Sitebuilder verwenden, sind unsere Möglichkeiten der Gestaltung und der Funktionen fast uneinschränkt."
     },
     {
-      "key": "automations & ai",
-      "icon": "/assets/icons/robot.svg",
-      "title": "Automatisierung & AI-Integration",
-      "text": "Wir helfen ihnen AI gewinnbringend in die Akquiseprozuesse ihrer Website einzubauen. Beispielsweise in Form eines Chatbots oder intelligenter Datenverarbeitung im Backend."
+      "title": "Sicherheit und DSGVO-Konformität",
+      "key": "security",
+      "icon": "/assets/icons/security.svg",
+      "text": "Wir sorgen dafür, dass ihre Website und die dazugehörigen Daten sicher sind. Mit rechtsgültigem Impressum, Datenschutzerklärung usw. machen wir Ihre Seite DSGVO-konform und bewahren Sie vor lästigen Abmahnungen."
     },
     {
-      "title": "Analytics und Tracking",
-      "key": "analytics",
-      "icon": "/assets/icons/analytics.svg",
-      "text": "Wir ermöglichen Ihnen durch die Einbindung von z.B. Google Analytics den vollen Überblick über die Performancedaten Ihrer Seite (Besucher, Conversionrate etc.) und wie Nutzer mit dieser agieren, sodass Sie in Zukunft immer befähigt sind, datenfundierte Entscheidungen zu treffen."
+      "key": "conversion",
+      "icon": "/assets/icons/shopping.svg",
+      "title": "Conversion-Optimierung",
+      "text": "Seitenstruktur und Inhalte passen wir für eine zielführende Nutzerführung und beste Conversionrates an."
+    },
+    {
+      "title": "Strategie & Positionierung",
+      "key": "strategy",
+      "icon": "/assets/icons/strategy.svg",
+      "text": "Wir verstehen ihr Geschäftsmodell und ihre Zielgruppe und positionieren ihr Unternehmen und Lösungen strategisch und effektiv durch wohl überlegte Erstellung und Verfeinerung der Texte und Botschaften ihrer Website."
     },
     {
       "key": "design",
@@ -89,28 +95,22 @@
       "text": "Wir optimieren die Auffindbarkeit ihrer Website in Suchmaschinen wie Google, Bing, DuckDuckGo etc. um für mehr Besucher und somit auch mehr Kunden zu sorgen indem wir auf die zuvor für möglichst beste Cinversion optimierte Website nun noch mehr Traffic leiten. Wir maximieren also beide Stellschrauben der Kundengewinnung: Conversionrate x Besucherzahl\n"
     },
     {
-      "title": "Strategie & Positionierung",
-      "key": "strategy",
-      "icon": "/assets/icons/strategy.svg",
-      "text": "Wir verstehen ihr Geschäftsmodell und ihre Zielgruppe und positionieren ihr Unternehmen und Lösungen strategisch und effektiv durch wohl überlegte Erstellung und Verfeinerung der Texte und Botschaften ihrer Website."
+      "title": "Analytics und Tracking",
+      "key": "analytics",
+      "icon": "/assets/icons/analytics.svg",
+      "text": "Wir ermöglichen Ihnen durch die Einbindung von z.B. Google Analytics den vollen Überblick über die Performancedaten Ihrer Seite (Besucher, Conversionrate etc.) und wie Nutzer mit dieser agieren, sodass Sie in Zukunft immer befähigt sind, datenfundierte Entscheidungen zu treffen."
     },
     {
-      "key": "conversion",
-      "icon": "/assets/icons/shopping.svg",
-      "title": "Conversion-Optimierung",
-      "text": "Seitenstruktur und Inhalte passen wir für eine zielführende Nutzerführung und beste Conversionrates an."
+      "key": "automations & ai",
+      "icon": "/assets/icons/robot.svg",
+      "title": "Automatisierung & AI-Integration",
+      "text": "Wir helfen ihnen AI gewinnbringend in die Akquiseprozuesse ihrer Website einzubauen. Beispielsweise in Form eines Chatbots oder intelligenter Datenverarbeitung im Backend."
     },
     {
-      "title": "Sicherheit und DSGVO-Konformität",
-      "key": "security",
-      "icon": "/assets/icons/security.svg",
-      "text": "Wir sorgen dafür, dass ihre Website und die dazugehörigen Daten sicher sind. Mit rechtsgültigem Impressum, Datenschutzerklärung usw. machen wir Ihre Seite DSGVO-konform und bewahren Sie vor lästigen Abmahnungen."
-    },
-    {
-      "key": "code",
-      "icon": "/assets/icons/code.svg",
-      "title": "Entwicklung",
-      "text": "Wir wandeln erstellte Designs in optimalen Code um. Da wir noch handwerklich manuell programmieren und keine 0815 Sitebuilder verwenden, sind unsere Möglichkeiten der Gestaltung und der Funktionen fast uneinschränkt."
+      "key": "performance",
+      "icon": "/assets/icons/speedometer.svg",
+      "title": "Performance-Optimierung",
+      "text": "Wir optimieren Ihre Seite für möglichst kurze Ladezeiten (möglichst < 1 s) um die Anzahl der Besucher, die Ihre Website frühzeitig verlassen, zu minimieren und die Nutzerfahrung zusätzlich zu verbessern."
     }
   ],
   "projects": [
