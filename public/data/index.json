@@ -16,7 +16,7 @@
   },
   "book_section": {
     "title": "Bereit, Ihr Projekt zu kickstarten?",
-    "text": "Vereinbaren sie jetzt ein unverbindliches und kostenloses 20-minütiges Erstgespräch, in welchem wir ihre Bedürfnisse und Wünsche erörtern ...",
+    "text": "Vereinbaren Sie jetzt ein kostenloses und unverbindliches 20-minütiges Erstgespräch, in dem wir Ihre Ziele, Wünsche und aktuelle Situation besprechen. Anschließend beraten wir Sie zu den nächsten sinnvollen Schritten für Ihr Vorhaben und schauen gemeinsam, was für Sie am besten passt. Füllen Sie einfach kurz das nebenstehende Formular aus. Wir freuen uns, von Ihnen zu hören!",
     "form": {
       "labels": {
         "name": "Name",
@@ -68,31 +68,31 @@
       "key": "automations & ai",
       "icon": "/assets/icons/robot.svg",
       "title": "Automatisierung & AI-Integration",
-      "text": "Wir helfen ihnen AI gewinnbringend in die Akquiseprozuesse ihrer Website einzubauen. Beispielsweise in Form eines Chatbots oder intelligenter Datenverarbeitung im Backend."
+      "text": "Mit Automationen sorgen wir für reibungslose Abläufe zwischen Ihrer Website und Drittdiensten wie Ihrem CRM. Zudem integrieren wir KI gewinnbringend in Ihre Akquiseprozesse, durch etwa Chatbots oder intelligente Datenverarbeitung im Backend."
     },
     {
       "title": "Analytics und Tracking",
       "key": "analytics",
       "icon": "/assets/icons/analytics.svg",
-      "text": "Wir ermöglichen Ihnen durch die Einbindung von z.B. Google Analytics den vollen Überblick über die Performancedaten Ihrer Seite (Besucher, Conversionrate etc.) und wie Nutzer mit dieser agieren, sodass Sie in Zukunft immer befähigt sind, datenfundierte Entscheidungen zu treffen."
+      "text": "Durch die Einbindung von Tools wie Google Analytics erhalten Sie den vollen Überblick über Ihre Website-Daten, etwa Besucherzahlen und Conversionrates sowie das Nutzerverhalten im Detail, damit sie Entscheidungen stets datenfundiert treffen können."
     },
     {
       "key": "seo",
       "icon": "/assets/icons/search.svg",
       "title": "SEO",
-      "text": "Wir optimieren die Auffindbarkeit ihrer Website in Suchmaschinen wie Google, Bing, DuckDuckGo etc. um für mehr Besucher und somit auch mehr Kunden zu sorgen indem wir auf die zuvor für möglichst beste Cinversion optimierte Website nun noch mehr Traffic leiten. Wir maximieren also beide Stellschrauben der Kundengewinnung: Conversionrate x Besucherzahl\n"
+      "text": "Wir optimieren die Auffindbarkeit Ihrer Website in Suchmaschinen wie Google, Bing und DuckDuckGo, um für mehr Seitenbesucher und somit mehr Kunden zu sorgen.\n"
     },
     {
       "key": "design",
       "icon": "/assets/icons/design.svg",
       "title": "Design",
-      "text": "Wir erschaffen ästhetische Websites, deren Designqualität State of the Art ist und die ihrer Marke unverhoffte Strahlkraft durch charakterstarkes und alleinstellendes Design verleihen."
+      "text": "Mit ästhetischem und charakterstarkem Website-Design, das nicht nur State of the Art ist, sondern Ihrer Marke auch eine neue, starke Strahlkraft verleiht, schaffen wir Ihnen ein echtes Alleinstellungsmerkmal gegenüber dem Wettbewerb."
     },
     {
       "title": "Strategie & Positionierung",
       "key": "strategy",
       "icon": "/assets/icons/strategy.svg",
-      "text": "Wir verstehen ihr Geschäftsmodell und ihre Zielgruppe und positionieren ihr Unternehmen und Lösungen strategisch und effektiv durch wohl überlegte Erstellung und Verfeinerung der Texte und Botschaften ihrer Website."
+      "text": "Wir verstehen ihr Geschäftsmodell und ihre Zielgruppe und positionieren ihr Unternehmen und Lösungen strategisch und effektiv durch wohl überlegte Erstellung sowie Verfeinerung der Texte und Botschaften ihrer Marke und Website."
     },
     {
       "key": "conversion",
