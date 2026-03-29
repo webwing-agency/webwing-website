@@ -19,7 +19,7 @@
     --global-border: 0.5px solid rgba(255, 255, 255, 0.1);
     --strong-border: 0.5px solid rgba(255, 255, 255, 0.35);
 
-    --text-color: rgba(255, 255, 255, 0.8);
+    --text-color: rgba(255, 255, 255, 0.65);
     --text-font-size: 0.75rem;
     --text-line-height: 1.6;
 
@@ -37,7 +37,7 @@
     --heading-letter-spacing: -0.03em;
 
     --card-title-font-size: 1.25rem;
-    --card-text-font-size: 0.75rem;
+    --card-text-font-size: 0.5rem;
 
     --main-card-title-font-size: 2rem;
 
