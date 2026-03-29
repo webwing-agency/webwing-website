@@ -59,16 +59,28 @@
   },
   "expertise": [
     {
+      "key": "performance",
+      "icon": "/assets/icons/speedometer.svg",
+      "title": "Performance-Optimierung",
+      "text": "Laut Think with Google verlassen 53% der Nutzer auf Mobilgeräten eine Website frühzeitig, wenn diese mehr als 3s zum Laden benötigt. Wir stellen sicher, dass ihre Seite deutlich schneller lädt."
+    },
+    {
+      "key": "automations & ai",
+      "icon": "/assets/icons/robot.svg",
+      "title": "Automatisierung & AI-Integration",
+      "text": "Wir helfen ihnen AI gewinnbringend in die Akquiseprozuesse ihrer Website einzubauen. Beispielsweise in Form eines Chatbots oder intelligenter Datenverarbeitung im Backend."
+    },
+    {
+      "title": "Analytics und Tracking",
+      "key": "analytics",
+      "icon": "/assets/icons/analytics.svg",
+      "text": "abcdefg"
+    },
+    {
       "key": "design",
       "icon": "/assets/icons/design.svg",
       "title": "Design",
       "text": "Unsere Designsprache ist modern, klar strukturiert und voll visueller Raffinesse. Unsere Websites sind wahre Design-Produkte, die ihr Brand Image stärken und ihre Autorität im Wettbewerb verfestigen."
-    },
-    {
-      "key": "conversion",
-      "icon": "/assets/icons/shopping.svg",
-      "title": "Conversion-Optimierung",
-      "text": "Seitenstruktur und Inhalte passen wir für eine zielführende Nutzerführung und beste Conversionrates an."
     },
     {
       "key": "seo",
@@ -77,28 +89,16 @@
       "text": "Laut Think with Google verlassen 53% der Nutzer auf Mobilgeräten eine Website frühzeitig, wenn diese mehr als 3s zum Laden benötigt. Wir stellen sicher, dass ihre Seite deutlich schneller lädt."
     },
     {
-      "key": "code",
-      "icon": "/assets/icons/code.svg",
-      "title": "Entwicklung",
-      "text": "Wir wandeln erstellte Designs in optimalen Code um. Da wir noch handwerklich manuell programmieren und keine 0815 Sitebuilder verwenden, sind unsere Möglichkeiten der Gestaltung und der Funktionen fast uneinschränkt."
-    },
-    {
-      "key": "performance",
-      "icon": "/assets/icons/speedometer.svg",
-      "title": "Performance-Optimierung",
-      "text": "Laut Think with Google verlassen 53% der Nutzer auf Mobilgeräten eine Website frühzeitig, wenn diese mehr als 3s zum Laden benötigt. Wir stellen sicher, dass ihre Seite deutlich schneller lädt."
-    },
-    {
-      "key": "ai",
-      "icon": "/assets/icons/robot.svg",
-      "title": "AI Integration",
-      "text": "Wir helfen ihnen AI gewinnbringend in die Akquiseprozuesse ihrer Website einzubauen. Beispielsweise in Form eines Chatbots oder intelligenter Datenverarbeitung im Backend."
-    },
-    {
       "title": "Strategie & Positionierung",
       "key": "strategy",
       "icon": "/assets/icons/strategy.svg",
       "text": "abcdefg"
+    },
+    {
+      "key": "conversion",
+      "icon": "/assets/icons/shopping.svg",
+      "title": "Conversion-Optimierung",
+      "text": "Seitenstruktur und Inhalte passen wir für eine zielführende Nutzerführung und beste Conversionrates an."
     },
     {
       "title": "Sicherheit und DSGVO-Konformität",
@@ -107,10 +107,10 @@
       "text": "abcdefg"
     },
     {
-      "title": "Analytics und Tracking",
-      "key": "analytics",
-      "icon": "/assets/icons/analytics.svg",
-      "text": "abcdefg"
+      "key": "code",
+      "icon": "/assets/icons/code.svg",
+      "title": "Entwicklung",
+      "text": "Wir wandeln erstellte Designs in optimalen Code um. Da wir noch handwerklich manuell programmieren und keine 0815 Sitebuilder verwenden, sind unsere Möglichkeiten der Gestaltung und der Funktionen fast uneinschränkt."
     }
   ],
   "projects": [
