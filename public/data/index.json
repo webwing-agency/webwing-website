@@ -93,6 +93,24 @@
       "icon": "/assets/icons/robot.svg",
       "title": "AI Integration",
       "text": "Wir helfen ihnen AI gewinnbringend in die Akquiseprozuesse ihrer Website einzubauen. Beispielsweise in Form eines Chatbots oder intelligenter Datenverarbeitung im Backend."
+    },
+    {
+      "title": "Strategie & Positionierung",
+      "key": "strategy",
+      "icon": "/assets/icons/strategy.svg",
+      "text": "abcdefg"
+    },
+    {
+      "title": "Sicherheit und DSGVO-Konformität",
+      "key": "security",
+      "icon": "/assets/icons/security.svg",
+      "text": "abcdefg"
+    },
+    {
+      "title": "Analytics und Tracking",
+      "key": "analytics",
+      "icon": "/assets/icons/analytics.svg",
+      "text": "abcdefg"
     }
   ],
   "projects": [
@@ -128,7 +146,7 @@
   ],
   "hero": {
     "title_html": "<span class=\"hero-line\">Websites, die Marken stärken</span>\n<span class=\"hero-line bold\">und Kunden <span class=\"underline-scribble\">gewinnen</span></span>",
-    "subtitle": "Wir erstellen Websites für kleine und mittelständische Unternehmen, die sich durch ein Premium-Niveau and Design, Performance und Nutzerfreundlichkeit mehr Kunden und Umsatz, einen gesteigerten Markenwert sowie einen klaren Wettbewerbsvorteil sichern möchten. Während der kurzweiligen Umsetzung ihres Projekts können Sie kompetente Beratung und herzliche Zusammenarbeit erwarten. Buchen sie noch heute ein kostenloses Erstgespräch, um mit Ihrem Projekt durchzustarten.",
+    "subtitle": "Wir erstellen Websites für kleine und mittelständische Unternehmen, die sich durch ein Premium-Niveau and Design, Performance und Nutzerfreundlichkeit mehr Kunden und Umsatz, einen gesteigerten Markenwert sowie einen klaren Wettbewerbsvorteil sichern möchten. Bei uns können Sie kompetente Beratung und herzliche Zusammenarbeit erwarten. Buchen Sie noch heute ein kostenloses Erstgespräch, um mit Ihrem Projekt durchzustarten!",
     "cta_text": "kostenloses Erstgespräch",
     "cta_link": "kostenloses-erstgespräch.html",
     "hero_image": "/assets/hero-bg.webp",
