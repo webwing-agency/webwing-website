@@ -97,30 +97,26 @@
       "learn_more_link": "#"
     },
     {
-      "title": "Grafikdesign",
+      "title": "Inhaltsoptimierung (meh)",
       "images": [
         "/assets/images/services/service-1.webp",
         "/assets/images/services/service-2.webp",
         "/assets/images/services/service-3.webp",
         "/assets/images/services/service-4.webp"
       ],
-      "description": "Branding, Illustration und Marketing-Materialien, die Ihre Kommunikation klar und attraktiv machen.",
+      "description": "Lorem",
       "specs": [
         {
-          "text": "Logo Design",
+          "text": "Copywriting",
           "icon": "fa-solid fa-pen-nib"
         },
         {
-          "text": "Illustration",
+          "text": "Strategie & Positionierung",
           "icon": "fa-solid fa-paintbrush"
         },
         {
-          "text": "Print Assets",
-          "icon": "fa-solid fa-print"
-        },
-        {
-          "text": "Marketing Assets",
-          "icon": "fa-solid fa-bullhorn"
+          "text": "DSGVO-Konformität",
+          "icon": "fa-solid fa-pen-ruler"
         }
       ],
       "ctas": {
