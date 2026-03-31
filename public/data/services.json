@@ -97,26 +97,26 @@
       "learn_more_link": "#"
     },
     {
-      "title": "Inhaltsoptimierung (meh)",
+      "title": "Inhalt und Positionierung",
       "images": [
         "/assets/images/services/service-1.webp",
         "/assets/images/services/service-2.webp",
         "/assets/images/services/service-3.webp",
         "/assets/images/services/service-4.webp"
       ],
-      "description": "Lorem",
+      "description": "Wir verstehen ihr Geschäftsmodell und ihre Zielgruppe und positionieren ihr Unternehmen und Lösungen strategisch und effektiv durch wohl überlegte Erstellung sowie Verfeinerung der Texte und Botschaften ihrer Marke und Website.\n\nNutzerpsycholioge \n\nKlarheit\n\n\n(🔹 Was ihr macht (Leistung)\nEntwicklung klarer Kernbotschaften für das Unternehmen\nStrategische Positionierung über die Inhalte der Website\nConversion-orientiertes Copywriting (Startseite, Leistungen, Landingpages)\nZielgruppenanalyse und darauf abgestimmte Ansprache\nStrukturierung von Inhalten für bessere Lesbarkeit und Nutzerführung\nHerausarbeitung von Nutzenargumenten statt reiner Leistungsbeschreibungen\nAufbau klarer Seitenlogik (Was? Für wen? Warum Sie?)\nFormulierung von überzeugenden Call-to-Actions\nOptional: Inhalte für Blog, Leadmagnete oder Kampagnen\n🔹 Wie ihr arbeitet (Ansatz)\nKombination aus Strategie, Psychologie und Text\nFokus auf Klarheit statt Marketing-Floskeln\nInhalte werden gezielt auf Conversion ausgerichtet\nAbstimmung auf Design und Nutzerführung der Website\nOrientierung an realem Nutzerverhalten (nicht nur „schön klingend“)\n🔹 Nutzen für den Kunden\nBesucher verstehen schneller, was angeboten wird\nHöhere Conversion (mehr Anfragen / Leads)\nKlarere Differenzierung gegenüber Wettbewerbern\nProfessioneller und konsistenter Gesamtauftritt\nWeniger Absprünge durch bessere Verständlichkeit\nInhalte, die aktiv verkaufen statt nur informieren)",
       "specs": [
         {
           "text": "Copywriting",
           "icon": "fa-solid fa-pen-nib"
         },
         {
-          "text": "Strategie & Positionierung",
+          "text": "Messaging & Positioning",
           "icon": "fa-solid fa-paintbrush"
         },
         {
-          "text": "DSGVO-Konformität",
-          "icon": "fa-solid fa-pen-ruler"
+          "icon": "fa-solid fa-paintbrush",
+          "text": "Nutzerpsychologie"
         }
       ],
       "ctas": {
