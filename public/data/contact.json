@@ -1,15 +1,5 @@
 {
-  "meta_title": "Kontakt | Webwing Design Agency",
-  "meta_description": "Kontaktieren Sie Webwing für Ihr Website-Projekt. Wir antworten innerhalb von 24 Stunden.",
-  "page_title": "Treten Sie mit uns in Kontakt",
-  "subtitle": "Sie haben Fragen oder Anregungen? Wir antworten innerhalb von 24h. Wir freuen uns darauf, von Ihnen zu hören!",
-  "card_title": "Webwing Design Agency ",
-  "card_text": "Wir freuen uns darauf, von Ihnen zu hören! Nutzen Sie das Formular, um uns eine Nachricht zu senden, oder kontaktieren Sie uns direkt per E-Mail oder Telefon.",
-  "contact_person": "Ansprechpartner: Paul Breitenfelder",
-  "email": "contact@webwing.agency",
-  "phone": "06221 123456",
-  "turnstile_sitekey": "0x4AAAAAACJXIwtr74ztz1br",
-  "contact_api_base": "/api",
+  "meta_description": "Sie haben Fragen oder Anregungen? Treten Sie mit uns in Kontakt – wir bemühen uns, Ihnen innerhalb der nächsten 24 Stunden zu antworten. Wir freuen uns, von Ihnen zu hören!\n",
   "form": {
     "labels": {
       "name": "Name",
@@ -34,5 +24,15 @@
       "error_fallback": "Serverfehler",
       "network_error": "Netzwerkfehler. Bitte später versuchen."
     }
-  }
+  },
+  "page_title": "Treten Sie mit uns in Kontakt",
+  "card_title": "Webwing Design Agency ",
+  "phone": "06221 123456",
+  "contact_person": "Ansprechpartner: Paul Breitenfelder",
+  "contact_api_base": "/api",
+  "subtitle": "Sie haben Fragen oder Anregungen? Benutzen Sie das untenstehende Formular, um uns eine Nachricht zu senden – wir antworten innerhalb von 24h. Alternativ können Sie uns auch telefonisch oder per Mail erreichen. Wir freuen uns, von Ihnen zu hören!",
+  "card_text": "Wir sind eine Webdesign Agentur aus Heidelberg, die Websites für kleine und mittelständische Unternehmen erstellt, die sich durch ein erstklassiges Niveau an Design, Performance und Benutzerfreundlichkeit mehr Kunden und Umsatz, sowie einen gesteigerten Markenwert und Wettbewerbsvorteil sichern möchten. Wir freuen uns, von Ihnen zu hören!",
+  "email": "contact@webwing.agency",
+  "turnstile_sitekey": "0x4AAAAAACJXIwtr74ztz1br",
+  "meta_title": "Kontakt | Webwing Design Agency"
 }
