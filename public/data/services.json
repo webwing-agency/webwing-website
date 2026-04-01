@@ -1,5 +1,5 @@
 {
-  "meta_description": "Dienstleistungen von Webwing: Webdesign, Webentwicklung, SEO, Performance und digitale Markenauftritte aus einer Hand.",
+  "meta_description": "Dienstleistungen von Webwing: Webdesign, Webentwicklung, SEO, Performance und digitale Markenauftritte aus einer Hand.\n\nWebdesign, Entwicklung, Inhalt & Positionierung",
   "cta_label": "Sie haben Fragen zu unserem Angebot?",
   "page_title": "Dienstleistungen",
   "cta_link": "kostenloses-erstgespräch.html",
@@ -104,19 +104,19 @@
         "/assets/images/services/service-3.webp",
         "/assets/images/services/service-4.webp"
       ],
-      "description": "Wir verstehen ihr Geschäftsmodell und ihre Zielgruppe und positionieren ihr Unternehmen und Lösungen strategisch und effektiv durch wohl überlegte Erstellung sowie Verfeinerung der Texte und Botschaften ihrer Marke und Website.\n\nNutzerpsycholioge \n\nKlarheit\n\n\n(🔹 Was ihr macht (Leistung)\nEntwicklung klarer Kernbotschaften für das Unternehmen\nStrategische Positionierung über die Inhalte der Website\nConversion-orientiertes Copywriting (Startseite, Leistungen, Landingpages)\nZielgruppenanalyse und darauf abgestimmte Ansprache\nStrukturierung von Inhalten für bessere Lesbarkeit und Nutzerführung\nHerausarbeitung von Nutzenargumenten statt reiner Leistungsbeschreibungen\nAufbau klarer Seitenlogik (Was? Für wen? Warum Sie?)\nFormulierung von überzeugenden Call-to-Actions\nOptional: Inhalte für Blog, Leadmagnete oder Kampagnen\n🔹 Wie ihr arbeitet (Ansatz)\nKombination aus Strategie, Psychologie und Text\nFokus auf Klarheit statt Marketing-Floskeln\nInhalte werden gezielt auf Conversion ausgerichtet\nAbstimmung auf Design und Nutzerführung der Website\nOrientierung an realem Nutzerverhalten (nicht nur „schön klingend“)\n🔹 Nutzen für den Kunden\nBesucher verstehen schneller, was angeboten wird\nHöhere Conversion (mehr Anfragen / Leads)\nKlarere Differenzierung gegenüber Wettbewerbern\nProfessioneller und konsistenter Gesamtauftritt\nWeniger Absprünge durch bessere Verständlichkeit\nInhalte, die aktiv verkaufen statt nur informieren)",
+      "description": "Wir strukturieren Ihre Website-Inhalte klar, durchdacht und zielführend. Grundlegende Fragen zu Ihrer Lösung und Ihrem Unternehmen beantworten wir präzise und einleuchtend (Was?, Wofür?, Für wen?, Warum Sie?). Zudem optimieren wir die Lesbarkeit der Inhalte. So verstehen Nutzer sofort, worum es geht, und werden durch Ihre Inhalte gezielt zur nächsten Handlung geführt.\n\nWir verstehen Ihr Geschäftsmodell und analysieren Ihre Zielgruppe. Wir arbeiten die Probleme Ihrer potenziellen Kunden und den Nutzen Ihrer Lösung konkret heraus, positionieren Ihr Angebot auf dieser Grundlage strategisch und sprechen Ihre Traumkunden gezielt an. Dabei achten wir besonders auf Ihre Alleinstellungsmerkmale und heben Sie klar von Ihren Wettbewerbern ab. \n\nIhre Website soll nicht bloß informieren, sondern den Nutzer effektiv durch einen Prozess führen, an dessen Ende er sich eher für Ihre Lösung entscheidet. Hierfür vermitteln wir den Mehrwert klar, schaffen Vertrauen und unterstützen die Kaufentscheidung emotional. Wir führen den Nutzer durch eine durchdachte argumentative Abfolge von Inhalten mit dem Ziel, ihn zu einer bestimmten Handlung zu bewegen, etwa eine Anfrage zu senden, einen Termin zu buchen oder ein Produkt zu kaufen. Dafür formulieren wir konkrete Call-to-Actions (Buttons), die dem Nutzer unmissverständlich den nächsten Schritt vorgeben. So sorgen wir für höhere Conversions und damit für mehr Anfragen, Leads und Kunden. \n\n(kursiv) Optional können wir auch Inhalte mit gleicher Wirkung für Ihren Blog, Ihre Leadmagnete oder Kampagnen verfassen. (kursiv)\n\nOptional verfassen wir auch Inhalte für Ihren Blog, Ihre Leadmagnete oder Kampagnen mit dem gleichen strategischen Ansatz.",
       "specs": [
         {
-          "text": "Copywriting",
+          "text": "Klarheit & Struktur",
           "icon": "fa-solid fa-pen-nib"
         },
         {
-          "text": "Messaging & Positioning",
+          "text": "Positionierung & Differenzierung",
           "icon": "fa-solid fa-paintbrush"
         },
         {
           "icon": "fa-solid fa-paintbrush",
-          "text": "Nutzerpsychologie"
+          "text": "Conversionoptimierung"
         }
       ],
       "ctas": {
@@ -127,5 +127,5 @@
       "learn_more_link": "#"
     }
   ],
-  "meta_title": "Dienstleistungen für Webdesign und Entwicklung | Webwing"
+  "meta_title": "Dienstleistungen | Webwing Design Agency"
 }
