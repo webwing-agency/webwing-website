@@ -728,17 +728,18 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
             .book-call-title {
                 max-width: 90%;
                 margin-top: 1rem;
-                margin-bottom: 0.65rem;
+                margin-bottom: 1rem;
             }
 
             .book-call-paragraph {
                 width: 90%;
-                color: rgba(255, 255, 255, 0.74);
+                color: var(--text-muted);
+                line-height: var(--text-line-height);
                 margin-bottom: 0.45rem;
             }
 
             .contact-details-container {
-                margin-top: 2rem;
+                margin-top: 2.5rem;
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
@@ -751,7 +752,7 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
                 }
 
                     .contact-icon-container {
-                        background-color: rgba(255, 255, 255, 0.08);
+                        background-color: rgba(255, 255, 255, 0.04);
                     }
 
                     .contact-link {

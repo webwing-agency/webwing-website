@@ -7,8 +7,10 @@
     margin-top: 0;
 }
 
-.book-call-title {
-  margin-bottom: 1.55rem;
+.book-call-card-title {
+  max-width: 90%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .book-call-section > .section-eyebrow,
@@ -57,7 +59,6 @@
 
         .book-call-card-title {
             font-size: var(--main-card-title-font-size);
-            margin-bottom: 0.65rem;
         }
 
         .book-call-paragraph {
