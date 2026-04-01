@@ -7,6 +7,10 @@
     margin-top: 0;
 }
 
+.book-call-title {
+    margin-top: 0 !important;
+}
+
 .book-call-card-title {
   max-width: 90%;
   margin-top: 1rem;
