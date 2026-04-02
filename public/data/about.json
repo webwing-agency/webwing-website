@@ -1,0 +1,88 @@
+{
+  "meta_title": "Über Uns | Webwing Design Agentur",
+  "meta_description": "Erfahren Sie mehr über Webwing: Design, Strategie und Entwicklung für digitale Auftritte mit Markenwirkung.",
+  "hero": {
+    "eyebrow": "Webwing in Kürze",
+    "title": "Über Uns",
+    "lead": "Wir entwickeln digitale Auftritte, die nicht nur gut aussehen, sondern Vertrauen aufbauen, Marken profilieren und Anfragen wahrscheinlicher machen. Strategie, Design und Entwicklung greifen bei uns von Anfang an ineinander.",
+    "primary_cta_text": "Kostenloses Erstgespräch",
+    "primary_cta_link": "kostenloses-erstgespräch.html",
+    "secondary_cta_text": "Leistungen ansehen",
+    "secondary_cta_link": "dienstleistungen.html",
+    "image": "assets/images/team.jpg",
+    "image_alt": "Webwing Team"
+  },
+  "history": {
+    "eyebrow": "Unsere Geschichte",
+    "title": "Wie Webwing entstanden ist",
+    "intro": "Webwing ist aus dem Anspruch entstanden, Unternehmen nicht einfach nur eine weitere Website zu bauen, sondern einen digitalen Auftritt, der Marke, Vertrauen und Wirkung zusammenbringt.",
+    "paragraphs": [
+      "Am Anfang stand die Beobachtung, dass viele Websites trotz großer Mühe unter ihren Möglichkeiten bleiben: visuell austauschbar, strategisch unklar oder technisch träge. Genau dort setzt Webwing an. Wir verbinden Design, Struktur und Umsetzung so, dass ein Auftritt nicht nur gut aussieht, sondern sich auch klarer, hochwertiger und überzeugender anfühlt.",
+      "Heute arbeiten wir mit einem schlanken, direkten Ansatz: kurze Wege, klare Kommunikation und ein Fokus auf Ergebnisse statt Agenturtheater. So entstehen digitale Auftritte, die nicht beliebig wirken, sondern genau zu den Unternehmen passen, die dahinterstehen."
+    ]
+  },
+  "team": {
+    "eyebrow": "Menschen",
+    "title": "Unser Team",
+    "intro": "Hinter Webwing stehen klare Verantwortlichkeiten, kurze Wege und ein Anspruch an Qualität, Kommunikation und Verlässlichkeit.",
+    "members": [
+      {
+        "name": "Paul Breitenfelder",
+        "role": "Geschäftsführer",
+        "image": "assets/images/paul.jpeg",
+        "alt": "Paul Breitenfelder"
+      }
+    ]
+  },
+  "values": {
+    "eyebrow": "Prinzipien",
+    "title": "Was uns ausmacht",
+    "intro": "Unsere Arbeit soll nicht nur gut aussehen, sondern Orientierung geben, Vertrauen aufbauen und am Ende messbar besser funktionieren.",
+    "items": [
+      {
+        "kicker": "01",
+        "title": "Markenwirkung",
+        "text": "Wir gestalten Seiten so, dass ein Auftritt sofort wertiger, klarer und professioneller wirkt."
+      },
+      {
+        "kicker": "02",
+        "title": "Klarheit",
+        "text": "Gute Websites erklären sich fast von selbst. Struktur, Sprache und Nutzerführung sind dafür entscheidend."
+      },
+      {
+        "kicker": "03",
+        "title": "Umsetzung",
+        "text": "Wir denken nicht in hübschen Mockups, sondern in funktionierenden, performanten und sauberen Ergebnissen."
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "Wie wir arbeiten",
+    "title": "Ein klarer Prozess statt Agenturtheater",
+    "intro": "Wir arbeiten strukturiert, direkt und mit klaren Entscheidungen, damit aus einer guten Idee ohne Umwege ein überzeugender Auftritt entsteht.",
+    "steps": [
+      {
+        "kicker": "01",
+        "title": "Briefing",
+        "text": "Wir schärfen gemeinsam Ziel, Positionierung und Prioritäten, damit das Projekt von Anfang an Richtung hat."
+      },
+      {
+        "kicker": "02",
+        "title": "Konzept & Design",
+        "text": "Wir entwickeln eine visuelle Sprache und Nutzerführung, die zur Marke passt und gleichzeitig konvertiert."
+      },
+      {
+        "kicker": "03",
+        "title": "Build & Launch",
+        "text": "Am Ende steht keine schöne Idee, sondern eine live geschaltete Website mit Substanz, Tempo und Charakter."
+      }
+    ]
+  },
+  "mission": {
+    "eyebrow": "Unsere Mission",
+    "title": "Unsere Mission",
+    "intro": "Zu viele Websites bleiben unter ihren Möglichkeiten: unklar, austauschbar oder technisch schwach. Unsere Mission ist es, digitale Auftritte zu schaffen, die Vertrauen auslösen, Orientierung geben und Unternehmen sichtbar souveräner auftreten lassen.",
+    "cta_text": "Kostenloses Erstgespräch vereinbaren",
+    "cta_link": "kostenloses-erstgespräch.html"
+  }
+}

@@ -22,6 +22,8 @@ function setMetaAndTitle(data, root = document) {
       description: data.meta_description,
       canonicalPath: '/kostenloses-erstgespr%C3%A4ch.html'
     });
+    const eyebrowEl = root.querySelector('.book-call-section .section-eyebrow');
+    if (eyebrowEl && data.eyebrow) eyebrowEl.textContent = data.eyebrow;
     const pageTitleEl = root.querySelector('.book-call-title') || root.querySelector('.page-title');
     if (pageTitleEl && data.page_title) pageTitleEl.textContent = data.page_title;
     const subtitle = root.querySelector('.book-call-subtitle');

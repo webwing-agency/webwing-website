@@ -38,6 +38,11 @@ function setMetaAndTitle(data) {
     canonicalPath: '/dienstleistungen.html'
   });
 
+  const eyebrow = document.querySelector('.services-page-fold .section-eyebrow');
+  if (eyebrow && data.page_eyebrow) {
+    eyebrow.textContent = data.page_eyebrow;
+  }
+
   const titleEl =
     document.querySelector('.services-page-title') ||
     document.querySelector('.page-title');

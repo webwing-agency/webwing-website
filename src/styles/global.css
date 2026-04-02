@@ -20,7 +20,7 @@
     --strong-border: 0.5px solid rgba(255, 255, 255, 0.35);
 
     --text-color: rgba(255, 255, 255, 0.65);
-    --text-font-size: 0.75rem;
+    --text-font-size: 0.8125rem;
     --text-line-height: 1.6;
 
     --small-text-font-size: 0.5rem;
@@ -39,7 +39,7 @@
     --heading-letter-spacing: -0.03em;
 
     --card-title-font-size: 1.25rem;
-    --card-text-font-size: 0.5rem;
+    --card-text-font-size: var(--text-font-size);
 
     --main-card-title-font-size: 2rem;
 
@@ -110,6 +110,11 @@ body {
     width: 100%;
     max-width: 100%;
     padding-bottom: 25rem;
+}
+
+p {
+    font-size: var(--text-font-size);
+    line-height: var(--text-line-height);
 }
 
 main {

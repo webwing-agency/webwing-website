@@ -15,6 +15,14 @@
         "href": "dienstleistungen.html"
       },
       {
+        "label": "Über Uns",
+        "href": "über-uns.html"
+      },
+      {
+        "label": "Erstgespräch buchen",
+        "href": "kostenloses-erstgespräch.html"
+      },
+      {
         "label": "Kontakt",
         "href": "kontakt.html",
         "is_cta": true
@@ -34,6 +42,10 @@
         "href": "dienstleistungen.html"
       },
       {
+        "label": "Über Uns",
+        "href": "über-uns.html"
+      },
+      {
         "label": "Kontakt",
         "href": "kontakt.html"
       },
@@ -50,6 +62,11 @@
     "slogan": "Your Brand’s Wingman Online.",
     "about": "Webwing konzipiert, gestaltet und entwickelt digitale Auftritte mit Fokus auf Markenwirkung, Klarheit und messbare Ergebnisse.",
     "copyright": "© 2026 Webwing Design Agency",
+    "company_title": "Unternehmen",
+    "cta_title": "Jetzt durchstarten",
+    "cta_text": "kostenloses Erstgespräch",
+    "cta_link": "kostenloses-erstgespräch.html",
+    "legal_title": "Rechtliches",
     "nav_links": [
       {
         "label": "Home",
@@ -62,6 +79,10 @@
       {
         "label": "Dienstleistungen",
         "href": "dienstleistungen.html"
+      },
+      {
+        "label": "Über Uns",
+        "href": "über-uns.html"
       },
       {
         "label": "Kontakt",

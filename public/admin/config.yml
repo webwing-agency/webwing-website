@@ -10,6 +10,62 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  - name: "global"
+    label: "Globale Inhalte"
+    editor:
+      preview: false
+    files:
+      - label: "Header & Footer"
+        name: "site_json"
+        file: "public/data/site.json"
+        format: json
+        fields:
+          - label: "Header"
+            name: "header"
+            widget: "object"
+            fields:
+              - { name: "popup_brand_text", label: "Popup Markenname", widget: "string" }
+              - { name: "email", label: "E-Mail", widget: "string" }
+              - { name: "phone", label: "Telefon", widget: "string" }
+              - { name: "status_text", label: "Status-Text", widget: "string" }
+              - label: "Header Nav"
+                name: "nav_links"
+                widget: "list"
+                fields:
+                  - { name: "label", label: "Label", widget: "string" }
+                  - { name: "href", label: "Link", widget: "string" }
+                  - { name: "is_cta", label: "CTA-Link", widget: "boolean", required: false, default: false }
+              - label: "Popup Nav"
+                name: "popup_links"
+                widget: "list"
+                fields:
+                  - { name: "label", label: "Label", widget: "string" }
+                  - { name: "href", label: "Link", widget: "string" }
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { name: "slogan", label: "Slogan", widget: "string" }
+              - { name: "about", label: "About Text", widget: "text" }
+              - { name: "copyright", label: "Copyright", widget: "string" }
+              - { name: "company_title", label: "Spaltentitel Unternehmen", widget: "string", required: false }
+              - { name: "cta_title", label: "Spaltentitel CTA", widget: "string", required: false }
+              - { name: "cta_text", label: "Footer CTA Text", widget: "string", required: false }
+              - { name: "cta_link", label: "Footer CTA Link", widget: "string", required: false }
+              - { name: "legal_title", label: "Spaltentitel Rechtliches", widget: "string", required: false }
+              - label: "Footer Nav"
+                name: "nav_links"
+                widget: "list"
+                fields:
+                  - { name: "label", label: "Label", widget: "string" }
+                  - { name: "href", label: "Link", widget: "string" }
+              - label: "Rechtliches"
+                name: "legal_links"
+                widget: "list"
+                fields:
+                  - { name: "label", label: "Label", widget: "string" }
+                  - { name: "href", label: "Link", widget: "string" }
+
   - name: "home"
     label: "Homepage Content"
     label_singular: "Home"
@@ -32,7 +88,21 @@ collections:
               - { name: "cta_text", label: "Hero CTA text", widget: "string" }
               - { name: "cta_link", label: "Hero CTA link", widget: "string" }
               - { name: "hero_image", label: "Hero background image path", widget: "string" }
-
+              - label: "Capability Slider"
+                name: "capability_items"
+                widget: "list"
+                field: { name: "item", widget: "string" }
+          - label: "Home Sections"
+            name: "sections"
+            widget: "object"
+            fields:
+              - { name: "expertise_title", label: "Expertise Titel", widget: "string" }
+              - { name: "expertise_link_label", label: "Expertise Link Label", widget: "string" }
+              - { name: "expertise_link", label: "Expertise Link", widget: "string" }
+              - { name: "projects_title", label: "Projekte Titel", widget: "string" }
+              - { name: "projects_link_label", label: "Projekte Link Label", widget: "string" }
+              - { name: "projects_link", label: "Projekte Link", widget: "string" }
+              - { name: "reviews_title", label: "Reviews Titel", widget: "string" }
           - label: "Expertise cards"
             name: "expertise"
             widget: "list"
@@ -64,12 +134,56 @@ collections:
             fields:
               - { name: "email", widget: "string" }
               - { name: "phone", widget: "string" }
+              - { name: "booking_api_base", label: "Booking API Base", widget: "string", required: false }
           - label: "Booking-Widget"
             name: "book_section"
             widget: "object"
             fields:
               - { name: "title", widget: "string" }
               - { name: "text", widget: "text" }
+              - label: "Formular"
+                name: "form"
+                widget: "object"
+                fields:
+                  - label: "Labels"
+                    name: "labels"
+                    widget: "object"
+                    fields:
+                      - { name: "name", widget: "string" }
+                      - { name: "email", widget: "string" }
+                      - { name: "phone", widget: "string" }
+                      - { name: "date", widget: "string" }
+                      - { name: "time", widget: "string" }
+                  - label: "Placeholders"
+                    name: "placeholders"
+                    widget: "object"
+                    fields:
+                      - { name: "name", widget: "string" }
+                      - { name: "email", widget: "string" }
+                      - { name: "phone", widget: "string" }
+                  - label: "Kalender"
+                    name: "calendar"
+                    widget: "object"
+                    fields:
+                      - { name: "weekdays", widget: "list", field: { name: "day", widget: "string" } }
+                      - { name: "empty_times", widget: "string" }
+                  - label: "Button"
+                    name: "button"
+                    widget: "object"
+                    fields:
+                      - { name: "submit", widget: "string" }
+                      - { name: "loading", widget: "string" }
+                  - label: "Meldungen"
+                    name: "messages"
+                    widget: "object"
+                    fields:
+                      - { name: "name_required", widget: "string" }
+                      - { name: "email_invalid", widget: "string" }
+                      - { name: "slot_required", widget: "string" }
+                      - { name: "success", widget: "string" }
+                      - { name: "error_prefix", widget: "string" }
+                      - { name: "error_fallback", widget: "string" }
+                      - { name: "network_error", widget: "string" }
 
   - name: "pages"
     label: "Pages"
@@ -82,6 +196,7 @@ collections:
         fields:
           - { name: "meta_title", widget: "string" }
           - { name: "meta_description", widget: "text" }
+          - { name: "page_eyebrow", label: "Eyebrow", widget: "string", required: false }
           - { name: "page_title", widget: "string" }
           - label: "Filters"
             name: "filters"
@@ -106,6 +221,17 @@ collections:
                 fields:
                   - { name: "more_link", widget: "string", required: false }
                   - { name: "contact_link", widget: "string", required: false }
+          - label: "UI Texte"
+            name: "ui"
+            widget: "object"
+            fields:
+              - { name: "search_placeholder", widget: "string", required: false }
+              - { name: "card_cta_more_text", widget: "string", required: false }
+              - { name: "card_cta_contact_text", widget: "string", required: false }
+              - { name: "empty_state_default", widget: "string", required: false }
+              - { name: "empty_state_query_prefix", widget: "string", required: false }
+              - { name: "empty_state_query_suffix", widget: "string", required: false }
+              - { name: "results_count_template", widget: "string", required: false }
           - { name: "cta_text", widget: "string" }
           - { name: "cta_label", widget: "string" }
           - { name: "cta_link", widget: "string" }
@@ -117,6 +243,7 @@ collections:
         fields:
           - { name: "meta_title", widget: "string" }
           - { name: "meta_description", widget: "text" }
+          - { name: "page_eyebrow", label: "Eyebrow", widget: "string", required: false }
           - { name: "page_title", widget: "string" }
           - label: "Filters"
             name: "filters"
@@ -141,6 +268,17 @@ collections:
                 fields:
                   - { name: "more_link", widget: "string", required: false }
                   - { name: "contact_link", widget: "string", required: false }
+          - label: "UI Texte"
+            name: "ui"
+            widget: "object"
+            fields:
+              - { name: "search_placeholder", widget: "string", required: false }
+              - { name: "card_cta_more_text", widget: "string", required: false }
+              - { name: "card_cta_contact_text", widget: "string", required: false }
+              - { name: "empty_state_default", widget: "string", required: false }
+              - { name: "empty_state_query_prefix", widget: "string", required: false }
+              - { name: "empty_state_query_suffix", widget: "string", required: false }
+              - { name: "results_count_template", widget: "string", required: false }
           - { name: "cta_text", widget: "string" }
           - { name: "cta_label", widget: "string" }
           - { name: "cta_link", widget: "string" }
@@ -160,6 +298,42 @@ collections:
           - { name: "email", widget: "string" }
           - { name: "phone", widget: "string" }
           - { name: "turnstile_sitekey", label: "Cloudflare Turnstile sitekey", widget: "string", required: false }
+          - { name: "contact_api_base", label: "Contact API Base", widget: "string", required: false }
+          - label: "Formular"
+            name: "form"
+            widget: "object"
+            fields:
+              - label: "Labels"
+                name: "labels"
+                widget: "object"
+                fields:
+                  - { name: "name", widget: "string" }
+                  - { name: "email", widget: "string" }
+                  - { name: "phone", widget: "string" }
+                  - { name: "message", widget: "string" }
+              - label: "Placeholders"
+                name: "placeholders"
+                widget: "object"
+                fields:
+                  - { name: "name", widget: "string" }
+                  - { name: "email", widget: "string" }
+                  - { name: "phone", widget: "string" }
+                  - { name: "message", widget: "string" }
+              - label: "Button"
+                name: "button"
+                widget: "object"
+                fields:
+                  - { name: "submit", widget: "string" }
+                  - { name: "loading", widget: "string" }
+              - label: "Meldungen"
+                name: "messages"
+                widget: "object"
+                fields:
+                  - { name: "required", widget: "string" }
+                  - { name: "success", widget: "string" }
+                  - { name: "error_prefix", widget: "string" }
+                  - { name: "error_fallback", widget: "string" }
+                  - { name: "network_error", widget: "string" }
 
       - label: "Kostenloses Erstgespräch"
         name: "book_call"
@@ -168,12 +342,138 @@ collections:
         fields:
           - { name: "meta_title", widget: "string" }
           - { name: "meta_description", widget: "text" }
+          - { name: "eyebrow", label: "Eyebrow", widget: "string", required: false }
           - { name: "page_title", widget: "string" }
           - { name: "subtitle", widget: "text" }
           - { name: "card_title", widget: "string" }
           - { name: "card_text", widget: "text" }
           - { name: "email", widget: "string" }
           - { name: "phone", widget: "string" }
+          - { name: "booking_api_base", label: "Booking API Base", widget: "string", required: false }
+          - label: "Formular"
+            name: "form"
+            widget: "object"
+            fields:
+              - label: "Labels"
+                name: "labels"
+                widget: "object"
+                fields:
+                  - { name: "name", widget: "string" }
+                  - { name: "email", widget: "string" }
+                  - { name: "phone", widget: "string" }
+                  - { name: "date", widget: "string" }
+                  - { name: "time", widget: "string" }
+              - label: "Placeholders"
+                name: "placeholders"
+                widget: "object"
+                fields:
+                  - { name: "name", widget: "string" }
+                  - { name: "email", widget: "string" }
+                  - { name: "phone", widget: "string" }
+              - label: "Kalender"
+                name: "calendar"
+                widget: "object"
+                fields:
+                  - { name: "weekdays", widget: "list", field: { name: "day", widget: "string" } }
+                  - { name: "empty_times", widget: "string" }
+              - label: "Button"
+                name: "button"
+                widget: "object"
+                fields:
+                  - { name: "submit", widget: "string" }
+                  - { name: "loading", widget: "string" }
+              - label: "Meldungen"
+                name: "messages"
+                widget: "object"
+                fields:
+                  - { name: "name_required", widget: "string" }
+                  - { name: "email_invalid", widget: "string" }
+                  - { name: "slot_required", widget: "string" }
+                  - { name: "success", widget: "string" }
+                  - { name: "error_prefix", widget: "string" }
+                  - { name: "error_fallback", widget: "string" }
+                  - { name: "network_error", widget: "string" }
+
+      - label: "Über Uns"
+        name: "about"
+        file: "public/data/about.json"
+        format: json
+        fields:
+          - { name: "meta_title", widget: "string" }
+          - { name: "meta_description", widget: "text" }
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { name: "eyebrow", widget: "string" }
+              - { name: "title", widget: "string" }
+              - { name: "lead", widget: "text" }
+              - { name: "primary_cta_text", widget: "string" }
+              - { name: "primary_cta_link", widget: "string" }
+              - { name: "secondary_cta_text", widget: "string" }
+              - { name: "secondary_cta_link", widget: "string" }
+              - { name: "image", widget: "string" }
+              - { name: "image_alt", widget: "string" }
+          - label: "Unsere Geschichte"
+            name: "history"
+            widget: "object"
+            fields:
+              - { name: "eyebrow", widget: "string" }
+              - { name: "title", widget: "string" }
+              - { name: "intro", widget: "text" }
+              - { name: "paragraphs", widget: "list", field: { name: "paragraph", widget: "text" } }
+          - label: "Unser Team"
+            name: "team"
+            widget: "object"
+            fields:
+              - { name: "eyebrow", widget: "string" }
+              - { name: "title", widget: "string" }
+              - { name: "intro", widget: "text" }
+              - label: "Mitglieder"
+                name: "members"
+                widget: "list"
+                fields:
+                  - { name: "name", widget: "string" }
+                  - { name: "role", widget: "string" }
+                  - { name: "image", widget: "string" }
+                  - { name: "alt", widget: "string", required: false }
+          - label: "Was uns ausmacht"
+            name: "values"
+            widget: "object"
+            fields:
+              - { name: "eyebrow", widget: "string" }
+              - { name: "title", widget: "string" }
+              - { name: "intro", widget: "text" }
+              - label: "Karten"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { name: "kicker", widget: "string" }
+                  - { name: "title", widget: "string" }
+                  - { name: "text", widget: "text" }
+          - label: "Wie wir arbeiten"
+            name: "process"
+            widget: "object"
+            fields:
+              - { name: "eyebrow", widget: "string" }
+              - { name: "title", widget: "string" }
+              - { name: "intro", widget: "text" }
+              - label: "Schritte"
+                name: "steps"
+                widget: "list"
+                fields:
+                  - { name: "kicker", widget: "string" }
+                  - { name: "title", widget: "string" }
+                  - { name: "text", widget: "text" }
+          - label: "Mission"
+            name: "mission"
+            widget: "object"
+            fields:
+              - { name: "eyebrow", widget: "string" }
+              - { name: "title", widget: "string" }
+              - { name: "intro", widget: "text" }
+              - { name: "cta_text", widget: "string" }
+              - { name: "cta_link", widget: "string" }
 
       - label: "Impressum"
         name: "impressum"

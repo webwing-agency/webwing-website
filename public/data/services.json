@@ -123,5 +123,6 @@
     "empty_state_query_prefix": "Keine Ergebnisse für \"",
     "empty_state_query_suffix": "\". Bitte Suchbegriff oder Filter anpassen.",
     "results_count_template": "{{visible}} von {{total}} Ergebnissen"
-  }
+  },
+  "page_eyebrow": "Leistungsangebot"
 }

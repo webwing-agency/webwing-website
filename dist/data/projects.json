@@ -1,15 +1,17 @@
 {
-  "meta_title": "Referenzen und Projekte | Webwing Design Agency",
-  "meta_description": "Referenzen von Webwing: ausgewählte Website- und Branding-Projekte mit Fokus auf messbare Ergebnisse.",
+  "meta_description": "Referenzen von Webwing: ausgewählte Website- und Branding-Projekte mit Fokus auf messbaren Ergebnissen.",
+  "cta_label": "Sie haben Fragen zu unserem Angebot?",
   "page_title": "Referenzen",
-  "filters": [
-    "E-Commerce",
-    "SaaS",
-    "Software",
-    "B2B",
-    "Aviation",
-    "Healthcare"
-  ],
+  "cta_link": "kostenloses-erstgespräch.html",
+  "ui": {
+    "search_placeholder": "Referenzen durchsuchen",
+    "card_cta_more_text": "Mehr erfahren",
+    "card_cta_contact_text": "Kontakt",
+    "empty_state_default": "Keine Ergebnisse gefunden.",
+    "empty_state_query_prefix": "Keine Ergebnisse für \"",
+    "empty_state_query_suffix": "\". Bitte Suchbegriff oder Filter anpassen.",
+    "results_count_template": "{{visible}} von {{total}} Ergebnissen"
+  },
   "projects": [
     {
       "title": "Ofenkäse-Versandhandel Rainer Winkler GmbH",
@@ -93,16 +95,15 @@
       }
     }
   ],
+  "filters": [
+    "E-Commerce",
+    "SaaS",
+    "Software",
+    "B2B",
+    "Aviation",
+    "Healthcare"
+  ],
   "cta_text": "kostenloses Erstgespräch buchen",
-  "cta_label": "Sie haben Fragen zu unserem Angebot?",
-  "cta_link": "kostenloses-erstgespräch.html",
-  "ui": {
-    "search_placeholder": "Referenzen durchsuchen",
-    "card_cta_more_text": "Mehr erfahren",
-    "card_cta_contact_text": "Kontakt",
-    "empty_state_default": "Keine Ergebnisse gefunden.",
-    "empty_state_query_prefix": "Keine Ergebnisse für \"",
-    "empty_state_query_suffix": "\". Bitte Suchbegriff oder Filter anpassen.",
-    "results_count_template": "{{visible}} von {{total}} Ergebnissen"
-  }
+  "meta_title": "Referenzen | Zurückliegende Projekte | Webwing Design Agency",
+  "page_eyebrow": "Ausgewählte Arbeiten"
 }

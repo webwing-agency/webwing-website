@@ -15,6 +15,7 @@ import { initNav } from './js/nav.js';
 import { initBarba } from './js/barba.js';
 import { initPrefetch } from './js/prefetch.js';
 import { initCardGlare } from './js/ui/card-glare.js';
+import { initSiteChrome } from './js/render/site.js';
 
 let scribbleApi = null;
 let globalListenersBound = false;
@@ -27,6 +28,8 @@ async function initPage(containerOverride = null) {
   })();
   if (container?.dataset.pageInit === '1') return;
   if (container) container.dataset.pageInit = '1';
+
+  await initSiteChrome();
 
   let aboutPageInitializer = null;
 
@@ -146,7 +149,7 @@ async function initPage(containerOverride = null) {
 
   if (aboutPageInitializer) {
     try {
-      aboutPageInitializer(container);
+      await aboutPageInitializer(container);
     } catch (e) {
       console.warn('[main] About page animation init failed', e);
     }

@@ -38,6 +38,9 @@ async function renderProjects(root = document) {
     });
 
     /* ---------- Page title ---------- */
+    const eyebrow = root.querySelector('.references-page-fold .section-eyebrow');
+    if (eyebrow && data.page_eyebrow) eyebrow.textContent = data.page_eyebrow;
+
     const pageTitle = root.querySelector(".references-page-title");
     if (pageTitle) pageTitle.textContent = data.page_title ?? "";
 
