@@ -3,6 +3,48 @@ import { getApiBase } from './api.js';
 
 function pad(n){ return String(n).padStart(2,'0'); }
 
+function buildAvailabilityCandidates(dateIso) {
+  const requestedBase = String(getApiBase() || '').replace(/\/$/, '');
+  const fallbackBases = [requestedBase, '/api', '/.netlify/functions'];
+  const seen = new Set();
+
+  return fallbackBases
+    .filter(Boolean)
+    .map((base) => `${base}/availability?date=${encodeURIComponent(dateIso)}`)
+    .filter((url) => {
+      if (seen.has(url)) return false;
+      seen.add(url);
+      return true;
+    });
+}
+
+async function fetchAvailabilityFromUrl(url) {
+  const res = await fetch(url, { cache: 'no-cache' });
+  const text = await res.text();
+
+  if (!res.ok) {
+    throw new Error(`HTTP ${res.status} for ${url}`);
+  }
+
+  const contentType = res.headers.get('content-type') || '';
+  const trimmed = text.trim();
+
+  if (trimmed.startsWith('<!DOCTYPE') || trimmed.startsWith('<html')) {
+    throw new Error(`HTML response for ${url}`);
+  }
+
+  try {
+    const json = JSON.parse(text);
+    if (!json || typeof json !== 'object') {
+      throw new Error('Invalid JSON payload');
+    }
+    if (!Array.isArray(json.slots)) json.slots = [];
+    return json;
+  } catch (err) {
+    throw new Error(`Invalid JSON for ${url}${contentType ? ` (${contentType})` : ''}: ${err.message}`);
+  }
+}
+
 function generateSlotsForDateClient(dateIso, businessHours = null, slotDuration = 20, step = 30, buffer = 0) {
   if (!dateIso) return [];
   const parts = dateIso.split('-').map(p => parseInt(p,10));
@@ -47,21 +89,19 @@ function generateSlotsForDateClient(dateIso, businessHours = null, slotDuration 
 export async function fetchAvailabilityRaw(dateIso) {
   if (!dateIso) return { date: null, disabled: true, slots: [] };
 
-  // Try server-side first (Netlify function)
-  try {
-    const url = `${getApiBase()}/availability?date=${encodeURIComponent(dateIso)}`;
-    const res = await fetch(url, { cache: 'no-cache' });
-    if (res.ok) {
-      const json = await res.json();
-      // ensure normalized shape
-      if (!json || typeof json !== 'object') throw new Error('Invalid JSON from availability function');
-      if (!Array.isArray(json.slots)) json.slots = [];
-      return json;
-    } else {
-      console.warn('[client availability] server returned non-ok', res.status);
+  const candidates = buildAvailabilityCandidates(dateIso);
+
+  for (const url of candidates) {
+    try {
+      return await fetchAvailabilityFromUrl(url);
+    } catch (err) {
+      const isPrimary = url === candidates[0];
+      console.warn(
+        `[client availability] ${isPrimary ? 'primary' : 'fallback'} fetch failed`,
+        url,
+        err
+      );
     }
-  } catch (err) {
-    console.warn('[client availability] server fetch failed, using client fallback', err);
   }
 
   // Fallback: client generation (no booked flag info)

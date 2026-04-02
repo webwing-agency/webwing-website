@@ -12,12 +12,20 @@ export function initStickyCta(root = document) {
   if (sticky._stickyTween) {
     sticky._stickyTween.kill();
   }
+  if (sticky._stickyVisibilityTrigger) {
+    sticky._stickyVisibilityTrigger.kill();
+  }
 
   sticky.style.opacity = '1';
   sticky.style.transform = 'translateY(0)';
   sticky.style.pointerEvents = 'auto';
 
   if (!footer || !gsap || !ScrollTrigger) return;
+
+  const setInteractive = (enabled) => {
+    sticky.style.pointerEvents = enabled ? 'auto' : 'none';
+    sticky.classList.toggle('is-inactive', !enabled);
+  };
 
   sticky._stickyTween = gsap.fromTo(
     sticky,
@@ -31,13 +39,18 @@ export function initStickyCta(root = document) {
         start: 'top bottom-=160',
         end: 'top bottom-=20',
         scrub: true,
-        onUpdate: (self) => {
-          sticky.style.pointerEvents = self.progress > 0.92 ? 'none' : 'auto';
-        },
-        onLeaveBack: () => {
-          sticky.style.pointerEvents = 'auto';
-        }
+        onLeaveBack: () => setInteractive(true)
       }
     }
   );
+
+  sticky._stickyVisibilityTrigger = ScrollTrigger.create({
+    trigger: footer,
+    start: 'top bottom',
+    end: 'bottom top',
+    onEnter: () => setInteractive(false),
+    onEnterBack: () => setInteractive(false),
+    onLeave: () => setInteractive(true),
+    onLeaveBack: () => setInteractive(true)
+  });
 }

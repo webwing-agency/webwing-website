@@ -66,96 +66,112 @@
 
     footer {
         min-height: fit-content;
-        height: 15rem !important;
-        padding: 2.5rem;
+        height: auto !important;
+        padding: 2.8rem 3rem 1.5rem;
     }
     
         .footer-content {
             position: relative; 
             height: fit-content;
-            gap: 1.5rem;
+            gap: 1.8rem;
+        }
+
+        .footer-main-content {
+            grid-template-columns: minmax(0, 1.25fr) max-content;
+            gap: 3rem;
         }
 
         .footer-brand-column {
             gap: 1.15rem;
             align-items: flex-start;
-        }
-
-        .footer-brand-head {
-            align-items: flex-start;
-            gap: 0.9rem;
-        }
-
-        .footer-middle-row {
-            display: grid;
-            grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .footer-section-divider {
-            width: 100%;
+            text-align: left;
+            margin: 0;
+            padding-bottom: 0;
+            border-bottom: none;
         }
 
         footer .logo-container {
-            display: flex;
-            flex-direction: column;
+            justify-content: flex-start;
             width: fit-content;
-            align-items: flex-start;
-            gap: 0.8rem;
+            gap: 1rem;
         }
 
             footer .logo {
-                width: 250px;
+                width: 210px;
                 max-width: 100%;
                 height: auto;
-                margin-bottom: 0;
-                transform: none;
             }
 
             footer .slogan {
-                font-weight: 800;
-                font-style: italic;
-                font-size: 1.08rem;
-                letter-spacing: -0.02em;
-                max-width: 16rem;
-                transform: translateY(-10px);
+                font-size: 0.95rem;
+                line-height: 1;
+                text-align: left;
+                transform: translateY(0.7rem) translateX(-00.2rem);
             }
 
             .footer-about {
-                max-width: 300px;
+                max-width: 30rem;
                 text-align: left;
             }
 
-            .footer-nav {
-                width: 100%;
-                max-width: 400px;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-end;
+            .footer-link-column {
+                align-items: flex-start;
+                width: max-content;
+                min-width: max-content;
+                padding-right: 0.75rem;
+            }
+
+            .footer-right-column {
+                grid-template-columns: max-content max-content max-content;
+                gap: 3.375rem;
                 justify-self: end;
-                margin-left: auto;
-                position: static;
+                width: auto;
+                align-items: start;
+            }
+
+            .footer-right-column .footer-link-column {
+                order: 1;
+            }
+
+            .footer-right-column .footer-cta-column {
+                order: 2;
+            }
+
+            .footer-cta-column {
+                align-items: flex-start;
+                justify-content: flex-start;
+                width: max-content;
+                min-width: max-content;
+                padding: 0;
+                border: 0;
+                background: transparent;
+                border-radius: 0;
+            }
+
+            .footer-column-title {
+                text-align: left;
+            }
+
+            .footer-links {
+                align-items: flex-start;
+            }
+
+            .footer-links a {
+                text-align: left;
+            }
+
+            .footer-cta {
+                width: max-content;
+                min-width: max-content;
+                white-space: nowrap;
             }
 
             .footer-bottom-bar {
                 width: 100%;
                 flex-direction: row;
                 align-items: center;
-                justify-content: space-between;
+                justify-content: flex-start;
                 gap: 2rem;
-            }
-
-            .legal-links {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                gap: 2rem;
-                width: 100%;
-                max-width: 400px;
-                margin-left: auto;
             }
 
     /* Index */
@@ -211,7 +227,7 @@
     .book-call-section {
         width: 100vw;
         padding: 20vh 10vw;
-        margin-bottom: 40vh;
+        margin-bottom: 15vh !important;
     }
 
     .projects-section .section-title-container {

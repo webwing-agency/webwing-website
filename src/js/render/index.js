@@ -13,6 +13,21 @@ async function fetchHome() {
     return String(v);
   }
 
+  function setOptionalText(root, selector, value) {
+    const el = root.querySelector(selector);
+    if (!el) return;
+
+    const text = safeString(value).trim();
+    if (!text) {
+      el.textContent = '';
+      el.hidden = true;
+      return;
+    }
+
+    el.textContent = text;
+    el.hidden = false;
+  }
+
   function formatHeroTitleHtml(raw) {
     const html = safeString(raw);
     if (!html) return '';
@@ -41,6 +56,59 @@ function setMeta(data) {
       description: descVal,
       canonicalPath: '/'
     });
+  }
+
+  function applyExpertiseIconColorFlow(root = document) {
+    const grid = root.querySelector('#expertise-grid');
+    if (!grid) return;
+
+    const cards = Array.from(grid.querySelectorAll('.grid-card'));
+    if (!cards.length) return;
+
+    const palette = [
+      [245, 40, 40],   // performance strong red
+      [255, 154, 58],  // design orange
+      [230, 196, 0],   // seo gold
+      [162, 255, 0],   // strategy lime
+      [24, 214, 120],  // conversion vivid green
+      [0, 255, 213],   // security cyan
+      [208, 75, 214],  // ai magenta
+      [37, 99, 235],   // code blue
+      [119, 0, 255]    // analytics violet
+    ];
+
+    const toRgb = (rgb) => `rgb(${rgb[0]} ${rgb[1]} ${rgb[2]})`;
+    const toRgba = (rgb, alpha) => `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha})`;
+
+    cards.forEach((card, index) => {
+      const iconWrap = card.querySelector('.icon-container');
+      if (!iconWrap) return;
+      const baseColor = palette[index % palette.length];
+
+      iconWrap.classList.add('flow-colorized');
+      iconWrap.style.setProperty('--icon-flow-color', toRgb(baseColor));
+      iconWrap.style.setProperty('--icon-flow-surface', toRgba(baseColor, 0.16));
+      iconWrap.style.setProperty('--icon-flow-glow', toRgba(baseColor, 0.28));
+    });
+  }
+
+  function ensureExpertiseIconColorFlow(root = document) {
+    const grid = root.querySelector('#expertise-grid');
+    if (!grid) return;
+
+    const run = () => requestAnimationFrame(() => applyExpertiseIconColorFlow(root));
+    run();
+
+    if (grid.dataset.iconFlowBound === '1') return;
+    grid.dataset.iconFlowBound = '1';
+
+    if (typeof ResizeObserver !== 'undefined') {
+      const observer = new ResizeObserver(() => run());
+      observer.observe(grid);
+      grid._iconFlowObserver = observer;
+    } else {
+      window.addEventListener('resize', run, { passive: true });
+    }
   }
 
   function renderHeroCapabilityMarquee(items, root = document) {
@@ -134,14 +202,25 @@ function setMeta(data) {
       const iconWrap = document.createElement('div');
       iconWrap.className = 'icon-container';
       iconWrap.dataset.icon = key;
+      iconWrap.setAttribute('aria-hidden', 'true');
   
       if (icon) {
-        const img = document.createElement('img');
-        img.src = icon;
-        img.className = 'icon';
-        img.alt = `${title || 'Expertise'} Icon`;
-        img.decoding = 'async';
-        iconWrap.appendChild(img);
+        const isSvg = /\.svg(?:[?#].*)?$/i.test(icon);
+
+        if (isSvg) {
+          const maskIcon = document.createElement('span');
+          maskIcon.className = 'icon icon-mask';
+          maskIcon.style.setProperty('--icon-mask', `url("${icon}")`);
+          iconWrap.appendChild(maskIcon);
+        } else {
+          const img = document.createElement('img');
+          img.src = icon;
+          img.className = 'icon';
+          img.alt = `${title || 'Expertise'} Icon`;
+          img.decoding = 'async';
+          iconWrap.appendChild(img);
+          iconWrap.removeAttribute('aria-hidden');
+        }
       }
   
       const h3 = document.createElement('h3');
@@ -155,6 +234,8 @@ function setMeta(data) {
       card.append(iconWrap, h3, p);
       grid.appendChild(card);
     });
+
+    ensureExpertiseIconColorFlow(root);
   }
   
   function renderProjects(list, root = document) {
@@ -219,10 +300,12 @@ function setMeta(data) {
   function renderHomeSections(sections, root = document) {
     if (!sections) return;
 
+    setOptionalText(root, '#expertise-eyebrow', sections.expertise_eyebrow);
     const expertiseTitle = root.querySelector('.expertise-title');
     if (expertiseTitle && sections.expertise_title) {
       expertiseTitle.textContent = safeString(sections.expertise_title);
     }
+    setOptionalText(root, '#expertise-subtitle', sections.expertise_subtitle);
 
     const expertiseLink = root.querySelector('.expertise-section .reference-link');
     if (expertiseLink) {
@@ -230,10 +313,12 @@ function setMeta(data) {
       if (sections.expertise_link) expertiseLink.href = safeString(sections.expertise_link);
     }
 
+    setOptionalText(root, '#projects-eyebrow', sections.projects_eyebrow);
     const projectsTitle = root.querySelector('.projects-title');
     if (projectsTitle && sections.projects_title) {
       projectsTitle.textContent = safeString(sections.projects_title);
     }
+    setOptionalText(root, '#projects-subtitle', sections.projects_subtitle);
 
     const projectsLink = root.querySelector('.projects-section .reference-link');
     if (projectsLink) {
@@ -241,10 +326,12 @@ function setMeta(data) {
       if (sections.projects_link) projectsLink.href = safeString(sections.projects_link);
     }
 
+    setOptionalText(root, '#reviews-eyebrow', sections.reviews_eyebrow);
     const reviewsTitle = root.querySelector('.reviews-title');
     if (reviewsTitle && sections.reviews_title) {
       reviewsTitle.textContent = safeString(sections.reviews_title);
     }
+    setOptionalText(root, '#reviews-subtitle', sections.reviews_subtitle);
   }
 
   function renderBookingFormContent(form, root = document) {
@@ -285,6 +372,8 @@ function setMeta(data) {
 
   function renderBookSection(section, root = document) {
     if (!section) return;
+
+    setOptionalText(root, '#book-call-eyebrow', section.eyebrow);
 
     const title = root.querySelector('.book-call-title');
     if (title && section.title) title.textContent = safeString(section.title);

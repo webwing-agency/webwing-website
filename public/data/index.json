@@ -6,15 +6,22 @@
   },
   "meta_description": "Webwing erstellt Websites für kleine und mittelständische Unternehmen, die sich durch ein Premium-Niveau and Design, Performance und Nutzerfreundlichkeit mehr Kunden und Umsatz, einen gesteigerten Markenwert sowie einen klaren Wettbewerbsvorteil sichern möchten.",
   "sections": {
+    "expertise_eyebrow": "Leistungen",
     "expertise_title": "Unsere Expertise",
+    "expertise_subtitle": "Von Design und Entwicklung bis SEO, Performance und technischer Umsetzung begleiten wir Projekte ganzheitlich.",
     "expertise_link_label": "Mehr erfahren →",
     "expertise_link": "dienstleistungen.html",
+    "projects_eyebrow": "Referenzen",
     "projects_title": "Zurückliegende Projekte",
+    "projects_subtitle": "Ein Einblick in ausgewählte Projekte, bei denen Markenauftritt, Nutzerführung und technische Qualität zusammenkommen.",
     "projects_link_label": "Alle Projekte →",
     "projects_link": "referenzen.html",
-    "reviews_title": "Das sagen unsere Kunden"
+    "reviews_eyebrow": "Kundenstimmen",
+    "reviews_title": "Das sagen unsere Kunden",
+    "reviews_subtitle": "Was die Zusammenarbeit mit Webwing im Alltag ausmacht, sagen am besten die Menschen, mit denen wir bereits gearbeitet haben."
   },
   "book_section": {
+    "eyebrow": "Erstgespräch",
     "title": "Bereit, Ihr Projekt zu kickstarten?",
     "text": "Vereinbaren Sie jetzt ein kostenloses und unverbindliches 20-minütiges Erstgespräch, in dem wir Ihre Ziele, Wünsche und aktuelle Situation besprechen. Anschließend beraten wir Sie zu den nächsten sinnvollen Schritten für Ihr Vorhaben und schauen gemeinsam, was für Sie am besten passt. Füllen Sie einfach kurz das nebenstehende Formular aus. Wir freuen uns, von Ihnen zu hören!",
     "form": {

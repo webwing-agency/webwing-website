@@ -96,13 +96,19 @@ collections:
             name: "sections"
             widget: "object"
             fields:
+              - { name: "expertise_eyebrow", label: "Expertise Eyebrow", widget: "string", required: false }
               - { name: "expertise_title", label: "Expertise Titel", widget: "string" }
+              - { name: "expertise_subtitle", label: "Expertise Subtitle", widget: "text", required: false }
               - { name: "expertise_link_label", label: "Expertise Link Label", widget: "string" }
               - { name: "expertise_link", label: "Expertise Link", widget: "string" }
+              - { name: "projects_eyebrow", label: "Projekte Eyebrow", widget: "string", required: false }
               - { name: "projects_title", label: "Projekte Titel", widget: "string" }
+              - { name: "projects_subtitle", label: "Projekte Subtitle", widget: "text", required: false }
               - { name: "projects_link_label", label: "Projekte Link Label", widget: "string" }
               - { name: "projects_link", label: "Projekte Link", widget: "string" }
+              - { name: "reviews_eyebrow", label: "Reviews Eyebrow", widget: "string", required: false }
               - { name: "reviews_title", label: "Reviews Titel", widget: "string" }
+              - { name: "reviews_subtitle", label: "Reviews Subtitle", widget: "text", required: false }
           - label: "Expertise cards"
             name: "expertise"
             widget: "list"
@@ -139,6 +145,7 @@ collections:
             name: "book_section"
             widget: "object"
             fields:
+              - { name: "eyebrow", label: "Eyebrow", widget: "string", required: false }
               - { name: "title", widget: "string" }
               - { name: "text", widget: "text" }
               - label: "Formular"
@@ -208,7 +215,7 @@ collections:
             fields:
               - { name: "images", label: "Image paths", widget: "list", field: { name: "image", widget: "string" } }
               - { name: "title", widget: "string" }
-              - { name: "description", widget: "text" }
+              - { name: "description", label: "Beschreibung", widget: "markdown", modes: ["rich_text", "raw"] }
               - label: "Specs"
                 name: "specs"
                 widget: "list"
@@ -255,7 +262,7 @@ collections:
             fields:
               - { name: "images", label: "Image paths", widget: "list", field: { name: "image", widget: "string" } }
               - { name: "title", widget: "string" }
-              - { name: "description", widget: "text" }
+              - { name: "description", label: "Beschreibung", widget: "markdown", modes: ["rich_text", "raw"] }
               - label: "Specs"
                 name: "specs"
                 widget: "list"

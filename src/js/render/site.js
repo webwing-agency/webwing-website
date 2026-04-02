@@ -106,7 +106,7 @@ function renderFooter(footerData = {}) {
     legalColumnLinks.innerHTML = footerData.legal_links.map(buildFooterAnchor).join('');
   }
 
-  const companyTitle = document.querySelector('footer .footer-main-content > .footer-link-column .footer-column-title');
+  const companyTitle = document.querySelector('footer .footer-links[aria-label="Unternehmen"]')?.closest('.footer-link-column')?.querySelector('.footer-column-title');
   if (companyTitle && footerData.company_title) {
     companyTitle.textContent = safeString(footerData.company_title);
   }

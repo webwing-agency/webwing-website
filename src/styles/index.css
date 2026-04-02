@@ -490,6 +490,15 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
 
 /* Expertise Section */
 
+.expertise-section .section-title-container {
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.expertise-section .section-title-stack {
+    align-items: flex-start;
+}
+
 .expertise-title {
     text-align: left;
 }
@@ -572,6 +581,29 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
         color: var(--icon-analytics-color);
     }
 
+    .icon-container.flow-colorized {
+        background: var(--icon-flow-surface);
+        color: var(--icon-flow-color);
+    }
+
+    .icon-container.flow-colorized::after {
+        background: var(--icon-flow-glow);
+        opacity: 0.72;
+    }
+
+    .icon.icon-mask {
+        display: block;
+        background-color: currentColor;
+        -webkit-mask-image: var(--icon-mask);
+        mask-image: var(--icon-mask);
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+    }
+
     
   
 
@@ -585,6 +617,10 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
 
 .projects-section .section-title-stack {
     align-items: flex-end;
+}
+
+.projects-section .section-subtitle {
+    text-align: right;
 }
 
 .projects-title {
@@ -641,20 +677,24 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
 .reviews-section .grid-card {
     padding-bottom: 65px;
 }
+
+.reviews-section .section-title-stack {
+    align-items: center;
+    margin: 0 auto 2rem;
+}
+
 .reviews-title {
     text-align: center;
 }
 
-.reviews-section > .section-eyebrow {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 0.55rem;
+.reviews-section .section-subtitle {
+    text-align: center;
 }
 
 .client-img {
-    height: 40px;
-    width: 40px;
-    border-radius: 20px;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
 }
 
 .reviews-section .card-title {
@@ -691,7 +731,7 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
 .book-call-section {
     width: 100vw;
     padding: 4rem 10vw;
-    margin-bottom: 50vh;
+    margin-bottom: 60vh;
 }
 
     .book-call-card {

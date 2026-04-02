@@ -1,21 +1,35 @@
 // js/render/projects.js
-// robust: wait for images + layout before dispatching "projectsRendered"
+// dispatch immediately for fast paint, then refresh once images settle
 import { applySeo } from '../seo.js';
-import { initStickyCta } from '../ui/sticky-cta.js';
+import { richTextToHtml } from '../utils/rich-text.js';
 
-function waitForImages(container) {
-  const imgs = Array.from(container?.querySelectorAll('img') || []);
-  if (!imgs.length) return Promise.resolve();
-  const promises = imgs.map(img => {
-    if (img.complete) return Promise.resolve();
-    return new Promise(resolve => {
-      img.addEventListener('load', resolve, { once: true });
-      img.addEventListener('error', resolve, { once: true });
-      // safety timeout in case an image never fires events
-      setTimeout(resolve, 3000);
+function dispatchRenderedEvent(name) {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.dispatchEvent(new Event(name));
     });
   });
-  return Promise.all(promises);
+}
+
+function watchImagesForRefresh(container, eventName) {
+  const imgs = Array.from(container?.querySelectorAll('img') || []);
+  if (!imgs.length) return;
+
+  let refreshQueued = false;
+  const queueRefresh = () => {
+    if (refreshQueued) return;
+    refreshQueued = true;
+    requestAnimationFrame(() => {
+      refreshQueued = false;
+      document.dispatchEvent(new Event(eventName));
+    });
+  };
+
+  imgs.forEach((img) => {
+    if (img.complete) return;
+    img.addEventListener('load', queueRefresh, { once: true });
+    img.addEventListener('error', queueRefresh, { once: true });
+  });
 }
 
 function applyTemplate(template, values) {
@@ -123,9 +137,9 @@ async function renderProjects(root = document) {
         specs.appendChild(li);
       });
 
-      const desc = document.createElement("p");
+      const desc = document.createElement("div");
       desc.className = "project-description";
-      desc.textContent = project.description ?? '';
+      desc.innerHTML = richTextToHtml(project.description ?? '');
 
       const textWrap = document.createElement("div");
       textWrap.className = "project-card-text-container flex";
@@ -154,27 +168,10 @@ async function renderProjects(root = document) {
     });
 
     /* ---------- CTA ---------- */
-    const cta = root.querySelector(".cta");
-    const ctaLabel = root.querySelector(".cta-label");
-    if (cta) cta.textContent = data.cta_text ?? "";
-    if (ctaLabel) ctaLabel.textContent = data.cta_label ?? "";
-    if (cta) {
-      const ctaLink = data.cta_link || "kostenloses-erstgespräch.html";
-      cta.href = ctaLink;
-    }
-
-    initStickyCta(root);
-
     initProjectSearch(root, ui);
 
-    // wait for images then wait two frames to ensure layout is stable,
-    // then dispatch projectsRendered
-    await waitForImages(grid);
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        document.dispatchEvent(new Event('projectsRendered'));
-      });
-    });
+    watchImagesForRefresh(grid, 'projectsRendered');
+    dispatchRenderedEvent('projectsRendered');
   } catch (err) {
     console.error('renderProjects error:', err);
   }

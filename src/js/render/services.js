@@ -1,7 +1,7 @@
 // js/render/services.js
 // --- vollständige, robuste Version ---
 import { applySeo } from '../seo.js';
-import { initStickyCta } from '../ui/sticky-cta.js';
+import { richTextToHtml } from '../utils/rich-text.js';
 
 async function fetchServices() {
   const res = await fetch('/data/services.json', { cache: 'no-store' });
@@ -123,9 +123,9 @@ function buildServiceCard(item, ui = {}) {
   const textContainer = document.createElement('div');
   textContainer.className = 'service-card-text-container flex';
 
-  const desc = document.createElement('p');
+  const desc = document.createElement('div');
   desc.className = 'service-description';
-  desc.textContent = item.description || '';
+  desc.innerHTML = richTextToHtml(item.description || '');
 
   const ul = document.createElement('ul');
   ul.className = 'service-specs feature-list';
@@ -191,20 +191,33 @@ function renderFilters(filters, root = document) {
   });
 }
 
-// helper: wait until all images inside a container have settled (loaded or errored)
-function waitForImages(container) {
-  const imgs = Array.from(container.querySelectorAll('img'));
-  if (imgs.length === 0) return Promise.resolve();
-  const promises = imgs.map(img => {
-    if (img.complete) return Promise.resolve();
-    return new Promise(resolve => {
-      img.addEventListener('load', resolve, { once: true });
-      img.addEventListener('error', resolve, { once: true });
-      // safety timeout
-      setTimeout(resolve, 3000);
+function dispatchRenderedEvent(name) {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.dispatchEvent(new Event(name));
     });
   });
-  return Promise.all(promises);
+}
+
+function watchImagesForRefresh(container, eventName) {
+  const imgs = Array.from(container.querySelectorAll('img'));
+  if (!imgs.length) return;
+
+  let refreshQueued = false;
+  const queueRefresh = () => {
+    if (refreshQueued) return;
+    refreshQueued = true;
+    requestAnimationFrame(() => {
+      refreshQueued = false;
+      document.dispatchEvent(new Event(eventName));
+    });
+  };
+
+  imgs.forEach((img) => {
+    if (img.complete) return;
+    img.addEventListener('load', queueRefresh, { once: true });
+    img.addEventListener('error', queueRefresh, { once: true });
+  });
 }
 
 async function renderServices(root = document) {
@@ -230,29 +243,8 @@ async function renderServices(root = document) {
     // render filters
     renderFilters(data.filters, root);
 
-    // Sticky CTA
-    const cta = root.querySelector('.cta');
-    const ctaLabel = root.querySelector('.cta-label');
-
-    if (cta && data.cta_text) cta.textContent = data.cta_text;
-    if (ctaLabel && data.cta_label) ctaLabel.textContent = data.cta_label;
-    if (cta) {
-      cta.href = data.cta_link && isValidURL(data.cta_link)
-        ? data.cta_link
-        : 'kostenloses-erstgespräch.html';
-    }
-
-    initStickyCta(root);
-
-    // Wait for images to load (or timeout), then wait two frames to ensure layout stable
-    await waitForImages(grid);
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        // final notification: DOM + layout + images are ready
-        document.dispatchEvent(new Event('servicesRendered'));
-      });
-    });
+    watchImagesForRefresh(grid, 'servicesRendered');
+    dispatchRenderedEvent('servicesRendered');
   } catch (err) {
     console.error('Services render error:', err);
   }
