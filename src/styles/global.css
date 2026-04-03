@@ -931,12 +931,14 @@ header {
             text-align: center;
         }
 
-        .footer-right-column .footer-link-column:first-child {
-            order: 2;
+        .footer-right-column {
+            display: flex;          
+            flex-direction: column;
+            gap: 2.5rem;
         }
-
-        .footer-right-column .footer-link-column:last-child {
-            order: 3;
+    
+        .footer-right-column .footer-cta-column {
+            order: -1; 
         }
     
         .footer-brand-column,
