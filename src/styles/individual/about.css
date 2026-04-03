@@ -601,7 +601,6 @@
 
     .about-page-main {
         padding-top: calc(var(--nav-height) + 1.25rem);
-        padding-bottom: 4rem;
     }
 
     .about-hero {

@@ -920,6 +920,11 @@ header {
     }
     
     @media (max-width: 900px) {
+        
+        body {
+            padding-bottom: 50rem;
+        }
+
         .footer-main-content {
             grid-template-columns: 1fr;
             gap: 1.6rem;
