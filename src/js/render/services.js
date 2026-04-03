@@ -1,20 +1,18 @@
 // js/render/services.js
 // --- vollständige, robuste Version ---
 import { applySeo } from '../seo.js';
+import { fetchCmsJson } from '../utils/cms-json.js';
 import { richTextToHtml } from '../utils/rich-text.js';
 
 async function fetchServices() {
-  const res = await fetch('/data/services.json', { cache: 'no-store' });
-  if (!res.ok) {
-    throw new Error(`Failed to fetch services.json: ${res.status}`);
-  }
-
-  const json = await res.json();
-  if (!json || !Array.isArray(json.services)) {
-    throw new Error('Invalid JSON structure: expected { services: [] }');
-  }
-
-  return json;
+  return fetchCmsJson('/data/services.json', {
+    inlineScriptId: 'cms-inline-services',
+    validate(json) {
+      if (!json || !Array.isArray(json.services)) {
+        throw new Error('Invalid JSON structure: expected { services: [] }');
+      }
+    }
+  });
 }
 
 function setMetaAndTitle(data) {

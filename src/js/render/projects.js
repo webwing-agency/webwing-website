@@ -1,6 +1,7 @@
 // js/render/projects.js
 // dispatch immediately for fast paint, then refresh once images settle
 import { applySeo } from '../seo.js';
+import { fetchCmsJson } from '../utils/cms-json.js';
 import { richTextToHtml } from '../utils/rich-text.js';
 
 function dispatchRenderedEvent(name) {
@@ -40,9 +41,13 @@ function applyTemplate(template, values) {
 
 async function renderProjects(root = document) {
   try {
-    const res = await fetch("/data/projects.json", { cache: 'no-store' });
-    if (!res.ok) throw new Error("Failed to load /data/projects.json");
-    const data = await res.json();
+    const data = await fetchCmsJson('/data/projects.json', {
+      validate(json) {
+        if (!json || !Array.isArray(json.projects)) {
+          throw new Error('Invalid JSON structure: expected { projects: [] }');
+        }
+      }
+    });
     const ui = data.ui || {};
 
     applySeo({

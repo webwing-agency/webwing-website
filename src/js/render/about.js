@@ -1,4 +1,5 @@
 import { applySeo } from '../seo.js';
+import { fetchCmsJson } from '../utils/cms-json.js';
 
 function safeString(value) {
   if (value === null || value === undefined) return '';
@@ -6,9 +7,7 @@ function safeString(value) {
 }
 
 async function fetchAbout() {
-  const res = await fetch('/data/about.json', { cache: 'no-store' });
-  if (!res.ok) throw new Error(`Failed to fetch about.json: ${res.status}`);
-  return res.json();
+  return fetchCmsJson('/data/about.json');
 }
 
 function renderHero(hero = {}, page) {

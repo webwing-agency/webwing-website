@@ -1,10 +1,9 @@
 // js/render/contact.js
 import { applySeo } from '../seo.js';
+import { fetchCmsJson } from '../utils/cms-json.js';
 
 async function fetchContact() {
-    const res = await fetch('/data/contact.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('Failed to fetch contact.json');
-    return res.json();
+    return fetchCmsJson('/data/contact.json');
   }
   
   function setMetaAndTitle(data, root = document) {

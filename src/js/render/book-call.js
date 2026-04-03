@@ -1,9 +1,8 @@
 import { applySeo } from '../seo.js';
+import { fetchCmsJson } from '../utils/cms-json.js';
 
 async function fetchBookCall() {
-    const res = await fetch('/data/book-call.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('Failed to fetch book-call.json');
-    return res.json();
+    return fetchCmsJson('/data/book-call.json');
   }
  
 function setMetaAndTitle(data, root = document) {

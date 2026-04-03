@@ -1,5 +1,6 @@
 // js/render/legal.js
 import { applySeo } from '../seo.js';
+import { fetchCmsJson } from '../utils/cms-json.js';
 
 function markdownToHtmlBasic(md) {
     if (!md) return '';
@@ -57,9 +58,7 @@ function markdownToHtmlBasic(md) {
   }
   
   async function loadAndRender(path, canonicalPath){
-    const res = await fetch(path, {cache: 'no-store'});
-    if (!res.ok) { console.warn('no legal file', path); return; }
-    const data = await res.json();
+    const data = await fetchCmsJson(path);
     if (data.meta_title) document.title = data.meta_title;
     if (data.meta_description) document.querySelector('meta[name="description"]')?.setAttribute('content', data.meta_description);
     applySeo({

@@ -1,3 +1,4 @@
+import { fetchCmsJson } from '../utils/cms-json.js';
 function safeString(value) {
   if (value === null || value === undefined) return '';
   return typeof value === 'string' ? value : String(value);
@@ -16,11 +17,7 @@ let siteDataPromise = null;
 
 async function fetchSiteData() {
   if (!siteDataPromise) {
-    siteDataPromise = fetch('/data/site.json', { cache: 'no-store' })
-      .then((res) => {
-        if (!res.ok) throw new Error(`Failed to fetch site.json: ${res.status}`);
-        return res.json();
-      })
+    siteDataPromise = fetchCmsJson('/data/site.json')
       .catch((err) => {
         siteDataPromise = null;
         throw err;
@@ -111,7 +108,7 @@ function renderFooter(footerData = {}) {
     companyTitle.textContent = safeString(footerData.company_title);
   }
 
-  const legalTitle = document.querySelector('footer .footer-right-column .footer-link-column .footer-column-title');
+  const legalTitle = document.querySelector('footer .footer-links[aria-label="Rechtliches"]')?.closest('.footer-link-column')?.querySelector('.footer-column-title');
   if (legalTitle && footerData.legal_title) {
     legalTitle.textContent = safeString(footerData.legal_title);
   }
