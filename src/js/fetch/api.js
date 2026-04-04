@@ -8,11 +8,8 @@ export function getApiBase() {
     }
   }
 
-  if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_NETLIFY_API_BASE) {
-    return import.meta.env.VITE_NETLIFY_API_BASE.replace(/\/$/, '');
-  }
-
-  return '/.netlify/functions';
+  // Fallback to VPS IP if not specified in runtime config
+  return 'http://87.106.166.66:3000/api';
 }
 
 export const API_BASE = getApiBase();

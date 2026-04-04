@@ -9,9 +9,6 @@ function getContactEndpoint() {
   // If base is just "/api" or a full URL like "http://.../api"
   if (base.endsWith('/api')) return `${base}/contact`;
   
-  // For Netlify fallback
-  if (base.endsWith('/.netlify/functions')) return `${base}/contact`;
-  
   return `${base}/contact`;
 }
 

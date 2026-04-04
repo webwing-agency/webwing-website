@@ -5,7 +5,7 @@ function pad(n){ return String(n).padStart(2,'0'); }
 
 function buildAvailabilityCandidates(dateIso) {
   const requestedBase = String(getApiBase() || '').replace(/\/$/, '');
-  const fallbackBases = [requestedBase, '/api', '/.netlify/functions'];
+  const fallbackBases = [requestedBase, '/api'];
   const seen = new Set();
 
   return fallbackBases

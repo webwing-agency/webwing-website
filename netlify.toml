@@ -1,6 +1,5 @@
 [build]
   publish = "dist"
-  functions = "netlify/functions"
 
 [dev]
   port = 8888
@@ -11,21 +10,7 @@
   to = "/admin/"
   status = 301
 
-# Internes Rewrite: /api/* -> /.netlify/functions/:splat
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-  force = true
-
-# CORS für Functions (Netlify macht das als Response-Header)
-[[headers]]
-  for = "/.netlify/functions/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"
-    Access-Control-Allow-Headers = "Content-Type"
-    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
-
+# Static Asset Headers
 [[headers]]
   for = "/assets/*"
   [headers.values]
@@ -41,7 +26,7 @@
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
 
-# Allgemeine Sicherheits-Header
+# Global Security Headers
 [[headers]]
   for = "/*"
   [headers.values]
