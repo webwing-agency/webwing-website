@@ -6,19 +6,19 @@
   },
   "meta_description": "Webwing erstellt Websites für kleine und mittelständische Unternehmen, die sich durch ein Premium-Niveau and Design, Performance und Nutzerfreundlichkeit mehr Kunden und Umsatz, einen gesteigerten Markenwert sowie einen klaren Wettbewerbsvorteil sichern möchten.",
   "sections": {
-    "expertise_eyebrow": "Leistungen",
-    "expertise_title": "Unsere Expertise",
-    "expertise_subtitle": "Von Design und Entwicklung bis SEO, Performance und technischer Umsetzung begleiten wir Projekte ganzheitlich.",
-    "expertise_link_label": "Mehr erfahren →",
-    "expertise_link": "dienstleistungen.html",
     "projects_eyebrow": "Referenzen",
-    "projects_title": "Zurückliegende Projekte",
-    "projects_subtitle": "Ein Einblick in ausgewählte Projekte, bei denen Markenauftritt, Nutzerführung und technische Qualität zusammenkommen.",
-    "projects_link_label": "Alle Projekte →",
-    "projects_link": "referenzen.html",
     "reviews_eyebrow": "Kundenstimmen",
+    "expertise_subtitle": "Von Design und Entwicklung bis SEO, Performance und technischer Umsetzung begleiten wir Projekte ganzheitlich.",
+    "expertise_link": "dienstleistungen.html",
+    "expertise_title": "Unsere Expertise",
+    "projects_title": "Zurückliegende Projekte",
     "reviews_title": "Das sagen unsere Kunden",
-    "reviews_subtitle": "Was die Zusammenarbeit mit Webwing im Alltag ausmacht, sagen am besten die Menschen, mit denen wir bereits gearbeitet haben."
+    "projects_link_label": "Alle Projekte →",
+    "expertise_eyebrow": "Leistungen",
+    "reviews_subtitle": "Was die Zusammenarbeit mit Webwing im Alltag ausmacht, sagen am besten die Menschen, mit denen wir bereits gearbeitet haben.",
+    "expertise_link_label": "Mehr erfahren →",
+    "projects_subtitle": "Ein Einblick in ausgewählte Projekte, bei denen Markenauftritt, Nutzerführung und technische Qualität zusammenkommen.",
+    "projects_link": "referenzen.html"
   },
   "book_section": {
     "eyebrow": "Erstgespräch",
@@ -72,10 +72,28 @@
       "text": "Wir optimieren Ihre Seite für möglichst kurze Ladezeiten (möglichst < 1 s) um die Anzahl der Besucher, die Ihre Website frühzeitig verlassen, zu minimieren und die Nutzerfahrung zusätzlich zu verbessern."
     },
     {
-      "key": "automations & ai",
-      "icon": "/assets/icons/robot.svg",
-      "title": "Automatisierung & AI-Integration",
-      "text": "Mit Automationen sorgen wir für reibungslose Abläufe zwischen Ihrer Website und Drittdiensten wie Ihrem CRM. Zudem integrieren wir KI gewinnbringend in Ihre Akquiseprozesse, durch etwa Chatbots oder intelligente Datenverarbeitung im Backend."
+      "key": "design",
+      "icon": "/assets/icons/design.svg",
+      "title": "Design",
+      "text": "Mit ästhetischem und charakterstarkem Website-Design, das nicht nur State of the Art ist, sondern Ihrer Marke auch eine neue, starke Strahlkraft verleiht, schaffen wir Ihnen ein echtes Alleinstellungsmerkmal gegenüber dem Wettbewerb."
+    },
+    {
+      "title": "Strategie & Positionierung",
+      "key": "strategy",
+      "icon": "/assets/icons/strategy.svg",
+      "text": "Wir verstehen ihr Geschäftsmodell und ihre Zielgruppe und positionieren ihr Unternehmen und Lösungen strategisch und effektiv durch wohl überlegte Erstellung sowie Verfeinerung der Texte und Botschaften ihrer Marke und Website."
+    },
+    {
+      "key": "code",
+      "icon": "/assets/icons/code.svg",
+      "title": "Entwicklung",
+      "text": "Wir wandeln erstellte Designs in optimalen Code um. Da wir noch handwerklich manuell programmieren und keine 0815 Sitebuilder verwenden, sind unsere Möglichkeiten der Gestaltung und der Funktionen fast uneinschränkt."
+    },
+    {
+      "key": "conversion",
+      "icon": "/assets/icons/shopping.svg",
+      "title": "Conversion-Optimierung",
+      "text": "Seitenstruktur und Inhalte passen wir für eine zielführende Nutzerführung und beste Conversionrates an."
     },
     {
       "title": "Analytics und Tracking",
@@ -90,34 +108,16 @@
       "text": "Wir optimieren die Auffindbarkeit Ihrer Website in Suchmaschinen wie Google, Bing und DuckDuckGo, um für mehr Seitenbesucher und somit mehr Kunden zu sorgen.\n"
     },
     {
-      "key": "design",
-      "icon": "/assets/icons/design.svg",
-      "title": "Design",
-      "text": "Mit ästhetischem und charakterstarkem Website-Design, das nicht nur State of the Art ist, sondern Ihrer Marke auch eine neue, starke Strahlkraft verleiht, schaffen wir Ihnen ein echtes Alleinstellungsmerkmal gegenüber dem Wettbewerb."
-    },
-    {
-      "title": "Strategie & Positionierung",
-      "key": "strategy",
-      "icon": "/assets/icons/strategy.svg",
-      "text": "Wir verstehen ihr Geschäftsmodell und ihre Zielgruppe und positionieren ihr Unternehmen und Lösungen strategisch und effektiv durch wohl überlegte Erstellung sowie Verfeinerung der Texte und Botschaften ihrer Marke und Website."
-    },
-    {
-      "key": "conversion",
-      "icon": "/assets/icons/shopping.svg",
-      "title": "Conversion-Optimierung",
-      "text": "Seitenstruktur und Inhalte passen wir für eine zielführende Nutzerführung und beste Conversionrates an."
-    },
-    {
       "title": "Sicherheit und DSGVO-Konformität",
       "key": "security",
       "icon": "/assets/icons/security.svg",
       "text": "Wir sorgen dafür, dass ihre Website und die dazugehörigen Daten sicher sind. Mit rechtsgültigem Impressum, Datenschutzerklärung usw. machen wir Ihre Seite DSGVO-konform und bewahren Sie vor lästigen Abmahnungen."
     },
     {
-      "key": "code",
-      "icon": "/assets/icons/code.svg",
-      "title": "Entwicklung",
-      "text": "Wir wandeln erstellte Designs in optimalen Code um. Da wir noch handwerklich manuell programmieren und keine 0815 Sitebuilder verwenden, sind unsere Möglichkeiten der Gestaltung und der Funktionen fast uneinschränkt."
+      "key": "automations & ai",
+      "icon": "/assets/icons/robot.svg",
+      "title": "Automatisierung & AI-Integration",
+      "text": "Mit Automationen sorgen wir für reibungslose Abläufe zwischen Ihrer Website und Drittdiensten wie Ihrem CRM. Zudem integrieren wir KI gewinnbringend in Ihre Akquiseprozesse, durch etwa Chatbots oder intelligente Datenverarbeitung im Backend."
     }
   ],
   "projects": [
