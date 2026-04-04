@@ -1,13 +1,18 @@
 // src/js/contact-form.js
-function getContactEndpoint() {
-  const rawBase = (window.API_BASE || '').trim();
-  const base = rawBase.replace(/\/$/, '');
+import { API_BASE } from './fetch/api.js';
 
+function getContactEndpoint() {
+  const base = (API_BASE || '').trim().replace(/\/$/, '');
+  
   if (!base) return '/api/contact';
+  
+  // If base is just "/api" or a full URL like "http://.../api"
   if (base.endsWith('/api')) return `${base}/contact`;
+  
+  // For Netlify fallback
   if (base.endsWith('/.netlify/functions')) return `${base}/contact`;
-  if (base.endsWith('/contact') || base.endsWith('/api/contact')) return base;
-  return `${base}/api/contact`;
+  
+  return `${base}/contact`;
 }
 
 function getContactFormCopy() {
