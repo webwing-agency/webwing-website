@@ -66,7 +66,7 @@
       "specs": [
         {
           "text": "Fullstack-Entwicklung",
-          "icon": "fa-solid fa-atom"
+          "icon": "fa-solid fa-code"
         },
         {
           "text": "Systemintegration",
@@ -74,11 +74,11 @@
         },
         {
           "text": "Automationen & AI",
-          "icon": "fa-solid fa-layer-group"
+          "icon": "fa-solid fa-robot"
         },
         {
           "text": "Analytics",
-          "icon": "fa-solid fa-layer-group"
+          "icon": "fa-solid fa-chart-line"
         },
         {
           "text": "Performance-Optimierung",
@@ -86,7 +86,7 @@
         },
         {
           "text": "CMS",
-          "icon": "fa-solid fa-layer-group"
+          "icon": "fa-solid fa-pen-to-square"
         }
       ],
       "ctas": {
@@ -108,11 +108,11 @@
       "specs": [
         {
           "text": "Klarheit & Struktur",
-          "icon": "fa-solid fa-pen-nib"
+          "icon": "fa-solid fa-list-check"
         },
         {
           "text": "Differenzierung",
-          "icon": "fa-solid fa-paintbrush"
+          "icon": "fa-solid fa-shapes"
         },
         {
           "text": "Conversion",
