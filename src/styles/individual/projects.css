@@ -194,7 +194,7 @@
 .project-description {
   flex: 3;
   font-size: var(--text-font-size);
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.88);
   max-width: 65%;
 }
 

@@ -116,6 +116,10 @@
           "icon": "fa-solid fa-shapes"
         },
         {
+          "text": "Positionierung",
+          "icon": "fa-solid fa-crosshairs"
+        },
+        {
           "text": "Conversion",
           "icon": "fa-solid fa-bullseye"
         },

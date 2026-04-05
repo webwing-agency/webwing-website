@@ -41,18 +41,15 @@ async function initPage(containerOverride = null) {
       const [
         { initHomePage },
         { initBookingPage },
-        { inlineScribbles, rerunScribbles },
-        { initHeroMesh }
+        { inlineScribbles, rerunScribbles }
       ] = await Promise.all([
         import('./js/render/index.js'),
         import('./js/booking/main.js'),
-        import('./js/ui/scribbles.js'),
-        import('./js/ui/hero-mesh.js')
+        import('./js/ui/scribbles.js')
       ]);
 
       scribbleApi = { inlineScribbles, rerunScribbles };
       await initHomePage(container);
-      initHeroMesh();
       initBookingPage(container);
 
       // Ensure index GSAP always rebinds on Barba re-entry to Home.

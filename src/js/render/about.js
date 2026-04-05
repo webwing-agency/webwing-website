@@ -259,7 +259,12 @@ function runAboutAnimations(page) {
       return;
     }
 
-    gsap.set(targets, { autoAlpha: 0, y: options.y ?? 18, willChange: 'transform,opacity' });
+    gsap.set(targets, { 
+      autoAlpha: 0, 
+      y: options.y ?? 18, 
+      scale: options.scale ?? 0.99,
+      willChange: 'transform,opacity' 
+    });
 
     const st = ScrollTrigger.create({
       trigger,
@@ -269,6 +274,7 @@ function runAboutAnimations(page) {
         gsap.to(targets, {
           autoAlpha: 1,
           y: 0,
+          scale: 1,
           duration: options.duration ?? 0.55,
           stagger: options.stagger ?? 0.07,
           ease: 'power2.out',
