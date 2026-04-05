@@ -665,6 +665,12 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
     line-height: 1.2;
     letter-spacing: -0.01em;
     white-space: nowrap;
+    transform: translateY(0);
+}
+
+.tag span {
+    transform: translateY(2px);
+    display: inline-block;
 }
 
 @media (max-width: 768px) {
