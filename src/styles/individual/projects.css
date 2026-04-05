@@ -1,7 +1,7 @@
 /* Projects (Referenzen) page */
 .references-page-fold {
-  width: min(100%, calc(100vw - 2.5rem));
-  max-width: min(170rem, calc(100vw - 2.5rem));
+  width: min(100%, calc(100vw - 4rem));
+  max-width: 100rem;
   min-width: 0;
   padding-inline: clamp(1.25rem, 3vw, 3rem);
   padding-bottom: 10rem;
