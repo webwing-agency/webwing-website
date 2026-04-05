@@ -1003,9 +1003,20 @@ header {
     letter-spacing: var(--heading-letter-spacing);
     text-align: left;
     padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     width: 100%;
+}
+
+.page-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 48rem;
+    text-align: left;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
     border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
 }
 
 .page-title-small {

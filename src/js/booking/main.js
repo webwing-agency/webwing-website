@@ -324,7 +324,7 @@ export function initBookingPage(root = document) {
     try {
       const result = await bookAppointment(payload);
       if (result.ok) {
-        alert(bookingCopy.messages.success);
+        alert(bookingCopy.messages.success + '\n\n(Bitte prüfen Sie auch Ihren Spam-Ordner, falls Sie keine E-Mail erhalten haben.)');
         bookingForm.reset();
         timeslotsContainer.innerHTML = '';
         calendarRoot.querySelectorAll('.calendar-day').forEach(x => x.classList.remove('is-active'));

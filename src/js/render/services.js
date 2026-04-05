@@ -48,6 +48,11 @@ function setMetaAndTitle(data) {
   if (titleEl && data.page_title) {
     titleEl.textContent = data.page_title;
   }
+
+  const subtitleEl = document.querySelector('.services-page-subtitle');
+  if (subtitleEl && data.page_subtitle) {
+    subtitleEl.textContent = data.page_subtitle;
+  }
 }
 
 function isValidURL(url) {
@@ -68,12 +73,6 @@ function normalizeSpec(spec) {
     };
   }
   return { text: '', icon: '' };
-}
-
-function applyTemplate(template, values) {
-  return String(template || '').replace(/\{\{(\w+)\}\}/g, (_, key) => {
-    return key in values ? String(values[key]) : '';
-  });
 }
 
 function buildSpecItem(spec) {
@@ -166,27 +165,38 @@ function buildServiceCard(item, ui = {}) {
 }
 
 function renderFilters(filters, root = document) {
-  if (!Array.isArray(filters) || filters.length === 0) return;
+  if (!Array.isArray(filters)) return;
 
   const selectionFlex = root.querySelector('.selection-flex');
-  const searchWrapper = selectionFlex?.querySelector('.search-wrapper');
-
   if (!selectionFlex) return;
 
   selectionFlex
     .querySelectorAll('.filter-select')
     .forEach(el => el.remove());
 
+  const fragment = document.createDocumentFragment();
+
+  // "Alle" filter
+  const allEl = document.createElement("div");
+  allEl.className = "filter-select active";
+  allEl.textContent = "Alle";
+  allEl.dataset.filter = "all";
+  fragment.appendChild(allEl);
+
   filters.forEach(filter => {
     const el = document.createElement('div');
     el.className = 'filter-select';
     el.textContent = filter;
-    if (searchWrapper) {
-      selectionFlex.insertBefore(el, searchWrapper);
-    } else {
-      selectionFlex.appendChild(el);
-    }
+    el.dataset.filter = filter.toLowerCase();
+    fragment.appendChild(el);
   });
+  
+  const searchWrapper = selectionFlex.querySelector('.search-wrapper');
+  if (searchWrapper) {
+    selectionFlex.insertBefore(fragment, searchWrapper);
+  } else {
+    selectionFlex.prepend(fragment);
+  }
 }
 
 function dispatchRenderedEvent(name) {
@@ -241,6 +251,8 @@ async function renderServices(root = document) {
     // render filters
     renderFilters(data.filters, root);
 
+    initServiceFilter(root);
+
     watchImagesForRefresh(grid, 'servicesRendered');
     dispatchRenderedEvent('servicesRendered');
   } catch (err) {
@@ -248,168 +260,47 @@ async function renderServices(root = document) {
   }
 }
 
-function initServiceSearch(root = document, ui = {}) {
-  const wrapper = root.querySelector('.search-wrapper');
-  const input = wrapper?.querySelector('.search-bar');
+function initServiceFilter(root = document) {
   const selectionFlex = root.querySelector('.selection-flex');
-  const grid = root.querySelector('.services-grid');
   const cards = Array.from(root.querySelectorAll('.service-card'));
 
-  if (!wrapper || !input || !selectionFlex || !grid || cards.length === 0) return;
-  if (wrapper.dataset.searchInit === '1') return;
-  wrapper.dataset.searchInit = '1';
-
-  const normalize = s =>
-    (s || '')
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .trim();
-
-  const escapeRegExp = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-  const debounce = (fn, wait = 120) => {
-    let t;
-    return (...args) => {
-      clearTimeout(t);
-      t = setTimeout(() => fn(...args), wait);
-    };
-  };
-
-  const index = cards.map(card => {
-    const titleEl = card.querySelector('.service-title');
-    const descEl = card.querySelector('.service-description');
-    const specsEl = card.querySelector('.service-specs');
-
-    return {
-      card,
-      titleEl,
-      descEl,
-      specsEl,
-      originalDisplay: card.style.display || '',
-      titleHTML: titleEl?.innerHTML || '',
-      descHTML: descEl?.innerHTML || '',
-      specsHTML: specsEl?.innerHTML || '',
-      searchText: normalize(
-        `${titleEl?.textContent || ''} ${descEl?.textContent || ''} ${specsEl?.textContent || ''}`
-      )
-    };
-  });
-
-  const restore = item => {
-    if (item.titleEl) item.titleEl.innerHTML = item.titleHTML;
-    if (item.descEl) item.descEl.innerHTML = item.descHTML;
-    if (item.specsEl) item.specsEl.innerHTML = item.specsHTML;
-  };
-
-  let emptyState = null;
-  function setEmptyState(show, query) {
-    if (!show) {
-      if (emptyState) emptyState.style.display = 'none';
-      return;
-    }
-    if (!emptyState) {
-      emptyState = document.createElement('div');
-      emptyState.className = 'grid-card search-empty-state';
-      grid.appendChild(emptyState);
-    }
-    emptyState.textContent = query
-      ? `${ui.empty_state_query_prefix || 'Keine Ergebnisse für "'}${query}${ui.empty_state_query_suffix || '". Bitte Suchbegriff oder Filter anpassen.'}`
-      : (ui.empty_state_default || 'Keine Ergebnisse gefunden.');
-    emptyState.style.display = '';
-  }
-
-  const highlight = (el, query) => {
-    if (!el || !query) return;
-    const rx = new RegExp(escapeRegExp(query), 'gi');
-
-    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-    const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-
-    nodes.forEach(node => {
-      const text = node.nodeValue;
-      if (!rx.test(text)) return;
-      rx.lastIndex = 0;
-
-      const frag = document.createDocumentFragment();
-      let last = 0;
-      let match;
-
-      while ((match = rx.exec(text))) {
-        frag.append(text.slice(last, match.index));
-        const mark = document.createElement('mark');
-        mark.className = 'search-highlight';
-        mark.textContent = match[0];
-        frag.append(mark);
-        last = match.index + match[0].length;
-      }
-
-      frag.append(text.slice(last));
-      node.replaceWith(frag);
-    });
-  };
-
-  const runFilter = value => {
-    const query = value.trim();
-    const qNorm = normalize(query);
-
-    let visible = 0;
-
-    index.forEach(item => {
-      restore(item);
-      if (!query || item.searchText.includes(qNorm)) {
-        item.card.style.display = item.originalDisplay;
-        if (query) {
-          highlight(item.titleEl, query);
-          highlight(item.descEl, query);
-          highlight(item.specsEl, query);
-        }
-        visible++;
-      } else {
-        item.card.style.display = 'none';
-      }
-    });
-
-    setEmptyState(visible === 0 && Boolean(query), query);
-
-    wrapper.style.setProperty(
-      '--search-count',
-      query ? `"${applyTemplate(ui.results_count_template || '{{visible}} von {{total}} Ergebnissen', { visible, total: index.length })}"` : '""'
-    );
-  };
-
-  input.addEventListener('input', debounce(e => runFilter(e.target.value)));
+  if (!selectionFlex || cards.length === 0) return;
 
   selectionFlex.addEventListener('click', e => {
-    const filter = e.target.closest('.filter-select');
-    if (!filter) return;
+    const filterBtn = e.target.closest('.filter-select');
+    if (!filterBtn) return;
 
-    const value = filter.textContent.trim().toLowerCase();
+    const filterValue = filterBtn.dataset.filter;
 
+    // Update active class
     selectionFlex.querySelectorAll('.filter-select').forEach(f => f.classList.remove('active'));
+    filterBtn.classList.add('active');
 
-    if (input.value.trim().toLowerCase() === value) {
-      input.value = '';
-    } else {
-      input.value = value;
-      filter.classList.add('active');
+    // Filter cards
+    cards.forEach(card => {
+      if (filterValue === 'all') {
+        card.style.display = '';
+        return;
+      }
+
+      const titleText = card.querySelector('.service-title').textContent.toLowerCase();
+      const specsText = card.querySelector('.service-specs').textContent.toLowerCase();
+      
+      if (titleText.includes(filterValue) || specsText.includes(filterValue)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Refresh ScrollTrigger
+    if (window.ScrollTrigger) {
+      window.ScrollTrigger.refresh();
     }
-
-    input.dispatchEvent(new Event('input', { bubbles: true }));
   });
-
-  input.addEventListener('input', () => {
-    if (input.value === '') {
-      selectionFlex.querySelectorAll('.filter-select').forEach(f => f.classList.remove('active'));
-    }
-  });
-
-  runFilter('');
 }
 
 export async function initServicesPage(root) {
   const pageRoot = root || document;
   await renderServices(pageRoot);
-  initServiceSearch(pageRoot);
 }

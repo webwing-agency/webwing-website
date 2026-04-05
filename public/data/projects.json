@@ -15,6 +15,7 @@
   "projects": [
     {
       "title": "Ofenkäse-Versandhandel Rainer Winkler GmbH",
+      "project_link": "https://example.com",
       "images": [
         "/assets/images/projects/project-1.webp",
         "/assets/images/projects/project-2.webp",
@@ -42,6 +43,7 @@
     },
     {
       "title": "GreenTech Solutions AG",
+      "project_link": "https://example.com",
       "images": [
         "/assets/images/projects/project-2.webp",
         "/assets/images/projects/project-1.webp",
@@ -69,6 +71,7 @@
     },
     {
       "title": "UrbanFit Plattform",
+      "comingSoon": true,
       "images": [
         "/assets/images/projects/project-3.webp",
         "/assets/images/projects/project-1.webp",
@@ -105,5 +108,6 @@
   ],
   "cta_text": "kostenloses Erstgespräch buchen",
   "meta_title": "Referenzen | Zurückliegende Projekte | Webwing Design Agency",
-  "page_eyebrow": "Ausgewählte Arbeiten"
+  "page_eyebrow": "Ausgewählte Arbeiten",
+  "page_subtitle": "Ein Einblick in unser Repertoire aus ausgewählten Arbeiten, bei denen wir Strategie, Design und Technik gewinnbringend für unsere Kunden kombiniert haben."
 }

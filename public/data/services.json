@@ -13,6 +13,7 @@
     "results_count_template": "{{visible}} von {{total}} Ergebnissen"
   },
   "page_eyebrow": "Leistungsangebot",
+  "page_subtitle": "Mit diesem aus vielen spezialisierten Einzelleistungen zusammengefassten Repertoire versorgen wir Sie als Full-Service-Agentur ganzheitlich mit allem, was für Ihren digitalen Erfolg nötig ist.",
   "filters": [
     "Webdesign",
     "Webentwicklung",

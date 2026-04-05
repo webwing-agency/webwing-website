@@ -14,6 +14,18 @@
   margin-bottom: 0.65rem;
 }
 
+.services-page-title {
+  margin-bottom: 0.5rem !important;
+}
+
+.services-page-subtitle {
+  margin-top: 0;
+  margin-bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.25rem);
+  max-width: 80ch;
+}
+
 .selection-flex {
   width: 100%;
   display: flex;
@@ -23,15 +35,11 @@
   position: relative;
   min-height: 2.75rem;
   align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
 }
 
-.page-services .selection-flex {
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.filter-select,
-.search-bar {
+.filter-select {
   background-color: rgba(255, 255, 255, 0.025);
   height: 2.75rem;
   padding: 0rem 1.5rem;
@@ -41,92 +49,21 @@
   color: var(--text-color);
   transition: background-color 0.2s, color 0.2s;
   text-wrap: nowrap;
-  display: inline-block;
-}
-
-.filter-select:hover,
-.search-bar:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  color: #fff;
-  transition: background-color 0.2s, color 0.2s;
-}
-
-.filter-select,
-.search-bar::placeholder {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   font-weight: 500;
   font-size: var(--text-font-size);
 }
 
-.filter-select {
-  flex: 0 1 auto;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  white-space: nowrap;
-  transition: background-color 0.2s, border-color 0.2s;
-  min-width: 0;
-  max-width: 100%;
-  padding-inline: 1.15rem;
+.filter-select:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
 }
 
 .filter-select.active {
   background-color: rgba(255, 255, 255, 0.15) !important;
   border-color: rgba(255, 255, 255, 0.4) !important;
-}
-
-.filter-select:hover:not(.active) {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.search-bar {
-  background-color: rgba(255, 255, 255, 0.025);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.search-bar:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.search-wrapper {
-  position: relative;
-  right: auto;
-  flex: 1 1 22rem;
-  min-width: min(20rem, 100%);
-  width: min(100%, 34rem);
-  margin-left: auto;
-  --search-count: "";
-}
-
-.services-search-shell {
-  position: absolute !important;
-  inline-size: 1px !important;
-  block-size: 1px !important;
-  overflow: hidden !important;
-  clip-path: inset(50%) !important;
-  white-space: nowrap !important;
-  pointer-events: none !important;
-  opacity: 0 !important;
-}
-
-.search-icon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  color: var(--text-color);
-  pointer-events: none;
-}
-
-.search-bar {
-  width: 100%;
-  padding: 10px 12px 10px 40px;
-  font-size: 16px;
-  box-sizing: border-box;
-  color: #fff;
 }
 
 .services-grid {
@@ -152,12 +89,12 @@
 .service-images-grid {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(14rem, 1fr);
+  grid-auto-columns: minmax(18rem, 1fr);
   gap: 0.9rem;
   margin-bottom: 1.6rem;
   height: clamp(16rem, 34vw, 21rem);
   width: 100%;
-  max-width: min(100%, 1000px);
+  max-width: none;
   min-width: 0;
   overflow-x: auto;
   overflow-y: hidden;
@@ -227,7 +164,6 @@
 .service-specs .feature-item {
   display: inline-flex;
   flex: 0 0 auto;
-  grid-template-columns: none;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.8rem;
@@ -243,18 +179,13 @@
 .service-specs .feature-icon {
   color: rgba(255, 255, 255, 0.7);
   opacity: 0.95;
-  transform: none;
-}
-
-.service-specs .feature-text {
-  color: inherit;
 }
 
 .service-description {
   flex: unset;
   font-size: var(--text-font-size);
   color: rgba(255, 255, 255, 0.78);
-  max-width: 65ch;
+  max-width: 65%;
 }
 
 .service-description p {
@@ -263,17 +194,6 @@
 
 .service-description p + p {
   margin-top: 0.8rem;
-}
-
-.service-description strong,
-.service-description b {
-  color: rgba(255, 255, 255, 0.92);
-  font-weight: 700;
-}
-
-.service-description em,
-.service-description i {
-  font-style: italic;
 }
 
 .card-cta-container {
@@ -285,37 +205,6 @@
   gap: 0.85rem;
 }
 
-.search-wrapper::after {
-  content: var(--search-count);
-  position: absolute;
-  right: 1rem;
-  bottom: -1.5rem;
-  display: block;
-  margin-bottom: 5px;
-  font-size: calc(var(--text-font-size) * 0.75);
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.search-highlight {
-  background-color: rgba(255, 255, 0, 0.25);
-  padding: 0 0.1em;
-  border-radius: 2px;
-}
-
-.search-empty-state {
-  flex: 0 0 100%;
-  width: 100%;
-  max-width: 100%;
-  min-height: 8rem;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.72);
-  border-style: dashed;
-}
-
 @media (max-width: 767px) {
   .page-services .selection-flex {
     margin-bottom: 2.25rem;
@@ -323,8 +212,13 @@
     align-items: flex-start;
   }
 
+  .service-description {
+    max-width: 100%;
+  }
+
   .page-services .service-images-grid {
     width: 100%;
+    grid-auto-columns: minmax(14rem, 1fr);
   }
 
   .page-services .filter-select {
@@ -339,14 +233,6 @@
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
     line-height: 1.2;
   }
-
-  .page-services .search-wrapper {
-    order: 2;
-    flex: 1 1 100%;
-    width: 100%;
-    min-width: 0;
-    margin-left: 0;
-  }
 }
 
 @media (min-width: 768px) {
@@ -356,53 +242,12 @@
 
   .page-services .filter-select {
     flex: 0 1 auto;
-    white-space: nowrap;
-  }
-
-  .page-services .search-wrapper {
-    flex: 1 1 24rem;
-    width: min(100%, 32rem);
-    margin-left: auto;
-  }
-
-  .page-services .service-images-grid {
-    grid-auto-columns: minmax(18rem, 1fr);
-  }
-
-  .page-services .service-card-text-container {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
   }
 }
 
 @media (min-width: 1000px) {
   .page-services .service-images-grid {
-    width: min(60vw, 1000px);
-  }
-
-  .page-services .search-wrapper {
-    position: relative;
-    right: auto;
-    margin-left: auto;
-  }
-}
-
-@media (min-width: 1200px) {
-  .page-services .selection-flex {
-    flex-wrap: nowrap !important;
-    align-items: center;
-  }
-
-  .page-services .filter-select {
-    flex: 0 0 auto;
-  }
-
-  .page-services .search-wrapper {
-    flex: 0 0 clamp(18rem, 22vw, 25rem);
-    width: clamp(18rem, 22vw, 25rem);
-    min-width: 0;
-    margin-left: auto;
+    width: 100%;
   }
 }
 

@@ -33,12 +33,6 @@ function watchImagesForRefresh(container, eventName) {
   });
 }
 
-function applyTemplate(template, values) {
-  return String(template || '').replace(/\{\{(\w+)\}\}/g, (_, key) => {
-    return key in values ? String(values[key]) : '';
-  });
-}
-
 async function renderProjects(root = document) {
   try {
     const data = await fetchCmsJson('/data/projects.json', {
@@ -63,16 +57,22 @@ async function renderProjects(root = document) {
     const pageTitle = root.querySelector(".references-page-title");
     if (pageTitle) pageTitle.textContent = data.page_title ?? "";
 
-    const searchInput = root.querySelector('.search-bar');
-    if (searchInput && ui.search_placeholder) {
-      searchInput.setAttribute('placeholder', ui.search_placeholder);
-    }
+    const pageSubtitle = root.querySelector(".references-page-subtitle");
+    if (pageSubtitle && data.page_subtitle) pageSubtitle.textContent = data.page_subtitle;
 
     /* ---------- Filters ---------- */
     const selectionFlex = root.querySelector(".selection-flex");
     if (selectionFlex && Array.isArray(data.filters)) {
       selectionFlex.querySelectorAll('.filter-select').forEach(el => el.remove());
       const fragment = document.createDocumentFragment();
+      
+      // "Alle" filter
+      const allEl = document.createElement("div");
+      allEl.className = "filter-select active";
+      allEl.textContent = "Alle";
+      allEl.dataset.filter = "all";
+      fragment.appendChild(allEl);
+
       data.filters.forEach(filter => {
         const el = document.createElement("div");
         el.className = "filter-select";
@@ -80,12 +80,7 @@ async function renderProjects(root = document) {
         el.dataset.filter = filter.toLowerCase();
         fragment.appendChild(el);
       });
-      const searchWrapper = selectionFlex.querySelector('.search-wrapper');
-      if (searchWrapper) {
-        selectionFlex.insertBefore(fragment, searchWrapper);
-      } else {
-        selectionFlex.prepend(fragment);
-      }
+      selectionFlex.prepend(fragment);
     }
 
     /* ---------- Projects ---------- */
@@ -97,6 +92,9 @@ async function renderProjects(root = document) {
     data.projects.forEach(project => {
       const card = document.createElement("div");
       card.className = "project-card grid-card";
+      if (project.comingSoon) {
+        card.classList.add("is-coming-soon");
+      }
 
       const imagesGrid = document.createElement("div");
       imagesGrid.className = "project-images-grid";
@@ -119,6 +117,8 @@ async function renderProjects(root = document) {
 
       const specs = document.createElement("ul");
       specs.className = "project-specs feature-list";
+      
+      // Normal specs from data
       (project.specs || []).forEach(spec => {
         const normalized = typeof spec === 'string'
           ? { text: spec, icon: '' }
@@ -142,6 +142,24 @@ async function renderProjects(root = document) {
         specs.appendChild(li);
       });
 
+      // Project link pill (if not coming soon)
+      if (project.project_link && !project.comingSoon) {
+        const li = document.createElement("li");
+        li.className = "feature-item project-link-pill";
+        const a = document.createElement("a");
+        a.href = project.project_link;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.className = "project-link-inner";
+        
+        const i = document.createElement("i");
+        i.className = "fa-solid fa-arrow-up-right-from-square";
+        a.appendChild(i);
+        
+        li.appendChild(a);
+        specs.appendChild(li);
+      }
+
       const desc = document.createElement("div");
       desc.className = "project-description";
       desc.innerHTML = richTextToHtml(project.description ?? '');
@@ -153,27 +171,33 @@ async function renderProjects(root = document) {
       const ctas = document.createElement("div");
       ctas.className = "card-cta-container flex";
 
-      if (project.ctas?.more_link) {
-        const a = document.createElement("a");
-        a.href = project.ctas.more_link;
-        a.className = "card-cta";
-        a.textContent = ui.card_cta_more_text || "Mehr erfahren";
-        ctas.appendChild(a);
-      }
-      if (project.ctas?.contact_link) {
-        const a = document.createElement("a");
-        a.href = project.ctas.contact_link;
-        a.className = "card-cta";
-        a.textContent = ui.card_cta_contact_text || "Kontakt";
-        ctas.appendChild(a);
+      if (!project.comingSoon) {
+        if (project.ctas?.more_link) {
+          const a = document.createElement("a");
+          a.href = project.ctas.more_link;
+          a.className = "card-cta";
+          a.textContent = ui.card_cta_more_text || "Mehr erfahren";
+          ctas.appendChild(a);
+        }
+        if (project.ctas?.contact_link) {
+          const a = document.createElement("a");
+          a.href = project.ctas.contact_link;
+          a.className = "card-cta";
+          a.textContent = ui.card_cta_contact_text || "Kontakt";
+          ctas.appendChild(a);
+        }
+      } else {
+        const csBadge = document.createElement("div");
+        csBadge.className = "coming-soon-badge";
+        csBadge.textContent = "Coming Soon";
+        ctas.appendChild(csBadge);
       }
 
       card.append(imagesGrid, title, textWrap, ctas);
       grid.appendChild(card);
     });
 
-    /* ---------- CTA ---------- */
-    initProjectSearch(root, ui);
+    initProjectFilter(root);
 
     watchImagesForRefresh(grid, 'projectsRendered');
     dispatchRenderedEvent('projectsRendered');
@@ -182,141 +206,42 @@ async function renderProjects(root = document) {
   }
 }
 
-function initProjectSearch(root = document, ui = {}) {
-  const wrapper = root.querySelector('.search-wrapper');
-  const input = wrapper?.querySelector('.search-bar');
+function initProjectFilter(root = document) {
   const selectionFlex = root.querySelector('.selection-flex');
-  const grid = root.querySelector('.projects-grid');
   const cards = Array.from(root.querySelectorAll('.project-card'));
 
-  if (!wrapper || !input || !selectionFlex || !grid || cards.length === 0) return;
-  if (wrapper.dataset.searchInit === '1') return;
-  wrapper.dataset.searchInit = '1';
-
-  const normalize = s => (s || '').toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
-  const escapeRegExp = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const debounce = (fn, wait = 120) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), wait); }; };
-
-  const index = cards.map(card => {
-    const titleEl = card.querySelector('.project-title');
-    const descEl = card.querySelector('.project-description');
-    const specsEl = card.querySelector('.project-specs');
-
-    return {
-      card,
-      titleEl,
-      descEl,
-      specsEl,
-      originalDisplay: window.getComputedStyle(card).display || 'block',
-      titleHTML: titleEl?.innerHTML || '',
-      descHTML: descEl?.innerHTML || '',
-      specsHTML: specsEl?.innerHTML || '',
-      searchText: normalize(`${titleEl?.textContent || ''} ${descEl?.textContent || ''} ${specsEl?.textContent || ''}`)
-    };
-  });
-
-  const restore = item => {
-    if (item.titleEl) item.titleEl.innerHTML = item.titleHTML;
-    if (item.descEl) item.descEl.innerHTML = item.descHTML;
-    if (item.specsEl) item.specsEl.innerHTML = item.specsHTML;
-  };
-
-  let emptyState = null;
-  function setEmptyState(show, query) {
-    if (!show) {
-      if (emptyState) emptyState.style.display = 'none';
-      return;
-    }
-    if (!emptyState) {
-      emptyState = document.createElement('div');
-      emptyState.className = 'grid-card search-empty-state';
-      grid.appendChild(emptyState);
-    }
-    emptyState.textContent = query
-      ? `${ui.empty_state_query_prefix || 'Keine Ergebnisse für "'}${query}${ui.empty_state_query_suffix || '". Bitte Suchbegriff oder Filter anpassen.'}`
-      : (ui.empty_state_default || 'Keine Ergebnisse gefunden.');
-    emptyState.style.display = '';
-  }
-
-  const highlightElement = (el, query) => {
-    if (!el || !query) return;
-    const rx = new RegExp(escapeRegExp(query), 'gi');
-
-    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
-    const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-
-    nodes.forEach(node => {
-      const text = node.nodeValue;
-      if (!text || !rx.test(text)) return;
-      rx.lastIndex = 0;
-      const frag = document.createDocumentFragment();
-      let last = 0, match;
-      while ((match = rx.exec(text)) !== null) {
-        if (match.index > last) frag.appendChild(document.createTextNode(text.slice(last, match.index)));
-        const mark = document.createElement('mark');
-        mark.className = 'search-highlight';
-        mark.textContent = match[0];
-        frag.appendChild(mark);
-        last = match.index + match[0].length;
-      }
-      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
-      node.parentNode.replaceChild(frag, node);
-    });
-  };
-
-  const runFilter = value => {
-    const q = value.trim();
-    const qNorm = normalize(q);
-    if (!q) {
-      index.forEach(item => { item.card.style.display = item.originalDisplay; restore(item); });
-      setEmptyState(false, '');
-      wrapper.style.setProperty('--search-count', '""');
-      return;
-    }
-
-    let visible = 0;
-    index.forEach(item => {
-      restore(item);
-      if (item.searchText.includes(qNorm)) {
-        item.card.style.display = item.originalDisplay;
-        highlightElement(item.titleEl, q);
-        highlightElement(item.descEl, q);
-        highlightElement(item.specsEl, q);
-        visible++;
-      } else {
-        item.card.style.display = 'none';
-      }
-    });
-
-    setEmptyState(visible === 0, q);
-    wrapper.style.setProperty('--search-count', `"${applyTemplate(ui.results_count_template || '{{visible}} von {{total}} Ergebnissen', { visible, total: index.length })}"`);
-  };
-
-  input.addEventListener('input', debounce(e => runFilter(e.target.value)));
+  if (!selectionFlex || cards.length === 0) return;
 
   selectionFlex.addEventListener('click', e => {
-    const filter = e.target.closest('.filter-select');
-    if (!filter) return;
-    const value = filter.textContent.trim().toLowerCase();
-    const current = input.value.trim().toLowerCase();
+    const filterBtn = e.target.closest('.filter-select');
+    if (!filterBtn) return;
 
+    const filterValue = filterBtn.dataset.filter;
+
+    // Update active class
     selectionFlex.querySelectorAll('.filter-select').forEach(f => f.classList.remove('active'));
-    if (current === value) {
-      input.value = '';
-    } else {
-      input.value = value;
-      filter.classList.add('active');
+    filterBtn.classList.add('active');
+
+    // Filter cards
+    cards.forEach(card => {
+      if (filterValue === 'all') {
+        card.style.display = '';
+        return;
+      }
+
+      const specsText = card.querySelector('.project-specs').textContent.toLowerCase();
+      if (specsText.includes(filterValue)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    
+    // Refresh ScrollTrigger if GSAP is used
+    if (window.ScrollTrigger) {
+      window.ScrollTrigger.refresh();
     }
-    input.dispatchEvent(new Event('input', { bubbles: true }));
   });
-
-  input.addEventListener('input', () => {
-    if (input.value.trim() === '') selectionFlex.querySelectorAll('.filter-select.active').forEach(f => f.classList.remove('active'));
-  });
-
-  runFilter('');
 }
 
 export async function initProjectsPage(root) {
