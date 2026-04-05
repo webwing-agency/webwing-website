@@ -26,12 +26,12 @@ body.page-home main[data-barba-namespace="home"]::after {
 body.page-home main[data-barba-namespace="home"]::before {
     inset: -4rem 0 -6rem;
     background:
-        radial-gradient(34rem 26rem at 10% 14%, rgba(198, 84, 255, 0.12), rgba(198, 84, 255, 0) 64%),
-        radial-gradient(30rem 24rem at 82% 22%, rgba(255, 84, 188, 0.11), rgba(255, 84, 188, 0) 62%),
-        radial-gradient(28rem 22rem at 24% 58%, rgba(120, 98, 255, 0.08), rgba(120, 98, 255, 0) 66%),
-        radial-gradient(34rem 26rem at 78% 72%, rgba(209, 72, 255, 0.08), rgba(209, 72, 255, 0) 64%);
-    filter: blur(54px) saturate(110%);
-    opacity: 0.72;
+        radial-gradient(30rem 22rem at 8% 12%, rgba(198, 84, 255, 0.08), rgba(198, 84, 255, 0) 60%),
+        radial-gradient(28rem 20rem at 85% 20%, rgba(255, 84, 188, 0.07), rgba(255, 84, 188, 0) 60%),
+        radial-gradient(24rem 18rem at 20% 55%, rgba(120, 98, 255, 0.05), rgba(120, 98, 255, 0) 60%),
+        radial-gradient(30rem 22rem at 80% 75%, rgba(209, 72, 255, 0.05), rgba(209, 72, 255, 0) 60%);
+    filter: blur(60px) saturate(105%);
+    opacity: 0.65;
 }
 
 body.page-home main[data-barba-namespace="home"]::after {
@@ -1025,3 +1025,4 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
                         padding-bottom: 15px;
                     }
                         
+   
