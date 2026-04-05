@@ -1,7 +1,8 @@
 {
-  "meta_description": "Portfolio von Webwing: ausgewählte Website- und Branding-Projekte mit Fokus auf messbaren Ergebnissen.",
+  "meta_description": "Ausgewählte Arbeiten von Webwing",
   "cta_label": "Sie haben Fragen zu unserem Angebot?",
   "page_title": "Portfolio",
+  "page_subtitle": "Ein Einblick in unser Repertoire aus ausgewählten Arbeiten, bei denen wir Strategie, Design und Technik gewinnbringend für unsere Kunden kombiniert haben.",
   "cta_link": "kostenloses-erstgespräch.html",
   "ui": {
     "search_placeholder": "Portfolio durchsuchen",
@@ -12,6 +13,7 @@
     "empty_state_query_suffix": "\". Bitte Suchbegriff oder Filter anpassen.",
     "results_count_template": "{{visible}} von {{total}} Ergebnissen"
   },
+  "page_eyebrow": "Ausgewählte Arbeiten",
   "projects": [
     {
       "title": "Ofenkäse-Versandhandel Rainer Winkler GmbH",
@@ -107,7 +109,5 @@
     "Healthcare"
   ],
   "cta_text": "kostenloses Erstgespräch buchen",
-  "meta_title": "Portfolio | Zurückliegende Projekte | Webwing Design Agency",
-  "page_eyebrow": "Ausgewählte Arbeiten",
-  "page_subtitle": "Ein Einblick in unser Repertoire aus ausgewählten Arbeiten, bei denen wir Strategie, Design und Technik gewinnbringend für unsere Kunden kombiniert haben."
+  "meta_title": "Unser Portfolio | Webwing"
 }
