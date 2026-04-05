@@ -286,7 +286,11 @@ function initServiceFilter(root = document) {
       const titleText = card.querySelector('.service-title').textContent.toLowerCase();
       const specsText = card.querySelector('.service-specs').textContent.toLowerCase();
       
-      if (titleText.includes(filterValue) || specsText.includes(filterValue)) {
+      // Check if the filter value (or parts of it) matches
+      // This handles "Strategie und Inhalt" matching "Strategie und Inhalt" title
+      const matches = titleText.includes(filterValue) || specsText.includes(filterValue);
+      
+      if (matches) {
         card.style.display = '';
       } else {
         card.style.display = 'none';
