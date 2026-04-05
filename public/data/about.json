@@ -1,21 +1,21 @@
 {
-  "meta_title": "Über Uns | Webwing Design Agentur",
-  "meta_description": "Erfahren Sie mehr über Webwing: Design, Strategie und Entwicklung für digitale Auftritte mit Markenwirkung.",
+  "meta_title": "Über Uns | Webwing ",
+  "meta_description": "Erfahren Sie mehr über unsere Entstehungsgeschichte, unser Team, unsere Grundsätze, unsere Arbeitsweise und unsere Mission.",
   "hero": {
-    "eyebrow": "Webwing in Kürze",
-    "title": "Über Uns",
-    "lead": "Wir entwickeln digitale Auftritte, die nicht nur gut aussehen, sondern Vertrauen aufbauen, Marken profilieren und Anfragen wahrscheinlicher machen. Strategie, Design und Entwicklung greifen bei uns von Anfang an ineinander.",
-    "primary_cta_text": "Kostenloses Erstgespräch",
+    "image_alt": "Webwing Team",
     "primary_cta_link": "kostenloses-erstgespräch.html",
     "secondary_cta_text": "Leistungen ansehen",
+    "eyebrow": "Webwing in Kürze",
     "secondary_cta_link": "dienstleistungen.html",
+    "title": "Über Uns",
+    "primary_cta_text": "Kostenloses Erstgespräch",
     "image": "assets/images/team.jpg",
-    "image_alt": "Webwing Team"
+    "lead": "Wir sind eine Webdesignagentur aus dem wunderschönen Heidelberg. Wir entwickeln Website-Auftritte, die nicht nur großartig aussehen, sondern auch Marken profilieren, Vertrauen aufbauen und effektiv mehr Kunden gewinnen. Dank unserer Kompetenzen in den Bereichen Design, Marketing und IT greifen bei unseren Projekten Strategie, Aussehen und Technik von Anfang an ineinander und erschaffen ein stimmiges Ganzes."
   },
   "history": {
     "eyebrow": "Unsere Geschichte",
     "title": "Wie Webwing entstanden ist",
-    "intro": "Webwing ist aus dem Anspruch entstanden, Unternehmen nicht einfach nur eine weitere Website zu bauen, sondern einen digitalen Auftritt, der Marke, Vertrauen und Wirkung zusammenbringt.",
+    "intro": "Webwing wurde 2026 von Paul als One-Man-Show gegründet, nachdem er sich seit 2023 erstmals intensiv mit den Themen Design und Marketing auseinandergesetzt und Programmieren gelernt hatte.",
     "paragraphs": [
       "Am Anfang stand die Beobachtung, dass viele Websites trotz großer Mühe unter ihren Möglichkeiten bleiben: visuell austauschbar, strategisch unklar oder technisch träge. Genau dort setzt Webwing an. Wir verbinden Design, Struktur und Umsetzung so, dass ein Auftritt nicht nur gut aussieht, sondern sich auch klarer, hochwertiger und überzeugender anfühlt.",
       "Heute arbeiten wir mit einem schlanken, direkten Ansatz: kurze Wege, klare Kommunikation und ein Fokus auf Ergebnisse statt Agenturtheater. So entstehen digitale Auftritte, die nicht beliebig wirken, sondern genau zu den Unternehmen passen, die dahinterstehen."
