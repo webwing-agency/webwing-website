@@ -9,7 +9,7 @@ export default defineConfig({
       input: {
         index: fileURLToPath(new URL('index.html', import.meta.url)),
         ueber_uns: fileURLToPath(new URL('\u00fcber-uns.html', import.meta.url)),
-        referenzen: fileURLToPath(new URL('referenzen.html', import.meta.url)),
+        portfolio: fileURLToPath(new URL('portfolio.html', import.meta.url)),
         dienstleistungen: fileURLToPath(new URL('dienstleistungen.html', import.meta.url)),
         kontakt: fileURLToPath(new URL('kontakt.html', import.meta.url)),
         kostenloses_erstgespraech: fileURLToPath(new URL('kostenloses-erstgespr\u00e4ch.html', import.meta.url)),

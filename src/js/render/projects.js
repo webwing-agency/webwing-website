@@ -47,17 +47,17 @@ async function renderProjects(root = document) {
     applySeo({
       title: data.meta_title,
       description: data.meta_description,
-      canonicalPath: '/referenzen.html'
+      canonicalPath: '/portfolio.html'
     });
 
     /* ---------- Page title ---------- */
-    const eyebrow = root.querySelector('.references-page-fold .section-eyebrow');
+    const eyebrow = root.querySelector('.portfolio-page-fold .section-eyebrow');
     if (eyebrow && data.page_eyebrow) eyebrow.textContent = data.page_eyebrow;
 
-    const pageTitle = root.querySelector(".references-page-title");
+    const pageTitle = root.querySelector(".portfolio-page-title");
     if (pageTitle) pageTitle.textContent = data.page_title ?? "";
 
-    const pageSubtitle = root.querySelector(".references-page-subtitle");
+    const pageSubtitle = root.querySelector(".portfolio-page-subtitle");
     if (pageSubtitle && data.page_subtitle) pageSubtitle.textContent = data.page_subtitle;
 
     /* ---------- Filters ---------- */

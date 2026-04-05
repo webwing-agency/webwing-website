@@ -1,10 +1,10 @@
 {
-  "meta_description": "Referenzen von Webwing: ausgewählte Website- und Branding-Projekte mit Fokus auf messbaren Ergebnissen.",
+  "meta_description": "Portfolio von Webwing: ausgewählte Website- und Branding-Projekte mit Fokus auf messbaren Ergebnissen.",
   "cta_label": "Sie haben Fragen zu unserem Angebot?",
-  "page_title": "Referenzen",
+  "page_title": "Portfolio",
   "cta_link": "kostenloses-erstgespräch.html",
   "ui": {
-    "search_placeholder": "Referenzen durchsuchen",
+    "search_placeholder": "Portfolio durchsuchen",
     "card_cta_more_text": "Mehr erfahren",
     "card_cta_contact_text": "Kontakt",
     "empty_state_default": "Keine Ergebnisse gefunden.",
@@ -107,7 +107,7 @@
     "Healthcare"
   ],
   "cta_text": "kostenloses Erstgespräch buchen",
-  "meta_title": "Referenzen | Zurückliegende Projekte | Webwing Design Agency",
+  "meta_title": "Portfolio | Zurückliegende Projekte | Webwing Design Agency",
   "page_eyebrow": "Ausgewählte Arbeiten",
   "page_subtitle": "Ein Einblick in unser Repertoire aus ausgewählten Arbeiten, bei denen wir Strategie, Design und Technik gewinnbringend für unsere Kunden kombiniert haben."
 }

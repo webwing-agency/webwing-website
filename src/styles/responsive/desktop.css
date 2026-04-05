@@ -236,20 +236,20 @@
     }
 
 
-    /* Referenzen & Dienstleistungen */
+    /* Portfolio & Dienstleistungen */
 
     .page-title-large {
         text-align: left;
     }
 
-    .page-projects .selection-flex,
+    .page-portfolio .selection-flex,
     .page-services .selection-flex {
         position: relative;
         flex-wrap: wrap !important;
         align-items: center;
     }
 
-    .references-page-fold,
+    .portfolio-page-fold,
     .services-page-fold {
         width: min(100rem, calc(100vw - 8rem));
         max-width: 100rem;
@@ -257,13 +257,13 @@
         margin-inline: auto;
     }
 
-    .page-projects .filter-select,
+    .page-portfolio .filter-select,
     .page-services .filter-select {
         flex: 0 1 auto;
         min-width: 0;
     }
 
-    .page-projects .search-wrapper,
+    .page-portfolio .search-wrapper,
     .page-services .search-wrapper {
         position: relative;
         flex: 1 1 24rem;
@@ -334,7 +334,7 @@
         --popup-font-size: 4rem;
     }
     
-    .page-projects .search-wrapper,
+    .page-portfolio .search-wrapper,
     .page-services .search-wrapper {
         position: relative;
         margin-left: auto;

@@ -6,7 +6,7 @@
   },
   "meta_description": "Webwing erstellt Websites für kleine und mittelständische Unternehmen, die sich durch ein Premium-Niveau and Design, Performance und Nutzerfreundlichkeit mehr Kunden und Umsatz, einen gesteigerten Markenwert sowie einen klaren Wettbewerbsvorteil sichern möchten.",
   "sections": {
-    "projects_eyebrow": "Referenzen",
+    "projects_eyebrow": "Portfolio",
     "reviews_eyebrow": "Kundenstimmen",
     "expertise_subtitle": "Von Design und Entwicklung bis SEO, Performance und technischer Umsetzung begleiten wir Projekte ganzheitlich.",
     "expertise_link": "dienstleistungen.html",
@@ -18,7 +18,7 @@
     "reviews_subtitle": "Was die Zusammenarbeit mit Webwing im Alltag ausmacht, sagen am besten die Menschen, mit denen wir bereits gearbeitet haben.",
     "expertise_link_label": "Mehr erfahren →",
     "projects_subtitle": "Ein Einblick in ausgewählte Projekte, bei denen Markenauftritt, Nutzerführung und technische Qualität zusammenkommen.",
-    "projects_link": "referenzen.html"
+    "projects_link": "portfolio.html"
   },
   "book_section": {
     "eyebrow": "Erstgespräch",

@@ -1,5 +1,5 @@
-/* Projects (Referenzen) page */
-.references-page-fold {
+/* Projects (Portfolio) page */
+.portfolio-page-fold {
   width: min(100%, calc(100vw - 4rem));
   max-width: 100rem;
   min-width: 0;
@@ -10,15 +10,15 @@
   margin-inline: auto;
 }
 
-.references-page-fold > .section-eyebrow {
+.portfolio-page-fold > .section-eyebrow {
   margin-bottom: 0.65rem;
 }
 
-.references-page-title {
+.portfolio-page-title {
   margin-bottom: 0.5rem !important;
 }
 
-.references-page-subtitle {
+.portfolio-page-subtitle {
   margin-top: 0;
   margin-bottom: 2.5rem;
   color: rgba(255, 255, 255, 0.7);
@@ -238,7 +238,7 @@
 }
 
 @media (max-width: 767px) {
-  .page-projects .selection-flex {
+  .page-portfolio .selection-flex {
     margin-bottom: 2.25rem;
     gap: 0.6rem;
     align-items: flex-start;
@@ -268,7 +268,7 @@
 
 @media (min-width: 1000px) {
   /* Taken from user request: 100% card width */
-  .page-projects .project-images-grid {
+  .page-portfolio .project-images-grid {
     width: 100%;
     max-width: none;
   }

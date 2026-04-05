@@ -108,7 +108,7 @@ async function initPage(containerOverride = null) {
     }
 
     // -------- PROJECTS --------
-    if (body.classList.contains('page-projects')) {
+    if (body.classList.contains('page-portfolio')) {
       const [{ initProjectsPage }] = await Promise.all([
         import('./js/render/projects.js'),
         import('@fortawesome/fontawesome-free/css/fontawesome.min.css'),
