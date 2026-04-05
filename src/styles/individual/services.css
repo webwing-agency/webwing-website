@@ -136,7 +136,7 @@
 
 .service-card-text-container {
   justify-content: space-between;
-  gap: 2.25rem;
+  gap: 1.25rem;
   flex-direction: column;
   width: 100%;
   align-items: stretch;
@@ -263,6 +263,10 @@
     flex: 0 1 auto;
   }
 
+  .service-specs .feature-text {
+    white-space: normal;
+  }
+}
   .service-specs .feature-text {
     white-space: normal;
   }
