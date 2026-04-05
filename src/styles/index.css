@@ -561,7 +561,7 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
         color: var(--icon-performance-color);
     }
     
-    .icon-container[data-icon="automations & ai"] {
+    .icon-container[data-icon="automations & ki"] {
         background: var(--icon-ai-bg-color);
         color: var(--icon-ai-color);
     }

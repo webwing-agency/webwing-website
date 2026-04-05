@@ -71,7 +71,7 @@ function setMeta(data) {
       [162, 255, 0],   // strategy lime
       [24, 214, 120],  // conversion vivid green
       [0, 255, 213],   // security cyan
-      [208, 75, 214],  // ai magenta
+      [208, 75, 214],  // ki magenta
       [37, 99, 235],   // code blue
       [119, 0, 255]    // analytics violet
     ];
