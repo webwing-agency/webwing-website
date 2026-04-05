@@ -8,8 +8,8 @@ export function getApiBase() {
     }
   }
 
-  // Fallback to VPS IP if not specified in runtime config
-  return 'http://87.106.166.66:3000/api';
+  // Use the local proxy by default to avoid HTTPS/Mixed Content errors
+  return '/api';
 }
 
 export const API_BASE = getApiBase();

@@ -2,7 +2,7 @@
   "contact": {
     "email": "contact@webwing.agency",
     "phone": "06221 123456",
-    "booking_api_base": "/api"
+    "booking_api_base": "http://87.106.166.66:3000/api"
   },
   "meta_description": "Webwing erstellt Websites für kleine und mittelständische Unternehmen, die sich durch ein Premium-Niveau and Design, Performance und Nutzerfreundlichkeit mehr Kunden und Umsatz, einen gesteigerten Markenwert sowie einen klaren Wettbewerbsvorteil sichern möchten.",
   "sections": {

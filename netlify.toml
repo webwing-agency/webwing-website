@@ -10,6 +10,13 @@
   to = "/admin/"
   status = 301
 
+# Proxy to VPS (Fixes Mixed Content/HTTPS issues)
+[[redirects]]
+  from = "/api/*"
+  to = "http://87.106.166.66:3000/api/:splat"
+  status = 200
+  force = true
+
 # Static Asset Headers
 [[headers]]
   for = "/assets/*"
