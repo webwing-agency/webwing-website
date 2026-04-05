@@ -22,7 +22,6 @@
   margin-top: 0;
   margin-bottom: 2.5rem;
   color: rgba(255, 255, 255, 0.7);
-  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.25rem);
   max-width: 80ch;
 }
 
@@ -274,4 +273,4 @@
   .service-specs .feature-text {
     white-space: normal;
   }
-}
+
