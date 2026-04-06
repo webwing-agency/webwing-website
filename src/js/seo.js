@@ -48,8 +48,8 @@ export function applySeo({
   const effectiveDescription = description || existingDescription;
   const canonicalUrl = toAbsoluteUrl(canonicalPath || window.location.pathname);
   
-  // Use hero-bg as a decent fallback for now if nothing is defined in CMS
-  const finalOgPath = ogImagePath || '/assets/hero-bg.webp';
+  // Use logo-on-black-background as fallback if nothing is defined in CMS
+  const finalOgPath = ogImagePath || '/assets/og-fallback.png';
   const ogImage = toAbsoluteUrl(finalOgPath);
 
   if (effectiveTitle) document.title = effectiveTitle;
