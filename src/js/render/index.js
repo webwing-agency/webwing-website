@@ -238,7 +238,7 @@ function setMeta(data) {
     ensureExpertiseIconColorFlow(root);
   }
   
-  function renderProjects(list, root = document) {
+  function renderProjects(list, ui = {}, root = document) {
     const grid = root.querySelector('#projects-grid');
     if (!grid) return;
     grid.innerHTML = '';
@@ -248,18 +248,48 @@ function setMeta(data) {
       const title = safeString(item?.title || '');
       const text = safeString(item?.text || '');
       const tags = Array.isArray(item?.tags) ? item.tags : [];
+      const comingSoon = item?.comingSoon === true;
   
-      const card = document.createElement('div'); card.className = 'grid-card';
-      const img = document.createElement('img'); img.className='card-img project-img';
+      const card = document.createElement('div'); 
+      card.className = 'grid-card';
+      if (comingSoon) card.classList.add('is-coming-soon');
+
+      const img = document.createElement('img'); 
+      img.className='card-img project-img';
       if (image) { img.src = image; } else { img.removeAttribute('src'); }
       img.alt = title;
       img.loading = 'lazy';
       img.decoding = 'async';
-      const h3 = document.createElement('h3'); h3.className='card-title'; h3.textContent = title;
-      const p = document.createElement('p'); p.className='card-text'; p.textContent = text;
-      const tagsWrap = document.createElement('div'); tagsWrap.className='tag-container';
-      tags.forEach(t => { const s = document.createElement('span'); s.className='tag'; s.textContent = safeString(t); tagsWrap.appendChild(s); });
-      card.appendChild(img); card.appendChild(h3); card.appendChild(p); card.appendChild(tagsWrap);
+
+      const h3 = document.createElement('h3'); 
+      h3.className='card-title'; 
+      h3.textContent = title;
+
+      const p = document.createElement('p'); 
+      p.className='card-text'; 
+      p.textContent = text;
+
+      const tagsWrap = document.createElement('div'); 
+      tagsWrap.className='tag-container';
+      tags.forEach(t => { 
+        const s = document.createElement('span'); 
+        s.className='tag'; 
+        s.textContent = safeString(t); 
+        tagsWrap.appendChild(s); 
+      });
+
+      card.appendChild(img); 
+      card.appendChild(h3); 
+      card.appendChild(p); 
+      card.appendChild(tagsWrap);
+
+      if (comingSoon) {
+        const badge = document.createElement('div');
+        badge.className = 'coming-soon-badge-overlay';
+        badge.textContent = ui.coming_soon_label || 'Coming Soon';
+        card.appendChild(badge);
+      }
+
       grid.appendChild(card);
     });
   }
@@ -399,7 +429,7 @@ function setMeta(data) {
       renderHero(data?.hero || {}, root);
       renderHomeSections(data?.sections || {}, root);
       renderExpertise(data?.expertise || [], root);
-      renderProjects(data?.projects || [], root);
+      renderProjects(data?.projects || [], data?.ui || {}, root);
       renderReviews(data?.reviews || [], root);
       renderContact(data?.contact || {}, root);
       renderBookSection(data?.book_section || {}, root);

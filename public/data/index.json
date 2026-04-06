@@ -5,6 +5,9 @@
     "booking_api_base": "/api"
   },
   "meta_description": "Webwing erstellt Websites für kleine und mittelständische Unternehmen, die sich durch ein Premium-Niveau and Design, Performance und Nutzerfreundlichkeit mehr Kunden und Umsatz, einen gesteigerten Markenwert sowie einen klaren Wettbewerbsvorteil sichern möchten.",
+  "ui": {
+    "coming_soon_label": "Coming Soon"
+  },
   "sections": {
     "projects_eyebrow": "Portfolio",
     "reviews_eyebrow": "Kundenstimmen",

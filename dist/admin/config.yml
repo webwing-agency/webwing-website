@@ -110,6 +110,11 @@ collections:
               - { name: "reviews_eyebrow", label: "Reviews Eyebrow", widget: "string", required: false }
               - { name: "reviews_title", label: "Reviews Titel", widget: "string" }
               - { name: "reviews_subtitle", label: "Reviews Subtitle", widget: "text", required: false }
+          - label: "UI Texte"
+            name: "ui"
+            widget: "object"
+            fields:
+              - { name: "coming_soon_label", label: "Coming Soon Label", widget: "string", required: false, default: "Coming Soon" }
           - label: "Expertise cards"
             name: "expertise"
             widget: "list"
@@ -122,6 +127,7 @@ collections:
             name: "projects"
             widget: "list"
             fields:
+              - { name: "comingSoon", label: "Coming Soon?", widget: "boolean", default: false, required: false }
               - { name: "image", widget: "image" }
               - { name: "title", widget: "string" }
               - { name: "text", widget: "text" }
@@ -236,6 +242,7 @@ collections:
               - { name: "search_placeholder", widget: "string", required: false }
               - { name: "card_cta_more_text", widget: "string", required: false }
               - { name: "card_cta_contact_text", widget: "string", required: false }
+              - { name: "coming_soon_label", label: "Coming Soon Label", widget: "string", required: false, default: "Coming Soon" }
               - { name: "empty_state_default", widget: "string", required: false }
               - { name: "empty_state_query_prefix", widget: "string", required: false }
               - { name: "empty_state_query_suffix", widget: "string", required: false }
@@ -261,6 +268,7 @@ collections:
             name: "projects"
             widget: "list"
             fields:
+              - { name: "comingSoon", label: "Coming Soon?", widget: "boolean", default: false, required: false }
               - { name: "images", label: "Image paths", widget: "list", field: { name: "image", widget: "image" } }
               - { name: "title", widget: "string" }
               - { name: "description", label: "Beschreibung", widget: "markdown", modes: ["rich_text", "raw"] }
@@ -283,6 +291,7 @@ collections:
               - { name: "search_placeholder", widget: "string", required: false }
               - { name: "card_cta_more_text", widget: "string", required: false }
               - { name: "card_cta_contact_text", widget: "string", required: false }
+              - { name: "coming_soon_label", label: "Coming Soon Label", widget: "string", required: false, default: "Coming Soon" }
               - { name: "empty_state_default", widget: "string", required: false }
               - { name: "empty_state_query_prefix", widget: "string", required: false }
               - { name: "empty_state_query_suffix", widget: "string", required: false }

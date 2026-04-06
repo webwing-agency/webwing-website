@@ -1130,3 +1130,36 @@ body {
 .feature-text {
     display: block;
 }
+
+/* Coming Soon Global Styles */
+.grid-card.is-coming-soon {
+  opacity: 0.85 !important;
+  position: relative;
+}
+
+.grid-card.is-coming-soon .project-img,
+.grid-card.is-coming-soon .card-img,
+.grid-card.is-coming-soon .project-images-grid {
+  filter: grayscale(0.5) blur(1.5px);
+  pointer-events: none;
+}
+
+.coming-soon-badge-overlay {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 10;
+  pointer-events: none;
+}
+

@@ -157,10 +157,10 @@ async function renderProjects(root = document) {
           ctas.appendChild(a);
         }
       } else {
-        const csBadge = document.createElement("div");
-        csBadge.className = "coming-soon-badge";
-        csBadge.textContent = "Coming Soon";
-        ctas.appendChild(csBadge);
+        const badge = document.createElement("div");
+        badge.className = "coming-soon-badge-overlay";
+        badge.textContent = ui.coming_soon_label || "Coming Soon";
+        card.appendChild(badge);
       }
 
       card.append(imagesGrid, title, textWrap, ctas);
