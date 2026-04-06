@@ -105,11 +105,6 @@ async function fetchContact() {
     }
   }
   
-ntact render error', err);
-    }
-  }
-  
-t render error', err);
-    }
-  }
+  console.error('contact render error', err);
+
   

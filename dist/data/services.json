@@ -1,7 +1,8 @@
 {
-  "meta_description": "Dienstleistungen von Webwing: Webdesign, Webentwicklung, SEO, Performance und digitale Markenauftritte aus einer Hand.",
+  "meta_description": "Dienstleistungen von Webwing. Webdesign, Webentwicklung, SEO, Performance und digitale Markenauftritte aus einer Hand.",
   "cta_label": "Sie haben Fragen zu unserem Angebot?",
   "page_title": "Dienstleistungen",
+  "page_subtitle": "Als Full-Service-Agentur mit einem umfassenden Repertoire an Design-, Beratungs-, Marketing-, Branding- und IT-Kompetenzen versorgen wir Sie mit allem, was für Ihren digitalen Erfolg voraussetzend ist.",
   "cta_link": "kostenloses-erstgespräch.html",
   "ui": {
     "search_placeholder": "Dienstleistungen durchsuchen",
@@ -16,7 +17,7 @@
   "filters": [
     "Webdesign",
     "Webentwicklung",
-    "Inhalt & Positionierung"
+    "Strategie und Inhalt"
   ],
   "cta_text": "kostenloses Erstgespräch buchen",
   "services": [
@@ -25,7 +26,7 @@
       "images": [
         "/assets/images/services/service-1.webp",
         "/assets/images/services/service-2.webp",
-        "/assets/images/services/service-3.webp",
+        "/assets/uploads/prototyping.png",
         "/assets/images/services/service-4.webp"
       ],
       "description": "Wir bieten Ihnen **maßgeschneidertes, professionelles Webdesign**, das Ihre Website als Aushängeschild Ihres Unternehmens zu einem **charakterstarken Alleinstellungsmerkmal** macht und I**hrer Marke Wiedererkennungswert und Strahlkraft** verleiht.\n\nHierbei setzen wir auf eine **ästhetische und wohl durchdachte Gestaltung**. Unsere Designsprache ist **modern**, richtet sich jedoch nach **zeitlosen** **Prinzipien** (Bauhausschule).\n\nZudem darf Design nach unserer Philosophie nicht bloß Selbstzweck oder Trenderscheinung sein, sondern muss als **Mittel zum Zweck** dienen.\n\nDeshalb legen wir alles daran, die **Nutzeroberfläche und -erfahrung** (*UI/UX*) Ihrer Website zu **perfektionieren**. Dazu gehört nicht nur, Ihr Branding seitenweit abzubilden und das Seitenlayout an alle Arten von Geräten anzupassen (*Responsive Design*). Insbesondere sorgen wir nämlich auch für einen wirkungsvoll **gesteigerten Markenwert**, indem wir das **Seitendesign von der Professionalität, Kompetenz und Einzigartigkeit Ihres Unternehmens zeugen lassen**.\n\nUnser Designprozess läuft dabei wie folgt ab: Nach dem Erstgespräch, in dem Sie uns Ihre Vorstellungen, Vorgaben und Wünsche mitteilen, tüfteln wir einen möglichst idealen Seitenentwurf für Ihre Situation aus. Hierbei verwenden wir die Design-Software *Figma* (Branchenstandard). Wenn der erste vorläufige Entwurf fertig ist, senden wir Ihnen diesen als **interaktiven Prototyp** per Link zu.  So können Sie sich nicht bloß einen flachen Entwurf ansehen, sondern schon frühzeitig ein Gefühl dafür entwickeln, wie Ihre Website bei Besuchern ankommen wird. Anschließend können Sie uns  Ihr Feedback und Änderungswünsche mitteilen. Sollten Letztere der Fall sein, setzen wir diese umgehend in die Tat um. Dabei nehmen wir **so viele Revisionen vor, wie nötig sin**d, um Sie **vollkommen zufrieden und begeistert** zu stimmen. Wenn Sie einem Entwurf dann zustimmen, folgt im nächsten Schritt die technische Umsetzung (Entwicklung) Ihrer Website.",
@@ -62,7 +63,7 @@
         "/assets/images/services/service-3.webp",
         "/assets/images/services/service-4.webp"
       ],
-      "description": "Wir programmieren **Frontend und Backend** Ihrer Website. Dabei setzen wir nicht auf Baukastensysteme wie Wix oder Squarespace, sondern programmieren selbst. Dadurch sind die Möglichkeiten für Funktionen und Features nahezu unbegrenzt. **You name it – we build it**.\n\nGroßartige Websites müssen nicht bloß toll aussehen und Kunden an Bord holen können, sondern dem Unternehmen auch Arbeit ersparen und sich nahtlos in dessen bestehende **Infrastruktur aus Datenbanken und Schnittstellen einklinken** können. Deshalb sorgen wir dafür, dass Ihre Website durch **Automationen und KI** manuelle Dateneingaben vermeiden, Leads automatisch in Ihr CRM übertragen und Anfragen vorqualifizieren kann. Zudem bieten wir die Integration von **KI-Chatbots** an, die rund um die Uhr Kundensupport bieten, Standardfragen auf Basis Ihrer Unternehmensdaten sofort beantworten und komplexe Fragen an Ihr Team weiterleiten. Dank dieser Maßnahmen steigern wir die **Effizienz Ihrer Arbeitsabläufe** und entlasten Ihre Ressourcen.\n\nZudem optimieren wir die **Performance** Ihrer Website. Das heißt, wir sorgen für kurze **Ladezeiten** – ideal unter 1,5 Sekunden. So verbessern wir nicht nur die **Benutzererfahrung (UX)**, sondern minimieren auch die Absprungrate, also den Anteil der Besucher, die Ihre Website frühzeitig verlassen.\n\nAußerdem binden wir **Analytics** in Ihre Website ein (z. B. *Google Analytics*), damit Sie jederzeit umfangreiche Daten zur Leistung Ihrer Website einsehen und tiefere Einblicke in das Verhalten Ihrer Besucher gewinnen können. Auf dieser Grundlage können Sie zukünftige Entscheidungen stets datenbasiert treffen.\n\nZusätzlich integrieren wir ein **Content-Management-System (CMS)**, mit dem Sie Seiteninhalte wie Texte und Fotos jederzeit unkompliziert und stressfrei über eine einfache Benutzeroberfläche bearbeiten oder hinzufügen können.\n\nBei der Wahl der Technologien sind wir **flexibe**l und setzen je nach Anforderung auf passende Frameworks wie React, Vue oder WordPress. Gerne bauen wir auch auf Ihrer bereits vorhandenen Architektur auf.\n\nEbenfalls kümmern wir uns darum, dass Ihre Website samt ihrer Daten sicher und **DSGVO-konform** ist. Wir helfen ihnen bei der Erstellung **rechtsgültigen Pflichtangaben** wie dem Impressum und der Datenschutzerklärung und bewahren Sie so vor lästigen Abmahnungen.",
+      "description": "Wir programmieren **Frontend und Backend** Ihrer Website. Dabei setzen wir nicht auf Baukastensysteme wie Wix oder Squarespace, sondern programmieren selbst. Dadurch sind die Möglichkeiten für Funktionen und Features nahezu unbegrenzt. **You name it – we build it**.\n\nGroßartige Websites müssen nicht bloß toll aussehen und Kunden an Bord holen können, sondern dem Unternehmen auch Arbeit ersparen und sich nauslos in dessen bestehende **Infrastruktur aus Datenbanken und Schnittstellen einklinken** können. Deshalb sorgen wir dafür, dass Ihre Website durch **Automationen und KI** manuelle Dateneingaben vermeiden, Leads automatisch in Ihr CRM übertragen und Anfragen vorqualifizieren kann. Zudem bieten wir die Integration von **KI-Chatbots** an, die rund um die Uhr Kundensupport bieten, Standardfragen auf Basis Ihrer Unternehmensdaten sofort beantworten und komplexe Fragen an Ihr Team weiterleiten. Dank dieser Maßnahmen steigern wir die **Effizienz Ihrer Arbeitsabläufe** und entlasten Ihre Ressourcen.\n\nZudem optimieren wir die **Performance** Ihrer Website. Das heißt, wir sorgen für kurze **Ladezeiten** – ideal unter 1,5 Sekunden. So verbessern wir nicht nur die **Benutzererfahrung (UX)**, sondern minimieren auch die Absprungrate, also den Anteil der Besucher, die Ihre Website frühzeitig verlassen.\n\nAußerdem binden wir **Analytics** in Ihre Website ein (z. B. *Google Analytics*), damit Sie jederzeit umfangreiche Daten zur Leistung Ihrer Website einsehen und tiefere Einblicke in das Verhalten Ihrer Besucher gewinnen können. Auf dieser Grundlage können Sie zukünftige Entscheidungen stets datenbasiert treffen.\n\nZusätzlich integrieren wir ein **Content-Management-System (CMS)**, mit dem Sie Seiteninhalte wie Texte und Fotos jederzeit unkompliziert und stressfrei über eine einfache Benutzeroberfläche bearbeiten oder hinzufügen können.\n\nBei der Wahl der Technologien sind wir **flexibe**l und setzen je nach Anforderung auf passende Frameworks wie React, Vue oder WordPress. Gerne bauen wir auch auf Ihrer bereits bestehenden Infrastruktur auf.",
       "specs": [
         {
           "text": "Fullstack-Entwicklung",
@@ -73,7 +74,7 @@
           "icon": "fa-solid fa-plug"
         },
         {
-          "text": "Automationen & AI",
+          "text": "Automationen & KI",
           "icon": "fa-solid fa-robot"
         },
         {
@@ -97,7 +98,7 @@
       "learn_more_link": "#"
     },
     {
-      "title": "Inhalt und Positionierung",
+      "title": "Strategie und Inhalt",
       "images": [
         "/assets/images/services/service-1.webp",
         "/assets/images/services/service-2.webp",
@@ -113,6 +114,10 @@
         {
           "text": "Differenzierung",
           "icon": "fa-solid fa-shapes"
+        },
+        {
+          "text": "Positionierung",
+          "icon": "fa-solid fa-crosshairs"
         },
         {
           "text": "Conversion",

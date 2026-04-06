@@ -2,11 +2,11 @@
   "contact": {
     "email": "contact@webwing.agency",
     "phone": "06221 123456",
-    "booking_api_base": "http://87.106.166.66:3000/api"
+    "booking_api_base": "/api"
   },
   "meta_description": "Webwing erstellt Websites für kleine und mittelständische Unternehmen, die sich durch ein Premium-Niveau and Design, Performance und Nutzerfreundlichkeit mehr Kunden und Umsatz, einen gesteigerten Markenwert sowie einen klaren Wettbewerbsvorteil sichern möchten.",
   "sections": {
-    "projects_eyebrow": "Referenzen",
+    "projects_eyebrow": "Portfolio",
     "reviews_eyebrow": "Kundenstimmen",
     "expertise_subtitle": "Von Design und Entwicklung bis SEO, Performance und technischer Umsetzung begleiten wir Projekte ganzheitlich.",
     "expertise_link": "dienstleistungen.html",
@@ -18,7 +18,7 @@
     "reviews_subtitle": "Was die Zusammenarbeit mit Webwing im Alltag ausmacht, sagen am besten die Menschen, mit denen wir bereits gearbeitet haben.",
     "expertise_link_label": "Mehr erfahren →",
     "projects_subtitle": "Ein Einblick in ausgewählte Projekte, bei denen Markenauftritt, Nutzerführung und technische Qualität zusammenkommen.",
-    "projects_link": "referenzen.html"
+    "projects_link": "portfolio.html"
   },
   "book_section": {
     "eyebrow": "Erstgespräch",
@@ -114,9 +114,9 @@
       "text": "Wir sorgen dafür, dass ihre Website und die dazugehörigen Daten sicher sind. Mit rechtsgültigem Impressum, Datenschutzerklärung usw. machen wir Ihre Seite DSGVO-konform und bewahren Sie vor lästigen Abmahnungen."
     },
     {
-      "key": "automations & ai",
+      "key": "automations & ki",
       "icon": "/assets/icons/robot.svg",
-      "title": "Automatisierung & AI-Integration",
+      "title": "Automatisierung & KI-Integration",
       "text": "Mit Automationen sorgen wir für reibungslose Abläufe zwischen Ihrer Website und Drittdiensten wie Ihrem CRM. Zudem integrieren wir KI gewinnbringend in Ihre Akquiseprozesse, durch etwa Chatbots oder intelligente Datenverarbeitung im Backend."
     }
   ],

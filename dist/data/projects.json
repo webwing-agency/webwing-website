@@ -1,10 +1,11 @@
 {
-  "meta_description": "Referenzen von Webwing: ausgewählte Website- und Branding-Projekte mit Fokus auf messbaren Ergebnissen.",
+  "meta_description": "Ausgewählte Arbeiten von Webwing",
   "cta_label": "Sie haben Fragen zu unserem Angebot?",
-  "page_title": "Referenzen",
+  "page_title": "Portfolio",
+  "page_subtitle": "Unsere zurückliegenden Projekte & Arbeiten. Hier können Sie sich einen Eindruck von unserer Arbeitsweise, unserem Designstil und den Ergebnissen verschaffen, die wir für unsere Kunden erzielen.",
   "cta_link": "kostenloses-erstgespräch.html",
   "ui": {
-    "search_placeholder": "Referenzen durchsuchen",
+    "search_placeholder": "Portfolio durchsuchen",
     "card_cta_more_text": "Mehr erfahren",
     "card_cta_contact_text": "Kontakt",
     "empty_state_default": "Keine Ergebnisse gefunden.",
@@ -12,9 +13,11 @@
     "empty_state_query_suffix": "\". Bitte Suchbegriff oder Filter anpassen.",
     "results_count_template": "{{visible}} von {{total}} Ergebnissen"
   },
+  "page_eyebrow": "Ausgewählte Arbeiten",
   "projects": [
     {
       "title": "Ofenkäse-Versandhandel Rainer Winkler GmbH",
+      "project_link": "https://example.com",
       "images": [
         "/assets/images/projects/project-1.webp",
         "/assets/images/projects/project-2.webp",
@@ -42,6 +45,7 @@
     },
     {
       "title": "GreenTech Solutions AG",
+      "project_link": "https://example.com",
       "images": [
         "/assets/images/projects/project-2.webp",
         "/assets/images/projects/project-1.webp",
@@ -69,6 +73,7 @@
     },
     {
       "title": "UrbanFit Plattform",
+      "comingSoon": true,
       "images": [
         "/assets/images/projects/project-3.webp",
         "/assets/images/projects/project-1.webp",
@@ -104,6 +109,5 @@
     "Healthcare"
   ],
   "cta_text": "kostenloses Erstgespräch buchen",
-  "meta_title": "Referenzen | Zurückliegende Projekte | Webwing Design Agency",
-  "page_eyebrow": "Ausgewählte Arbeiten"
+  "meta_title": "Unser Portfolio | Webwing"
 }

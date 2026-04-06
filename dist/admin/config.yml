@@ -6,8 +6,8 @@ backend:
 site_url: https://webwing.agency
 display_url: https://webwing.agency
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "public/assets/uploads"
+public_folder: "/assets/uploads"
 
 collections:
   - name: "global"
@@ -20,6 +20,7 @@ collections:
         file: "public/data/site.json"
         format: json
         fields:
+          - { name: "og_image", label: "Social Share Preview Image (Open Graph)", widget: "image", required: false, hint: "Fallback: Logo auf schwarzem Grund" }
           - label: "Header"
             name: "header"
             widget: "object"
@@ -87,7 +88,7 @@ collections:
               - { name: "subtitle", label: "Hero subtitle", widget: "text" }
               - { name: "cta_text", label: "Hero CTA text", widget: "string" }
               - { name: "cta_link", label: "Hero CTA link", widget: "string" }
-              - { name: "hero_image", label: "Hero background image path", widget: "string" }
+              - { name: "hero_image", label: "Hero background image path", widget: "image" }
               - label: "Capability Slider"
                 name: "capability_items"
                 widget: "list"
@@ -114,14 +115,14 @@ collections:
             widget: "list"
             fields:
               - { name: "key", widget: "string", required: false }
-              - { name: "icon", widget: "string" }
+              - { name: "icon", widget: "image" }
               - { name: "title", widget: "string" }
               - { name: "text", widget: "text" }
           - label: "Projects (homepage)"
             name: "projects"
             widget: "list"
             fields:
-              - { name: "image", widget: "string" }
+              - { name: "image", widget: "image" }
               - { name: "title", widget: "string" }
               - { name: "text", widget: "text" }
               - { name: "tags", widget: "list", field: { name: "tag", widget: "string" } }
@@ -129,7 +130,7 @@ collections:
             name: "reviews"
             widget: "list"
             fields:
-              - { name: "client_img", widget: "string" }
+              - { name: "client_img", widget: "image" }
               - { name: "client_name", widget: "string" }
               - { name: "corporation_name", widget: "string" }
               - { name: "text", widget: "text" }
@@ -213,7 +214,7 @@ collections:
             name: "services"
             widget: "list"
             fields:
-              - { name: "images", label: "Image paths", widget: "list", field: { name: "image", widget: "string" } }
+              - { name: "images", label: "Image paths", widget: "list", field: { name: "image", widget: "image" } }
               - { name: "title", widget: "string" }
               - { name: "description", label: "Beschreibung", widget: "markdown", modes: ["rich_text", "raw"] }
               - label: "Specs"
@@ -243,7 +244,7 @@ collections:
           - { name: "cta_label", widget: "string" }
           - { name: "cta_link", widget: "string" }
 
-      - label: "Referenzen (Projects)"
+      - label: "Portfolio (Projects)"
         name: "projects"
         file: "public/data/projects.json"
         format: json
@@ -260,7 +261,7 @@ collections:
             name: "projects"
             widget: "list"
             fields:
-              - { name: "images", label: "Image paths", widget: "list", field: { name: "image", widget: "string" } }
+              - { name: "images", label: "Image paths", widget: "list", field: { name: "image", widget: "image" } }
               - { name: "title", widget: "string" }
               - { name: "description", label: "Beschreibung", widget: "markdown", modes: ["rich_text", "raw"] }
               - label: "Specs"
@@ -419,7 +420,7 @@ collections:
               - { name: "primary_cta_link", widget: "string" }
               - { name: "secondary_cta_text", widget: "string" }
               - { name: "secondary_cta_link", widget: "string" }
-              - { name: "image", widget: "string" }
+              - { name: "image", widget: "image" }
               - { name: "image_alt", widget: "string" }
           - label: "Unsere Geschichte"
             name: "history"
@@ -442,7 +443,7 @@ collections:
                 fields:
                   - { name: "name", widget: "string" }
                   - { name: "role", widget: "string" }
-                  - { name: "image", widget: "string" }
+                  - { name: "image", widget: "image" }
                   - { name: "alt", widget: "string", required: false }
           - label: "Was uns ausmacht"
             name: "values"
