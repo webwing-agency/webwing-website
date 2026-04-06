@@ -20,6 +20,7 @@ collections:
         file: "public/data/site.json"
         format: json
         fields:
+          - { name: "og_image", label: "Social Share Preview Image (Open Graph)", widget: "image", required: false, hint: "Fallback: Logo auf schwarzem Grund" }
           - label: "Header"
             name: "header"
             widget: "object"

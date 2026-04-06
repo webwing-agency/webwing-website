@@ -3,6 +3,7 @@
 import { applySeo } from '../seo.js';
 import { fetchCmsJson } from '../utils/cms-json.js';
 import { richTextToHtml } from '../utils/rich-text.js';
+import { getGlobalOgImage } from './site.js';
 
 function dispatchRenderedEvent(name) {
   requestAnimationFrame(() => {
@@ -44,50 +45,19 @@ async function renderProjects(root = document) {
     });
     const ui = data.ui || {};
 
-    applySeo({
-      title: data.meta_title,
-      description: data.meta_description,
-      canonicalPath: '/portfolio.html'
-    });
-
-    /* ---------- Page title ---------- */
-    const eyebrow = root.querySelector('.portfolio-page-fold .section-eyebrow');
-    if (eyebrow && data.page_eyebrow) eyebrow.textContent = data.page_eyebrow;
-
-    const pageTitle = root.querySelector(".portfolio-page-title");
-    if (pageTitle) pageTitle.textContent = data.page_title ?? "";
-
-    const pageSubtitle = root.querySelector(".portfolio-page-subtitle");
-    if (pageSubtitle && data.page_subtitle) pageSubtitle.textContent = data.page_subtitle;
-
-    /* ---------- Filters ---------- */
-    const selectionFlex = root.querySelector(".selection-flex");
-    if (selectionFlex && Array.isArray(data.filters)) {
-      selectionFlex.querySelectorAll('.filter-select').forEach(el => el.remove());
-      const fragment = document.createDocumentFragment();
-      
-      // "Alle" filter
-      const allEl = document.createElement("div");
-      allEl.className = "filter-select active";
-      allEl.textContent = "Alle";
-      allEl.dataset.filter = "all";
-      fragment.appendChild(allEl);
-
-      data.filters.forEach(filter => {
-        const el = document.createElement("div");
-        el.className = "filter-select";
-        el.textContent = filter;
-        el.dataset.filter = filter.toLowerCase();
-        fragment.appendChild(el);
-      });
-      selectionFlex.prepend(fragment);
-    }
-
-    /* ---------- Projects ---------- */
     const grid = root.querySelector(".projects-grid");
     if (!grid) return;
 
     grid.innerHTML = "";
+
+    const globalOg = await getGlobalOgImage();
+
+    applySeo({
+      title: data.meta_title,
+      description: data.meta_description,
+      canonicalPath: '/portfolio.html',
+      ogImagePath: globalOg
+    });
 
     data.projects.forEach(project => {
       const card = document.createElement("div");

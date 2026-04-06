@@ -3,6 +3,7 @@
 import { applySeo } from '../seo.js';
 import { fetchCmsJson } from '../utils/cms-json.js';
 import { richTextToHtml } from '../utils/rich-text.js';
+import { getGlobalOgImage } from './site.js';
 
 async function fetchServices() {
   return fetchCmsJson('/data/services.json', {
@@ -15,7 +16,7 @@ async function fetchServices() {
   });
 }
 
-function setMetaAndTitle(data) {
+async function setMetaAndTitle(data) {
   if (data.meta_description) {
     let md = document.querySelector('meta[name="description"]');
     if (!md) {
@@ -30,10 +31,12 @@ function setMetaAndTitle(data) {
     document.title = data.meta_title;
   }
 
+  const globalOg = await getGlobalOgImage();
   applySeo({
     title: data.meta_title,
     description: data.meta_description,
-    canonicalPath: '/dienstleistungen.html'
+    canonicalPath: '/dienstleistungen.html',
+    ogImagePath: globalOg
   });
 
   const eyebrow = document.querySelector('.services-page-fold .section-eyebrow');
@@ -233,7 +236,7 @@ async function renderServices(root = document) {
     const data = await fetchServices();
     const ui = data.ui || {};
 
-    setMetaAndTitle(data);
+    await setMetaAndTitle(data);
 
     const grid = root.querySelector('.services-grid');
     if (!grid) return;

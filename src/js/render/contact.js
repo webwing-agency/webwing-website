@@ -1,12 +1,13 @@
 // js/render/contact.js
 import { applySeo } from '../seo.js';
 import { fetchCmsJson } from '../utils/cms-json.js';
+import { getGlobalOgImage } from './site.js';
 
 async function fetchContact() {
     return fetchCmsJson('/data/contact.json');
   }
   
-  function setMetaAndTitle(data, root = document) {
+  async function setMetaAndTitle(data, root = document) {
     if (data.meta_title) document.title = data.meta_title;
     if (data.meta_description) {
       let md = document.querySelector('meta[name="description"]');
@@ -17,10 +18,12 @@ async function fetchContact() {
       }
       md.content = data.meta_description;
     }
+    const globalOg = await getGlobalOgImage();
     applySeo({
       title: data.meta_title,
       description: data.meta_description,
-      canonicalPath: '/kontakt.html'
+      canonicalPath: '/kontakt.html',
+      ogImagePath: globalOg
     });
     const pageTitleEl = root.querySelector('.contact-page-title') || root.querySelector('.page-title');
     if (pageTitleEl && data.page_title) pageTitleEl.textContent = data.page_title;
@@ -94,11 +97,19 @@ async function fetchContact() {
   export async function initContactPage(container = document) {
     try {
       const data = await fetchContact();
-      setMetaAndTitle(data, container);
+      await setMetaAndTitle(data, container);
       setContactFields(data, container);
       applyContactFormContent(data.form || {}, container);
     } catch (err) {
       console.error('contact render error', err);
+    }
+  }
+  
+ntact render error', err);
+    }
+  }
+  
+t render error', err);
     }
   }
   

@@ -41,13 +41,16 @@ export function applySeo({
   description,
   canonicalPath,
   robots = 'index,follow,max-image-preview:large',
-  ogImagePath = '/assets/hero-bg.png'
+  ogImagePath = ''
 } = {}) {
   const effectiveTitle = title || document.title;
   const existingDescription = document.head.querySelector('meta[name="description"]')?.getAttribute('content') || '';
   const effectiveDescription = description || existingDescription;
   const canonicalUrl = toAbsoluteUrl(canonicalPath || window.location.pathname);
-  const ogImage = toAbsoluteUrl(ogImagePath);
+  
+  // Use hero-bg as a decent fallback for now if nothing is defined in CMS
+  const finalOgPath = ogImagePath || '/assets/hero-bg.webp';
+  const ogImage = toAbsoluteUrl(finalOgPath);
 
   if (effectiveTitle) document.title = effectiveTitle;
   if (effectiveDescription) upsertMetaByName('description', effectiveDescription);

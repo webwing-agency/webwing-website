@@ -1,11 +1,12 @@
 import { applySeo } from '../seo.js';
 import { fetchCmsJson } from '../utils/cms-json.js';
+import { getGlobalOgImage } from './site.js';
 
 async function fetchBookCall() {
     return fetchCmsJson('/data/book-call.json');
   }
  
-function setMetaAndTitle(data, root = document) {
+async function setMetaAndTitle(data, root = document) {
     if (data.meta_title) document.title = data.meta_title;
     if (data.meta_description) {
       let md = document.querySelector('meta[name="description"]');
@@ -16,10 +17,12 @@ function setMetaAndTitle(data, root = document) {
       }
       md.content = data.meta_description;
     }
+    const globalOg = await getGlobalOgImage();
     applySeo({
       title: data.meta_title,
       description: data.meta_description,
-      canonicalPath: '/kostenloses-erstgespr%C3%A4ch.html'
+      canonicalPath: '/kostenloses-erstgespr%C3%A4ch.html',
+      ogImagePath: globalOg
     });
     const eyebrowEl = root.querySelector('.book-call-section .section-eyebrow');
     if (eyebrowEl && data.eyebrow) eyebrowEl.textContent = data.eyebrow;
@@ -88,7 +91,7 @@ function applyBookingFormContent(form, root = document) {
   export async function initBookCallPage(root = document) {
     try {
       const data = await fetchBookCall();
-      setMetaAndTitle(data, root);
+      await setMetaAndTitle(data, root);
       setContactFields(data, root);
       applyBookingFormContent(data.form || {}, root);
     } catch (err) {

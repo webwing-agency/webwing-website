@@ -1,6 +1,7 @@
 // js/render/index.js
 import { applySeo } from '../seo.js';
 import { fetchCmsJson } from '../utils/cms-json.js';
+import { getGlobalOgImage } from './site.js';
 
 async function fetchHome() {
     return fetchCmsJson('/data/index.json', { inlineScriptId: 'cms-inline-index' });
@@ -386,7 +387,15 @@ function setMeta(data) {
   export async function initHomePage(root = document) {
     try {
       const data = await fetchHome();
-      setMeta(data || {});
+      const globalOg = await getGlobalOgImage();
+
+      applySeo({
+        title: data?.meta_title,
+        description: data?.meta_description,
+        canonicalPath: '/',
+        ogImagePath: globalOg
+      });
+
       renderHero(data?.hero || {}, root);
       renderHomeSections(data?.sections || {}, root);
       renderExpertise(data?.expertise || [], root);

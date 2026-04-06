@@ -1,6 +1,7 @@
 // js/render/legal.js
 import { applySeo } from '../seo.js';
 import { fetchCmsJson } from '../utils/cms-json.js';
+import { getGlobalOgImage } from './site.js';
 
 function markdownToHtmlBasic(md) {
     if (!md) return '';
@@ -61,11 +62,13 @@ function markdownToHtmlBasic(md) {
     const data = await fetchCmsJson(path);
     if (data.meta_title) document.title = data.meta_title;
     if (data.meta_description) document.querySelector('meta[name="description"]')?.setAttribute('content', data.meta_description);
+    const globalOg = await getGlobalOgImage();
     applySeo({
       title: data.meta_title,
       description: data.meta_description,
       canonicalPath,
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      ogImagePath: globalOg
     });
     const titleEl = document.querySelector('.page-title-small') || document.querySelector('h1');
     if (titleEl && data.page_title) titleEl.textContent = data.page_title;

@@ -125,6 +125,16 @@ function renderFooter(footerData = {}) {
   }
 }
 
+export async function getGlobalOgImage() {
+  try {
+    const data = await fetchSiteData();
+    return data?.og_image || '';
+  } catch (err) {
+    console.error('[site] Failed to fetch global OG image', err);
+    return '';
+  }
+}
+
 export async function initSiteChrome() {
   try {
     const data = await fetchSiteData();

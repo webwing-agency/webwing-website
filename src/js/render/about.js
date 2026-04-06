@@ -1,5 +1,6 @@
 import { applySeo } from '../seo.js';
 import { fetchCmsJson } from '../utils/cms-json.js';
+import { getGlobalOgImage } from './site.js';
 
 function safeString(value) {
   if (value === null || value === undefined) return '';
@@ -168,11 +169,13 @@ function renderMission(mission = {}, page) {
   }
 }
 
-function applyAboutSeo(data = {}) {
+async function applyAboutSeo(data = {}) {
+  const globalOg = await getGlobalOgImage();
   applySeo({
     title: data.meta_title,
     description: data.meta_description,
-    canonicalPath: '/über-uns.html'
+    canonicalPath: '/über-uns.html',
+    ogImagePath: globalOg
   });
 }
 
@@ -368,7 +371,7 @@ export async function initAboutPage(root = document) {
 
   try {
     const data = await fetchAbout();
-    applyAboutSeo(data);
+    await applyAboutSeo(data);
     renderHero(data.hero || {}, page);
     renderHistory(data.history || {}, page);
     renderTeam(data.team || {}, page);
