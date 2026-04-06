@@ -1146,20 +1146,23 @@ body {
 
 .coming-soon-badge-overlay {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
-  padding: 0.4rem 1rem;
-  border-radius: 2rem;
-  font-size: 0.75rem;
-  font-weight: 700;
+  padding: 0.75rem 1.75rem;
+  border-radius: 3rem;
+  font-size: 1rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   z-index: 10;
   pointer-events: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  white-space: nowrap;
 }
 
