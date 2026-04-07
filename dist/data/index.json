@@ -5,9 +5,6 @@
     "booking_api_base": "/api"
   },
   "meta_description": "Webwing erstellt Websites für kleine und mittelständische Unternehmen, die sich durch ein Premium-Niveau and Design, Performance und Nutzerfreundlichkeit mehr Kunden und Umsatz, einen gesteigerten Markenwert sowie einen klaren Wettbewerbsvorteil sichern möchten.",
-  "ui": {
-    "coming_soon_label": "Coming Soon"
-  },
   "sections": {
     "projects_eyebrow": "Portfolio",
     "reviews_eyebrow": "Kundenstimmen",
@@ -123,15 +120,19 @@
       "text": "Mit Automationen sorgen wir für reibungslose Abläufe zwischen Ihrer Website und Drittdiensten wie Ihrem CRM. Zudem integrieren wir KI gewinnbringend in Ihre Akquiseprozesse, durch etwa Chatbots oder intelligente Datenverarbeitung im Backend."
     }
   ],
+  "ui": {
+    "coming_soon_label": "Coming Soon"
+  },
   "projects": [
     {
       "image": "/assets/images/projects/project-1.webp",
-      "title": "Ofenkäse-Versandhandel Rainer Winkler GmbH",
-      "text": "Ein erfolgreiches E-Commerce-Projekt, bei dem wir eine benutzerfreundliche Plattform entwickelt haben, die sowohl Design als auch Funktionalität vereint.",
+      "title": "SoloNode - Landingpage für Crowdfunding",
+      "text": "SoloNode ist ein deutsches Startup, dass mit einfach einzurichtenden und zu bedienenden Servern die IT-Welt des Mittelstands revolutionieren will. Diesen simplen, modernen und revolutionären Markencharakter wollten wir ganz klar mit dem Seitendesign kommunizieren und wiederspiegeln. Im Backend haben wir das Wartelisten-Formular mit einer Google Sheets Tabelle verknüpft. ",
       "tags": [
         "React",
         "E-Commerce"
-      ]
+      ],
+      "comingSoon": true
     },
     {
       "image": "/assets/images/projects/project-2.webp",
@@ -141,7 +142,8 @@
         "WordPress",
         "SEO",
         "Performance"
-      ]
+      ],
+      "comingSoon": true
     },
     {
       "image": "/assets/images/projects/project-3.webp",
@@ -151,7 +153,8 @@
         "Flutter",
         "Digitale Plattform",
         "UI/UX"
-      ]
+      ],
+      "comingSoon": true
     }
   ],
   "hero": {
