@@ -74,6 +74,27 @@
   min-height: 12rem;
 }
 
+.projects-grid .skeleton-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-grid:has(.project-card:not(.skeleton-card)) .skeleton-card {
+  display: none;
+}
+
+.projects-grid .skeleton-image {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  border-radius: 15px;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 .project-card {
   padding: clamp(1.15rem, 1rem + 0.5vw, 1.75rem);
   position: relative;

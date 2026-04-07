@@ -59,6 +59,35 @@ async function renderProjects(root = document) {
       ogImagePath: globalOg
     });
 
+    // Update page content
+    const pageTitle = root.querySelector('.portfolio-page-title');
+    if (pageTitle && data.page_title) pageTitle.textContent = data.page_title;
+    
+    const pageSubtitle = root.querySelector('.portfolio-page-subtitle');
+    if (pageSubtitle && data.page_subtitle) pageSubtitle.textContent = data.page_subtitle;
+    
+    const pageEyebrow = root.querySelector('.portfolio-page-fold .section-eyebrow');
+    if (pageEyebrow && data.page_eyebrow) pageEyebrow.textContent = data.page_eyebrow;
+
+    // Render filter tags
+    const selectionFlex = root.querySelector('.selection-flex');
+    if (selectionFlex && Array.isArray(data.filters)) {
+      selectionFlex.innerHTML = '';
+      const allBtn = document.createElement('button');
+      allBtn.className = 'filter-select active';
+      allBtn.dataset.filter = 'all';
+      allBtn.textContent = 'Alle';
+      selectionFlex.appendChild(allBtn);
+      
+      data.filters.forEach(filter => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-select';
+        btn.dataset.filter = filter.toLowerCase();
+        btn.textContent = filter;
+        selectionFlex.appendChild(btn);
+      });
+    }
+
     data.projects.forEach(project => {
       const card = document.createElement("div");
       card.className = "project-card grid-card";
@@ -66,6 +95,9 @@ async function renderProjects(root = document) {
         card.classList.add("is-coming-soon");
       }
 
+      const imagesWrapper = document.createElement("div");
+      imagesWrapper.className = project.comingSoon ? "project-img-container" : "project-images-grid";
+      
       const imagesGrid = document.createElement("div");
       imagesGrid.className = "project-images-grid";
 
@@ -80,6 +112,8 @@ async function renderProjects(root = document) {
         img.height = 554;
         imagesGrid.appendChild(img);
       });
+      
+      imagesWrapper.appendChild(imagesGrid);
 
       const title = document.createElement("h3");
       title.className = "project-title";
@@ -98,10 +132,10 @@ async function renderProjects(root = document) {
         li.className = "feature-item";
 
         if (normalized.icon) {
-          const i = document.createElement("i");
-          i.className = `feature-icon ${normalized.icon}`.trim();
-          i.setAttribute('aria-hidden', 'true');
-          li.appendChild(i);
+          const iEl = document.createElement("i");
+          iEl.className = `feature-icon ${normalized.icon}`.trim();
+          iEl.setAttribute('aria-hidden', 'true');
+          li.appendChild(iEl);
         }
 
         const span = document.createElement("span");
@@ -160,10 +194,10 @@ async function renderProjects(root = document) {
         const badge = document.createElement("div");
         badge.className = "coming-soon-badge-overlay";
         badge.textContent = ui.coming_soon_label || "Coming Soon";
-        card.appendChild(badge);
+        imagesWrapper.appendChild(badge);
       }
 
-      card.append(imagesGrid, title, textWrap, ctas);
+      card.append(imagesWrapper, title, textWrap, ctas);
       grid.appendChild(card);
     });
 
