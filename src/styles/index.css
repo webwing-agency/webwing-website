@@ -732,7 +732,15 @@ body.page-home main[data-barba-namespace="home"] > section:not(.hero-section)::a
         width: 60px;;
     }
 
-/* Book Call Section */
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+}
+
+#projects-grid:has(.project-card) .skeleton-card,
+#reviews-grid:has(.review-card) .skeleton-card {
+  display: none;
+}
 
 .book-call-section {
     width: 100vw;

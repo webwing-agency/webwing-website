@@ -51,7 +51,7 @@
     }
   </script>
 
-  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/main.js" defer></script>
 
   <style>
     /* hide animated parts until JS takes over */
@@ -62,6 +62,12 @@
     .hero-bg {
       opacity: 0.72;
       transform: translateY(10px);
+    }
+    
+    /* skeleton cards - hidden by default, shown until JS loads content */
+    .skeleton-card {
+      display: flex;
+      flex-direction: column;
     }
   
     /* If JS is not available, preserve visibility for accessibility / no-JS fallback */
@@ -149,7 +155,7 @@
           </div>
         </div>
       </div>
-      <div class="hero-bg-container"><img id="hero-image" class="hero-bg" src="assets/og-fallback.png" alt="Hero Section Hintergrund" width="971" height="832" fetchpriority="high" decoding="async"/></div>
+      <div class="hero-bg-container"><img id="hero-image" class="hero-bg" src="assets/og-fallback.png" alt="Hero Section Hintergrund" width="971" height="832" style="aspect-ratio: 971/832; object-fit: contain;" fetchpriority="high" decoding="async"/></div>
     </section>
 
     <section class="expertise-section">
@@ -176,7 +182,29 @@
         <a href="portfolio.html" class="reference-link">Alle Projekte →</a>
       </div>
 
-      <div class="grid" id="projects-grid"></div>
+      <div class="grid" id="projects-grid">
+        <div class="grid-card skeleton-card">
+          <div class="skeleton skeleton-icon"></div>
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+        </div>
+        <div class="grid-card skeleton-card">
+          <div class="skeleton skeleton-icon"></div>
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+        </div>
+        <div class="grid-card skeleton-card">
+          <div class="skeleton skeleton-icon"></div>
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+        </div>
+      </div>
     </section>
 
     <section class="reviews-section">
@@ -185,7 +213,29 @@
         <h2 class="reviews-title section-title">Das sagen unsere Kunden</h2>
         <p class="section-subtitle home-section-subtitle reviews-subtitle" id="reviews-subtitle">Was die Zusammenarbeit mit Webwing im Alltag ausmacht, sagen am besten die Menschen, mit denen wir bereits gearbeitet haben.</p>
       </div>
-      <div class="grid" id="reviews-grid"></div>
+      <div class="grid" id="reviews-grid">
+        <div class="grid-card skeleton-card">
+          <div class="skeleton skeleton-icon"></div>
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+        </div>
+        <div class="grid-card skeleton-card">
+          <div class="skeleton skeleton-icon"></div>
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+        </div>
+        <div class="grid-card skeleton-card">
+          <div class="skeleton skeleton-icon"></div>
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+        </div>
+      </div>
     </section>
 
     <section class="book-call-section">

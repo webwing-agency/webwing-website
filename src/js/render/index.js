@@ -254,12 +254,16 @@ function setMeta(data) {
       card.className = 'grid-card';
       if (comingSoon) card.classList.add('is-coming-soon');
 
+      const imgContainer = document.createElement('div');
+      imgContainer.className = 'project-img-container';
+
       const img = document.createElement('img'); 
       img.className='card-img project-img';
       if (image) { img.src = image; } else { img.removeAttribute('src'); }
       img.alt = title;
       img.loading = 'lazy';
       img.decoding = 'async';
+      imgContainer.appendChild(img);
 
       const h3 = document.createElement('h3'); 
       h3.className='card-title'; 
@@ -278,7 +282,7 @@ function setMeta(data) {
         tagsWrap.appendChild(s); 
       });
 
-      card.appendChild(img); 
+      card.appendChild(imgContainer); 
       card.appendChild(h3); 
       card.appendChild(p); 
       card.appendChild(tagsWrap);
@@ -287,7 +291,7 @@ function setMeta(data) {
         const badge = document.createElement('div');
         badge.className = 'coming-soon-badge-overlay';
         badge.textContent = ui.coming_soon_label || 'Coming Soon';
-        card.appendChild(badge);
+        imgContainer.appendChild(badge);
       }
 
       grid.appendChild(card);

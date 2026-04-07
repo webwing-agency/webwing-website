@@ -1134,14 +1134,17 @@ body {
 /* Coming Soon Global Styles */
 .grid-card.is-coming-soon {
   opacity: 0.85 !important;
-  position: relative;
 }
 
 .grid-card.is-coming-soon .project-img,
 .grid-card.is-coming-soon .card-img,
 .grid-card.is-coming-soon .project-images-grid {
-  filter: grayscale(0.5) blur(1.5px);
+  filter: grayscale(0.5) blur(4px);
   pointer-events: none;
+}
+
+.project-img-container {
+  position: relative;
 }
 
 .coming-soon-badge-overlay {
@@ -1150,8 +1153,8 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
   padding: 0.75rem 1.75rem;
