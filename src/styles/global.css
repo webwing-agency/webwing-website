@@ -744,10 +744,10 @@ header {
     }
 
     .popup-menu-decorations {
-        width: calc(100% - 2rem);
+        width: calc(100% - 4rem);
         position: absolute;
         bottom: 2rem;
-        left: 1rem;
+        left: 2rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -1026,7 +1026,7 @@ header {
 }
 
 .page-subtitle {
-    font-size: 1rem;
+    font-size: var(--text-font-size);
     color: var(--text-muted);
     line-height: 1.5;
     max-width: 48rem;

@@ -48,17 +48,6 @@ async function renderProjects(root = document) {
     const grid = root.querySelector(".projects-grid");
     if (!grid) return;
 
-    grid.innerHTML = "";
-
-    const globalOg = await getGlobalOgImage();
-
-    applySeo({
-      title: data.meta_title,
-      description: data.meta_description,
-      canonicalPath: '/portfolio.html',
-      ogImagePath: globalOg
-    });
-
     // Update page content
     const pageTitle = root.querySelector('.portfolio-page-title');
     if (pageTitle && data.page_title) pageTitle.textContent = data.page_title;
@@ -88,6 +77,9 @@ async function renderProjects(root = document) {
       });
     }
 
+    // Clear skeletons just before appending new content
+    grid.innerHTML = "";
+
     data.projects.forEach(project => {
       const card = document.createElement("div");
       card.className = "project-card grid-card";
@@ -95,25 +87,35 @@ async function renderProjects(root = document) {
         card.classList.add("is-coming-soon");
       }
 
-      const imagesWrapper = document.createElement("div");
-      imagesWrapper.className = project.comingSoon ? "project-img-container" : "project-images-grid";
-      
-      const imagesGrid = document.createElement("div");
-      imagesGrid.className = "project-images-grid";
-
-      project.images.slice(0, 3).forEach((src, i) => {
+      const imagesContainer = document.createElement("div");
+      if (project.comingSoon) {
+        imagesContainer.className = "project-img-container";
         const img = document.createElement("img");
-        img.src = src;
+        img.src = project.images?.[0] || '';
         img.alt = project.title ?? '';
-        img.className = `project-image-${i + 1}`;
+        img.className = 'card-img project-img';
         img.loading = 'lazy';
         img.decoding = 'async';
-        img.width = 1000;
-        img.height = 554;
-        imagesGrid.appendChild(img);
-      });
-      
-      imagesWrapper.appendChild(imagesGrid);
+        imagesContainer.appendChild(img);
+
+        const badge = document.createElement("div");
+        badge.className = "coming-soon-badge-overlay";
+        badge.textContent = ui.coming_soon_label || "Coming Soon";
+        imagesContainer.appendChild(badge);
+      } else {
+        imagesContainer.className = "project-images-grid";
+        (project.images || []).slice(0, 3).forEach((src, i) => {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = project.title ?? '';
+          img.className = `project-image-${i + 1}`;
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.width = 1000;
+          img.height = 554;
+          imagesContainer.appendChild(img);
+        });
+      }
 
       const title = document.createElement("h3");
       title.className = "project-title";
@@ -122,7 +124,6 @@ async function renderProjects(root = document) {
       const specs = document.createElement("ul");
       specs.className = "project-specs feature-list";
       
-      // Normal specs from data
       (project.specs || []).forEach(spec => {
         const normalized = typeof spec === 'string'
           ? { text: spec, icon: '' }
@@ -146,7 +147,6 @@ async function renderProjects(root = document) {
         specs.appendChild(li);
       });
 
-      // Project link pill (if not coming soon)
       if (project.project_link && !project.comingSoon) {
         const li = document.createElement("li");
         li.className = "feature-item project-link-pill";
@@ -156,9 +156,9 @@ async function renderProjects(root = document) {
         a.rel = "noopener noreferrer";
         a.className = "project-link-inner";
         
-        const i = document.createElement("i");
-        i.className = "fa-solid fa-arrow-up-right-from-square";
-        a.appendChild(i);
+        const linkIcon = document.createElement("i");
+        linkIcon.className = "fa-solid fa-arrow-up-right-from-square";
+        a.appendChild(linkIcon);
         
         li.appendChild(a);
         specs.appendChild(li);
@@ -190,16 +190,21 @@ async function renderProjects(root = document) {
           a.textContent = ui.card_cta_contact_text || "Kontakt";
           ctas.appendChild(a);
         }
-      } else {
-        const badge = document.createElement("div");
-        badge.className = "coming-soon-badge-overlay";
-        badge.textContent = ui.coming_soon_label || "Coming Soon";
-        imagesWrapper.appendChild(badge);
       }
 
-      card.append(imagesWrapper, title, textWrap, ctas);
+      card.append(imagesContainer, title, textWrap, ctas);
       grid.appendChild(card);
     });
+
+    // Apply SEO in the background
+    getGlobalOgImage().then(globalOg => {
+      applySeo({
+        title: data.meta_title,
+        description: data.meta_description,
+        canonicalPath: '/portfolio.html',
+        ogImagePath: globalOg
+      });
+    }).catch(seoErr => console.warn('SEO application failed:', seoErr));
 
     initProjectFilter(root);
 

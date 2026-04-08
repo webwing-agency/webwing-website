@@ -242,6 +242,10 @@
         text-align: left;
     }
 
+    .page-subtitle {
+        font-size: 1rem;
+    }
+
     .page-portfolio .selection-flex,
     .page-services .selection-flex {
         position: relative;
