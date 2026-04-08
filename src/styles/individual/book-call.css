@@ -1,10 +1,17 @@
 
 .book-call-section {
-    width: 100vw;
-    padding: 4rem 1.25rem;
+    width: min(100%, 1200px);
+    padding: 4rem 2rem;
     padding-top: 20vh;
+    margin-inline: auto;
     margin-bottom: 60vh;
     margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    .book-call-section {
+        padding: 4rem 1.25rem;
+    }
 }
 
 .book-call-title {

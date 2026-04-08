@@ -1,11 +1,19 @@
 /* Contact (Kontakt) page */
 .contact-page-fold {
-  width: 100vw;
-  padding: 4rem 10vw;
+  width: min(100%, 1200px);
+  padding: 4rem 2rem;
   padding-top: 20vh;
   padding-bottom: 20rem;
   min-height: 100vh;
+  margin-inline: auto;
   margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .contact-page-fold {
+    padding: 4rem 1.25rem;
+    padding-bottom: 15rem;
+  }
 }
 
 .contact-page-title {
