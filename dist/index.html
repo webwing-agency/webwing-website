@@ -53,6 +53,44 @@
 
 
   <style>
+    :root {
+      --hero-fallback-desktop-size: calc(3rem + 1.5vw);
+      --hero-fallback-mobile-size: clamp(2.85rem, 9vw, 3.55rem);
+    }
+
+    .hero-title {
+      font-size: var(--hero-fallback-mobile-size);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      max-width: 11.3ch;
+      width: 100%;
+      margin: 0;
+      text-align: center;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.78rem, 2.7vw, 0.92rem);
+      line-height: 1.5;
+      max-width: 37ch;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: var(--hero-fallback-desktop-size);
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+        max-width: none;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+        line-height: 1.6;
+        max-width: 650px;
+      }
+    }
+
     /* hide animated parts until JS takes over */
     .hero-line,
     .hero-title-line,
@@ -83,8 +121,8 @@
 
   <script>document.documentElement.classList.remove('no-js');</script>
 
-  <script type="module" crossorigin src="/assets/main--sXhC8QJ.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-CteuCHIH.css">
+  <script type="module" crossorigin src="/assets/main-Ch1FA6zT.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-4bvnfbuO.css">
 </head>
 <body class="page-home" data-barba="wrapper">
   <header>

@@ -293,16 +293,9 @@
 }
 
 .book-call-section {
-    width: min(100%, 1200px);
-    padding: 2.5rem 2rem;
-    margin-inline: auto;
+    width: 100vw;
+    padding: 4rem 10vw;
     margin-bottom: 10vh;
-}
-
-@media (max-width: 768px) {
-    .book-call-section {
-        padding: 2rem 1.25rem;
-    }
 }
 
     .book-call-card {

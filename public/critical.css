@@ -311,6 +311,42 @@ body.page-home main[data-barba-namespace="home"]::after {
     opacity: 0.8;
 }
 
+@media (min-width: 768px) {
+    :root {
+        --text-font-size: 1rem;
+        --small-text-font-size: 1rem;
+        --page-title-font-size-large: 6rem;
+        --page-title-font-size-small: 3rem;
+        --hero-title-font-size: calc(3rem + 1.5vw);
+        --section-title-font-size: 2.5rem;
+        --cta-font-size: 1.1rem;
+        --card-title-font-size: 1.7rem;
+        --card-text-font-size: 1rem;
+        --popup-link-font-size: 2rem;
+    }
+
+    .hero-section {
+        padding: 0 8rem;
+        gap: 2.5rem;
+    }
+
+    .hero-title {
+        font-size: var(--hero-title-font-size);
+        line-height: 0.95;
+        max-width: none;
+    }
+
+    .hero-subtitle {
+        font-size: var(--text-font-size);
+        max-width: 650px;
+    }
+
+    .hero-bg {
+        width: 70vw;
+        max-width: none;
+    }
+}
+
 .hero-section {
     height: 100vh;
     gap: 2.5rem;
