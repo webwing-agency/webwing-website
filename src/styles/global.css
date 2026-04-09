@@ -5,6 +5,155 @@
     overflow: visible;
 }
 
+:root {
+    --primary-color: #2200b8;
+    --secondary-color: #5d00ff;
+    --accent-color: #e100ff;
+    --accent-color-light: #ec5eff;
+    --accent-color-dark: #a235ea;
+    --deep-blue: #04243f;
+
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --global-border: 0.5px solid rgba(255, 255, 255, 0.1);
+    --strong-border: 0.5px solid rgba(255, 255, 255, 0.35);
+
+    --text-color: rgba(255, 255, 255, 0.65);
+    --text-font-size: 0.8125rem;
+    --text-line-height: 1.6;
+
+    --small-text-font-size: 0.5rem;
+
+    --page-title-font-size-large: 2.75rem;
+    --page-title-font-size-small: 2rem;
+
+    --text-muted: rgba(255, 255, 255, 0.58);
+
+    --cta-font-size: 0.9rem;
+
+    --hero-title-font-size: 2rem;
+    --section-title-font-size: 2rem;
+
+    --heading-line-height: 1.1;
+    --heading-letter-spacing: -0.03em;
+
+    --card-title-font-size: 1.25rem;
+    --card-text-font-size: var(--text-font-size);
+
+    --main-card-title-font-size: 2rem;
+
+    --popup-link-font-size: 1.5rem;
+
+    --icon-design-color: #FF9A3A;
+    --icon-design-bg-color: rgba(255, 154, 58, 0.18);
+    --icon-conversion-color: #0FB67A;
+    --icon-conversion-bg-color: rgba(15, 182, 122, 0.18);
+    --icon-seo-color: #E6C400;
+    --icon-seo-bg-color: rgba(230, 196, 0, 0.18);
+    --icon-code-color: #2563EB;
+    --icon-code-bg-color: rgba(37, 99, 235, 0.18);
+    --icon-performance-color: #E53935;
+    --icon-performance-bg-color: rgba(229, 57, 53, 0.18);
+    --icon-ai-color: #D04BD6;
+    --icon-ai-bg-color: rgba(208, 75, 214, 0.18);
+    --icon-security-color: #00FFD5;
+    --icon-security-bg-color: rgba(0, 255, 213, 0.18);
+    --icon-strategy-color: #A2FF00;
+    --icon-strategy-bg-color: rgba(162, 255, 0, 0.18);
+    --icon-analytics-color: #7700FF;
+    --icon-analytics-bg-color: rgba(119, 0, 255, 0.18);
+    --icon-on-plate-color: #FFFFFF;
+    --icon-plate-hover-alpha: 0.28;
+}
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+@supports (overflow: clip) {
+    html,
+    body {
+        overflow-x: clip;
+    }
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background-color: #020203;
+    background-image:
+        radial-gradient(at 0% 0%, rgba(34, 0, 184, 0.05) 0, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(93, 0, 255, 0.04) 0, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(225, 0, 255, 0.03) 0, transparent 50%);
+    background-attachment: fixed;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    padding-bottom: 25rem;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.015;
+    pointer-events: none;
+    z-index: 100;
+}
+
+p {
+    font-size: var(--text-font-size);
+    line-height: var(--text-line-height);
+}
+
+main {
+    min-height: 100vh;
+}
+
+section {
+    width: 100%;
+    max-width: 170rem;
+    min-height: 45vh;
+    padding: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20vh 0;
+}
+
+h1,
+h2 {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 600;
+    line-height: var(--heading-line-height);
+    letter-spacing: var(--heading-letter-spacing);
+}
+
+h3 {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    line-height: var(--heading-line-height);
+    letter-spacing: var(--heading-letter-spacing);
+}
+
+img {
+    overflow: hidden;
+}
+
 
 
 .bold {
