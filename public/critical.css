@@ -17,7 +17,7 @@
     --text-font-size: 0.8125rem;
     --text-line-height: 1.6;
 
-    --small-text-font-size: 0.5rem;
+    --small-text-font-size: 0.8rem;
 
     --page-title-font-size-large: 2.75rem;
     --page-title-font-size-small: 2rem;
@@ -634,7 +634,7 @@ body.page-home main[data-barba-namespace="home"]::after {
         border-radius: 999px;
         font-size: 0.95rem;
         letter-spacing: 0.01em;
-        margin-top: 1.15rem;
+        margin-top: 1.5rem;
         min-width: min(100%, 20rem);
         justify-content: center;
         text-align: center;
@@ -802,7 +802,7 @@ header {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100svh;
     padding: 2rem 2rem;
     background:
         radial-gradient(58rem 36rem at 16% 16%, rgba(186, 38, 255, 0.94), rgba(186, 38, 255, 0) 60%),

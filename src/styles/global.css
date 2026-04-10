@@ -160,7 +160,7 @@ h3 {
     font-weight: 600;
     line-height: var(--heading-line-height);
     letter-spacing: var(--heading-letter-spacing);
-    color: hsla(0, 0%, 100%, 0.8);
+    color: hsla(0, 0%, 100%, 0.85);
 }
 
 img {
