@@ -272,6 +272,11 @@ img {
   100% { background-position: -200% 0; }
 }
 
+@keyframes heroCapabilityMarquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+}
+
 body.page-home {
     background:
         radial-gradient(46rem 34rem at 12% 10%, rgba(206, 72, 255, 0.09), rgba(206, 72, 255, 0) 62%),
@@ -448,6 +453,7 @@ body.page-home main[data-barba-namespace="home"]::after {
         gap: 0;
         white-space: nowrap;
         will-change: transform;
+        animation: heroCapabilityMarquee 30s linear infinite;
     }
 
     .hero-capability-group {
