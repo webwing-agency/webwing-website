@@ -10,6 +10,16 @@
 
 import './styles/global.css';
 import './styles/responsive/desktop.css';
+import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
+import '@fortawesome/fontawesome-free/css/solid.min.css';
+import '@fortawesome/fontawesome-free/css/brands.min.css';
+import './styles/index.css';
+import './styles/individual/book-call.css';
+import './styles/individual/contact.css';
+import './styles/individual/about.css';
+import './styles/individual/legal.css';
+import './styles/individual/projects.css';
+import './styles/individual/services.css';
 import './js/gsap/gsap-global.js';
 import { initNav } from './js/nav.js';
 import { initBarba } from './js/barba.js';
@@ -36,7 +46,6 @@ async function initPage(containerOverride = null) {
   try {
     // -------- HOME --------
     if (body.classList.contains('page-home')) {
-      await import('./styles/index.css');
       await import('./js/gsap/gsap-index.js');
       const [
         { initHomePage },
@@ -68,7 +77,6 @@ async function initPage(containerOverride = null) {
 
     // -------- BOOKING --------
     if (body.classList.contains('page-booking')) {
-      await import('./styles/individual/book-call.css');
       const [{ initBookCallPage }, { initBookingPage }] = await Promise.all([
         import('./js/render/book-call.js'),
         import('./js/booking/main.js')
@@ -79,7 +87,6 @@ async function initPage(containerOverride = null) {
 
     // -------- CONTACT --------
     if (body.classList.contains('page-contact')) {
-      await import('./styles/individual/contact.css');
       const [{ initContactPage }, { initContactForm }] = await Promise.all([
         import('./js/render/contact.js'),
         import('./js/contact-form.js')
@@ -91,15 +98,13 @@ async function initPage(containerOverride = null) {
     // -------- ABOUT --------
     if (body.classList.contains('page-about')) {
       const [{ initAboutPage }] = await Promise.all([
-        import('./js/render/about.js'),
-        import('./styles/individual/about.css')
+        import('./js/render/about.js')
       ]);
       aboutPageInitializer = initAboutPage;
     }
 
     // -------- LEGAL --------
     if (body.classList.contains('page-legal')) {
-      await import('./styles/individual/legal.css');
       const { initLegalPage } = await import('./js/render/legal.js');
       await initLegalPage();
     }
@@ -107,11 +112,7 @@ async function initPage(containerOverride = null) {
     // -------- PROJECTS --------
     if (body.classList.contains('page-portfolio')) {
       const [{ initProjectsPage }] = await Promise.all([
-        import('./js/render/projects.js'),
-        import('@fortawesome/fontawesome-free/css/fontawesome.min.css'),
-        import('@fortawesome/fontawesome-free/css/solid.min.css'),
-        import('@fortawesome/fontawesome-free/css/brands.min.css'),
-        import('./styles/individual/projects.css')
+        import('./js/render/projects.js')
       ]);
       await initProjectsPage(container);
     }
@@ -119,11 +120,7 @@ async function initPage(containerOverride = null) {
     // -------- SERVICES --------
     if (body.classList.contains('page-services')) {
       const [{ initServicesPage }] = await Promise.all([
-        import('./js/render/services.js'),
-        import('@fortawesome/fontawesome-free/css/fontawesome.min.css'),
-        import('@fortawesome/fontawesome-free/css/solid.min.css'),
-        import('@fortawesome/fontawesome-free/css/brands.min.css'),
-        import('./styles/individual/services.css')
+        import('./js/render/services.js')
       ]);
       await initServicesPage(container);
     }
