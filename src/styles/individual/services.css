@@ -101,6 +101,7 @@
   padding-bottom: 0.35rem;
   box-sizing: border-box;
   contain: inline-size;
+  border-radius: 20px;
 }
 
 .service-image {

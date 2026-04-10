@@ -113,6 +113,8 @@ body {
     padding-bottom: 25rem;
 }
 
+main {max-width: 100vw;}
+
 body::before {
     content: "";
     position: fixed;
