@@ -90,6 +90,7 @@
     gap: 0;
     white-space: nowrap;
     will-change: transform;
+    animation: heroCapabilityMarquee 30s linear infinite;
 }
 
 .hero-capability-group {
