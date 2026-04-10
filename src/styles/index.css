@@ -167,16 +167,18 @@
         text-wrap: balance;
         opacity: 0.98;
         text-shadow: 0 14px 38px rgba(0,0,0,0.42);
+        margin-bottom: 1.5rem !important;
     }
 
     .hero-section .hero-subtitle {
         font-size: clamp(0.78rem, 2.7vw, 0.92rem);
-        line-height: 1.5;
-        max-width: 37ch;
+        line-height: 1.65;
+        max-width: 77vw; 
         text-wrap: pretty;
         opacity: 0.86;
-        margin-top: 0.35rem;
-        padding: 0.95rem 1rem 0;
+        margin-top: 0; 
+        margin-bottom: 0; 
+        padding: 0; 
         background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0));
         color: rgba(255, 255, 255, 0.74);
     }
@@ -260,6 +262,7 @@
     justify-content: center;
     position: relative;
     border-radius: 10px;
+    border: var(--icon-border);
 }
 
 .icon-container::after {
