@@ -1,6 +1,6 @@
 /* Projects (Portfolio) page */
 .portfolio-page-fold {
-  width: 100%;
+  width: 100vw;
   max-width: 100rem;
   min-width: 0;
   padding: 4rem 2rem 10rem 2rem;
