@@ -23,7 +23,7 @@
     --text-font-size: 0.8125rem;
     --text-line-height: 1.6;
 
-    --small-text-font-size: 0.5rem;
+    --small-text-font-size: 0.8rem;
 
     --page-title-font-size-large: 2.75rem;
     --page-title-font-size-small: 2rem;
@@ -160,6 +160,7 @@ h3 {
     font-weight: 600;
     line-height: var(--heading-line-height);
     letter-spacing: var(--heading-letter-spacing);
+    color: hsla(0, 0%, 100%, 0.8);
 }
 
 img {
@@ -449,7 +450,8 @@ p, a, button {
 }
 
 .section-title-stack .section-title {
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0.25rem;
 }
 
 .section-subtitle {
