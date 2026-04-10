@@ -7,6 +7,8 @@
   align-items: flex-start;
   position: relative;
   margin-inline: auto;
+  box-sizing: border-box;
+  overflow-x: clip;
 }
 
 .portfolio-page-fold > .section-eyebrow {
@@ -267,6 +269,26 @@
   .project-images-grid {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .project-images-grid img {
+    flex: 0 0 85%;
+    max-width: 85%;
+    height: 15rem;
+    scroll-snap-align: center;
+  }
+
+  .project-images-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
     height: auto;
     display: flex;
     overflow-x: auto;
@@ -275,11 +297,6 @@
     padding-bottom: 0.5rem;
   }
 
-  .project-images-grid img {
-    flex: 0 0 85%;
-    height: 15rem;
-    scroll-snap-align: center;
-  }
 }
 
 @media (min-width: 1000px) {
@@ -294,4 +311,5 @@
   .project-specs .feature-text {
     white-space: normal;
   }
+
 }
