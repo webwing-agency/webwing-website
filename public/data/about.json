@@ -10,12 +10,12 @@
     "title": "Über Uns",
     "primary_cta_text": "Kostenloses Erstgespräch",
     "image": "assets/images/team.jpg",
-    "lead": "Wir sind eine Webdesignagentur aus dem wunderschönen Heidelberg. Wir entwickeln Website-Auftritte, die nicht nur großartig aussehen, sondern auch Marken profilieren, Vertrauen aufbauen und effektiv mehr Kunden gewinnen. Dank unserer Kompetenzen in den Bereichen Design, Marketing und IT greifen bei unseren Projekten Strategie, Aussehen und Technik von Anfang an ineinander und erschaffen ein stimmiges Ganzes."
+    "lead": "Wir sind eine Webdesignagentur aus dem schönen Heidelberg. Wir designen und entwickeln Websites. Unsere Maxime ist, Auftritte zu erschaffen, die nicht nur großartig aussehen, sondern auch Marken profilieren, Vertrauen aufbauen und effektiv mehr Kunden gewinnen. Dank unserer Kompetenzen in den Bereichen Design, Marketing und IT versorgen wir unsere Kunden als Full-Service-Agentur mit dem Rundumpaket für ihrem Erfolg online. "
   },
   "history": {
     "eyebrow": "Unsere Geschichte",
     "title": "Wie Webwing entstanden ist",
-    "intro": "Webwing wurde 2026 von Paul als One-Man-Show gegründet, nachdem er sich seit 2023 erstmals intensiv mit den Themen Design und Marketing auseinandergesetzt und Programmieren gelernt hatte.",
+    "intro": "Webwing wurde 2026 von Paul als One-Man-Show gegründet, nachdem er sich seit 2023 intensiv mit den Themen Design und Marketing auseinandergesetzt und Programmieren gelernt hatte.",
     "paragraphs": [
       "Am Anfang stand die Beobachtung, dass viele Websites trotz großer Mühe unter ihren Möglichkeiten bleiben: visuell austauschbar, strategisch unklar oder technisch träge. Genau dort setzt Webwing an. Wir verbinden Design, Struktur und Umsetzung so, dass ein Auftritt nicht nur gut aussieht, sondern sich auch klarer, hochwertiger und überzeugender anfühlt.",
       "Heute arbeiten wir mit einem schlanken, direkten Ansatz: kurze Wege, klare Kommunikation und ein Fokus auf Ergebnisse statt Agenturtheater. So entstehen digitale Auftritte, die nicht beliebig wirken, sondern genau zu den Unternehmen passen, die dahinterstehen."
@@ -24,7 +24,7 @@
   "team": {
     "eyebrow": "Menschen",
     "title": "Unser Team",
-    "intro": "Hinter Webwing stehen klare Verantwortlichkeiten, kurze Wege und ein Anspruch an Qualität, Kommunikation und Verlässlichkeit.",
+    "intro": "Hier gibt's noch nicht so viel zu sehen, aber mal sehen, was die Zukunft bringt (:",
     "members": [
       {
         "name": "Paul Breitenfelder",
