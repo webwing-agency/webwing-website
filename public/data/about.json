@@ -1,6 +1,6 @@
 {
   "meta_title": "Über Uns | Webwing ",
-  "meta_description": "Erfahren Sie mehr über unsere Entstehungsgeschichte, unser Team, unsere Grundsätze, unsere Arbeitsweise und unsere Mission.",
+  "meta_description": "Erfahren Sie mehr über unser Team und unsere Grundsätze, Arbeitsweise und unsere Mission.",
   "hero": {
     "image_alt": "Webwing Team",
     "primary_cta_link": "kostenloses-erstgespräch.html",
@@ -10,7 +10,7 @@
     "title": "Über Uns",
     "primary_cta_text": "Kostenloses Erstgespräch",
     "image": "assets/images/team.jpg",
-    "lead": "Wir sind eine Webdesignagentur aus dem schönen Heidelberg. Wir designen und entwickeln Websites mit herausragendem Design, Leistung und Unternehmensnutzen. Als Full-Service-Agentur versorgen wir unsere Kunden mit dem Rundumpaket für ihrem Erfolg online. "
+    "lead": "Wir sind eine Webdesignagentur aus dem schönen Heidelberg. Wir designen und entwickeln Websites mit herausragendem Design, starker Leistung und messbarem Nutzen. Als Full-Service-Agentur versorgen wir unsere Kunden mit dem Rundumpaket für ihrem Erfolg online. "
   },
   "history": {
     "eyebrow": "Unsere Geschichte",
@@ -36,22 +36,22 @@
   },
   "values": {
     "eyebrow": "Prinzipien",
-    "title": "Was uns ausmacht",
-    "intro": "Unsere Arbeit soll nicht nur gut aussehen, sondern Orientierung geben, Vertrauen aufbauen und am Ende messbar besser funktionieren.",
+    "title": "Was uns besonders macht",
+    "intro": "Unsere Arbeit soll nicht nur toll aussehen, sondern auch Vertrauen aufbauen, Markenwerte bilden und effektiv mehr Kunden gewinnen. Dank unserer Kompetenzen in den Bereichen Design, Marketing und IT greifen bei unseren Projekten Strategie, Aussehen und Technik von Anfang an ineinander und erschaffen ein zielgerichtetes Ganzes.",
     "items": [
       {
         "kicker": "01",
-        "title": "Markenwirkung",
-        "text": "Wir gestalten Seiten so, dass ein Auftritt sofort wertiger, klarer und professioneller wirkt."
+        "title": "Design-Exzellenz",
+        "text": "Unsere Kernkompetenz liegt im UI/UX Design (Benutzeroberfläche und -erfahrung). Unsere Designs sind ästhetisch, klar strukturiert und ausgereift. KI kann uns hier nicht das Wasser reichen, da ihr das menschliche Gespür für Design fehlt. Daher fabriziert sie – wie so ziemlich 95% aller Webdesign-Agenturen – nur mittelmäßige Ergebnisse. Wir aber liefern herausragendes Design."
       },
       {
         "kicker": "02",
-        "title": "Klarheit",
-        "text": "Gute Websites erklären sich fast von selbst. Struktur, Sprache und Nutzerführung sind dafür entscheidend."
+        "title": "Markenwirkung",
+        "text": "Wir helfen unseren Kunden, ihre Website als strategisches Werkzeug ihrer Brand-Strategy zu verwenden. Wir sorgen dafür, dass ihre Seiteninhalte zielgerichtet und methodisch ihre Marke zu profilieren und zu positionieren, um ein einzigartiges Image, Wiedererkennungswert, Vertrauen und emotionale Bindung bei Ihren Kunden zu schaffen."
       },
       {
         "kicker": "03",
-        "title": "Umsetzung",
+        "title": "Messbarer Nutzen",
         "text": "Wir denken nicht in hübschen Mockups, sondern in funktionierenden, performanten und sauberen Ergebnissen."
       }
     ]
