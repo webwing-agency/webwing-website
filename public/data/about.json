@@ -10,15 +10,15 @@
     "title": "Über Uns",
     "primary_cta_text": "Kostenloses Erstgespräch",
     "image": "assets/images/team.jpg",
-    "lead": "Wir sind eine Webdesignagentur aus dem schönen Heidelberg. Wir designen und entwickeln Websites mit herausragendem Design, starker Leistung und messbarem Nutzen. Als Full-Service-Agentur versorgen wir unsere Kunden mit dem Rundumpaket für ihrem Erfolg online. "
+    "lead": "Wir sind eine Webdesignagentur aus dem schönen Heidelberg. Wir designen und entwickeln Websites mit herausragendem Design, starker Leistung und messbarem Nutzen. Unsere Kompetenzen bestehen in den Bereichen Design, Marketing und IT. Als Full-Service-Agentur versorgen wir unsere Kunden mit dem Rundumpaket für ihren Erfolg online. "
   },
   "history": {
     "eyebrow": "Unsere Geschichte",
     "title": "Wie Webwing entstanden ist",
     "intro": "Webwing wurde 2026 von Paul als One-Man-Show gegründet, nachdem er sich seit 2023 intensiv mit den Themen Design und Marketing auseinandergesetzt und Programmieren gelernt hatte.",
     "paragraphs": [
-      "Am Anfang stand die Beobachtung, dass viele Websites trotz großer Mühe unter ihren Möglichkeiten bleiben: visuell austauschbar, strategisch unklar oder technisch träge. Genau dort setzt Webwing an. Wir verbinden Design, Struktur und Umsetzung so, dass ein Auftritt nicht nur gut aussieht, sondern sich auch klarer, hochwertiger und überzeugender anfühlt.",
-      "Heute arbeiten wir mit einem schlanken, direkten Ansatz: kurze Wege, klare Kommunikation und ein Fokus auf Ergebnisse statt Agenturtheater. So entstehen digitale Auftritte, die nicht beliebig wirken, sondern genau zu den Unternehmen passen, die dahinterstehen."
+      "Am Anfang stand die Beobachtung, dass viele Websites trotz großer Mühe unter ihren Möglichkeiten bleiben: optisch ersetzbar, ohne klare Strategie und nicht im gewünschten Maß ergebnissliefernd. ",
+      "Die Brücke zwischen komplexer Technik und menschlichem Bedürfnis (des Nutzers) zu schlagen, ist eine Kunst. Diese zu meistern definieren wir als Inbegriff erfolgreicher Website-Erstellung. \n\n"
     ]
   },
   "team": {
@@ -37,7 +37,7 @@
   "values": {
     "eyebrow": "Prinzipien",
     "title": "Was uns besonders macht",
-    "intro": "Unsere Arbeit soll nicht nur toll aussehen, sondern auch Vertrauen aufbauen, Markenwerte bilden und effektiv mehr Kunden gewinnen. Dank unserer Kompetenzen in den Bereichen Design, Marketing und IT greifen bei unseren Projekten Strategie, Aussehen und Technik von Anfang an ineinander und erschaffen ein zielgerichtetes Ganzes.",
+    "intro": "Unsere Arbeit soll nicht nur toll aussehen, sondern auch Vertrauen aufbauen, Markenwerte bilden und effektiv mehr Kunden gewinnen. Dank unserer Kompetenzen in den Bereichen Design, Marketing und IT greifen bei unseren Projekten Strategie, Aussehen und Technik von Anfang an ineinander und erschaffen ein zielgerichtete Gesamtwirkung. ",
     "items": [
       {
         "kicker": "01",
@@ -58,30 +58,30 @@
   },
   "process": {
     "eyebrow": "Wie wir arbeiten",
-    "title": "Ein klarer Prozess statt Agenturtheater",
-    "intro": "Wir arbeiten strukturiert, direkt und mit klaren Entscheidungen, damit aus einer guten Idee ohne Umwege ein überzeugender Auftritt entsteht.",
+    "title": "Ein simpler Prozess statt Agenturparalyse",
+    "intro": "Unser Workflow ist einfach, strukturiert und effizient, damit aus guten Ideen ohne Umwege ein überzeugender Webauftritt entstehen kann.",
     "steps": [
       {
         "kicker": "01",
-        "title": "Briefing",
-        "text": "Wir schärfen gemeinsam Ziel, Positionierung und Prioritäten, damit das Projekt von Anfang an Richtung hat."
+        "title": "Erstgespräch",
+        "text": "Wir legen gemeinsam Ziele, Richtlinien und Prioritäten fest, damit das Projekt von Anfang an eine Richtung hat und wir Ihr Projekt effizient umsetzen können. Ein kostenloses, unverbindliches Erstgespräch können sie hier (Link: kostenloses-erstgespraech.html) buchen."
       },
       {
         "kicker": "02",
         "title": "Konzept & Design",
-        "text": "Wir entwickeln eine visuelle Sprache und Nutzerführung, die zur Marke passt und gleichzeitig konvertiert."
+        "text": "Im Design-Prozess achten wir besonders auf ein optimales Layout, austarierte Farben und eine großartige Nutzererfahrung (UX). Das vorläufige Resultat senden wir ihnen dann als interaktiven Prototyp zu."
       },
       {
         "kicker": "03",
         "title": "Build & Launch",
-        "text": "Am Ende steht keine schöne Idee, sondern eine live geschaltete Website mit Substanz, Tempo und Charakter."
+        "text": "Das Endprodukt unserer Arbeit ist eine vollkommen fertige Website, die schnell lädt, reibungslos funktioniert und einfach zu warten ist – live und bereit, für Ihre Marke Wunder zu wirken."
       }
     ]
   },
   "mission": {
     "eyebrow": "Unsere Mission",
-    "title": "Unsere Mission",
-    "intro": "Unsere Maxime ist, Webauftritte zu erschaffen, die nicht nur großartig aussehen, sondern auch Marken profilieren, Vertrauen aufbauen und effektiv mehr Kunden gewinnen. Dank unserer Kompetenzen in den Bereichen Design, Marketing und IT versorgen wir unsere Kunden als Full-Service-Agentur mit dem Rundumpaket für ihrem Erfolg online. ",
+    "title": "Schluss mit Mittelmäßigkeit",
+    "intro": "Unsere Mission ist es, kleine und mittelständische Unternehmen zu befähigen, ihr volles Potenzial auszuschöpfen, sich klar vom Wettbewerb abzuheben und so den größtmöglichen Erfolg zu erzielen",
     "cta_text": "Kostenloses Erstgespräch vereinbaren",
     "cta_link": "kostenloses-erstgespräch.html"
   }
