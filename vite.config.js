@@ -12,7 +12,7 @@ export default defineConfig({
         portfolio: fileURLToPath(new URL('portfolio.html', import.meta.url)),
         dienstleistungen: fileURLToPath(new URL('dienstleistungen.html', import.meta.url)),
         kontakt: fileURLToPath(new URL('kontakt.html', import.meta.url)),
-        kostenloses_erstgespraech: fileURLToPath(new URL('kostenloses-erstgespr\u00e4ch.html', import.meta.url)),
+        kostenloses_erstgespraech: fileURLToPath(new URL('kostenloses-erstgespraech.html', import.meta.url)),
         impressum: fileURLToPath(new URL('impressum.html', import.meta.url)),
         datenschutzerklaerung: fileURLToPath(new URL('datenschutzerkl\u00e4rung.html', import.meta.url)),
         agb: fileURLToPath(new URL('agb.html', import.meta.url))
