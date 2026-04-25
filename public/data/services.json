@@ -3,7 +3,7 @@
   "cta_label": "Sie haben Fragen zu unserem Angebot?",
   "page_title": "Dienstleistungen",
   "page_subtitle": "Als Full-Service-Agentur mit einem umfassenden Repertoire an Design-, Beratungs-, Marketing-, Branding- und IT-Kompetenzen versorgen wir Sie mit allem, was für Ihren digitalen Erfolg voraussetzend ist.",
-  "cta_link": "kostenloses-erstgespräch.html",
+  "cta_link": "kostenloses-erstgespraech.html",
   "ui": {
     "search_placeholder": "Dienstleistungen durchsuchen",
     "card_cta_more_text": "Mehr erfahren",
@@ -50,7 +50,7 @@
       ],
       "ctas": {
         "more_link": "",
-        "contact_link": "kostenloses-erstgespräch.html"
+        "contact_link": "kostenloses-erstgespraech.html"
       },
       "contact_link": "kontakt.html",
       "learn_more_link": "#"
@@ -95,7 +95,7 @@
       ],
       "ctas": {
         "more_link": "",
-        "contact_link": "kostenloses-erstgespräch.html"
+        "contact_link": "kostenloses-erstgespraech.html"
       },
       "contact_link": "kontakt.html",
       "learn_more_link": "#"
@@ -132,7 +132,7 @@
       ],
       "ctas": {
         "more_link": "",
-        "contact_link": "kostenloses-erstgespräch.html"
+        "contact_link": "kostenloses-erstgespraech.html"
       },
       "contact_link": "kontakt.html",
       "learn_more_link": "#"

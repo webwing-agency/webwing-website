@@ -56,10 +56,10 @@ function getLikelyPages() {
   const body = document.body;
   if (!body) return [];
   const map = new Map([
-    ['page-home', ['dienstleistungen.html', 'portfolio.html', 'kontakt.html', 'kostenloses-erstgespräch.html']],
-    ['page-services', ['kostenloses-erstgespräch.html', 'portfolio.html', 'kontakt.html']],
-    ['page-portfolio', ['kostenloses-erstgespräch.html', 'dienstleistungen.html', 'kontakt.html']],
-    ['page-contact', ['kostenloses-erstgespräch.html', 'dienstleistungen.html', 'portfolio.html']],
+    ['page-home', ['dienstleistungen.html', 'portfolio.html', 'kontakt.html', 'kostenloses-erstgespraech.html']],
+    ['page-services', ['kostenloses-erstgespraech.html', 'portfolio.html', 'kontakt.html']],
+    ['page-portfolio', ['kostenloses-erstgespraech.html', 'dienstleistungen.html', 'kontakt.html']],
+    ['page-contact', ['kostenloses-erstgespraech.html', 'dienstleistungen.html', 'portfolio.html']],
     ['page-booking', ['dienstleistungen.html', 'portfolio.html', 'kontakt.html']],
     ['page-legal', ['index.html', 'kontakt.html']]
   ]);

@@ -154,7 +154,7 @@ function buildServiceCard(item, ui = {}) {
   contact.href =
     item.ctas?.contact_link && isValidURL(item.ctas.contact_link)
       ? item.ctas.contact_link
-      : '/kostenloses-erstgespräch.html';
+      : '/kostenloses-erstgespraech.html';
 
   ctaWrap.appendChild(more);
   ctaWrap.appendChild(contact);

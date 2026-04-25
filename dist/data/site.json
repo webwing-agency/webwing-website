@@ -21,7 +21,7 @@
       },
       {
         "label": "Erstgespräch buchen",
-        "href": "kostenloses-erstgespräch.html"
+        "href": "kostenloses-erstgespraech.html"
       },
       {
         "label": "Kontakt",
@@ -48,7 +48,7 @@
       },
       {
         "label": "Erstgespräch buchen",
-        "href": "kostenloses-erstgespräch.html"
+        "href": "kostenloses-erstgespraech.html"
       },
       {
         "label": "Kontakt",
@@ -66,7 +66,7 @@
     "company_title": "Unternehmen",
     "cta_title": "Jetzt durchstarten",
     "cta_text": "kostenloses Erstgespräch",
-    "cta_link": "kostenloses-erstgespräch.html",
+    "cta_link": "kostenloses-erstgespraech.html",
     "legal_title": "Rechtliches",
     "nav_links": [
       {

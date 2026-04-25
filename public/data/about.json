@@ -3,7 +3,7 @@
   "meta_description": "Erfahren Sie mehr über unser Team und unsere Grundsätze, Arbeitsweise und unsere Mission.",
   "hero": {
     "image_alt": "Webwing Team",
-    "primary_cta_link": "kostenloses-erstgespräch.html",
+    "primary_cta_link": "kostenloses-erstgespraech.html",
     "secondary_cta_text": "Leistungen ansehen",
     "eyebrow": "Webwing in Kürze",
     "secondary_cta_link": "dienstleistungen.html",
@@ -83,6 +83,6 @@
     "title": "Schluss mit Mittelmäßigkeit",
     "intro": "Unsere Mission ist es, kleine und mittelständische Unternehmen zu befähigen, ihr volles Potenzial auszuschöpfen, sich klar vom Wettbewerb abzuheben und so den größtmöglichen Erfolg zu erzielen. Die Brücke zwischen komplexer Technik und menschlichem Bedürfnis (des Nutzers) zu schlagen, ist eine große Kunst. Diese zu meistern definieren wir als Inbegriff erfolgreicher Website-Erstellung und ist uns wir uns Ansporn wie Anspruch.",
     "cta_text": "Kostenloses Erstgespräch vereinbaren",
-    "cta_link": "kostenloses-erstgespräch.html"
+    "cta_link": "kostenloses-erstgespraech.html"
   }
 }

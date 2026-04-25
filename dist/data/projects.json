@@ -3,7 +3,7 @@
   "cta_label": "Sie haben Fragen zu unserem Angebot?",
   "page_title": "Portfolio",
   "page_subtitle": "Unsere zurückliegenden Projekte & Arbeiten. Hier können Sie sich einen Eindruck von unserer Arbeitsweise, unserem Designstil und den Ergebnissen verschaffen, die wir für unsere Kunden erzielen.",
-  "cta_link": "kostenloses-erstgespräch.html",
+  "cta_link": "kostenloses-erstgespraech.html",
   "ui": {
     "search_placeholder": "Portfolio durchsuchen",
     "card_cta_more_text": "Mehr erfahren",
@@ -40,7 +40,7 @@
       "description": "Entwicklung eines E-Commerce-Shops mit Fokus auf Usability und Conversion.",
       "ctas": {
         "more_link": "",
-        "contact_link": "kostenloses-erstgespräch.html"
+        "contact_link": "kostenloses-erstgespraech.html"
       }
     },
     {
@@ -68,7 +68,7 @@
       "description": "Nachhaltige Unternehmenswebsite mit besonderem Fokus auf SEO und Performance.",
       "ctas": {
         "more_link": "",
-        "contact_link": "kostenloses-erstgespräch.html"
+        "contact_link": "kostenloses-erstgespraech.html"
       }
     },
     {
@@ -96,7 +96,7 @@
       "description": "Digitale Fitness-Plattform mit hoher Nutzerbindung und modernem Design.",
       "ctas": {
         "more_link": "",
-        "contact_link": "kostenloses-erstgespräch.html"
+        "contact_link": "kostenloses-erstgespraech.html"
       }
     }
   ],
