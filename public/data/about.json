@@ -2,14 +2,14 @@
   "meta_title": "Über Uns | Webwing ",
   "meta_description": "Erfahren Sie mehr über unser Team und unsere Grundsätze, Arbeitsweise und unsere Mission.",
   "hero": {
-    "image_alt": "Webwing Team",
+    "image_alt": "Abstrakte Platzhaltergrafik",
     "primary_cta_link": "kostenloses-erstgespraech.html",
     "secondary_cta_text": "Leistungen ansehen",
     "eyebrow": "Webwing in Kürze",
     "secondary_cta_link": "dienstleistungen.html",
     "title": "Über Uns",
     "primary_cta_text": "Kostenloses Erstgespräch",
-    "image": "assets/images/team.jpg",
+    "image": "assets/images/projects/project-1.webp",
     "lead": "Wir sind eine Webdesignagentur aus dem schönen Heidelberg. Wir designen und entwickeln Websites mit herausragendem Design, starker Leistung und messbarem Nutzen. Unsere Kompetenzen bestehen in den Bereichen Design, Marketing und IT. Als Full-Service-Agentur versorgen wir unsere Kunden mit dem Rundumpaket für ihren Erfolg online. "
   },
   "history": {

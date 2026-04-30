@@ -16,7 +16,7 @@
   "page_eyebrow": "Ausgewählte Arbeiten",
   "projects": [
     {
-      "title": "Ofenkäse-Versandhandel Rainer Winkler GmbH",
+      "title": "Musterprojekt Alpha",
       "project_link": "https://example.com",
       "images": [
         "/assets/images/projects/project-1.webp",
@@ -44,7 +44,7 @@
       }
     },
     {
-      "title": "GreenTech Solutions AG",
+      "title": "Musterprojekt Beta",
       "project_link": "https://example.com",
       "images": [
         "/assets/images/projects/project-2.webp",
@@ -72,7 +72,7 @@
       }
     },
     {
-      "title": "UrbanFit Plattform",
+      "title": "Musterprojekt Gamma",
       "comingSoon": true,
       "images": [
         "/assets/images/projects/project-3.webp",
