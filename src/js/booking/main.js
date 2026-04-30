@@ -308,6 +308,7 @@ export function initBookingPage(root = document) {
     const name = (root.querySelector('#bookingName')?.value || '').trim();
     const email = (root.querySelector('#bookingEmail')?.value || '').trim();
     const phone = (root.querySelector('#bookingPhone')?.value || '').trim();
+    const interest = root.querySelector('input[name="bookingInterest"]:checked')?.value || '';
     const timezone = 'Europe/Berlin';
 
     if (!name) { alert(bookingCopy.messages.name_required); return; }
@@ -316,7 +317,7 @@ export function initBookingPage(root = document) {
 
     const idempotencyKey = (typeof crypto?.randomUUID === 'function') ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2,9)}`;
 
-    const payload = { name, email, phone, startLocal: startLocalInput.value, timezone, idempotencyKey, source: 'website' };
+    const payload = { name, email, phone, interest, startLocal: startLocalInput.value, timezone, idempotencyKey, source: 'website' };
 
     const submitBtn = bookingForm.querySelector('button[type="submit"]');
     if (submitBtn) { submitBtn.disabled = true; submitBtn.dataset.origText = submitBtn.textContent; submitBtn.textContent = bookingCopy.button.loading; }

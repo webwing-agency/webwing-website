@@ -154,6 +154,69 @@
                     gap: 15px;
                 }
 
+                .interest-group {
+                    border: 0;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .interest-options {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 0.7rem;
+                    margin-top: 0.45rem;
+                }
+
+                .interest-option {
+                    position: relative;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                }
+
+                .interest-option input {
+                    position: absolute;
+                    opacity: 0;
+                    pointer-events: none;
+                }
+
+                .interest-option span {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-height: 2.2rem;
+                    padding: 0.5rem 0.85rem;
+                    border-radius: 999px;
+                    background:
+                        linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.028)),
+                        rgba(255, 255, 255, 0.025);
+                    border: 0.5px solid rgba(255, 255, 255, 0.16);
+                    color: rgba(255, 255, 255, 0.82);
+                    font-size: var(--text-font-size);
+                    line-height: 1.2;
+                    transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, transform 180ms ease;
+                    text-align: center;
+                }
+
+                .interest-option:hover span {
+                    border-color: rgba(255, 255, 255, 0.26);
+                    color: #fff;
+                }
+
+                .interest-option input:checked + span {
+                    background:
+                        linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05)),
+                        rgba(255, 255, 255, 0.06);
+                    border-color: rgba(255, 255, 255, 0.38);
+                    color: #fff;
+                }
+
+                .interest-option input:focus-visible + span {
+                    box-shadow: 0 0 0 4px rgba(225, 0, 255, 0.08);
+                    border-color: rgba(236, 94, 255, 0.65);
+                }
+
                     .date-container {
                         display: flex;
                         flex-direction: column;
