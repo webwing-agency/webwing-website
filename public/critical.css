@@ -942,3 +942,136 @@ header {
     .popup-menu-decorations {
         display: none;
     }
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, rgba(14, 16, 28, 0.96) 0%, rgba(7, 8, 16, 0.98) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2.15rem 1.5rem 1.3rem;
+    min-height: 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.footer-main-content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+    align-items: start;
+}
+
+.footer-brand-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+    max-width: 38rem;
+    margin: 0 auto;
+    padding-bottom: 1.45rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+footer .logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+footer .logo {
+    width: 178px;
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    transform: none;
+}
+
+footer .slogan {
+    font-size: 1rem;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.footer-right-column {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    width: 100%;
+}
+
+.footer-bottom-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1.15rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 900px) {
+    body {
+        padding-bottom: 50rem;
+    }
+}
+
+@media (min-width: 768px) {
+    footer {
+        padding: 2.8rem 3rem 1.5rem;
+    }
+
+    .footer-content {
+        gap: 1.8rem;
+    }
+
+    .footer-main-content {
+        grid-template-columns: minmax(0, 1.25fr) max-content;
+        gap: 3rem;
+    }
+
+    .footer-brand-column {
+        align-items: flex-start;
+        text-align: left;
+        margin: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    footer .logo-container {
+        justify-content: flex-start;
+        width: fit-content;
+        gap: 1rem;
+    }
+
+    footer .logo {
+        width: 210px;
+    }
+
+    .footer-right-column {
+        grid-template-columns: max-content max-content max-content;
+        gap: 3.375rem;
+        justify-self: end;
+        width: auto;
+    }
+
+    .footer-bottom-bar {
+        justify-content: flex-start;
+        gap: 2rem;
+    }
+}
